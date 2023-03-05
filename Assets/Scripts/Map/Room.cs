@@ -48,25 +48,25 @@ public class Room : MonoBehaviour
         {
             case Define.RoomEventType.Normal:
                 RoomSymbol = Instantiate(
-                    AssetLoader.Instance.Load($"Prefabs/EventSymbol/MonsterSymbol"),
+                    Resources.Load<GameObject>($"Prefabs/EventSymbol/MonsterSymbol"),
                     transform
                 ).AddComponent<MonsterSymbol>();
                 break;
             case Define.RoomEventType.Item:
                 RoomSymbol = Instantiate(
-                    AssetLoader.Instance.Load($"Prefabs/EventSymbol/ItemSymbol"),
+                    Resources.Load<GameObject>($"Prefabs/EventSymbol/ItemSymbol"),
                     transform
                 ).AddComponent<ItemSymbol>();
                 break;
             case Define.RoomEventType.Shop:
                 RoomSymbol = Instantiate(
-                    AssetLoader.Instance.Load($"Prefabs/EventSymbol/ShopSymbol"),
+                    Resources.Load<GameObject>($"Prefabs/EventSymbol/ShopSymbol"),
                     transform
                 ).AddComponent<ShopSymbol>();
                 break;
             case Define.RoomEventType.Boss:
                 RoomSymbol = Instantiate(
-                    AssetLoader.Instance.Load($"Prefabs/EventSymbol/BossSymbol"),
+                    Resources.Load<GameObject>($"Prefabs/EventSymbol/BossSymbol"),
                     transform
                 ).AddComponent<BossSymbol>();
                 break;

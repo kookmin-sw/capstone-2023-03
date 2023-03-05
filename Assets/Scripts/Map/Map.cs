@@ -120,7 +120,7 @@ public class Map : MonoBehaviour
 
             //방 게임오브젝트 생성
             Room currentRoom = Instantiate(
-                AssetLoader.Instance.Load($"Prefabs/Room/{roomType}Room"),
+                Resources.Load<GameObject>($"Prefabs/Room/{roomType}Room"),
                 transform
             ).AddComponent<Room>();
             currentRoom.name = $"Room{node}";

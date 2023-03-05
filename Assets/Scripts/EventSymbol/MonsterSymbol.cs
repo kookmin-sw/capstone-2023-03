@@ -16,11 +16,11 @@ public class MonsterSymbol : RoomSymbol
         
     }
 
-    public override void Encounter()
+    public override void SymbolEncounter()
     {
     }
 
-    public override void Clear()
+    public override void SymbolClear()
     {
     }
 }

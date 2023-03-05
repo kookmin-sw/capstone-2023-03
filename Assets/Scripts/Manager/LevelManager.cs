@@ -11,7 +11,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public Vector3 StartPosition { get; set; } = Vector3.zero;
 
-    public event Action<Room> RoomClear;
+    public event Action RoomClear;
     public event Action LevelClear;
 
     protected override void Awake()
@@ -19,7 +19,7 @@ public class LevelManager : Singleton<LevelManager>
         base.Awake();
 
         Map = new GameObject("Map").AddComponent<Map>();
-        Player = Instantiate(AssetLoader.Instance.Load("Prefabs/Player"), StartPosition, Quaternion.identity); 
+        Player = Instantiate(Resources.Load<GameObject>("Prefabs/Player"), StartPosition, Quaternion.identity); 
     }
 
 
@@ -28,7 +28,7 @@ public class LevelManager : Singleton<LevelManager>
     //딕셔너리로 어떻게 저장을?? 하면 되나?
     public void OnRoomClear()
     {
-/*        RoomClear?.Invoke();*/
+        RoomClear?.Invoke();
     }
 
     //델리게이트가 참조한 함수들에게 레벨이 클리어되었음을 알리는 함수 -> 전부 실행

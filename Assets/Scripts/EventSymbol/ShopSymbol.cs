@@ -16,12 +16,12 @@ public class ShopSymbol : RoomSymbol
         
     }
 
-    public override void Encounter()
+    public override void SymbolEncounter()
     {
         Debug.Log("ShopRoom");
     }
 
-    public override void Clear()
+    public override void SymbolClear()
     {
         LevelManager.Instance.OnRoomClear();
     }
