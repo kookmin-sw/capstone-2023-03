@@ -1,11 +1,11 @@
 using UnityEngine;
 
 
-public class TitleUI : MonoBehaviour
+public class TitleUI : BaseUI
 {
     public void StartButtonClick()
     {
-        SceneLoader.Instance.LoadScene("GameScene");
+        PanelManager.Instance.ShowPanelOnStack("LoadUI", true);
     }
 
     public void LibraryButtonClick()
@@ -20,6 +20,6 @@ public class TitleUI : MonoBehaviour
 
     public void ExitButtonClick()
     {
-        Application.Quit();
+        PanelManager.Instance.HideLastPanel();
     }
 }

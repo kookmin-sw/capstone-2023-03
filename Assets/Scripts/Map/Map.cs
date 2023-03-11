@@ -24,12 +24,12 @@ public class Map : MonoBehaviour
 
     private void OnEnable()
     {
-        LevelManager.Instance.LevelClear += CreateStage;
+        GameManager.Instance.onLevelClear += CreateStage;
     }
 
     public void OnDisable()
     {
-        LevelManager.Instance.LevelClear -= CreateStage;
+        GameManager.Instance.onLevelClear -= CreateStage;
     }
 
     //레벨에 맞게 스테이지 생성
@@ -40,7 +40,7 @@ public class Map : MonoBehaviour
         {
             for (int i = 0; i < mapRooms.Count; i++)
             {
-                Destroy(mapRooms[i].gameObject);
+                AssetLoader.Instance.Destroy(mapRooms[i].gameObject);
             }
             mapRooms = null;
             mapRoomPoints = null;
@@ -119,10 +119,7 @@ public class Map : MonoBehaviour
             Define.RoomEventType roomType = SelectRoomType(node);
 
             //방 게임오브젝트 생성
-            Room currentRoom = Instantiate(
-                Resources.Load<GameObject>($"Prefabs/Room/{roomType}Room"),
-                transform
-            ).AddComponent<Room>();
+            Room currentRoom = AssetLoader.Instance.Instantiate($"Prefabs/Room/{roomType}Room", transform).AddComponent<Room>();
             currentRoom.name = $"Room{node}";
 
             //멤버 변수 초기화

@@ -1112,6 +1112,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1358649009535577638
 GameObject:
   m_ObjectHideFlags: 0
@@ -3170,7 +3171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 482335405237771138}
-  - component: {fileID: 4958524583090075069}
+  - component: {fileID: -2839152578642401665}
   - component: {fileID: 5462917536566323965}
   - component: {fileID: 135753564301495161}
   - component: {fileID: 847214994622161995}
@@ -3197,7 +3198,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &4958524583090075069
+--- !u!143 &-2839152578642401665
 CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3274,6 +3275,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 8ecd1392-852b-430e-8120-934f5795ca1c
     m_ActionName: UI/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7738cba5-5fa2-4523-97c6-3c443a26792e
+    m_ActionName: UI/Point[/Mouse/position]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: PC
   m_DefaultActionMap: Player

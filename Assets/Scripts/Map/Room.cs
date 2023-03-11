@@ -43,32 +43,20 @@ public class Room : MonoBehaviour
         //Type 지정
         this.type = type;
 
-        //RoomSymbol 지정
+        //RoomSymbol 소환
         switch (type)
         {
             case Define.RoomEventType.Normal:
-                RoomSymbol = Instantiate(
-                    Resources.Load<GameObject>($"Prefabs/EventSymbol/MonsterSymbol"),
-                    transform
-                ).AddComponent<MonsterSymbol>();
+                RoomSymbol = AssetLoader.Instance.Instantiate($"Prefabs/EventSymbol/MonsterSymbol", transform).AddComponent<MonsterSymbol>();
                 break;
             case Define.RoomEventType.Item:
-                RoomSymbol = Instantiate(
-                    Resources.Load<GameObject>($"Prefabs/EventSymbol/ItemSymbol"),
-                    transform
-                ).AddComponent<ItemSymbol>();
+                RoomSymbol = AssetLoader.Instance.Instantiate($"Prefabs/EventSymbol/ItemSymbol", transform).AddComponent<ItemSymbol>();
                 break;
             case Define.RoomEventType.Shop:
-                RoomSymbol = Instantiate(
-                    Resources.Load<GameObject>($"Prefabs/EventSymbol/ShopSymbol"),
-                    transform
-                ).AddComponent<ShopSymbol>();
+                RoomSymbol = AssetLoader.Instance.Instantiate($"Prefabs/EventSymbol/ShopSymbol", transform).AddComponent<ShopSymbol>();
                 break;
             case Define.RoomEventType.Boss:
-                RoomSymbol = Instantiate(
-                    Resources.Load<GameObject>($"Prefabs/EventSymbol/BossSymbol"),
-                    transform
-                ).AddComponent<BossSymbol>();
+                RoomSymbol = AssetLoader.Instance.Instantiate($"Prefabs/EventSymbol/BossSymbol", transform).AddComponent<BossSymbol>();
                 break;
             default:
                 return;

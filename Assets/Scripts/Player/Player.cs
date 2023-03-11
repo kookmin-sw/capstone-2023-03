@@ -39,14 +39,14 @@ public class Player : MonoBehaviour
     {
         InputManager.Instance.KeyActions.Player.Move.performed += OnMovePerformed;
         InputManager.Instance.KeyActions.Player.Move.canceled += OnMoveCanceled;
-        LevelManager.Instance.LevelClear += Spawn;
+        GameManager.Instance.onLevelClear += Spawn;
     }
 
     private void OnDisable()
     {
         InputManager.Instance.KeyActions.Player.Move.performed -= OnMovePerformed;
         InputManager.Instance.KeyActions.Player.Move.canceled -= OnMoveCanceled;
-        LevelManager.Instance.LevelClear -= Spawn;
+        GameManager.Instance.onLevelClear -= Spawn;
     }
 
     //이동, 회전
