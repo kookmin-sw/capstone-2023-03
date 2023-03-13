@@ -52,6 +52,21 @@ public class Player : MonoBehaviour
     //이동, 회전
     private void Update()
     {
+/*        RaycastHit raycastHit;
+
+        Physics.Raycast(transform.position, moveDirection, out raycastHit, 2.0f);
+
+        if(raycastHit.collider != null )
+        {
+            Debug.Log(raycastHit.collider.gameObject.name);
+        }*/
+        
+
+        //레이캐스트에서 심볼이 걸린 채로 말을 걸면, 충돌체의 정보를 얻는다
+        //충돌체가 심볼이면 심볼의 종류에 따른 대화창을 출력
+        //말을 거는 것은 인풋매니저에 특정 키 & 심볼이 있을 때 함수로 등록
+        
+
         if (isMoving)
         {
             gameObject.transform.position += moveDirection * Time.deltaTime * moveSpeed;

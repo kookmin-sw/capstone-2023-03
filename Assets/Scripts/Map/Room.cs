@@ -17,23 +17,29 @@ public class Room : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (IsCleared == false && collider.gameObject.tag == "Player")
-        {
+        if(IsCleared == false)
+        { 
+            //처음 들어올 때 문 비활성화
             ActivateDoors(false);
-        }
 
+            //몬스터가 있는 방이 아니면 바로 클리어 처리
+            if ((type != Define.RoomEventType.Normal && type != Define.RoomEventType.Boss) && collider.gameObject.tag == "Player")
+            {
+                IsCleared = true;
+                ActivateDoors(true);
+                GameManager.Instance.OnRoomClear(this);
+            }
+        }
     }
 
     private void OnTriggerStay(Collider collider)
     {
-        if(RoomSymbol == null || !RoomSymbol.isActiveAndEnabled)
+        //적이 있는 방이면, 승리 혹은 협상 시 적 심볼이 파괴되고? 이때 클리어 처리
+        if (RoomSymbol != null && !RoomSymbol.isActiveAndEnabled && IsCleared == false)
         {
             IsCleared = true;
-        }
-
-        if(IsCleared == true)
-        {
             ActivateDoors(true);
+            GameManager.Instance.OnRoomClear(this);
         }
     }
 
@@ -47,7 +53,7 @@ public class Room : MonoBehaviour
         switch (type)
         {
             case Define.RoomEventType.Normal:
-                RoomSymbol = AssetLoader.Instance.Instantiate($"Prefabs/EventSymbol/MonsterSymbol", transform).AddComponent<MonsterSymbol>();
+                RoomSymbol = AssetLoader.Instance.Instantiate($"Prefabs/EventSymbol/MonsterSymbol", transform).AddComponent<EnemySymbol>();
                 break;
             case Define.RoomEventType.Item:
                 RoomSymbol = AssetLoader.Instance.Instantiate($"Prefabs/EventSymbol/ItemSymbol", transform).AddComponent<ItemSymbol>();

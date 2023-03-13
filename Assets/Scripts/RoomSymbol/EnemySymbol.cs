@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterSymbol : RoomSymbol
+public class EnemySymbol : RoomSymbol
 {
 
     public override void SymbolEncounter()

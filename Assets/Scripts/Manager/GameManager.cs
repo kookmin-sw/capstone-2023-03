@@ -8,10 +8,9 @@ public class GameManager : Singleton<GameManager>
 {
     public Map Map { get; set; }
     public GameObject Player { get; set; }
-
     public Vector3 StartPosition { get; set; } = Vector3.zero;
 
-    public event Action onRoomClear;
+    public event Action<Room> onRoomClear;
     public event Action onLevelClear;
 
     protected override void Awake()
@@ -26,9 +25,9 @@ public class GameManager : Singleton<GameManager>
     //이렇게 이벤트를 글로벌로 관리한다면, 룸 클리어 이벤트 리스너들이 실행될 때, '어떤 룸이 클리어되었는지' 를 알 수 있어야
     //특정 방만 문이 열린다던지 하는 게 가능한데... 
     //딕셔너리로 어떻게 저장을?? 하면 되나?
-    public void OnRoomClear()
+    public void OnRoomClear(Room room)
     {
-        onRoomClear?.Invoke();
+        onRoomClear?.Invoke(room);
     }
 
     //델리게이트가 참조한 함수들에게 레벨이 클리어되었음을 알리는 함수 -> 전부 실행
