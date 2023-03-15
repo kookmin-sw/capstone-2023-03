@@ -10,7 +10,7 @@ public class Room : MonoBehaviour
 {
     private bool IsCleared { get; set; } = false;
     private Define.RoomEventType type;
-    public RoomSymbol RoomSymbol { get; set; } = null;
+    public EventSymbol RoomSymbol { get; set; } = null;
 
     //갖고있는 방향-문 딕셔너리
     public Dictionary<Define.Direction, Door> Doors { get; set; } = new Dictionary<Define.Direction, Door>((int)Define.Direction.Count);
@@ -53,7 +53,7 @@ public class Room : MonoBehaviour
         switch (type)
         {
             case Define.RoomEventType.Normal:
-                RoomSymbol = AssetLoader.Instance.Instantiate($"Prefabs/EventSymbol/MonsterSymbol", transform).AddComponent<EnemySymbol>();
+                RoomSymbol = AssetLoader.Instance.Instantiate($"Prefabs/EventSymbol/EnemySymbol", transform).AddComponent<EnemySymbol>();
                 break;
             case Define.RoomEventType.Item:
                 RoomSymbol = AssetLoader.Instance.Instantiate($"Prefabs/EventSymbol/ItemSymbol", transform).AddComponent<ItemSymbol>();

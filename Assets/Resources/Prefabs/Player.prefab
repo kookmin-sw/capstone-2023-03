@@ -3174,7 +3174,6 @@ GameObject:
   - component: {fileID: -2839152578642401665}
   - component: {fileID: 5462917536566323965}
   - component: {fileID: 135753564301495161}
-  - component: {fileID: 847214994622161995}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3242,48 +3241,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40de179ae0c33f4459e4b787726d4138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &847214994622161995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3590998514161520398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 1ba4263a1a82c76489cddb7ac52faf38, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 79f9b132-f058-488d-a367-b183c3c8809c
-    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8ecd1392-852b-430e-8120-934f5795ca1c
-    m_ActionName: UI/New action
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7738cba5-5fa2-4523-97c6-3c443a26792e
-    m_ActionName: UI/Point[/Mouse/position]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: PC
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &3771926305531723505
 GameObject:
   m_ObjectHideFlags: 0

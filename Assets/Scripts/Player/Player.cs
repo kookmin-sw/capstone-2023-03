@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
         //레이캐스트에서 심볼이 걸린 채로 말을 걸면, 충돌체의 정보를 얻는다
         //충돌체가 심볼이면 심볼의 종류에 따른 대화창을 출력
         //말을 거는 것은 인풋매니저에 특정 키 & 심볼이 있을 때 함수로 등록
-        Debug.DrawRay(transform.position + Vector3.up, moveDirection, Color.red);
+        Debug.DrawRay(transform.position + Vector3.up, moveDirection * 2.0f, Color.red);
 
         if (isMoving)
         {
@@ -85,14 +85,14 @@ public class Player : MonoBehaviour
     //바라보는 곳에 RoomSymbol이 있으면 RoomSymbol의 SymbolEncounter 함수 실행
     public void Talk(InputAction.CallbackContext context)
     {
-        Physics.Raycast(transform.position + Vector3.up, moveDirection, out RaycastHit raycastHit, 1.0f);
+        Physics.Raycast(transform.position + Vector3.up, moveDirection, out RaycastHit raycastHit, 2.0f);
 
         if (raycastHit.collider == null)
         {
             return;
         }
 
-        if (raycastHit.collider.TryGetComponent(out RoomSymbol encountedSymbol))
+        if (raycastHit.collider.TryGetComponent(out EventSymbol encountedSymbol))
         {
             encountedSymbol.SymbolEncounter();
         }

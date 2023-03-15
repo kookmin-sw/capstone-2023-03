@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySymbol : RoomSymbol
+public class EnemySymbol : EventSymbol
 {
 
     public override void SymbolEncounter()
     {
-        base.SymbolEncounter();
 
-        Debug.Log("¿˚ µÓ¿Â!");
+        PanelManager.Instance.ShowPanelOnStack("DialogUI");
+
+        base.SymbolEncounter();
     }
 
     public override void SymbolClear()

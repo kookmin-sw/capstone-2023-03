@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemSymbol : RoomSymbol
+public class ItemSymbol : EventSymbol
 {
     public override void SymbolEncounter()
     {
