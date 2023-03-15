@@ -13,6 +13,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Check",
+                    "type": "Button",
+                    "id": "5c2f851f-1f90-47c9-bccd-074ed8ee5265",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -70,6 +79,17 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "281de8c9-96f9-4eea-a7fc-ad8e7e613792",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Check",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -79,7 +99,7 @@
             "actions": [
                 {
                     "name": "Point",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "7738cba5-5fa2-4523-97c6-3c443a26792e",
                     "expectedControlType": "Vector2",
                     "processors": "",
@@ -88,20 +108,29 @@
                 },
                 {
                     "name": "Click",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "8ecd1392-852b-430e-8120-934f5795ca1c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "ESC",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "538c9980-3d8a-44b9-ab39-d5fd734cd79f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Submit",
+                    "type": "Button",
+                    "id": "7d9481c3-faf4-48cc-8397-0a20ca15e24f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
@@ -136,6 +165,17 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "ESC",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ad1cf4fe-75f4-475c-a87a-67f30782651e",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Submit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

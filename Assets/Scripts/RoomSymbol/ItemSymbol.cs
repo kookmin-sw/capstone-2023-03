@@ -6,7 +6,8 @@ public class ItemSymbol : RoomSymbol
 {
     public override void SymbolEncounter()
     {
-        Debug.Log("ItemRoom");
+        base.SymbolEncounter();
+        Debug.Log("æ∆¿Ã≈€ »πµÊ!");
     }
 
     public override void SymbolClear()

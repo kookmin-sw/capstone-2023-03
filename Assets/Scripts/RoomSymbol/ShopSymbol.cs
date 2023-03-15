@@ -6,7 +6,9 @@ public class ShopSymbol : RoomSymbol
 {
     public override void SymbolEncounter()
     {
-        Debug.Log("ShopRoom");
+        base.SymbolEncounter();
+
+        Debug.Log("»óÁ¡ ¿ÀÇÂ");
     }
 
     public override void SymbolClear()

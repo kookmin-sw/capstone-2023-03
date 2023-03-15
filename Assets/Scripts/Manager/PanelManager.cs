@@ -33,7 +33,7 @@ public class PanelManager : Singleton<PanelManager>
     //UI 스택에 추가하지 않으므로 HideLastPanel로 닫히지 않는다
     public GameObject ShowPanel(string name)
     {
-        return AssetLoader.Instance.Instantiate($"Prefabs/UI/UI/{name}", panelRoot.transform);
+        return AssetLoader.Instance.Instantiate($"Prefabs/UI/{name}", panelRoot.transform);
     }
 
     //특정 UI를 로드해서 화면에 띄우고 UI 스택에 추가하는 함수.

@@ -7,6 +7,9 @@ public class EnemySymbol : RoomSymbol
 
     public override void SymbolEncounter()
     {
+        base.SymbolEncounter();
+
+        Debug.Log("Àû µîÀå!");
     }
 
     public override void SymbolClear()

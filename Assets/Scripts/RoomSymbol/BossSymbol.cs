@@ -6,7 +6,9 @@ public class BossSymbol : RoomSymbol
 {
     public override void SymbolEncounter()
     {
-        Debug.Log("BossRoom");
+        base.SymbolEncounter();
+
+        Debug.Log("보스 등장!");
     }
 
     //보스 클리어 시, 레벨 클리어 이벤트 실행

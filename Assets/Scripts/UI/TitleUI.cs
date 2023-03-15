@@ -20,6 +20,6 @@ public class TitleUI : BaseUI
 
     public void ExitButtonClick()
     {
-        PanelManager.Instance.HideLastPanel();
+        Application.Quit(); 
     }
 }
