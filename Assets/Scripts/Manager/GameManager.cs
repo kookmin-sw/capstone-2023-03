@@ -11,6 +11,7 @@ public class GameManager : Singleton<GameManager>
     public Vector3 StartPosition { get; set; } = Vector3.zero;
 
     public event Action<Room> onRoomClear;
+
     public event Action onLevelClear;
 
     protected override void Awake()

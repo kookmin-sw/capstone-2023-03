@@ -5,7 +5,7 @@ public class TitleUI : BaseUI
 {
     public void StartButtonClick()
     {
-        PanelManager.Instance.ShowPanelOnStack("LoadUI", true);
+        PanelManager.Instance.ShowPanel("LoadUI");
     }
 
     public void LibraryButtonClick()

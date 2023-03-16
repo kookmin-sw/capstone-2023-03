@@ -7,7 +7,6 @@ public class TitleScene : MonoBehaviour
 {
     private void Awake()
     {
-        PanelManager.Instance.ShowPanel("BG");
-        PanelManager.Instance.ShowPanelOnStack("TitleUI");
+        PanelManager.Instance.ShowPanel("TitleUI");
     }
 }

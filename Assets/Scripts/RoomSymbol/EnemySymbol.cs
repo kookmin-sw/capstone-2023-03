@@ -8,9 +8,9 @@ public class EnemySymbol : EventSymbol
     public override void SymbolEncounter()
     {
 
-        PanelManager.Instance.ShowPanelOnStack("DialogUI");
+        PanelManager.Instance.ShowPanel("DialogUI");
 
-        base.SymbolEncounter();
+        
     }
 
     public override void SymbolClear()

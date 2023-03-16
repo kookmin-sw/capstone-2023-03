@@ -37,6 +37,7 @@ public class AssetLoader : Singleton<AssetLoader>
         return go;
     }
 
+    //다른 버전
     public GameObject Instantiate(string path, Vector3 postion, Quaternion rotation, Transform parent = null)
     {
         GameObject go = Instantiate(path, parent);
@@ -47,6 +48,7 @@ public class AssetLoader : Singleton<AssetLoader>
         return go;
     }
 
+    //게임 오브젝트 파괴
     public void Destroy(GameObject go)
     {
         Object.Destroy(go);

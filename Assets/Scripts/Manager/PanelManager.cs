@@ -19,75 +19,70 @@ public class PanelManager : Singleton<PanelManager>
         }
     }
 
-    //UI들을 스택으로 관리
+    //팝업 UI들을 스택으로 관리
     private Stack<GameObject> panelStack = new Stack<GameObject>();
 
     protected override void Awake()
     {
         base.Awake();
-        DontDestroyOnLoad(this);
     }
 
-    //ESC키로 UI 닫기. 일단 맨 마지막 UI는 못 닫게 해놓음
+    //ESC키로 UI 닫기.
     private void OnEnable()
     {
-        InputManager.Instance.KeyActions.UI.ESC.started += context => { 
-            if (panelStack.Count == 1) panelStack.Peek().SetActive(!panelStack.Peek().activeSelf);  
-            if (panelStack.Count > 1) HideLastPanel(); 
-        };
+        InputManager.Instance.KeyActions.UI.ESC.started += context => { ClosePanel(); };
     }
 
     private void OnDisable()
     {
-        InputManager.Instance.KeyActions.UI.Disable();
-        InputManager.Instance.KeyActions.Player.Enable();
-
-        InputManager.Instance.KeyActions.UI.ESC.started += context => {
-            if (panelStack.Count == 1) panelStack.Peek().SetActive(!panelStack.Peek().activeSelf);
-            if (panelStack.Count > 1) HideLastPanel();
-        };
+        InputManager.Instance.KeyActions.UI.ESC.started -= context => { ClosePanel(); };
     }
 
-    //특정 UI를 로드해서 화면에 띄우는 함수
-    //UI 스택에 추가하지 않으므로 HideLastPanel로 닫히지 않는다
-    public GameObject ShowPanel(string name)
+    //일반 UI를 로드해서 화면에 띄우는 함수
+    //위층의 UI가 활성화되면 최적화/겹쳐보임 방지를 위해 아래에 깔린 UI를 비활성화
+    public void ShowPanel(string name, bool hidePreviousPanel = true)
     {
-        return AssetLoader.Instance.Instantiate($"Prefabs/UI/{name}", PanelRoot.transform);
-    }
-
-    //특정 UI를 로드해서 화면에 띄우고 UI 스택에 추가하는 함수.
-    //hidePreviousPanel이 true이면 이전 UI를 숨김 처리
-    //UI를 보여줄 때마다 매번 굳이 다시 로드해야 하는 문제가... 오브젝트 풀링은 나중에 하기로
-    public void ShowPanelOnStack(string name, bool hidePreviousPanel = false)
-    {
-        if(hidePreviousPanel && panelStack.Count > 0)
-        { 
+        GameObject panel = AssetLoader.Instance.Instantiate($"Prefabs/UI/{name}", PanelRoot.transform);
+        if(panelStack.Count > 0 && hidePreviousPanel)
+        {
             panelStack.Peek().SetActive(false);
         }
-
-        GameObject panel = ShowPanel(name);
-
-        if(panel != null)
-        { 
-            panelStack.Push(panel); 
-        }
+        panelStack.Push(panel);
     }
 
     //UI 스택에서 맨 위에 있는 UI를 제거
-    //아니면 이름으로 제거하도록 할까? 그냥 배열로 관리하고?
-    //맨뒤에 있는거 제거 버전이랑 이름으로 제거 버전을 만들어서...
     //이전 UI가 숨김처리 되어있으면 다시 보여줌
-    public void HideLastPanel()
+    //ESC키로 범용적으로 UI를 지울때도 쓰는데, 그러므로 마지막 남은 UI는 안 지워지도록 함
+    public void ClosePanel()
     {
-        if (panelStack.Count > 0)
+        if (panelStack.Count > 1)
         {
             GameObject panel = panelStack.Pop();
             AssetLoader.Instance.Destroy(panel);
+            panelStack.Peek().SetActive(true);
+        }
+    }
 
-            if (panelStack.Count > 0) 
+    //UI 스택에서 맨 위에 있는 특정 UI를 제거
+    //이전 UI가 숨김처리 되어있으면 다시 보여줌
+    //범용적으로 지우는 함수와 구분하는 이유는, 이쪽은 UI 스택이 빌 상황에서도 지우는 함수라서.
+    public void ClosePanel(string name)
+    {
+        if (panelStack.Count > 0 && panelStack.Peek().name == name)
+        {
+            GameObject panel = panelStack.Pop();
+            AssetLoader.Instance.Destroy(panel);
+            
+            if(panelStack.Count > 0)
             {
-                panelStack.Peek().SetActive(true);    
+                panelStack.Peek().SetActive(true);
             }
         }
+    }
+
+    //씬 넘어갈 때 스택 비우기
+    public void Clear()
+    {
+        panelStack.Clear(); 
     }
 }
