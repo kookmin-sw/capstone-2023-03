@@ -27,7 +27,7 @@ public class Room : MonoBehaviour
             {
                 IsCleared = true;
                 ActivateDoors(true);
-                GameManager.Instance.OnRoomClear(this);
+                GameManager.Instance.OnRoomClear();
             }
         }
     }
@@ -39,7 +39,7 @@ public class Room : MonoBehaviour
         {
             IsCleared = true;
             ActivateDoors(true);
-            GameManager.Instance.OnRoomClear(this);
+            GameManager.Instance.OnRoomClear();
         }
     }
 
