@@ -29,7 +29,7 @@ public class Define
     };
 
     //¹æ Á¾·ù
-    public enum RoomEventType
+    public enum EventType
     {
         Enemy,
         Start,

@@ -51,7 +51,7 @@ public class Map : MonoBehaviour
         {
             stage += 1;
             roomCount = stage * 3 + 10;
-            specialRoomIndexes = Define.GenerateRandomNumbers(2, roomCount - 1, (int)Define.RoomEventType.Count - 3);
+            specialRoomIndexes = Define.GenerateRandomNumbers(2, roomCount - 1, (int)Define.EventType.Count - 3);
             CreateMapRooms();
             CreateMapRoomPointsAndEdges();
             PlaceMapRooms();
@@ -67,26 +67,26 @@ public class Map : MonoBehaviour
     }
 
     //수정하기
-    private Dictionary<Define.RoomEventType, int> CreateSpecialRoomIndexes()
+    private Dictionary<Define.EventType, int> CreateSpecialRoomIndexes()
     {
 
         return null;
     }
 
     //특정 번호의 방이 무슨 방인지 타입을 리턴
-    Define.RoomEventType SelectRoomType(int node)
+    Define.EventType SelectRoomType(int node)
     {
-        if (node == 0) return Define.RoomEventType.Start;
-        if (node == roomCount - 1) return Define.RoomEventType.Boss; 
+        if (node == 0) return Define.EventType.Start;
+        if (node == roomCount - 1) return Define.EventType.Boss; 
 
         for (int i = 0; i < specialRoomIndexes.Count; i++)
         {
             if (specialRoomIndexes[i] == node)
             {
-                return (Define.RoomEventType)(i + 3);
+                return (Define.EventType)(i + 3);
             }
         }
-        return Define.RoomEventType.Enemy;
+        return Define.EventType.Enemy;
     }
 
     //2차원 mapRoomEdges 배열 초기화
@@ -116,7 +116,7 @@ public class Map : MonoBehaviour
         for (int node = 0; node < roomCount; node++)
         {
             //방 타입 고르기
-            Define.RoomEventType roomType = SelectRoomType(node);
+            Define.EventType roomType = SelectRoomType(node);
 
             //방 게임오브젝트 생성
             Room currentRoom = AssetLoader.Instance.Instantiate($"Prefabs/Room/{roomType}Room", transform).AddComponent<Room>();

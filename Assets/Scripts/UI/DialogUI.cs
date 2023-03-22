@@ -10,6 +10,7 @@ public class DialogUI : MonoBehaviour
     private int dialogIndex;
     private int currentLine;
     private Dialog dialog;
+    private Define.EventType dialogEventType;
     private ButtonEvents buttonEvents;
 
     private Text nameText;
@@ -25,8 +26,8 @@ public class DialogUI : MonoBehaviour
     {
         currentLine = 0;
 
-        //플레이어 조작 비활성화
         InputManager.Instance.KeyActions.Player.Disable();
+        InputManager.Instance.KeyActions.UI.Enable();
 
         //엔터, 마우스 클릭으로 대화창 진행하는 함수 실행하게 이벤트 등록
         //인풋시스템에 이벤트 함수 등록할 때, 람다로 등록하지 않는 게 좋을 듯. 왠지는 모르겠는데 중복 실행 오류난다
@@ -38,14 +39,17 @@ public class DialogUI : MonoBehaviour
     {
         //이벤트 해제, 플레이어 조작 활성화
         InputManager.Instance.KeyActions.Player.Enable();
+        InputManager.Instance.KeyActions.UI.Disable();
+
         InputManager.Instance.KeyActions.UI.Check.started -= ProgressDialogByCheck;
         buttonEvents.PointerDown -= context => { ProgressDialog(); };
     }
 
     //처음 대화창을 여는 함수
-    public void ShowDialog(int index)
+    public void ShowDialog(int index, Define.EventType eventType)
     {
         dialogIndex = index;
+        dialogEventType = eventType;
         currentLine = 0;
         ProgressDialog();
     }
@@ -55,15 +59,16 @@ public class DialogUI : MonoBehaviour
     //대화 내용에 따라 UI와 포트레이트를 변경한다.
     public void ProgressDialog()
     {
-        Dialog currentDialog = DialogManager.Instance.GetLine(dialogIndex, currentLine);
-        if (currentDialog == null) 
+        dialog = DialogManager.Instance.GetLine(dialogIndex, currentLine);
+        if (dialog == null) 
         {
             Debug.Log("대화 종료");
             PanelManager.Instance.ClosePanel("DialogUI");
             return;
         }
-        Debug.Log(currentDialog.name);
-        Debug.Log(currentDialog.line);
+        Debug.Log(dialog.name);
+        Debug.Log(dialog.line);
+
 
         currentLine++;
     }

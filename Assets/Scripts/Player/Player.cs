@@ -37,6 +37,9 @@ public class Player : MonoBehaviour
     //예시로 Performed는 입력이 진행중일 때,  canceled는 입력이 끊기는 순간 발생하는 이벤트.
     private void OnEnable()
     {
+        //플레이어 조작 중일 때는 UI 조작 모드를 비활성화
+        InputManager.Instance.KeyActions.UI.Disable();
+
         InputManager.Instance.KeyActions.Player.Move.performed += OnMovePerformed;
         InputManager.Instance.KeyActions.Player.Move.canceled += OnMoveCanceled;
         InputManager.Instance.KeyActions.Player.Check.started += Talk;
@@ -45,6 +48,8 @@ public class Player : MonoBehaviour
 
     private void OnDisable()
     {
+        InputManager.Instance.KeyActions.UI.Enable();
+
         InputManager.Instance.KeyActions.Player.Move.performed -= OnMovePerformed;
         InputManager.Instance.KeyActions.Player.Move.canceled -= OnMoveCanceled;
         InputManager.Instance.KeyActions.Player.Check.started -= Talk;

@@ -12,7 +12,7 @@ public class DialogManager : Singleton<DialogManager>
     public Dictionary<int, List<Dialog>> DialogDic { get; set; } = new Dictionary<int, List<Dialog>>(); 
 
     //스탠딩 그림을 딕셔너리에 저장.
-    public Dictionary<string, List<Sprite>> PortraitDic { get; set; } = new Dictionary<string, List<Sprite>>();
+    public Dictionary<int, List<Sprite>> PortraitDic { get; set; } = new Dictionary<int, List<Sprite>>();
 
     //게임 내에서 계속 켜져있어야 하므로 싱글톤
     protected override void Awake()
@@ -30,6 +30,7 @@ public class DialogManager : Singleton<DialogManager>
 
             int index = int.Parse(dialogData[i]["index"].ToString());
 
+            //대화 저장
             for (int j = 0; j < dialogData[i]["lines"].Count; j++)
             {
                 Dialog dialog = new Dialog();
@@ -40,6 +41,9 @@ public class DialogManager : Singleton<DialogManager>
 
             DialogDic.Add(index, dialogList);
         }
+
+
+
     }
 
     //대화 딕셔너리에서 특정 인덱스의, 몇번째 줄에 해당하는 대사를 가져온다.

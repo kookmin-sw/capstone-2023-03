@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,8 +9,8 @@ public class Room : MonoBehaviour
 {
     private bool IsCleared { get; set; } = false;
 
-    private Define.RoomEventType type;
-    public RoomSymbol RoomSymbol { get; set; } = null;
+    private Define.EventType type;
+    public RoomSymbol Symbol { get; set; } = null;
 
     //갖고있는 방향-문 딕셔너리
     public Dictionary<Define.Direction, Door> Doors { get; set; } = new Dictionary<Define.Direction, Door>((int)Define.Direction.Count);
@@ -24,7 +23,7 @@ public class Room : MonoBehaviour
             ActivateDoors(false);
 
             //몬스터가 있는 방이 아니면 바로 클리어 처리
-            if ((type != Define.RoomEventType.Enemy && type != Define.RoomEventType.Boss) && collider.gameObject.tag == "Player")
+            if ((type != Define.EventType.Enemy && type != Define.EventType.Boss) && collider.gameObject.tag == "Player")
             {
                 IsCleared = true;
                 ActivateDoors(true);
@@ -36,7 +35,7 @@ public class Room : MonoBehaviour
     private void OnTriggerStay(Collider collider)
     {
         //적이 있는 방이면, 승리 혹은 협상 시 적 심볼이 파괴되고? 이때 클리어 처리
-        if (RoomSymbol != null && !RoomSymbol.isActiveAndEnabled && IsCleared == false)
+        if (Symbol != null && !Symbol.isActiveAndEnabled && IsCleared == false)
         {
             IsCleared = true;
             ActivateDoors(true);
@@ -45,37 +44,35 @@ public class Room : MonoBehaviour
     }
 
     //멤버 변수 초기화
-    public void Init(Define.RoomEventType type)
+    public void Init(Define.EventType type)
     {
         //Type 지정
         this.type = type;
-        //RoomSymbol 소환
+        //Symbol 소환
         switch (type)
         {
-            case Define.RoomEventType.Enemy:
-                RoomSymbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/EnemySymbol", transform).AddComponent<EnemySymbol>();
-                RoomSymbol.Index = 1;
-                RoomSymbol.IsNPC = true;
+            //심볼을 소환할 때, 각각 랜덤으로 인덱스를 배정하고, 인덱스에 따라 다른 대화 내용과 전투, 아이템 획득 등을 하게 할 예정
+            case Define.EventType.Enemy:
+                Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/EnemySymbol", transform).AddComponent<EnemySymbol>();
+                Symbol.Index = Random.Range(1, 4);
                 break;
-            case Define.RoomEventType.Item:
-                RoomSymbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/ItemSymbol", transform).AddComponent<ItemSymbol>();
-                RoomSymbol.Index = 2;
-                RoomSymbol.IsNPC = false;
+            case Define.EventType.Item:
+                Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/ItemSymbol", transform).AddComponent<ItemSymbol>();
+                Symbol.Index = 2;
                 break;
-            case Define.RoomEventType.Shop:
-                RoomSymbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/ShopSymbol", transform).AddComponent<ShopSymbol>();
-                RoomSymbol.Index = 3;
-                RoomSymbol.IsNPC = true;
+            case Define.EventType.Shop:
+                Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/ShopSymbol", transform).AddComponent<ShopSymbol>();
+                Symbol.Index = 3;
                 break;
-            case Define.RoomEventType.Boss:
-                RoomSymbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/BossSymbol", transform).AddComponent<BossSymbol>();
-                RoomSymbol.Index = 4;
-                RoomSymbol.IsNPC = true;
+            case Define.EventType.Boss:
+                Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/BossSymbol", transform).AddComponent<BossSymbol>();
+                Symbol.Index = 4;
                 break;
             default:
                 return;
         }
-        RoomSymbol.transform.position = new Vector3(0, 1, 0);
+        Symbol.SymbolType = type;
+        Symbol.transform.position = new Vector3(0, 1, 0);
     }
 
     //이 방에서 특정 방향에 있는 문을 목적지 위치와 연결하고, 소유한 Doors 딕셔너리에 추가한다.
