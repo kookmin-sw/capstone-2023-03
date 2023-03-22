@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class RoomSymbol : MonoBehaviour
 {
-    Room room;
+    public int Index { get; set; }
+    public bool IsNPC { get; set; }
 
     //이거 나중에 수정해야함. 
     private void OnDisable()
@@ -14,7 +15,7 @@ public class RoomSymbol : MonoBehaviour
     //플레이어가 이벤트 심볼에 말을 걸었을 때
     public virtual void SymbolEncounter()
     {
-        gameObject.SetActive(false);
+
     }
 
     //대충 이벤트 심볼의 이벤트가 끝났을 때

@@ -31,7 +31,7 @@ public class Define
     //¹æ Á¾·ù
     public enum RoomEventType
     {
-        Normal,
+        Enemy,
         Start,
         Boss,
         Item,

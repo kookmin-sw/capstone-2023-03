@@ -24,12 +24,12 @@ public class Map : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.Instance.onLevelClear += CreateStage;
+        LevelManager.Instance.onLevelClear += CreateStage;
     }
 
     public void OnDisable()
     {
-        GameManager.Instance.onLevelClear -= CreateStage;
+        LevelManager.Instance.onLevelClear -= CreateStage;
     }
 
     //레벨에 맞게 스테이지 생성
@@ -86,7 +86,7 @@ public class Map : MonoBehaviour
                 return (Define.RoomEventType)(i + 3);
             }
         }
-        return Define.RoomEventType.Normal;
+        return Define.RoomEventType.Enemy;
     }
 
     //2차원 mapRoomEdges 배열 초기화

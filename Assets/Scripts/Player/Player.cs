@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
         InputManager.Instance.KeyActions.Player.Move.performed += OnMovePerformed;
         InputManager.Instance.KeyActions.Player.Move.canceled += OnMoveCanceled;
         InputManager.Instance.KeyActions.Player.Check.started += Talk;
-        GameManager.Instance.onLevelClear += Spawn;
+        LevelManager.Instance.onLevelClear += Spawn;
     }
 
     private void OnDisable()
@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
         InputManager.Instance.KeyActions.Player.Move.performed -= OnMovePerformed;
         InputManager.Instance.KeyActions.Player.Move.canceled -= OnMoveCanceled;
         InputManager.Instance.KeyActions.Player.Check.started -= Talk;
-        GameManager.Instance.onLevelClear -= Spawn;
+        LevelManager.Instance.onLevelClear -= Spawn;
     }
 
     //이동, 회전
@@ -84,6 +84,7 @@ public class Player : MonoBehaviour
     //심볼을 바라보고 엔터키 누르면 작동
     //바라보는 곳에 RoomSymbol이 있으면 RoomSymbol의 SymbolEncounter 함수 실행
     public void Talk(InputAction.CallbackContext context)
+
     {
         Physics.Raycast(transform.position + Vector3.up, moveDirection, out RaycastHit raycastHit, 2.0f);
 
@@ -92,7 +93,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (raycastHit.collider.TryGetComponent(out EventSymbol encountedSymbol))
+        if (raycastHit.collider.TryGetComponent(out RoomSymbol encountedSymbol))
         {
             encountedSymbol.SymbolEncounter();
         }

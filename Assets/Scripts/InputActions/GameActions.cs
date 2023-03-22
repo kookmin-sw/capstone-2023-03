@@ -147,7 +147,7 @@ public partial class @GameActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Submit"",
+                    ""name"": ""Check"",
                     ""type"": ""Button"",
                     ""id"": ""7d9481c3-faf4-48cc-8397-0a20ca15e24f"",
                     ""expectedControlType"": ""Button"",
@@ -197,7 +197,7 @@ public partial class @GameActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PC"",
-                    ""action"": ""Submit"",
+                    ""action"": ""Check"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -232,7 +232,7 @@ public partial class @GameActions: IInputActionCollection2, IDisposable
         m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
         m_UI_Click = m_UI.FindAction("Click", throwIfNotFound: true);
         m_UI_ESC = m_UI.FindAction("ESC", throwIfNotFound: true);
-        m_UI_Submit = m_UI.FindAction("Submit", throwIfNotFound: true);
+        m_UI_Check = m_UI.FindAction("Check", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -351,7 +351,7 @@ public partial class @GameActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Point;
     private readonly InputAction m_UI_Click;
     private readonly InputAction m_UI_ESC;
-    private readonly InputAction m_UI_Submit;
+    private readonly InputAction m_UI_Check;
     public struct UIActions
     {
         private @GameActions m_Wrapper;
@@ -359,7 +359,7 @@ public partial class @GameActions: IInputActionCollection2, IDisposable
         public InputAction @Point => m_Wrapper.m_UI_Point;
         public InputAction @Click => m_Wrapper.m_UI_Click;
         public InputAction @ESC => m_Wrapper.m_UI_ESC;
-        public InputAction @Submit => m_Wrapper.m_UI_Submit;
+        public InputAction @Check => m_Wrapper.m_UI_Check;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -378,9 +378,9 @@ public partial class @GameActions: IInputActionCollection2, IDisposable
             @ESC.started += instance.OnESC;
             @ESC.performed += instance.OnESC;
             @ESC.canceled += instance.OnESC;
-            @Submit.started += instance.OnSubmit;
-            @Submit.performed += instance.OnSubmit;
-            @Submit.canceled += instance.OnSubmit;
+            @Check.started += instance.OnCheck;
+            @Check.performed += instance.OnCheck;
+            @Check.canceled += instance.OnCheck;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -394,9 +394,9 @@ public partial class @GameActions: IInputActionCollection2, IDisposable
             @ESC.started -= instance.OnESC;
             @ESC.performed -= instance.OnESC;
             @ESC.canceled -= instance.OnESC;
-            @Submit.started -= instance.OnSubmit;
-            @Submit.performed -= instance.OnSubmit;
-            @Submit.canceled -= instance.OnSubmit;
+            @Check.started -= instance.OnCheck;
+            @Check.performed -= instance.OnCheck;
+            @Check.canceled -= instance.OnCheck;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -433,6 +433,6 @@ public partial class @GameActions: IInputActionCollection2, IDisposable
         void OnPoint(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
         void OnESC(InputAction.CallbackContext context);
-        void OnSubmit(InputAction.CallbackContext context);
+        void OnCheck(InputAction.CallbackContext context);
     }
 }

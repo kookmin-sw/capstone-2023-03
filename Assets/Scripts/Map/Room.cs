@@ -9,8 +9,9 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     private bool IsCleared { get; set; } = false;
+
     private Define.RoomEventType type;
-    public EventSymbol RoomSymbol { get; set; } = null;
+    public RoomSymbol RoomSymbol { get; set; } = null;
 
     //갖고있는 방향-문 딕셔너리
     public Dictionary<Define.Direction, Door> Doors { get; set; } = new Dictionary<Define.Direction, Door>((int)Define.Direction.Count);
@@ -23,11 +24,11 @@ public class Room : MonoBehaviour
             ActivateDoors(false);
 
             //몬스터가 있는 방이 아니면 바로 클리어 처리
-            if ((type != Define.RoomEventType.Normal && type != Define.RoomEventType.Boss) && collider.gameObject.tag == "Player")
+            if ((type != Define.RoomEventType.Enemy && type != Define.RoomEventType.Boss) && collider.gameObject.tag == "Player")
             {
                 IsCleared = true;
                 ActivateDoors(true);
-                GameManager.Instance.OnRoomClear();
+                LevelManager.Instance.OnRoomClear();
             }
         }
     }
@@ -39,7 +40,7 @@ public class Room : MonoBehaviour
         {
             IsCleared = true;
             ActivateDoors(true);
-            GameManager.Instance.OnRoomClear();
+            LevelManager.Instance.OnRoomClear();
         }
     }
 
@@ -48,21 +49,28 @@ public class Room : MonoBehaviour
     {
         //Type 지정
         this.type = type;
-
         //RoomSymbol 소환
         switch (type)
         {
-            case Define.RoomEventType.Normal:
-                RoomSymbol = AssetLoader.Instance.Instantiate($"Prefabs/EventSymbol/EnemySymbol", transform).AddComponent<EnemySymbol>();
+            case Define.RoomEventType.Enemy:
+                RoomSymbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/EnemySymbol", transform).AddComponent<EnemySymbol>();
+                RoomSymbol.Index = 1;
+                RoomSymbol.IsNPC = true;
                 break;
             case Define.RoomEventType.Item:
-                RoomSymbol = AssetLoader.Instance.Instantiate($"Prefabs/EventSymbol/ItemSymbol", transform).AddComponent<ItemSymbol>();
+                RoomSymbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/ItemSymbol", transform).AddComponent<ItemSymbol>();
+                RoomSymbol.Index = 2;
+                RoomSymbol.IsNPC = false;
                 break;
             case Define.RoomEventType.Shop:
-                RoomSymbol = AssetLoader.Instance.Instantiate($"Prefabs/EventSymbol/ShopSymbol", transform).AddComponent<ShopSymbol>();
+                RoomSymbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/ShopSymbol", transform).AddComponent<ShopSymbol>();
+                RoomSymbol.Index = 3;
+                RoomSymbol.IsNPC = true;
                 break;
             case Define.RoomEventType.Boss:
-                RoomSymbol = AssetLoader.Instance.Instantiate($"Prefabs/EventSymbol/BossSymbol", transform).AddComponent<BossSymbol>();
+                RoomSymbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/BossSymbol", transform).AddComponent<BossSymbol>();
+                RoomSymbol.Index = 4;
+                RoomSymbol.IsNPC = true;
                 break;
             default:
                 return;

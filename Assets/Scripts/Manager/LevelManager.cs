@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //레벨의 구성 요소들, 레벨의 특정 시점에서 실행될 이벤트를 싱글톤으로 저장
-public class GameManager : Singleton<GameManager>
+public class LevelManager : Singleton<LevelManager>
 {
     public Map Map { get; set; }
     public Room CurrentRoom { get; set; }

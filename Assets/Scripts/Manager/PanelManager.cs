@@ -40,7 +40,7 @@ public class PanelManager : Singleton<PanelManager>
 
     //일반 UI를 로드해서 화면에 띄우는 함수
     //위층의 UI가 활성화되면 최적화/겹쳐보임 방지를 위해 아래에 깔린 UI를 비활성화
-    public void ShowPanel(string name, bool hidePreviousPanel = true)
+    public GameObject ShowPanel(string name, bool hidePreviousPanel = true)
     {
         GameObject panel = AssetLoader.Instance.Instantiate($"Prefabs/UI/{name}", PanelRoot.transform);
         if(panelStack.Count > 0 && hidePreviousPanel)
@@ -48,6 +48,7 @@ public class PanelManager : Singleton<PanelManager>
             panelStack.Peek().SetActive(false);
         }
         panelStack.Push(panel);
+        return panel;
     }
 
     //UI 스택에서 맨 위에 있는 UI를 제거

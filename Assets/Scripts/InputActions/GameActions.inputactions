@@ -125,7 +125,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Submit",
+                    "name": "Check",
                     "type": "Button",
                     "id": "7d9481c3-faf4-48cc-8397-0a20ca15e24f",
                     "expectedControlType": "Button",
@@ -175,7 +175,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "PC",
-                    "action": "Submit",
+                    "action": "Check",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
