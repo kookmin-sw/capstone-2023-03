@@ -1,6 +1,7 @@
 using LitJson;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -10,16 +11,21 @@ public class DialogUI : MonoBehaviour
     private int dialogIndex;
     private int currentLine;
     private Dialog dialog;
-    private Define.EventType dialogEventType;
+    private Define.EventType dialogType;
+    private RoomSymbol talkingSymbol;
     private ButtonEvents buttonEvents;
 
-    private Text nameText;
-    private Text lineText;
+    private Image portrait;
+    private TMP_Text nameText;
+    private TMP_Text lineText;
 
 
     private void Awake()
     {
         buttonEvents = GetComponent<ButtonEvents>();
+        portrait = GameObject.Find("Portrait").GetComponent<Image>();
+        nameText = transform.GetChild(1).Find("Name").Find("NameText").GetComponent<TMP_Text>();
+        lineText = transform.GetChild(1).Find("Line").Find("LineText").GetComponent<TMP_Text>();
     }
 
     private void OnEnable()
@@ -46,29 +52,32 @@ public class DialogUI : MonoBehaviour
     }
 
     //처음 대화창을 여는 함수
-    public void ShowDialog(int index, Define.EventType eventType)
+    public void ShowDialog(RoomSymbol symbol)
     {
-        dialogIndex = index;
-        dialogEventType = eventType;
+        talkingSymbol = symbol;
+        dialogIndex = symbol.Index;
+        dialogType = symbol.SymbolType;
         currentLine = 0;
         ProgressDialog();
     }
 
     //대화창을 진행시키는 함수. JSON에서 대화 내용을 가져오고, 더이상 없으면 대화창을 닫는다.
     //카운터를 올려서 다음에는 다음 대화 내용이 출력되도록 함.
-    //대화 내용에 따라 UI와 포트레이트를 변경한다.
+    //대화 내용에 따라 UI와 포트레이트를 변경.
     public void ProgressDialog()
     {
         dialog = DialogManager.Instance.GetLine(dialogIndex, currentLine);
         if (dialog == null) 
         {
             Debug.Log("대화 종료");
+            AssetLoader.Instance.Destroy(talkingSymbol.gameObject);
             PanelManager.Instance.ClosePanel("DialogUI");
             return;
         }
-        Debug.Log(dialog.name);
-        Debug.Log(dialog.line);
 
+        portrait.sprite = DialogManager.Instance.GetSprite(dialog.portrait);
+        nameText.text = dialog.name;
+        lineText.text = dialog.line;
 
         currentLine++;
     }

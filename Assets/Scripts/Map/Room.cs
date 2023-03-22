@@ -17,25 +17,20 @@ public class Room : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
+        //현재 방 위치 지정
+        LevelManager.Instance.CurrentRoom = this;
+
         if(IsCleared == false)
         { 
-            //처음 들어올 때 문 비활성화
+            //처음 들어올 때 문 닫기
             ActivateDoors(false);
-
-            //몬스터가 있는 방이 아니면 바로 클리어 처리
-            if ((type != Define.EventType.Enemy && type != Define.EventType.Boss) && collider.gameObject.tag == "Player")
-            {
-                IsCleared = true;
-                ActivateDoors(true);
-                LevelManager.Instance.OnRoomClear();
-            }
         }
     }
 
     private void OnTriggerStay(Collider collider)
     {
-        //적이 있는 방이면, 승리 혹은 협상 시 적 심볼이 파괴되고? 이때 클리어 처리
-        if (Symbol != null && !Symbol.isActiveAndEnabled && IsCleared == false)
+        //심볼이 없거나 파괴되었을 때 방 클리어 처리
+        if (Symbol == null && IsCleared == false)
         {
             IsCleared = true;
             ActivateDoors(true);

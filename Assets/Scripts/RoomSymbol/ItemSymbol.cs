@@ -11,5 +11,6 @@ public class ItemSymbol : RoomSymbol
 
     public override void SymbolClear()
     {
+        base.SymbolClear();
     }
 }

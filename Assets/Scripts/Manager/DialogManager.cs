@@ -1,10 +1,12 @@
 using LitJson;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 
 
+//LitJson 플러그인 깔아야함
 //대화창 UI에서 대화 내용을 가져오게 하는 역할을 담당
 public class DialogManager : Singleton<DialogManager>
 {
@@ -12,7 +14,7 @@ public class DialogManager : Singleton<DialogManager>
     public Dictionary<int, List<Dialog>> DialogDic { get; set; } = new Dictionary<int, List<Dialog>>(); 
 
     //스탠딩 그림을 딕셔너리에 저장.
-    public Dictionary<int, List<Sprite>> PortraitDic { get; set; } = new Dictionary<int, List<Sprite>>();
+    public Dictionary<string, Sprite> PortraitDic { get; set; } = new Dictionary<string, Sprite>();
 
     //게임 내에서 계속 켜져있어야 하므로 싱글톤
     protected override void Awake()
@@ -34,6 +36,8 @@ public class DialogManager : Singleton<DialogManager>
             for (int j = 0; j < dialogData[i]["lines"].Count; j++)
             {
                 Dialog dialog = new Dialog();
+
+                dialog.portrait = dialogData[i]["lines"][j]["portrait"]?.ToString();
                 dialog.name = dialogData[i]["lines"][j]["name"]?.ToString();
                 dialog.line = dialogData[i]["lines"][j]["line"].ToString();
                 dialogList.Add(dialog);
@@ -41,8 +45,18 @@ public class DialogManager : Singleton<DialogManager>
 
             DialogDic.Add(index, dialogList);
         }
+    }
 
-
+    public Sprite GetSprite(string name)
+    {
+        Sprite portrait;
+        if (!PortraitDic.ContainsKey(name))
+        {
+            portrait = AssetLoader.Instance.Load<Sprite>($"Images/Portrait/{name}");
+            PortraitDic[name] = portrait;   
+        }
+        portrait = PortraitDic[name];
+        return portrait;
 
     }
 
@@ -55,10 +69,7 @@ public class DialogManager : Singleton<DialogManager>
         }
         else
         {
-            Dialog dialog = new Dialog();
-            dialog.name = DialogDic[index][lineIndex].name?.ToString();
-            dialog.line = DialogDic[index][lineIndex].line.ToString();
-            return dialog;
+            return DialogDic[index][lineIndex];
         }
     }
 }

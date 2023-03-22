@@ -11,6 +11,6 @@ public class ShopSymbol : RoomSymbol
 
     public override void SymbolClear()
     {
-        
+        base.SymbolClear();
     }
 }

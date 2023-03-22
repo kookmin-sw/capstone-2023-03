@@ -14,6 +14,12 @@ public class AssetLoader : Singleton<AssetLoader>
         DontDestroyOnLoad(this);
     }
 
+    
+    public T Load<T>(string path) where T : Object
+    {
+        return Resources.Load<T>(path);
+    }
+
     //캐시를 해서 여러번 불러오지 않도록 함
     public GameObject Load(string path)
     {

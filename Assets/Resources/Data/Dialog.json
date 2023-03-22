@@ -3,15 +3,18 @@
     "index": 1,
     "lines": [
       {
-        "name": "주인공:A",
+        "portrait": "Protagonist0",
+        "name": "주인공",
         "line": "빛이여!!"
       },
       {
-        "name": "봉인된엑조디아의오른쪽팔:A",
+        "portrait": "EnemyA0",
+        "name": "봉인된엑조디아의오른쪽팔",
         "line": "으악"
       },
       {
-        "name": "주인공:B",
+        "portrait": "Protagonist1",
+        "name": "주인공",
         "line": "뽜밤 레벨업"
       }
     ]
@@ -20,15 +23,18 @@
     "index": 2,
     "lines": [
       {
-        "name": "주인공:B",
+        "portrait": "Protagonist0",
+        "name": "주인공",
         "line": "하하"
       },
       {
-        "name": "잡몹B:A",
+        "portrait": "EnemyB0",
+        "name": "잡몹B",
         "line": "난 사람이다"
       },
       {
-        "name": "주인공:A",
+        "portrait": "Protagonist0",
+        "name": "주인공",
         "line": "기기기기기기기기기기기기기기기기기기ㅣ기기기기기기기기ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ111111111111112222222223333333"
       }
     ]
@@ -37,15 +43,18 @@
     "index": 3,
     "lines": [
       {
-        "name": "주인공:0",
+        "portrait": "Protagonist0",
+        "name": "주인공",
         "line": "야"
       },
       {
-        "name": "잡몹C:0",
+        "portrait": "EnemyA0",
+        "name": "잡몹C",
         "line": "뭐야"
       },
       {
-        "name": "주인공:0",
+        "portrait": "Protagonist0",
+        "name": "주인공",
         "line": "ㅋㅋ"
       }
     ]
@@ -53,23 +62,51 @@
   {
     "index": 1001,
     "lines": [
-      { "name": "오현민:0", "line": "내가 보스임" },
-      { "name": "주인공:0", "line": "ㅇㅋ" }
+      {
+        "portrait": "BossA0",
+        "name": "오현민",
+        "line": "보스"
+      },
+      {
+        "portrait": "Protagonist0",
+        "name": "주인공",
+        "line": "ㅇㅋ"
+      }
     ]
   },
   {
     "index": 2001,
     "lines": [
-      { "name": "상점 주인:0", "line": "상점임 ㅇㅇ" },
-      { "name": "상점 주인:0", "line": "도둑이야" }
+      {
+        "portrait": "EnemyB0",
+        "name": "상점 주인",
+        "line": "상점임 ㅇㅇ"
+      },
+      {
+        "portrait": "EnemyB0",
+        "name": "상점 주인",
+        "line": "도둑이야"
+      }
     ]
   },
   {
     "index": 3001,
-    "lines": [{ "name": null, "line": "을 획득했다!" }]
+    "lines": [
+      {
+        "portrait": null,
+        "name": null,
+        "line": "을 획득했다!"
+      }
+    ]
   },
   {
     "index": 3002,
-    "lines": [{ "name": null, "line": "를 획득했다!" }]
+    "lines": [
+      {
+        "portrait": null,
+        "name": null,
+        "line": "를 획득했다!"
+      }
+    ]
   }
 ]
