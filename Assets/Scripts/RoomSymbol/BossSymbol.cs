@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class BossSymbol : RoomSymbol
 {
-    public override void SymbolEncounter()
+    public override void Encounter()
     {
-        base.SymbolEncounter();
+        base.Encounter();
 
         Debug.Log("보스 등장!");
     }
 
     //보스 클리어 시, 레벨 클리어 이벤트 실행
-    public override void SymbolClear()
+    public override void End()
     {
         LevelManager.Instance.OnLevelClear();
     }

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ItemSymbol : RoomSymbol
 {
-    public override void SymbolEncounter()
+    public override void Encounter()
     {
-        base.SymbolEncounter();
+        base.Encounter();
     }
 
-    public override void SymbolClear()
+    public override void End()
     {
-        base.SymbolClear();
+        base.End();
     }
 }

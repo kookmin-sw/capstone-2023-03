@@ -29,7 +29,7 @@ public partial class @GameActions: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Move"",
-                    ""type"": ""Value"",
+                    ""roomType"": ""Value"",
                     ""id"": ""79f9b132-f058-488d-a367-b183c3c8809c"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
@@ -38,7 +38,7 @@ public partial class @GameActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Check"",
-                    ""type"": ""Button"",
+                    ""roomType"": ""Button"",
                     ""id"": ""5c2f851f-1f90-47c9-bccd-074ed8ee5265"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -121,7 +121,7 @@ public partial class @GameActions: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Point"",
-                    ""type"": ""Value"",
+                    ""roomType"": ""Value"",
                     ""id"": ""7738cba5-5fa2-4523-97c6-3c443a26792e"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
@@ -130,7 +130,7 @@ public partial class @GameActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Click"",
-                    ""type"": ""Button"",
+                    ""roomType"": ""Button"",
                     ""id"": ""8ecd1392-852b-430e-8120-934f5795ca1c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -139,7 +139,7 @@ public partial class @GameActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""ESC"",
-                    ""type"": ""Button"",
+                    ""roomType"": ""Button"",
                     ""id"": ""538c9980-3d8a-44b9-ab39-d5fd734cd79f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -148,7 +148,7 @@ public partial class @GameActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Check"",
-                    ""type"": ""Button"",
+                    ""roomType"": ""Button"",
                     ""id"": ""7d9481c3-faf4-48cc-8397-0a20ca15e24f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",

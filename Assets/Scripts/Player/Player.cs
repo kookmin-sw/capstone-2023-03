@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
     }
 
     //심볼을 바라보고 엔터키 누르면 작동
-    //바라보는 곳에 RoomSymbol이 있으면 RoomSymbol의 SymbolEncounter 함수 실행
+    //바라보는 곳에 RoomSymbol이 있으면 RoomSymbol의 Encounter 함수 실행
     public void Talk(InputAction.CallbackContext context)
 
     {
@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
 
         if (raycastHit.collider.TryGetComponent(out RoomSymbol encountedSymbol))
         {
-            encountedSymbol.SymbolEncounter();
+            encountedSymbol.Encounter();
         }
     }
 

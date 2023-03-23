@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Dialog 
 {
-    public string portrait;
+    public Sprite portrait;
     public string name;
     public string line;
 }

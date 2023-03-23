@@ -2,15 +2,14 @@
 public class EnemySymbol : RoomSymbol
 {
 
-    public override void SymbolEncounter()
+    public override void Encounter()
     {
-        DialogUI dialog = PanelManager.Instance.ShowPanel("DialogUI").GetComponent<DialogUI>();
-        dialog.ShowDialog(this);
+        base.Encounter();
 
     }
 
-    public override void SymbolClear()
+    public override void End()
     {
-        base.SymbolClear();
+        base.End();
     }
 }

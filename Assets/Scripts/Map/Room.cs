@@ -9,7 +9,7 @@ public class Room : MonoBehaviour
 {
     private bool IsCleared { get; set; } = false;
 
-    private Define.EventType type;
+    private Define.EventType Type;
     public RoomSymbol Symbol { get; set; } = null;
 
     //갖고있는 방향-문 딕셔너리
@@ -20,16 +20,24 @@ public class Room : MonoBehaviour
         //현재 방 위치 지정
         LevelManager.Instance.CurrentRoom = this;
 
-        if(IsCleared == false)
+        if (IsCleared == false)
         { 
             //처음 들어올 때 문 닫기
             ActivateDoors(false);
+
+            //적이 없는 방이면 그냥 클리어 처리
+            if(Type != Define.EventType.Enemy && Type != Define.EventType.Boss)
+            {
+                IsCleared = true;
+                ActivateDoors(true);
+                LevelManager.Instance.OnRoomClear();
+            }
         }
     }
 
     private void OnTriggerStay(Collider collider)
     {
-        //심볼이 없거나 파괴되었을 때 방 클리어 처리
+        //심볼이 없거나 파괴되었을 때, 혹은 적이나 보스가 아닐 때 방 클리어 처리
         if (Symbol == null && IsCleared == false)
         {
             IsCleared = true;
@@ -42,7 +50,7 @@ public class Room : MonoBehaviour
     public void Init(Define.EventType type)
     {
         //Type 지정
-        this.type = type;
+        this.Type = type;
         //Symbol 소환
         switch (type)
         {
@@ -53,20 +61,20 @@ public class Room : MonoBehaviour
                 break;
             case Define.EventType.Item:
                 Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/ItemSymbol", transform).AddComponent<ItemSymbol>();
-                Symbol.Index = 2;
+                Symbol.Index = 3001;
                 break;
             case Define.EventType.Shop:
                 Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/ShopSymbol", transform).AddComponent<ShopSymbol>();
-                Symbol.Index = 3;
+                Symbol.Index = 2001;
                 break;
             case Define.EventType.Boss:
                 Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/BossSymbol", transform).AddComponent<BossSymbol>();
-                Symbol.Index = 4;
+                Symbol.Index = 1001;
                 break;
             default:
                 return;
         }
-        Symbol.SymbolType = type;
+        Symbol.Type = type;
         Symbol.transform.position = new Vector3(0, 1, 0);
     }
 

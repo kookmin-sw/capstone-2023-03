@@ -1,20 +1,18 @@
 using LitJson;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
 
-
 //LitJson 플러그인 깔아야함
-//대화창 UI에서 대화 내용을 가져오게 하는 역할을 담당
+//대화창이 대화 내용을 가져오게 하는 역할을 담당
+
 public class DialogManager : Singleton<DialogManager>
 {
     //미리 JSON 파일에서 대사를 가져와서 딕셔너리에 저장.
-    public Dictionary<int, List<Dialog>> DialogDic { get; set; } = new Dictionary<int, List<Dialog>>(); 
+    private Dictionary<int, List<Dialog>> DialogDic { get; set; } = new Dictionary<int, List<Dialog>>(); 
 
-    //스탠딩 그림을 딕셔너리에 저장.
-    public Dictionary<string, Sprite> PortraitDic { get; set; } = new Dictionary<string, Sprite>();
+    //이름에 맞는 스탠딩 그림을 딕셔너리에 저장.
+    private Dictionary<string, Sprite> PortraitDic { get; set; } = new Dictionary<string, Sprite>();
 
     //게임 내에서 계속 켜져있어야 하므로 싱글톤
     protected override void Awake()
@@ -32,12 +30,30 @@ public class DialogManager : Singleton<DialogManager>
 
             int index = int.Parse(dialogData[i]["index"].ToString());
 
-            //대화 저장
+            //특정 줄의 대화를 딕셔너리에 추가
             for (int j = 0; j < dialogData[i]["lines"].Count; j++)
             {
                 Dialog dialog = new Dialog();
 
-                dialog.portrait = dialogData[i]["lines"][j]["portrait"]?.ToString();
+                Sprite portrait;
+                string portraitName = dialogData[i]["lines"][j]["portrait"]?.ToString();
+
+                //포트레이트 이름에 맞는 초상화 파일 가져와서 저장
+                if (portraitName != null)
+                {
+                    if (!PortraitDic.ContainsKey(portraitName))
+                    {
+                        portrait = AssetLoader.Instance.Load<Sprite>($"Images/Portrait/{portraitName}");
+                        PortraitDic[portraitName] = portrait;
+                    }
+                    dialog.portrait = PortraitDic[portraitName];
+                }
+                else
+                {
+                    dialog.portrait = null;
+                }
+
+                //이름, 대사 등 가져와서 저장
                 dialog.name = dialogData[i]["lines"][j]["name"]?.ToString();
                 dialog.line = dialogData[i]["lines"][j]["line"].ToString();
                 dialogList.Add(dialog);
@@ -45,19 +61,6 @@ public class DialogManager : Singleton<DialogManager>
 
             DialogDic.Add(index, dialogList);
         }
-    }
-
-    public Sprite GetSprite(string name)
-    {
-        Sprite portrait;
-        if (!PortraitDic.ContainsKey(name))
-        {
-            portrait = AssetLoader.Instance.Load<Sprite>($"Images/Portrait/{name}");
-            PortraitDic[name] = portrait;   
-        }
-        portrait = PortraitDic[name];
-        return portrait;
-
     }
 
     //대화 딕셔너리에서 특정 인덱스의, 몇번째 줄에 해당하는 대사를 가져온다.

@@ -9,13 +9,13 @@
       },
       {
         "portrait": "EnemyA0",
-        "name": "봉인된엑조디아의오른쪽팔",
+        "name": "1111111111111111111111",
         "line": "으악"
       },
       {
         "portrait": "Protagonist1",
         "name": "주인공",
-        "line": "뽜밤 레벨업"
+        "line": "레벨업"
       }
     ]
   },
@@ -56,6 +56,26 @@
         "portrait": "Protagonist0",
         "name": "주인공",
         "line": "ㅋㅋ"
+      }
+    ]
+  },
+  {
+    "index": 4,
+    "lines": [
+      {
+        "portrait": "Protagonist0",
+        "name": "주인공",
+        "line": "d"
+      },
+      {
+        "portrait": "EnemyA0",
+        "name": "d",
+        "line": "d"
+      },
+      {
+        "portrait": "Protagonist1",
+        "name": "주인공",
+        "line": "d"
       }
     ]
   },

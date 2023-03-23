@@ -116,6 +116,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d9adc38bc0749e488feb97af14354a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portrait: {fileID: 2203801539342556971}
+  nameText: {fileID: 875312148173928940}
+  lineText: {fileID: 8504149289602239087}
 --- !u!114 &8897204790793454433
 MonoBehaviour:
   m_ObjectHideFlags: 0

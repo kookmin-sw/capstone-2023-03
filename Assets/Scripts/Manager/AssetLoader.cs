@@ -14,7 +14,6 @@ public class AssetLoader : Singleton<AssetLoader>
         DontDestroyOnLoad(this);
     }
 
-    
     public T Load<T>(string path) where T : Object
     {
         return Resources.Load<T>(path);
