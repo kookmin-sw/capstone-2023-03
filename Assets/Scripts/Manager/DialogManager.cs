@@ -1,13 +1,17 @@
 using LitJson;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 //LitJson 플러그인 깔아야함
-//대화창이 대화 내용을 가져오게 하는 역할을 담당
+//1. 대화창이 대화 내용을 가져오게 하는 역할.
+//2. 대화창 UI를 소환하는 함수.
 
 public class DialogManager : Singleton<DialogManager>
 {
+    private DialogUI dialogUI;
+
     //미리 JSON 파일에서 대사를 가져와서 딕셔너리에 저장.
     private Dictionary<int, List<Dialog>> DialogDic { get; set; } = new Dictionary<int, List<Dialog>>(); 
 
@@ -74,5 +78,12 @@ public class DialogManager : Singleton<DialogManager>
         {
             return DialogDic[index][lineIndex];
         }
+    }
+
+    //대화창 열기
+    public void OpenDialog(int index, Action CloseCallback = null)
+    {
+        dialogUI = PanelManager.Instance.ShowPanel("DialogUI", false, CloseCallback).GetComponent<DialogUI>();
+        dialogUI.FirstDialog(index);
     }
 }

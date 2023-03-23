@@ -48,8 +48,8 @@ public class DialogUI : BaseUI
         buttonEvents.PointerDown -= context => { NextDialog(); };
     }
 
-    //처음 대화창을 열 때 쓰는 함수
-    public void ShowDialog(int index)
+    //처음 대화창이 열릴 때 쓰는 함수
+    public void FirstDialog(int index)
     {
         dialogIndex = index;
         currentLine = 0;
