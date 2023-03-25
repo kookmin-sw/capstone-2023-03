@@ -24,12 +24,12 @@ public class Map : MonoBehaviour
 
     private void OnEnable()
     {
-        LevelManager.Instance.onLevelClear += CreateStage;
+        LevelManager.Instance.LevelCleared += CreateStage;
     }
 
     public void OnDisable()
     {
-        LevelManager.Instance.onLevelClear -= CreateStage;
+        LevelManager.Instance.LevelCleared -= CreateStage;
     }
 
     //레벨에 맞게 스테이지 생성

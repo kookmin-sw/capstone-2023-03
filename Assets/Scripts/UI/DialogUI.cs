@@ -7,12 +7,16 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
+//대화창 UI 클래스
+//1. 대화를 대화창 UI에 보여줌.
+//2. 인풋을 통해 대화창을 다음 대화로 진행.
+
 public class DialogUI : BaseUI
 {
     private int dialogIndex;
     private int currentLine;
     private Dialog dialog;
-    private ButtonEvents buttonEvents;
+    private CustomButton customButton;
 
     [SerializeField]
     private Image portrait;
@@ -24,32 +28,32 @@ public class DialogUI : BaseUI
 
     private void Awake()
     {
-        buttonEvents = GetComponent<ButtonEvents>();
+        customButton = GetComponent<CustomButton>();
     }
 
     private void OnEnable()
     {
         //플레이어 조작 비활성화, UI 조작 활성화
-        InputManager.Instance.KeyActions.Player.Disable();
-        InputManager.Instance.KeyActions.UI.Enable();
+        InputActions.keyActions.Player.Disable();
+        InputActions.keyActions.UI.Enable();
 
         //엔터, 마우스 클릭으로 대화창 진행하는 함수 실행하게 이벤트 등록
         //인풋시스템에 이벤트 함수 등록할 때, 람다로 등록하지 않는 게 좋을 듯. 왠지는 모르겠는데 중복 실행 오류난다
-        InputManager.Instance.KeyActions.UI.Check.started += ProgressDialogByCheck;
-        buttonEvents.PointerDown += context => { NextDialog(); };
+        InputActions.keyActions.UI.Check.started += NextDialogByCheck;
+        customButton.PointerDown += context => { NextDialog(); };
     }
 
     private void OnDisable()
     {
-        InputManager.Instance.KeyActions.Player.Enable();
-        InputManager.Instance.KeyActions.UI.Disable();
+        InputActions.keyActions.Player.Enable();
+        InputActions.keyActions.UI.Disable();
 
-        InputManager.Instance.KeyActions.UI.Check.started -= ProgressDialogByCheck;
-        buttonEvents.PointerDown -= context => { NextDialog(); };
+        InputActions.keyActions.UI.Check.started -= NextDialogByCheck;
+        customButton.PointerDown -= context => { NextDialog(); };
     }
 
-    //처음 대화창이 열릴 때 쓰는 함수
-    public void FirstDialog(int index)
+    //처음 대화창이 열릴 때 초기화
+    public void Init(int index)
     {
         dialogIndex = index;
         currentLine = 0;
@@ -61,7 +65,7 @@ public class DialogUI : BaseUI
     public void NextDialog()
     {
         //한 줄 가져오기
-        dialog = DialogManager.Instance.GetLine(dialogIndex, currentLine);
+        dialog = DialogData.Instance.GetLine(dialogIndex, currentLine);
 
         //다음 대화가 없으면 창 닫고 종료
         if (dialog == null) 
@@ -93,7 +97,7 @@ public class DialogUI : BaseUI
         currentLine++;
     }
 
-    public void ProgressDialogByCheck(InputAction.CallbackContext context)
+    public void NextDialogByCheck(InputAction.CallbackContext context)
     {
         NextDialog();
     }

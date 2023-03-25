@@ -21,39 +21,35 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        if(Camera.main == null)
-        {
-            playerCamera = new GameObject().AddComponent<Camera>();
-            playerCamera.tag = "MainCamera";
-        }
-        else
-        {
-            playerCamera = Camera.main;
-        }
-        playerCamera.AddComponent<PlayerCamera>();
-        playerCamera.name = "PlayerCamera";
+        playerCamera = Camera.main; 
     }
 
     //예시로 Performed는 입력이 진행중일 때,  canceled는 입력이 끊기는 순간 발생하는 이벤트.
     private void OnEnable()
     {
         //플레이어 조작 중일 때는 UI 조작 모드를 비활성화
-        InputManager.Instance.KeyActions.UI.Disable();
+        InputActions.keyActions.UI.Disable();
 
-        InputManager.Instance.KeyActions.Player.Move.performed += OnMovePerformed;
-        InputManager.Instance.KeyActions.Player.Move.canceled += OnMoveCanceled;
-        InputManager.Instance.KeyActions.Player.Check.started += Talk;
-        LevelManager.Instance.onLevelClear += Spawn;
+        //다양한 키입력에 따라 발생하는 이벤트 등록
+        InputActions.keyActions.Player.Move.performed += OnMovePerformed;
+        InputActions.keyActions.Player.Move.canceled += OnMoveCanceled;
+        InputActions.keyActions.Player.Check.started += OnCheckStarted;
+        InputActions.keyActions.Player.Menu.started += OnMenuStarted;
+
+        //레벨 클리어 시 발생하는 이벤트 등록
+        LevelManager.Instance.LevelCleared += Spawn;
     }
 
     private void OnDisable()
     {
-        InputManager.Instance.KeyActions.UI.Enable();
+        InputActions.keyActions.UI.Enable();
 
-        InputManager.Instance.KeyActions.Player.Move.performed -= OnMovePerformed;
-        InputManager.Instance.KeyActions.Player.Move.canceled -= OnMoveCanceled;
-        InputManager.Instance.KeyActions.Player.Check.started -= Talk;
-        LevelManager.Instance.onLevelClear -= Spawn;
+        InputActions.keyActions.Player.Move.performed -= OnMovePerformed;
+        InputActions.keyActions.Player.Move.canceled -= OnMoveCanceled;
+        InputActions.keyActions.Player.Check.started -= OnCheckStarted;
+        InputActions.keyActions.Player.Menu.started -= OnMenuStarted;
+
+        LevelManager.Instance.LevelCleared -= Spawn;
     }
 
     //이동, 회전
@@ -86,9 +82,9 @@ public class Player : MonoBehaviour
         isMoving = false;
     }
 
-    //심볼을 바라보고 엔터키 누르면 작동
+    //심볼을 바라보고 엔터키 누르면 작동. 심볼과 대화하는 역할.
     //바라보는 곳에 RoomSymbol이 있으면 RoomSymbol의 Encounter 함수 실행
-    public void Talk(InputAction.CallbackContext context)
+    public void OnCheckStarted(InputAction.CallbackContext context)
 
     {
         Physics.Raycast(transform.position + Vector3.up, moveDirection, out RaycastHit raycastHit, 2.0f);
@@ -102,6 +98,11 @@ public class Player : MonoBehaviour
         {
             encountedSymbol.Encounter();
         }
+    }
+
+    public void OnMenuStarted(InputAction.CallbackContext context)
+    {
+
     }
 
     public void Spawn()

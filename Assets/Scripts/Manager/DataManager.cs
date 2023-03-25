@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class DataManager : Singleton<DataManager>
 {
-    public Dictionary<int, JsonData> DataDictionary = new Dictionary<int, JsonData>();
 
     protected override void Awake()
     {
@@ -13,11 +12,14 @@ public class DataManager : Singleton<DataManager>
         DontDestroyOnLoad(this);
     }
 
-    public void SaveJson(string dataName)
+    //리스트를 JSON 데이터로 저장
+    public void SaveJson<T>(T collection, string dataName)
     {
-
+        JsonData jsonData = JsonMapper.ToJson(collection);
+        File.WriteAllText($"Assets/Resources/Data/{dataName}.json", jsonData.ToString());
     }
 
+    //JSON 데이터 가져오기
     public JsonData LoadJson(string dataName)
     {
         string path = $"Assets/Resources/Data/{dataName}.json";

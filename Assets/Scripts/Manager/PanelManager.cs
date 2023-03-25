@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PanelManager : Singleton<PanelManager>
 {
@@ -33,13 +34,15 @@ public class PanelManager : Singleton<PanelManager>
     //ESC키로 UI 닫기.
     private void OnEnable()
     {
-        InputManager.Instance.KeyActions.UI.ESC.started += context => { ClosePanel(); };
+        InputActions.keyActions.UI.ESC.started += context => { ClosePanel(); };
+        SceneManager.sceneLoaded += (con1, con2) => { panelStack.Clear(); };
     }
 
     private void OnDisable()
     {
-        InputManager.Instance.KeyActions.UI.ESC.started -= context => { ClosePanel(); };
-    }
+        InputActions.keyActions.UI.ESC.started -= context => { ClosePanel(); };
+        SceneManager.sceneLoaded -= (con1, con2) => { panelStack.Clear(); };
+    }   
 
     //일반 UI를 로드해서 화면에 띄우는 함수
     //위층의 UI가 활성화되면 최적화/겹쳐보임 방지를 위해 아래에 깔린 UI를 비활성화
@@ -59,7 +62,7 @@ public class PanelManager : Singleton<PanelManager>
 
     //UI 스택에서 맨 위에 있는 UI를 제거
     //이전 UI가 숨김처리 되어있으면 다시 보여줌
-    //ESC키로 범용적으로 UI를 지울때도 쓰는데, 그러므로 마지막 남은 UI는 안 지워지도록 함
+    //ESC키로 범용적으로 UI를 지울때 쓰는데, 그러므로 마지막 남은 UI는 안 지워지도록 함
     public void ClosePanel()
     {
         if (panelStack.Count > 1)
@@ -89,11 +92,5 @@ public class PanelManager : Singleton<PanelManager>
                 panelStack.Peek().gameObject.SetActive(true);
             }
         }
-    }
-
-    //씬 넘어갈 때 스택 비우기
-    public void Clear()
-    {
-        panelStack.Clear();  
     }
 }
