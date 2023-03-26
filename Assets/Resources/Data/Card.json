@@ -1,17 +1,19 @@
 [
   {
     "index": 1,
-    "name": "타격",
-    "description": "적 1기에게 5의 데미지",
-    "cost": 1,
-    "damage": 5,
-    "heal": 0,
-    "attackCount": 1,
-    "attackRange": "단일",
-    "attribute": null,
-    "damagetype": "물리",
-    "rarity": "노말",
-    "passive": null
+    "content": {
+      "name": "타격",
+      "description": "적 1기에게 5의 데미지",
+      "cost": 1,
+      "damage": 5,
+      "heal": 0,
+      "attackCount": 1,
+      "attackRange": "단일",
+      "attribute": null,
+      "damagetype": "물리",
+      "rarity": "노말",
+      "passive": null
+    }
   },
   {
     "index": 2,

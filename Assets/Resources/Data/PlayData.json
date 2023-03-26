@@ -1,0 +1,18 @@
+{
+  "player": {
+    "name": "John",
+    "level": 1,
+    "positionX": 0,
+    "positionY": 0
+  },
+  "deck": [
+    {
+      "itemName": "Potion",
+      "count": 5
+    },
+    {
+      "itemName": "Sword",
+      "count": 1
+    }
+  ]
+}

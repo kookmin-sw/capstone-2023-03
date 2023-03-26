@@ -17,25 +17,6 @@ public class CardLibraryData : Singleton<CardLibraryData>
         DontDestroyOnLoad(this);
         JsonData CardLibraryData = DataManager.Instance.LoadJson("CardLibrary");
 
-        for (int i = 0; i < CardLibraryData.Count; i++)
-        {
-            Card card = new Card(
-                int.Parse(CardLibraryData[i]["index"].ToString()),
-                CardLibraryData[i]["name"].ToString(),
-                CardLibraryData[i]["description"].ToString(),
-                int.Parse(CardLibraryData[i]["cost"].ToString()),
-                int.Parse(CardLibraryData[i]["damage"].ToString()),
-                int.Parse(CardLibraryData[i]["attackCount"].ToString()),
-                CardLibraryData[i]["attackRange"].ToString(),
-                CardLibraryData[i]["attribute"]?.ToString(),
-                CardLibraryData[i]["damagetype"]?.ToString(),
-                CardLibraryData[i]["rarity"].ToString()
-            );
-
-            CardLibraryDic.Add(card.index, card);    
-
-        }
-
 
     }
 

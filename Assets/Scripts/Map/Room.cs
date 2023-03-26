@@ -8,6 +8,11 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     private bool IsCleared { get; set; } = false;
+    
+    public Vector2 RoomPoint { get; set; }
+
+    public List<int> RoomEdges { get; set; } = new List<int>(4);   
+
 
     private Define.EventType Type;
     public RoomSymbol Symbol { get; set; } = null;
