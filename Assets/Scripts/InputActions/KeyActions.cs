@@ -194,6 +194,15 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""12006542-eeef-44ae-8c4d-514ad3519866"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -240,6 +249,17 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
                     ""action"": ""Check"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2db6b247-eebf-415d-95d4-eae881127e4d"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -275,6 +295,7 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
         m_UI_Click = m_UI.FindAction("Click", throwIfNotFound: true);
         m_UI_ESC = m_UI.FindAction("ESC", throwIfNotFound: true);
         m_UI_Check = m_UI.FindAction("Check", throwIfNotFound: true);
+        m_UI_Menu = m_UI.FindAction("Menu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -410,6 +431,7 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Click;
     private readonly InputAction m_UI_ESC;
     private readonly InputAction m_UI_Check;
+    private readonly InputAction m_UI_Menu;
     public struct UIActions
     {
         private @KeyActions m_Wrapper;
@@ -418,6 +440,7 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
         public InputAction @Click => m_Wrapper.m_UI_Click;
         public InputAction @ESC => m_Wrapper.m_UI_ESC;
         public InputAction @Check => m_Wrapper.m_UI_Check;
+        public InputAction @Menu => m_Wrapper.m_UI_Menu;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -439,6 +462,9 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
             @Check.started += instance.OnCheck;
             @Check.performed += instance.OnCheck;
             @Check.canceled += instance.OnCheck;
+            @Menu.started += instance.OnMenu;
+            @Menu.performed += instance.OnMenu;
+            @Menu.canceled += instance.OnMenu;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -455,6 +481,9 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
             @Check.started -= instance.OnCheck;
             @Check.performed -= instance.OnCheck;
             @Check.canceled -= instance.OnCheck;
+            @Menu.started -= instance.OnMenu;
+            @Menu.performed -= instance.OnMenu;
+            @Menu.canceled -= instance.OnMenu;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -494,5 +523,6 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
         void OnClick(InputAction.CallbackContext context);
         void OnESC(InputAction.CallbackContext context);
         void OnCheck(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
     }
 }

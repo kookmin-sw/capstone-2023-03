@@ -1,18 +1,1 @@
-{
-  "player": {
-    "name": "John",
-    "level": 1,
-    "positionX": 0,
-    "positionY": 0
-  },
-  "deck": [
-    {
-      "itemName": "Potion",
-      "count": 5
-    },
-    {
-      "itemName": "Sword",
-      "count": 1
-    }
-  ]
-}
+{"playerStats":{"name":"\uC544\uC774\uC544\uC774\uC544","level":1,"positionX":0,"positionY":0},"deck":[{"cardIndex":2,"count":5},{"cardIndex":1,"count":1}]}

@@ -3,82 +3,36 @@
     "index": 1,
     "name": "타격",
     "description": "적 1기에게 5의 데미지",
-    "cost": 1,
-    "damage": 5,
-    "heal": 0,
-    "attackCount": 1,
-    "attackRange": "단일",
-    "attribute": null,
-    "damagetype": "물리",
-    "rarity": "노말",
-    "passive": null
+    "cost": 1
   },
   {
     "index": 2,
     "name": "방어",
     "description": "5의 방어막 획득",
-    "cost": 1,
-    "damage": 0,
-    "heal": 5,
-    "attackCount": 1,
-    "attackRange": "단일",
-    "attribute": null,
-    "damagetype": null,
-    "rarity": "노말",
-    "passive": null
+    "cost": 1
   },
   {
     "index": 3,
     "name": "에너지 볼트",
     "description": "적 1기에게 5의 데미지",
-    "cost": 1,
-    "damage": 5,
-    "heal": 0,
-    "attackCount": 1,
-    "attackRange": "단일",
-    "attribute": null,
-    "damagetype": "물리",
-    "rarity": "노말",
-    "passive": null
+    "cost": 1
   },
   {
     "index": 4,
     "name": "체인 볼트",
     "description": "적 전체에게 5의 데미지",
-    "cost": 1,
-    "damage": 5,
-    "heal": 0,
-    "attackCount": 1,
-    "attackRange": "전체",
-    "attribute": null,
-    "damagetype": "마법",
-    "rarity": "노말",
-    "passive": null
+    "cost": 1
   },
   {
     "index": 5,
     "name": "화염구",
     "description": "적 1기에게 3의 데미지, 화상 1 부여",
-    "cost": 0,
-    "damage": 3,
-    "attackCount": 1,
-    "attackRange": 0,
-    "attribute": "화염",
-    "damagetype": "마법",
-    "rarity": "노말",
-    "passive": ["화상", 1]
+    "cost": 0
   },
   {
     "index": 6,
     "name": "쌍염구",
-    "description": "적 1기에게 2 X 2의 데미지, 화상 1 부여",
-    "cost": 1,
-    "damage": 2,
-    "attackCount": 2,
-    "attackRange": 0,
-    "attribute": "화염",
-    "damagetype": "마법",
-    "rarity": "노말",
-    "passive": ["화상", 1]
+    "description": null,
+    "cost": 1
   }
 ]

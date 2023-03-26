@@ -102,7 +102,7 @@ public class Player : MonoBehaviour
 
     public void OnMenuStarted(InputAction.CallbackContext context)
     {
-
+        PanelManager.Instance.ShowPanel("LibraryUI");
     }
 
     public void Spawn()

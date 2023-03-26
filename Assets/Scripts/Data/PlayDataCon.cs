@@ -1,5 +1,6 @@
 using LitJson;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using UnityEngine;
 
@@ -17,7 +18,7 @@ public class PlayerStats
 [System.Serializable]
 public class PlayerCard
 {
-    public string cardIndex;
+    public int cardIndex;
     public int count;
 }
 
@@ -30,13 +31,12 @@ public class RoomInfo
     public int positionY;
 }
 
-//플레이어가 저장하고 로드해야 하는 데이터들.
+//플레이어가 저장하고 로드해야 하는 데이터들. 스탯, 덱, 위치, 맵 등
 [System.Serializable]
 public class PlayData
 {
     public PlayerStats playerStats;
     public List<PlayerCard> deck;
-    public List<RoomInfo> map; //방 지도
 }
 
 //데이터를 불러와서 playData에 저장해둠. 혹은 게임을 저장할 시 playData를 json파일로 저장하는 역할.
@@ -45,10 +45,20 @@ public class PlayDataCon : Singleton<PlayDataCon>
 {
     public PlayData PlayData { get; set; }
 
+    protected override void Awake()
+    {
+        base.Awake();
+        DontDestroyOnLoad(this);
+
+        LoadPlayData();
+        SavePlayData();
+    }
 
     public void SavePlayData()
     {
-
+        //한글이 깨져보이고, 한줄로 출력 되는 문제가... 기능은 정상적임
+        string jsonData = JsonMapper.ToJson(PlayData);
+        File.WriteAllText($"Assets/Resources/Data/PlayData.json", jsonData);
     }
 
     public void LoadPlayData()
@@ -58,17 +68,6 @@ public class PlayDataCon : Singleton<PlayDataCon>
         {
             string jsonData = File.ReadAllText(filePath);
             PlayData = JsonMapper.ToObject<PlayData>(jsonData);
-
-            Debug.Log("Player Name: " + PlayData.playerStats.name);
-            Debug.Log("Player Level: " + PlayData.playerStats.level);
-            Debug.Log("Player 위치X: " + PlayData.playerStats.positionX);
-            Debug.Log("Player 위치Y: " + PlayData.playerStats.positionY);
-
-
-            foreach (PlayerCard card in PlayData.deck)
-            {
-                Debug.Log("Inventory Card: " + card.cardIndex + ", Count: " + card.count);
-            }
         }
         else
         {

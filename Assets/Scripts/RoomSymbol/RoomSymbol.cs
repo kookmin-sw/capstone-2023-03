@@ -10,7 +10,7 @@ public class RoomSymbol : MonoBehaviour
     public virtual void Encounter()
     {
         //대화창 UI를 열고 UI가 닫혔을 때, 이 심볼의 End가 수행됨 (콜백)
-        DialogUI dialog = PanelManager.Instance.ShowPanel("DialogUI", true, End).GetComponent<DialogUI>();
+        DialogUI dialog = PanelManager.Instance.ShowPanel("DialogUI", End).GetComponent<DialogUI>();
         dialog.Init(Index);
     }
 

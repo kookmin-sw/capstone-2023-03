@@ -14,8 +14,8 @@ using UnityEngine.UI;
 public class DialogUI : BaseUI
 {
     private int dialogIndex;
-    private int currentLine;
-    private Dialog dialog;
+    private int lineCount;
+    private Line currentLine;
     private CustomButton customButton;
 
     [SerializeField]
@@ -56,45 +56,45 @@ public class DialogUI : BaseUI
     public void Init(int index)
     {
         dialogIndex = index;
-        currentLine = 0;
+        lineCount = 0;
         NextDialog();
     }
 
-    //대화창을 진행시키는 함수. JSON에서 대화 내용을 가져오고, 가져올 내용이 더이상 없으면 대화창을 닫는다.
+    //대화창을 진행시키는 함수. 대화 데이터 딕셔너리에서 대화 내용을 가져오고, 가져올 내용이 더이상 없으면 대화창을 닫는다.
     //대화 내용에 따라 UI 구조와 포트레이트를 변경.
     public void NextDialog()
     {
-        //한 줄 가져오기
-        dialog = DialogData.Instance.GetLine(dialogIndex, currentLine);
-
         //다음 대화가 없으면 창 닫고 종료
-        if (dialog == null) 
+        if (GameDataCon.Instance.DialogDic[dialogIndex].Count == lineCount) 
         {
             PanelManager.Instance.ClosePanel("DialogUI");
             return;
         }
-        
+
+        //한 줄 가져오기
+        currentLine = GameDataCon.Instance.DialogDic[dialogIndex][lineCount];
+
         //이름, 초상화 등이 없는 경우는 이름, 초상화 창을 제거
-        if(dialog.portrait == null)
+        if (currentLine.portrait == null)
         {
             portrait.gameObject.SetActive(false);   
         }
         else
         {
-            portrait.sprite = dialog.portrait;
+            portrait.sprite = GameDataCon.Instance.SpriteDic[currentLine.portrait];
         }
 
-        if(dialog.name == null)
+        if(currentLine.name == null)
         {
             nameText.transform.parent.gameObject.SetActive(false);  
         }
         else
         {
-            nameText.text = dialog.name;
+            nameText.text = currentLine.name;
         }
-        lineText.text = dialog.line;
+        lineText.text = currentLine.line;
 
-        currentLine++;
+        lineCount++;
     }
 
     public void NextDialogByCheck(InputAction.CallbackContext context)

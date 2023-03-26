@@ -46,11 +46,11 @@ public class PanelManager : Singleton<PanelManager>
 
     //일반 UI를 로드해서 화면에 띄우는 함수
     //위층의 UI가 활성화되면 최적화/겹쳐보임 방지를 위해 아래에 깔린 UI를 비활성화
-    public BaseUI ShowPanel(string name, bool hidePreviousPanel = true, Action CloseCallback = null)
+    public BaseUI ShowPanel(string name, Action CloseCallback = null, bool hidePreviousPanel = true)
     {
         BaseUI panel = AssetLoader.Instance.Instantiate($"Prefabs/UI/{name}", PanelRoot.transform).GetComponent<BaseUI>();
 
-        panel.PanelClosed += CloseCallback;
+        if(CloseCallback != null) panel.PanelClosed += CloseCallback;
 
         if (panelStack.Count > 0 && hidePreviousPanel)
         {

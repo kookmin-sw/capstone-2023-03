@@ -1,4 +1,4 @@
-using LitJson;
+/*using LitJson;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -28,4 +28,4 @@ public class DataManager : Singleton<DataManager>
         return data;
     }
 
-}
+}*/
