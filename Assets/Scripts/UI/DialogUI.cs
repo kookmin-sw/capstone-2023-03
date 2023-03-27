@@ -15,7 +15,7 @@ public class DialogUI : BaseUI
 {
     private int dialogIndex;
     private int lineCount;
-    private Line currentLine;
+    private LineData currentLine;
     private CustomButton customButton;
 
     [SerializeField]
@@ -25,6 +25,7 @@ public class DialogUI : BaseUI
     [SerializeField]
     private TMP_Text lineText;
 
+    private Action DialogClosed;
 
     private void Awake()
     {
@@ -53,9 +54,10 @@ public class DialogUI : BaseUI
     }
 
     //처음 대화창이 열릴 때 초기화
-    public void Init(int index)
+    public void Init(int index, Action CloseCallback = null)
     {
         dialogIndex = index;
+        DialogClosed = CloseCallback;
         lineCount = 0;
         NextDialog();
     }
@@ -67,6 +69,7 @@ public class DialogUI : BaseUI
         //다음 대화가 없으면 창 닫고 종료
         if (GameDataCon.Instance.DialogDic[dialogIndex].Count == lineCount) 
         {
+            DialogClosed?.Invoke();
             PanelManager.Instance.ClosePanel("DialogUI");
             return;
         }

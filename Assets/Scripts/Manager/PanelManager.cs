@@ -23,7 +23,7 @@ public class PanelManager : Singleton<PanelManager>
     }
 
     //팝업 UI들을 스택으로 관리
-    private Stack<BaseUI> panelStack = new Stack<BaseUI>();
+    private Stack<GameObject> panelStack = new Stack<GameObject>();
 
 
     protected override void Awake()
@@ -35,26 +35,22 @@ public class PanelManager : Singleton<PanelManager>
     private void OnEnable()
     {
         InputActions.keyActions.UI.ESC.started += context => { ClosePanel(); };
-        SceneManager.sceneLoaded += (con1, con2) => { panelStack.Clear(); };
     }
 
     private void OnDisable()
     {
         InputActions.keyActions.UI.ESC.started -= context => { ClosePanel(); };
-        SceneManager.sceneLoaded -= (con1, con2) => { panelStack.Clear(); };
     }   
 
     //일반 UI를 로드해서 화면에 띄우는 함수
     //위층의 UI가 활성화되면 최적화/겹쳐보임 방지를 위해 아래에 깔린 UI를 비활성화
-    public BaseUI ShowPanel(string name, Action CloseCallback = null, bool hidePreviousPanel = true)
+    public GameObject ShowPanel(string name, bool hidePreviousPanel = true)
     {
-        BaseUI panel = AssetLoader.Instance.Instantiate($"Prefabs/UI/{name}", PanelRoot.transform).GetComponent<BaseUI>();
-
-        if(CloseCallback != null) panel.PanelClosed += CloseCallback;
+        GameObject panel = AssetLoader.Instance.Instantiate($"Prefabs/UI/{name}", PanelRoot.transform);
 
         if (panelStack.Count > 0 && hidePreviousPanel)
         {
-            panelStack.Peek().gameObject.SetActive(false);
+            panelStack.Peek().SetActive(false);
         }
         panelStack.Push(panel);
         return panel;
@@ -67,11 +63,9 @@ public class PanelManager : Singleton<PanelManager>
     {
         if (panelStack.Count > 1)
         {
-            BaseUI panel = panelStack.Pop();
-            panel.PanelClosed?.Invoke();
-
-            AssetLoader.Instance.Destroy(panel.gameObject);
-            panelStack.Peek().gameObject.SetActive(true);
+            GameObject panel = panelStack.Pop();
+            AssetLoader.Instance.Destroy(panel);
+            panelStack.Peek().SetActive(true);
         }
     }
 
@@ -82,15 +76,19 @@ public class PanelManager : Singleton<PanelManager>
     {
         if (panelStack.Count > 0 && panelStack.Peek().name == name)
         {
-            BaseUI panel = panelStack.Pop();
-            panel.PanelClosed?.Invoke();
+            GameObject panel = panelStack.Pop();
 
-            AssetLoader.Instance.Destroy(panel.gameObject);
+            AssetLoader.Instance.Destroy(panel);
             
             if(panelStack.Count > 0)
             {
-                panelStack.Peek().gameObject.SetActive(true);
+                panelStack.Peek().SetActive(true);
             }
         }
+    }
+
+    public void Clear()
+    {
+        panelStack.Clear();
     }
 }

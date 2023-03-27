@@ -103,8 +103,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4562957366705757489}
   - component: {fileID: 569457856839347017}
+  - component: {fileID: 8907714807214975992}
   m_Layer: 5
-  m_Name: CardUI
+  m_Name: CardButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,6 +142,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2bf2ce18947277b4ba60ea2ff7b67abd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portrait: {fileID: 4562957367248662607}
+  nameText: {fileID: 4562957367027057398}
+  costText: {fileID: 4562957368030444092}
+  descriptionText: {fileID: 4562957367523318987}
+--- !u!114 &8907714807214975992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4562957366705757502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5f1f1ed371bb6438afab29c5f79a1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4562957367027057396

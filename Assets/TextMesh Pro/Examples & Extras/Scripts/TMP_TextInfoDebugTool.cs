@@ -212,35 +212,35 @@ namespace TMPro.Examples
                    //float meanlineMetrics = meanline - baseline;
                    //float descentlineMetrics = descentline - baseline;
 
-                   // Ascent Line
+                   // Ascent LineData
                    labelPosition = m_Transform.TransformPoint(new Vector3(center, ascentline, 0));
                    style.alignment = TextAnchor.UpperCenter;
-                   Handles.Label(labelPosition, "Ascent Line", style);
-                   //Handles.Label(labelPosition, "Ascent Line (" + ascentlineMetrics.ToString("f3") + ")" , style);
+                   Handles.Label(labelPosition, "Ascent LineData", style);
+                   //Handles.Label(labelPosition, "Ascent LineData (" + ascentlineMetrics.ToString("f3") + ")" , style);
 
-                   // Base Line
+                   // Base LineData
                    labelPosition = m_Transform.TransformPoint(new Vector3(center, baseline, 0));
-                   Handles.Label(labelPosition, "Base Line", style);
-                   //Handles.Label(labelPosition, "Base Line (" + baselineMetrics.ToString("f3") + ")" , style);
+                   Handles.Label(labelPosition, "Base LineData", style);
+                   //Handles.Label(labelPosition, "Base LineData (" + baselineMetrics.ToString("f3") + ")" , style);
 
                    // Descent currentLine
                    labelPosition = m_Transform.TransformPoint(new Vector3(center, descentline, 0));
-                   Handles.Label(labelPosition, "Descent Line", style);
-                   //Handles.Label(labelPosition, "Descent Line (" + descentlineMetrics.ToString("f3") + ")" , style);
+                   Handles.Label(labelPosition, "Descent LineData", style);
+                   //Handles.Label(labelPosition, "Descent LineData (" + descentlineMetrics.ToString("f3") + ")" , style);
 
                    if (characterInfo.isVisible)
                    {
-                       // Cap Line
+                       // Cap LineData
                        labelPosition = m_Transform.TransformPoint(new Vector3(center, capline, 0));
                        style.alignment = TextAnchor.UpperCenter;
-                       Handles.Label(labelPosition, "Cap Line", style);
-                       //Handles.Label(labelPosition, "Cap Line (" + caplineMetrics.ToString("f3") + ")" , style);
+                       Handles.Label(labelPosition, "Cap LineData", style);
+                       //Handles.Label(labelPosition, "Cap LineData (" + caplineMetrics.ToString("f3") + ")" , style);
 
-                       // Mean Line
+                       // Mean LineData
                        labelPosition = m_Transform.TransformPoint(new Vector3(center, meanline, 0));
                        style.alignment = TextAnchor.UpperCenter;
-                       Handles.Label(labelPosition, "Mean Line", style);
-                       //Handles.Label(labelPosition, "Mean Line (" + ascentlineMetrics.ToString("f3") + ")" , style);
+                       Handles.Label(labelPosition, "Mean LineData", style);
+                       //Handles.Label(labelPosition, "Mean LineData (" + ascentlineMetrics.ToString("f3") + ")" , style);
 
                        // Origin
                        labelPosition = m_Transform.TransformPoint(new Vector3(origin, baseline, 0));
@@ -528,19 +528,19 @@ namespace TMPro.Examples
                     style.fixedHeight = 20;
                     Vector3 labelPosition;
 
-                    // Ascent Line
+                    // Ascent LineData
                     labelPosition = m_Transform.TransformPoint(new Vector3(lineBottomLeft, ascentline, 0));
                     style.padding = new RectOffset(0, 10, 0, 5);
                     style.alignment = TextAnchor.MiddleRight;
-                    Handles.Label(labelPosition, "Ascent Line", style);
+                    Handles.Label(labelPosition, "Ascent LineData", style);
 
-                    // Base Line
+                    // Base LineData
                     labelPosition = m_Transform.TransformPoint(new Vector3(lineBottomLeft, baseline, 0));
-                    Handles.Label(labelPosition, "Base Line", style);
+                    Handles.Label(labelPosition, "Base LineData", style);
 
                     // Descent currentLine
                     labelPosition = m_Transform.TransformPoint(new Vector3(lineBottomLeft, descentline, 0));
-                    Handles.Label(labelPosition, "Descent Line", style);
+                    Handles.Label(labelPosition, "Descent LineData", style);
                 }
             }
         }

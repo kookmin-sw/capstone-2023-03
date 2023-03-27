@@ -5,5 +5,5 @@ using UnityEngine;
 
 public class BaseUI : MonoBehaviour
 {
-    public Action PanelClosed;
+
 }

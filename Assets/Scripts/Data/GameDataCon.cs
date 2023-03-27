@@ -5,7 +5,7 @@ using System.IO;
 using UnityEngine;
 
 [System.Serializable]
-public class Card
+public class CardData
 {
     public int index;
     public string name;
@@ -14,7 +14,7 @@ public class Card
 }
 
 [System.Serializable]
-public class Line
+public class LineData
 {
     public string portrait;
     public string name;
@@ -30,10 +30,10 @@ public class GameDataCon : Singleton<GameDataCon>
     public Dictionary<string, Sprite> SpriteDic { get; set; } = new Dictionary<string, Sprite>();
 
     //카드 전체가 저장된 리스트
-    public List<Card> CardList { get; set; } = new List<Card>();
+    public List<CardData> CardList { get; set; } = new List<CardData>();
 
     //대화 로그 전체가 저장된 리스트
-    public Dictionary<int, List<Line>> DialogDic { get; set; } = new Dictionary<int, List<Line>>();
+    public Dictionary<int, List<LineData>> DialogDic { get; set; } = new Dictionary<int, List<LineData>>();
 
     protected override void Awake()
     {
@@ -65,7 +65,7 @@ public class GameDataCon : Singleton<GameDataCon>
         if (File.Exists(filePath))
         {
             string jsonData = File.ReadAllText(filePath);
-            CardList = JsonMapper.ToObject<List<Card>>(jsonData);
+            CardList = JsonMapper.ToObject<List<CardData>>(jsonData);
         }
     }
 
@@ -80,11 +80,11 @@ public class GameDataCon : Singleton<GameDataCon>
             for(int i = 0; i < dialogData.Count; i++)
             {
                 int index = (int)dialogData[i]["index"];
-                List<Line> lines = new List<Line>();
+                List<LineData> lines = new List<LineData>();
 
                 for(int j = 0; j < dialogData[i]["lines"].Count; j++)
                 {
-                    Line line = new Line();
+                    LineData line = new LineData();
                     line.portrait = dialogData[i]["lines"][j]["portrait"]?.ToString();
                     line.name = dialogData[i]["lines"][j]["name"]?.ToString();
                     line.line = dialogData[i]["lines"][j]["line"].ToString();

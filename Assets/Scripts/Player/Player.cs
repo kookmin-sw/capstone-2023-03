@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
         playerCamera = Camera.main; 
     }
 
-    //예시로 Performed는 입력이 진행중일 때,  canceled는 입력이 끊기는 순간 발생하는 이벤트.
+    //예시로 Performed는 입력이 진행중일 때, canceled는 입력이 끊기는 순간 발생하는 이벤트.
     private void OnEnable()
     {
         //플레이어 조작 중일 때는 UI 조작 모드를 비활성화
@@ -55,9 +55,8 @@ public class Player : MonoBehaviour
     //이동, 회전
     private void Update()
     {
-        //레이캐스트에서 심볼이 걸린 채로 말을 걸면, 충돌체의 정보를 얻는다
-        //충돌체가 심볼이면 심볼의 종류에 따른 대화창을 출력
-        //말을 거는 것은 인풋매니저에 특정 키 & 심볼이 있을 때 함수로 등록
+
+        //디버깅 용 빛 발사
         Debug.DrawRay(transform.position + Vector3.up, moveDirection * 2.0f, Color.red);
 
         if (isMoving)
@@ -82,11 +81,12 @@ public class Player : MonoBehaviour
         isMoving = false;
     }
 
-    //심볼을 바라보고 엔터키 누르면 작동. 심볼과 대화하는 역할.
-    //바라보는 곳에 RoomSymbol이 있으면 RoomSymbol의 Encounter 함수 실행
+    //엔터키 누르면 작동하는 심볼과 상호작용을 하는 함수. 
     public void OnCheckStarted(InputAction.CallbackContext context)
-
     {
+
+        //레이캐스트 범위에 심볼이 걸린 채로 말을 걸면, 충돌한 오브젝트의 정보를 얻는다
+        //충돌한 오브젝트가 심볼인 경우, 심볼의 인카운터 함수를 실행.
         Physics.Raycast(transform.position + Vector3.up, moveDirection, out RaycastHit raycastHit, 2.0f);
 
         if (raycastHit.collider == null)
@@ -100,9 +100,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    //I버튼으로 인벤토리 UI 열기
     public void OnMenuStarted(InputAction.CallbackContext context)
     {
-        PanelManager.Instance.ShowPanel("LibraryUI");
+        LibraryUI libraryUI = PanelManager.Instance.ShowPanel("LibraryUI").GetComponent<LibraryUI>();
+        libraryUI.Init(false);
+
     }
 
     public void Spawn()

@@ -6,20 +6,12 @@ using UnityEngine;
 
 //플레이어 스탯
 [System.Serializable]
-public class PlayerStats
+public class StatData
 {
     public string name;
     public int level;
     public int positionX;
     public int positionY;
-}
-
-//플레이어 덱
-[System.Serializable]
-public class PlayerCard
-{
-    public int cardIndex;
-    public int count;
 }
 
 //방 위치 데이터
@@ -35,8 +27,8 @@ public class RoomInfo
 [System.Serializable]
 public class PlayData
 {
-    public PlayerStats playerStats;
-    public List<PlayerCard> deck;
+    public StatData statData;
+    public List<CardData> playerCardData;
 }
 
 //데이터를 불러와서 playData에 저장해둠. 혹은 게임을 저장할 시 playData를 json파일로 저장하는 역할.
@@ -68,6 +60,8 @@ public class PlayDataCon : Singleton<PlayDataCon>
         {
             string jsonData = File.ReadAllText(filePath);
             PlayData = JsonMapper.ToObject<PlayData>(jsonData);
+
+            Debug.Log(PlayData.statData.name);
         }
         else
         {
