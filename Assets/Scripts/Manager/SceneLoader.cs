@@ -18,7 +18,7 @@ public class SceneLoader : Singleton<SceneLoader>
     {
         nextScene = sceneName;
 
-        PanelManager.Instance.Clear();
+        UIManager.Instance.Clear();
 
 
         StartCoroutine(LoadProcess());

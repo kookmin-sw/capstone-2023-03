@@ -24,22 +24,19 @@ public class AssetLoader : Singleton<AssetLoader>
         return Resources.LoadAll<T>(path);
     }
 
-    //캐시를 해서 여러번 불러오지 않도록 함
-    public GameObject Load(string path)
-    {
-        if (!cache.ContainsKey(path))
-        {
-            cache.Add(path, Resources.Load<GameObject>(path));
-        }
-
-        return cache[path];
-    }
-
     //프리팹을 (안불러왔으면 불러오고) 복제해서 소환
     //AssetLoader.Instance.Instantiate("Prefabs/BossDoor"); 식으로 사용
     public GameObject Instantiate(string path, Transform parent = null)
     {
-        GameObject prefab = Load(path);
+        GameObject prefab;
+
+        if (!cache.ContainsKey(path))
+        {
+            cache[path] = Load<GameObject>(path);
+        }
+
+        prefab = cache[path];
+
         GameObject go = Object.Instantiate(prefab, parent);
 
         go.name = prefab.name;

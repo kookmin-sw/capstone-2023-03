@@ -5,12 +5,12 @@ public class TitleUI : BaseUI
 {
     public void StartButtonClick()
     {
-        PanelManager.Instance.ShowPanel("LoadUI");
+        UIManager.Instance.ShowUI("LoadUI");
     }
 
     public void LibraryButtonClick()
     {
-        LibraryUI libraryUI = PanelManager.Instance.ShowPanel("LibraryUI").GetComponent<LibraryUI>();
+        LibraryUI libraryUI = UIManager.Instance.ShowUI("LibraryUI").GetComponent<LibraryUI>();
         libraryUI.Init(true);
     }
 

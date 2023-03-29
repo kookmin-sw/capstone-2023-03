@@ -11,7 +11,7 @@ using UnityEngine.UI;
 public class LibraryUI : BaseUI
 {
     private bool showAllCards = true;
-    private int cardsPerPage = 2;
+    private int cardsPerPage = 8;
     private int currentPage = 0;
 
     [SerializeField]
@@ -53,14 +53,8 @@ public class LibraryUI : BaseUI
     {
         this.showAllCards = showAllCards;
 
-        ShowCards();
-
-    }
-
-    public void ShowCards()
-    {
         //카드 전체를 보여줄지, 플레이어의 카드를 보여줄지 택 1
-        if(showAllCards)
+        if (showAllCards)
         {
             showedCardList = GameDataCon.Instance.CardList;
         }
@@ -69,15 +63,22 @@ public class LibraryUI : BaseUI
             showedCardList = PlayDataCon.Instance.PlayData.playerCardData;
         }
 
-        //Linq를 사용. 현재 페이지에 나올 분량만큼 카드 리스트에서 쿼리.
-        var cardList = showedCardList.Skip(currentPage * cardsPerPage).Take(cardsPerPage);
+        ShowCards();
+        SortByCostButtonClick();
+    }
 
-        foreach (CardData cardData in cardList)
+    public void ShowCards()
+    {
+        //Linq를 사용. 현재 페이지에 나올 분량만큼 카드 리스트에서 쿼리.
+        List<CardData> cardList = showedCardList.Skip(currentPage * cardsPerPage).Take(cardsPerPage).ToList();
+
+        for (int i = 0; i < cardList.Count; i++)
         {
-            CardUI cardUI = AssetLoader.Instance.Instantiate("Prefabs/Button/CardButton").GetComponent<CardUI>();
-            cardUI.transform.SetParent(deckDisplayer.transform);   
-            cardUI.ShowCardData(cardData);
+            CardUI cardUI = UIManager.Instance.ShowUIElement("CardUI", deckDisplayer.transform).GetComponent<CardUI>();
+            cardUI.ShowCardData(cardList[i]);
         }
+
+        UpdateButtons();
 
     }
 
@@ -117,8 +118,30 @@ public class LibraryUI : BaseUI
     }
 
 
+    public void SortByCostButtonClick()
+    {
+        sortByCostButton.interactable = false;
+        sortByNameButton.interactable = true;
+        showedCardList = showedCardList.OrderBy(card => card.cost).ToList();
+        currentPage = 0;
+        ClearCards();
+        ShowCards();
+        UpdateButtons();
+    }
+
+    public void SortByNameButtonClick()
+    {
+        sortByNameButton.interactable = false;
+        sortByCostButton.interactable = true;
+        showedCardList = showedCardList.OrderBy(card => card.name).ToList();
+        currentPage = 0;
+        ClearCards();
+        ShowCards();
+        UpdateButtons();
+    }
+
     private void Close(InputAction.CallbackContext context)
     {
-        PanelManager.Instance.ClosePanel("LibraryUI");
+        UIManager.Instance.ClosePanel("LibraryUI");
     }
 }

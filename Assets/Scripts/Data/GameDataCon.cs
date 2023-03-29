@@ -94,4 +94,17 @@ public class GameDataCon : Singleton<GameDataCon>
             }
         }
     }
+
+    //대화 목록에서 한 줄 불러오기
+    public LineData GetLine(int index, int lineIndex)
+    {
+        if (lineIndex >= DialogDic[index].Count)
+        {
+            return null;
+        }
+        else
+        {
+            return DialogDic[index][lineIndex];
+        }
+    }
 }

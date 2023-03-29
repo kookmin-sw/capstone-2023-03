@@ -70,7 +70,7 @@ public class DialogUI : BaseUI
         if (GameDataCon.Instance.DialogDic[dialogIndex].Count == lineCount) 
         {
             DialogClosed?.Invoke();
-            PanelManager.Instance.ClosePanel("DialogUI");
+            UIManager.Instance.ClosePanel("DialogUI");
             return;
         }
 

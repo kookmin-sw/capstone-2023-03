@@ -103,7 +103,7 @@ public class Player : MonoBehaviour
     //I버튼으로 인벤토리 UI 열기
     public void OnMenuStarted(InputAction.CallbackContext context)
     {
-        LibraryUI libraryUI = PanelManager.Instance.ShowPanel("LibraryUI").GetComponent<LibraryUI>();
+        LibraryUI libraryUI = UIManager.Instance.ShowUI("LibraryUI").GetComponent<LibraryUI>();
         libraryUI.Init(false);
 
     }
