@@ -34,9 +34,9 @@
   - Theme Chooser에서 태마선택
   - 수정후 팀페이지 확인하여 점검.
 
-**팀페이지 주소** -> https://kookmin-sw.github.io/ '{{자신의 리파지토리 아이디}}'
 
-**예시)** 2023년 0조 https://kookmin-sw.github.io/capstone-2023-00/
+**팀페이지 주소** -> https://kookmin-sw.github.io/capstone-2023-03
+
 
 ## 내용에 아래와 같은 내용들을 추가하세요.
 
@@ -87,7 +87,3 @@ Syntax highlighted code block
 ```
 
 자세한 내용은 [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Support or Contact
-
-readme 파일 생성에 추가적인 도움이 필요하면 [도움말](https://help.github.com/articles/about-readmes/) 이나 [contact support](https://github.com/contact) 을 이용하세요.
