@@ -1,23 +1,4 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10358850&assignment_repo_type=AssignmentRepo)
 
-# Welcome to GitHub
-
-# 에디터 버전
-
-2021.3.20
-
-# 네이밍 룰
-
-카멜 케이스 camelCase
-파스칼 케이스 PascalCase
-
-#파스칼 케이스
-네임스페이스, 클래스, 인터페이스, 메소드, 델리게이트, 이벤트, 프로퍼티, Enum,
-
-#카멜 케이스
-변수
-
-## 팀소개 및 페이지를 꾸며주세요.
 
 - 프로젝트 소개
 
@@ -50,13 +31,12 @@
 
 ### 3. 팀 소개
 
-팀을 소개하세요.
+****2010 임준범
+****1010 오현민
 
-팀원정보 및 담당이나 사진 및 SNS를 이용하여 소개하세요.
+### 4. 실행 방법
 
-### 4. 사용법
-
-소스코드제출시 설치법이나 사용법을 작성하세요.
+리포지토리를 다운받아 Game.exe를 실행
 
 ### 5. 기타
 
