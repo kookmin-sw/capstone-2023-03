@@ -5,17 +5,17 @@
       {
         "portrait": "Protagonist0",
         "name": "주인공",
-        "line": "빛이여!!"
+        "line": "공격을 받아라!"
       },
       {
         "portrait": "EnemyA0",
-        "name": "1111111111111111111111",
+        "name": "선량한 시청자",
         "line": "으악"
       },
       {
         "portrait": "Protagonist1",
         "name": "주인공",
-        "line": "레벨업"
+        "line": "레벨 업"
       }
     ]
   },
@@ -25,17 +25,17 @@
       {
         "portrait": "Protagonist0",
         "name": "주인공",
-        "line": "하하"
+        "line": "하하하"
       },
       {
         "portrait": "EnemyB0",
-        "name": "잡몹B",
+        "name": "악랄한 구독자",
         "line": "난 사람이다"
       },
       {
         "portrait": "Protagonist0",
         "name": "주인공",
-        "line": "기기기기기기기기기기기기기기기기기기ㅣ기기기기기기기기ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ111111111111112222222223333333"
+        "line": "하하하"
       }
     ]
   },
@@ -45,17 +45,17 @@
       {
         "portrait": "Protagonist0",
         "name": "주인공",
-        "line": "야"
+        "line": "빛이여!"
       },
       {
         "portrait": "EnemyA0",
-        "name": "잡몹C",
-        "line": "뭐야"
+        "name": "적A",
+        "line": "아니?!"
       },
       {
         "portrait": "Protagonist0",
         "name": "주인공",
-        "line": "ㅋㅋ"
+        "line": "이겼다~"
       }
     ]
   },
@@ -65,17 +65,17 @@
       {
         "portrait": "Protagonist0",
         "name": "주인공",
-        "line": "d"
+        "line": "A"
       },
       {
         "portrait": "EnemyA0",
-        "name": "d",
-        "line": "d"
+        "name": "적A",
+        "line": "B"
       },
       {
         "portrait": "Protagonist1",
         "name": "주인공",
-        "line": "d"
+        "line": "C"
       }
     ]
   },
@@ -85,12 +85,12 @@
       {
         "portrait": "BossA0",
         "name": "오현민",
-        "line": "보스"
+        "line": "저는 보스 캐릭터입니다"
       },
       {
         "portrait": "Protagonist0",
         "name": "주인공",
-        "line": "ㅇㅋ"
+        "line": "오케이"
       }
     ]
   },
@@ -100,12 +100,12 @@
       {
         "portrait": "EnemyB0",
         "name": "상점 주인",
-        "line": "상점임 ㅇㅇ"
+        "line": "저는 상점 주인입니다"
       },
       {
         "portrait": "EnemyB0",
         "name": "상점 주인",
-        "line": "도둑이야"
+        "line": "다음에 또 이용해주세요!"
       }
     ]
   },
