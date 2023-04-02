@@ -1,10 +1,6 @@
 # VIRTUAL CARD GAME(가칭)
 
 ### [소개 페이지](https://kookmin-sw.github.io/capstone-2023-03/)
-### [중간 발표자료](https://kookmin-sw.github.io/capstone-2023-03/)
-
-
-
 
 ## 1. 프로젝트 소개
 
@@ -15,14 +11,8 @@
 - 플레이어는 랜덤한 이벤트가 일어나는 방들을 탐색하며 카드와 아이템을 수집하고, <br>
 턴제 카드게임 방식의 전투를 통해 보스에게 승리하고 엔딩을 보는 것을 목표로 한다.
 
-
-
-
 ## 2. 소개 영상
 추가 예정
-
-
-
 
 ## 3. 팀 소개
 
@@ -31,39 +21,15 @@
 |임준범(팀장)|****2010|UI, 맵 생성, 플레이어 조작, DB|
 |오현민|****0000|기획, 전투|
 
-
-
-
-
 ## 4. 실행 방법
 
 리포지토리를 다운받아 Game.exe를 실행
 
-
-
-
 ## 5. 게임 로직
 
-Markdown은 작문을 스타일링하기위한 가볍고 사용하기 쉬운 구문입니다. 여기에는 다음을위한 규칙이 포함됩니다.
+### 방 탐색
+![방 탐색](/Docs/logic1.png)
+### 전투
+![전투](/Docs/logic2.png)
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-
-## Header 2
-
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-자세한 내용은 [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
