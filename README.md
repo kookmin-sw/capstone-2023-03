@@ -1,4 +1,4 @@
-# VIRTUAL CARD GAME(가칭)
+# ROAD TO V(가칭)
 
 ### [소개 페이지](https://kookmin-sw.github.io/capstone-2023-03/)
 ### [중간 발표자료](https://kookmin-sw.github.io/capstone-2023-03/)
