@@ -1,0 +1,132 @@
+[
+  {
+    "index": 1,
+    "lines": [
+      {
+        "portrait": "Protagonist0",
+        "name": "주인공",
+        "line": "빛이여!!"
+      },
+      {
+        "portrait": "EnemyA0",
+        "name": "1111111111111111111111",
+        "line": "으악"
+      },
+      {
+        "portrait": "Protagonist1",
+        "name": "주인공",
+        "line": "레벨업"
+      }
+    ]
+  },
+  {
+    "index": 2,
+    "lines": [
+      {
+        "portrait": "Protagonist0",
+        "name": "주인공",
+        "line": "하하"
+      },
+      {
+        "portrait": "EnemyB0",
+        "name": "잡몹B",
+        "line": "난 사람이다"
+      },
+      {
+        "portrait": "Protagonist0",
+        "name": "주인공",
+        "line": "기기기기기기기기기기기기기기기기기기ㅣ기기기기기기기기ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ111111111111112222222223333333"
+      }
+    ]
+  },
+  {
+    "index": 3,
+    "lines": [
+      {
+        "portrait": "Protagonist0",
+        "name": "주인공",
+        "line": "야"
+      },
+      {
+        "portrait": "EnemyA0",
+        "name": "잡몹C",
+        "line": "뭐야"
+      },
+      {
+        "portrait": "Protagonist0",
+        "name": "주인공",
+        "line": "ㅋㅋ"
+      }
+    ]
+  },
+  {
+    "index": 4,
+    "lines": [
+      {
+        "portrait": "Protagonist0",
+        "name": "주인공",
+        "line": "d"
+      },
+      {
+        "portrait": "EnemyA0",
+        "name": "d",
+        "line": "d"
+      },
+      {
+        "portrait": "Protagonist1",
+        "name": "주인공",
+        "line": "d"
+      }
+    ]
+  },
+  {
+    "index": 1001,
+    "lines": [
+      {
+        "portrait": "BossA0",
+        "name": "오현민",
+        "line": "보스"
+      },
+      {
+        "portrait": "Protagonist0",
+        "name": "주인공",
+        "line": "ㅇㅋ"
+      }
+    ]
+  },
+  {
+    "index": 2001,
+    "lines": [
+      {
+        "portrait": "EnemyB0",
+        "name": "상점 주인",
+        "line": "상점임 ㅇㅇ"
+      },
+      {
+        "portrait": "EnemyB0",
+        "name": "상점 주인",
+        "line": "도둑이야"
+      }
+    ]
+  },
+  {
+    "index": 3001,
+    "lines": [
+      {
+        "portrait": null,
+        "name": null,
+        "line": "을 획득했다!"
+      }
+    ]
+  },
+  {
+    "index": 3002,
+    "lines": [
+      {
+        "portrait": null,
+        "name": null,
+        "line": "를 획득했다!"
+      }
+    ]
+  }
+]
