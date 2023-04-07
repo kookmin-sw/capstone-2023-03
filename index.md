@@ -13,6 +13,8 @@
 
 ## 소개 영상
 
+## 게임 기획 노션 주소
+https://granite-whitefish-d3b.notion.site/6f70c88ae9934fe9bd99df6f5529645b
 
 ## 팀 소개
 
