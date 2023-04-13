@@ -122,19 +122,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 125720668121620374}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TitleUI, Assembly-CSharp
-        m_MethodName: OnStartButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 0
+      m_Calls: []
 --- !u!114 &2627758897320297375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,6 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b5f1f1ed371bb6438afab29c5f79a1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickAudio: {fileID: 8300000, guid: 081e58be83fd39f4a928bfa5553b4a01, type: 3}
 --- !u!1 &125720668382795773
 GameObject:
   m_ObjectHideFlags: 0

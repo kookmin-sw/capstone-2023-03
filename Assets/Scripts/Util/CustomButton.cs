@@ -7,9 +7,13 @@ using UnityEngine.EventSystems;
 //그리고 마우스가 눌릴 때 뿐 아니라, 올라갔을 때, 벗어났을 때 등에 따라 다른 동작을 하도록 함.
 public class CustomButton : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler, IPointerExitHandler
 {
+    [SerializeField]
+    public AudioClip clickAudio; //버튼 클릭 시 재생할 오디오 클립
+
     public event Action<PointerEventData> PointerEnter;
     public event Action<PointerEventData> PointerDown;
     public event Action<PointerEventData> PointerExit;
+
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -17,6 +21,7 @@ public class CustomButton : MonoBehaviour, IPointerEnterHandler, IPointerDownHan
     }
     public void OnPointerDown(PointerEventData eventData)
     {
+        SoundManager.Instance.Play(clickAudio);
         PointerDown?.Invoke(eventData);
     }
 

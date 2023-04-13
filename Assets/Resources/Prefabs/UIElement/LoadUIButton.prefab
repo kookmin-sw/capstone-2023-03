@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3791939131738269513}
   - component: {fileID: 7624404080182085618}
   - component: {fileID: 1978232588628345395}
+  - component: {fileID: 5116085465593368117}
   m_Layer: 5
   m_Name: LoadUIButton
   m_TagString: Untagged
@@ -122,6 +123,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5116085465593368117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3608909119028920443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5f1f1ed371bb6438afab29c5f79a1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickAudio: {fileID: 8300000, guid: 081e58be83fd39f4a928bfa5553b4a01, type: 3}
 --- !u!1 &6774352588361685337
 GameObject:
   m_ObjectHideFlags: 0

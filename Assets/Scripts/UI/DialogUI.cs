@@ -41,7 +41,7 @@ public class DialogUI : BaseUI
         //엔터, 마우스 클릭으로 대화창 진행하는 함수 실행하게 이벤트 등록
         //인풋시스템에 이벤트 함수 등록할 때, 람다로 등록하지 않는 게 좋을 듯. 왠지는 모르겠는데 중복 실행 오류난다
         InputActions.keyActions.UI.Check.started += NextDialogByCheck;
-        customButton.PointerDown += context => { NextDialog(); };
+        customButton.PointerDown += (context) => { NextDialog(); };
     }
 
     private void OnDisable()
@@ -50,7 +50,7 @@ public class DialogUI : BaseUI
         InputActions.keyActions.UI.Disable();
 
         InputActions.keyActions.UI.Check.started -= NextDialogByCheck;
-        customButton.PointerDown -= context => { NextDialog(); };
+        customButton.PointerDown -= (context) => { NextDialog(); };
     }
 
     //처음 대화창이 열릴 때 초기화
