@@ -29,6 +29,7 @@ public class UIManager : Singleton<UIManager>
     protected override void Awake()
     {
         base.Awake();
+        DontDestroyOnLoad(this);
     }
 
     //ESC키로 UI 닫기.
@@ -42,7 +43,8 @@ public class UIManager : Singleton<UIManager>
         InputActions.keyActions.UI.ESC.started -= context => { CloseUI(); };
     }   
 
-    //캔버스 컴포넌트가 달린 UI 요소를 불러와서 UI의 특정 오브젝트에 붙인다.
+    //ShowUI의 차이점은 UI 스택에 넣지 않는다는 것.
+    //정확히는 UI 스택에 넣지 않을 UI 요소들은 UIElement라는 폴더에 저장하도록.
 
     public GameObject ShowUIElement(string name, Transform parent)
     {
@@ -50,7 +52,7 @@ public class UIManager : Singleton<UIManager>
     }
 
     //일반 UI를 로드해서 화면에 띄우는 함수
-    //위층의 UI가 활성화되면 최적화/겹쳐보임 방지를 위해 아래에 깔린 UI를 비활성화
+    //위층의 UI가 활성화되면 최적화/겹쳐보임 방지를 위해 아래에 깔린 UI를 비활성화하는 게 기본 설정.
     public GameObject ShowUI(string name, bool hidePreviousPanel = true)
     {
         GameObject ui = AssetLoader.Instance.Instantiate($"Prefabs/UI/{name}", UIRoot.transform);

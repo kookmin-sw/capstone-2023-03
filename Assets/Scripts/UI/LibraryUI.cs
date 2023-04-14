@@ -25,7 +25,7 @@ public class LibraryUI : BaseUI
     [SerializeField]
     private Button sortByNameButton;
 
-    private List<CardData> showedCardList= new List<CardData>();
+    private List<CardStruct> showedCardList= new List<CardStruct>();
 
 
     //전체 카드 리스트 가져오기
@@ -56,11 +56,11 @@ public class LibraryUI : BaseUI
         //카드 전체를 보여줄지, 플레이어의 카드를 보여줄지 택 1
         if (showAllCards)
         {
-            showedCardList = GameDataCon.Instance.CardList;
+            showedCardList = GameData.Instance.CardList;
         }
         else
         {
-            showedCardList = PlayDataCon.Instance.PlayData.playerCardData;
+            showedCardList = PlayerData.Instance.playerDeck;
         }
 
         ShowCards();
@@ -70,7 +70,7 @@ public class LibraryUI : BaseUI
     public void ShowCards()
     {
         //Linq를 사용. 현재 페이지에 나올 분량만큼 카드 리스트에서 쿼리.
-        List<CardData> cardList = showedCardList.Skip(currentPage * cardsPerPage).Take(cardsPerPage).ToList();
+        List<CardStruct> cardList = showedCardList.Skip(currentPage * cardsPerPage).Take(cardsPerPage).ToList();
 
         for (int i = 0; i < cardList.Count; i++)
         {

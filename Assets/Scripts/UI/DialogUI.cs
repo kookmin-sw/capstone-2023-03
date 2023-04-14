@@ -15,7 +15,7 @@ public class DialogUI : BaseUI
 {
     private int dialogIndex;
     private int lineCount;
-    private LineData currentLine;
+    private LineStruct currentLine;
     private CustomButton customButton;
 
     [SerializeField]
@@ -67,7 +67,7 @@ public class DialogUI : BaseUI
     public void NextDialog()
     {
         //다음 대화가 없으면 창 닫고 종료
-        if (GameDataCon.Instance.DialogDic[dialogIndex].Count == lineCount) 
+        if (GameData.Instance.DialogDic[dialogIndex].Count == lineCount) 
         {
             DialogClosed?.Invoke();
             UIManager.Instance.ClosePanel("DialogUI");
@@ -75,7 +75,7 @@ public class DialogUI : BaseUI
         }
 
         //한 줄 가져오기
-        currentLine = GameDataCon.Instance.DialogDic[dialogIndex][lineCount];
+        currentLine = GameData.Instance.DialogDic[dialogIndex][lineCount];
 
         //이름, 초상화 등이 없는 경우는 이름, 초상화 창을 제거
         if (currentLine.portrait == null)
@@ -84,7 +84,7 @@ public class DialogUI : BaseUI
         }
         else
         {
-            portrait.sprite = GameDataCon.Instance.SpriteDic[currentLine.portrait];
+            portrait.sprite = GameData.Instance.SpriteDic[currentLine.portrait];
         }
 
         if(currentLine.name == null)
