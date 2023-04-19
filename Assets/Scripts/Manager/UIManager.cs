@@ -43,16 +43,16 @@ public class UIManager : Singleton<UIManager>
         InputActions.keyActions.UI.ESC.started -= context => { CloseUI(); };
     }   
 
-    //어떤 UI 내부에 담길 UI나 이미지 요소들을 불러올 때 사용
-    public GameObject ShowUIElement(string name, Transform parent)
+    //ESC로 닫히지 않는 고정형 UI 혹은 UI 내부 요소들을 부를 때 사용. 예: HUD, 전투 UI 등.
+    public GameObject ShowFixedUI(string name, Transform parent)
     {
-        return AssetLoader.Instance.Instantiate($"Prefabs/UIElement/{name}", parent);
+        return AssetLoader.Instance.Instantiate($"Prefabs/UI/{name}", parent);
     }
 
-    //일반적인 UI를 로드해서 화면에 띄우는 함수
+    //ESC로 닫히는 팝업형 UI를 로드해서 화면에 띄우는 함수
     //위층의 UI가 활성화되면 최적화/겹쳐보임 방지를 위해 아래에 깔린 UI를 비활성화하는 게 기본 설정.
     //스택에 넣어 ESC키를 눌러서 닫을 수 있게 함.
-    public GameObject ShowUI(string name, bool hidePreviousPanel = true)
+    public GameObject ShowPopUpUI(string name, bool hidePreviousPanel = true)
     {
         GameObject ui = AssetLoader.Instance.Instantiate($"Prefabs/UI/{name}", UIRoot.transform);
 

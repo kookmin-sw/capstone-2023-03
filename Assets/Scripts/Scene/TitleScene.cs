@@ -7,7 +7,7 @@ public class TitleScene : MonoBehaviour
 {
     private void Awake()
     {
-        UIManager.Instance.ShowUI("TitleUI");
+        UIManager.Instance.ShowPopUpUI("TitleUI");
         SoundManager.Instance.Play("Sounds/TitleBgm", Sound.Bgm);
     }
 }

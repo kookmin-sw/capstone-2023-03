@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -74,7 +75,7 @@ public class LibraryUI : BaseUI
 
         for (int i = 0; i < cardList.Count; i++)
         {
-            CardUI cardUI = UIManager.Instance.ShowUIElement("CardUI", deckDisplayer.transform).GetComponent<CardUI>();
+            CardUI cardUI = UIManager.Instance.ShowFixedUI("CardUI", deckDisplayer.transform).GetComponent<CardUI>();
             cardUI.ShowCardData(cardList[i]);
         }
 
@@ -94,8 +95,8 @@ public class LibraryUI : BaseUI
     // 이전/다음 버튼 활성화
     private void UpdateButtons()
     {
-        prevButton.interactable = currentPage > 0;
-        nextButton.interactable = (currentPage + 1) * cardsPerPage < showedCardList.Count;
+        prevButton.gameObject.SetActive(currentPage > 0);
+        nextButton.gameObject.SetActive((currentPage + 1) * cardsPerPage < showedCardList.Count);
     }
 
     //다음 버튼 클릭시 발생할 이벤트
@@ -122,6 +123,10 @@ public class LibraryUI : BaseUI
     {
         sortByCostButton.interactable = false;
         sortByNameButton.interactable = true;
+
+        sortByCostButton.GetComponentInChildren<TMP_Text>().color = Color.grey;
+        sortByNameButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+
         showedCardList = showedCardList.OrderBy(card => card.cost).ToList();
         currentPage = 0;
         ClearCards();
@@ -133,6 +138,11 @@ public class LibraryUI : BaseUI
     {
         sortByNameButton.interactable = false;
         sortByCostButton.interactable = true;
+
+        sortByNameButton.GetComponentInChildren<TMP_Text>().color = Color.grey;
+        sortByCostButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+
+
         showedCardList = showedCardList.OrderBy(card => card.name).ToList();
         currentPage = 0;
         ClearCards();
