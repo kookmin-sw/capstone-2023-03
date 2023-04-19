@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
 public enum Sound
 {
     Bgm,
@@ -44,7 +42,7 @@ public class SoundManager : Singleton<SoundManager>
         }
     }
 
-    //재생 중인 사운드들 청소
+    //사운드들 데이터 청소
     public void Clear()
     {
         foreach (AudioSource audioSource in audioSources)
@@ -61,6 +59,7 @@ public class SoundManager : Singleton<SoundManager>
         AudioClip audioclip = GetOrAddAudioClip(path, type);
         Play(audioclip, type, pitch);
     }
+
     //사운드 재생
     public void Play(AudioClip audioClip, Sound type = Sound.Effect, float pitch = 1.0f) // path로 경로를 받아주고 pitch = 소리 속도 조절
     {

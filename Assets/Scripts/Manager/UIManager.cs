@@ -43,16 +43,15 @@ public class UIManager : Singleton<UIManager>
         InputActions.keyActions.UI.ESC.started -= context => { CloseUI(); };
     }   
 
-    //ShowUI의 차이점은 UI 스택에 넣지 않는다는 것.
-    //정확히는 UI 스택에 넣지 않을 UI 요소들은 UIElement라는 폴더에 저장하도록.
-
+    //어떤 UI 내부에 담길 UI나 이미지 요소들을 불러올 때 사용
     public GameObject ShowUIElement(string name, Transform parent)
     {
         return AssetLoader.Instance.Instantiate($"Prefabs/UIElement/{name}", parent);
     }
 
-    //일반 UI를 로드해서 화면에 띄우는 함수
+    //일반적인 UI를 로드해서 화면에 띄우는 함수
     //위층의 UI가 활성화되면 최적화/겹쳐보임 방지를 위해 아래에 깔린 UI를 비활성화하는 게 기본 설정.
+    //스택에 넣어 ESC키를 눌러서 닫을 수 있게 함.
     public GameObject ShowUI(string name, bool hidePreviousPanel = true)
     {
         GameObject ui = AssetLoader.Instance.Instantiate($"Prefabs/UI/{name}", UIRoot.transform);

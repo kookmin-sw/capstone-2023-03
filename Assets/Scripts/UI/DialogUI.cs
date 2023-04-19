@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -11,12 +12,11 @@ using UnityEngine.UI;
 //1. 대화를 대화창 UI에 보여줌.
 //2. 인풋을 통해 대화창을 다음 대화로 진행.
 
-public class DialogUI : BaseUI
+public class DialogUI : BaseUI, IPointerDownHandler
 {
     private int dialogIndex;
     private int lineCount;
     private LineStruct currentLine;
-    private CustomButton customButton;
 
     [SerializeField]
     private Image portrait;
@@ -27,30 +27,33 @@ public class DialogUI : BaseUI
 
     private Action DialogClosed;
 
-    private void Awake()
-    {
-        customButton = GetComponent<CustomButton>();
-    }
-
     private void OnEnable()
     {
         //플레이어 조작 비활성화, UI 조작 활성화
+        //엔터로 대화창 진행하는 함수 실행하게 이벤트 등록
+        //인풋시스템에 이벤트 함수 등록할 때, 람다로 등록하지 않는 게 좋을 듯. 왠지는 모르겠는데 중복 실행 오류난다
         InputActions.keyActions.Player.Disable();
         InputActions.keyActions.UI.Enable();
-
-        //엔터, 마우스 클릭으로 대화창 진행하는 함수 실행하게 이벤트 등록
-        //인풋시스템에 이벤트 함수 등록할 때, 람다로 등록하지 않는 게 좋을 듯. 왠지는 모르겠는데 중복 실행 오류난다
         InputActions.keyActions.UI.Check.started += NextDialogByCheck;
-        customButton.PointerDown += (context) => { NextDialog(); };
     }
 
     private void OnDisable()
     {
         InputActions.keyActions.Player.Enable();
         InputActions.keyActions.UI.Disable();
-
         InputActions.keyActions.UI.Check.started -= NextDialogByCheck;
-        customButton.PointerDown -= (context) => { NextDialog(); };
+    }
+
+    //마우스로 UI 클릭 시 작동
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        NextDialog();
+    }
+
+    //엔터 키 누를 시 작동
+    public void NextDialogByCheck(InputAction.CallbackContext context)
+    {
+        NextDialog();
     }
 
     //처음 대화창이 열릴 때 초기화
@@ -99,10 +102,4 @@ public class DialogUI : BaseUI
 
         lineCount++;
     }
-
-    public void NextDialogByCheck(InputAction.CallbackContext context)
-    {
-        NextDialog();
-    }
-
 }

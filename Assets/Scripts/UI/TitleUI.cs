@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 
@@ -6,7 +7,7 @@ public class TitleUI : BaseUI
     public void StartButtonClick()
     {
         SoundManager.Instance.Play("Sounds/ClickEffect");
-        UIManager.Instance.ShowUI("LoadUI");
+        SceneLoader.Instance.LoadScene("GameScene");
     }
 
     public void LibraryButtonClick()
