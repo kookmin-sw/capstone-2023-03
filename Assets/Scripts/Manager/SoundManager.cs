@@ -22,10 +22,10 @@ public class SoundManager : Singleton<SoundManager>
         base.Awake();
         DontDestroyOnLoad(this);
 
-        GameObject root = GameObject.Find("Sound_Root");
+        GameObject root = GameObject.Find("SoundRoot");
         if (root == null)
         {
-            root = new GameObject { name = "Sound_Root" };       
+            root = new GameObject { name = "SoundRoot" };       
             DontDestroyOnLoad(root);
 
             string[] soundNames = { "Bgm", "Effect" };

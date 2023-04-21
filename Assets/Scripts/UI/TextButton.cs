@@ -15,6 +15,7 @@ public class TextButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         text.color = Color.white;
     }
 
+    //클릭 시 소리
     public void OnPointerDown(PointerEventData eventData)
     {
         if(gameObject.TryGetComponent(out Button button))
@@ -26,6 +27,7 @@ public class TextButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
     }
 
+    //마우스 들어올 시 회색으로
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (gameObject.TryGetComponent(out Button button))
@@ -37,6 +39,7 @@ public class TextButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
     }
 
+    //마우스 나갈 시 다시 흰색으로
     public void OnPointerExit(PointerEventData eventData)
     {
         if (gameObject.TryGetComponent(out Button button))

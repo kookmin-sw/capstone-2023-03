@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DataStructs;
 
 public class CardUI : BaseUI
 {
@@ -28,6 +27,12 @@ public class CardUI : BaseUI
         nameText.text = card.name;
         descriptionText.text = card.description;
         costText.text = card.cost.ToString();
+    }
+
+    //이거로 고쳐야 할 듯.
+    public void ShowCardData(int index)
+    {
+
     }
 
     //해당 UI가 표시하는 카드 획득... 은 아이템 UI에서 처리해야겠지

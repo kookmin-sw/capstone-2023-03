@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using DataStructs;
 
 
 //C# LInq 사용: 데이터 쿼리를 C#에서 스크립트로 사용할 수 있도록 하는 기술.
@@ -75,9 +76,9 @@ public class LibraryUI : BaseUI
 
         for (int i = 0; i < cardList.Count; i++)
         {
-            CardUI cardUI = AssetLoader.Instance.Instantiate("Prefabs/UI/CardUI", deckDisplayer.transform)
-                .GetComponent<CardUI>();
-            cardUI.ShowCardData(cardList[i]);
+            AssetLoader.Instance.Instantiate("Prefabs/UI/CardUI", deckDisplayer.transform)
+                .GetComponent<CardUI>()
+                .ShowCardData(cardList[i]);
         }
 
         UpdateButtons();

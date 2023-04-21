@@ -1,12 +1,10 @@
-using LitJson;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using DataStructs;
 
 //대화창 UI 클래스
 //1. 대화를 대화창 UI에 보여줌.

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -19,7 +18,7 @@ public class LoadingUI : MonoBehaviour
 
     IEnumerator LoadProcess()
     {
-        yield return null; //처음 코루틴 실행한 프레임에는 리턴
+        yield return null; 
 
         // 비동기 로딩 시작
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextScene);
@@ -29,12 +28,9 @@ public class LoadingUI : MonoBehaviour
         {
             // 진행률을 계산하고 progressBar 이미지의 fillAmount 속성에 할당
             float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f);
-            progressBar.fillAmount = progress/2;
-
-            // 다음 프레임까지 기다림
+            progressBar.fillAmount = progress;
             yield return null;
         }
 
-        yield return new WaitForSeconds(1.0f);
     }
 }

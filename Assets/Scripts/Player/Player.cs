@@ -55,7 +55,6 @@ public class Player : MonoBehaviour
     //이동, 회전
     private void Update()
     {
-
         //디버깅 용 빛 발사
         Debug.DrawRay(transform.position + Vector3.up, moveDirection * 2.0f, Color.red);
 

@@ -14,9 +14,9 @@ public class SceneLoader : Singleton<SceneLoader>
     //씬 청소하고, 로딩창 부르는 함수
     public void LoadScene(string sceneName)
     {
-        UIManager.Instance.Clear();
         UIManager.Instance.ShowUI("LoadingUI")
             .GetComponent<LoadingUI>()
             .Init(sceneName);
+        UIManager.Instance.Clear();
     }
 }
