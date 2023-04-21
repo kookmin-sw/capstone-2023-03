@@ -173,8 +173,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC2DC\uC791\uD558\uAE30\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f5209523e252f9c40bb882a35a31ab50, type: 2}
-  m_sharedMaterial: {fileID: 1163429993109360649, guid: f5209523e252f9c40bb882a35a31ab50, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d1e6a6b4ef42efc49ae0d1d75108519d, type: 2}
+  m_sharedMaterial: {fileID: 6601362491830074456, guid: d1e6a6b4ef42efc49ae0d1d75108519d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

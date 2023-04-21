@@ -75,7 +75,8 @@ public class LibraryUI : BaseUI
 
         for (int i = 0; i < cardList.Count; i++)
         {
-            CardUI cardUI = UIManager.Instance.ShowFixedUI("CardUI", deckDisplayer.transform).GetComponent<CardUI>();
+            CardUI cardUI = AssetLoader.Instance.Instantiate("Prefabs/UI/CardUI", deckDisplayer.transform)
+                .GetComponent<CardUI>();
             cardUI.ShowCardData(cardList[i]);
         }
 
@@ -118,7 +119,7 @@ public class LibraryUI : BaseUI
         UpdateButtons();
     }
 
-
+    //코스트순 정렬 버튼. 
     public void SortByCostButtonClick()
     {
         sortByCostButton.interactable = false;
@@ -134,6 +135,7 @@ public class LibraryUI : BaseUI
         UpdateButtons();
     }
 
+    //이름순 정렬 버튼. 
     public void SortByNameButtonClick()
     {
         sortByNameButton.interactable = false;
@@ -142,7 +144,6 @@ public class LibraryUI : BaseUI
         sortByNameButton.GetComponentInChildren<TMP_Text>().color = Color.grey;
         sortByCostButton.GetComponentInChildren<TMP_Text>().color = Color.white;
 
-
         showedCardList = showedCardList.OrderBy(card => card.name).ToList();
         currentPage = 0;
         ClearCards();
@@ -150,8 +151,15 @@ public class LibraryUI : BaseUI
         UpdateButtons();
     }
 
+    //나가기 버튼, UI 닫기
+    public void BackButtonClick()
+    {
+        UIManager.Instance.HideUI("LibraryUI");
+    }
+
+    //이건 수정해야 한다... 타이틀 화면에서도 적용되면 안되는데. 컨트롤러를 만들어서, 인게임에서는 특정 키로 열 수 있게 하는 게?
     private void Close(InputAction.CallbackContext context)
     {
-        UIManager.Instance.ClosePanel("LibraryUI");
+        UIManager.Instance.HideUI("LibraryUI");
     }
 }

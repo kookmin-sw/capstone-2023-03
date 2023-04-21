@@ -73,7 +73,7 @@ public class DialogUI : BaseUI, IPointerDownHandler
         if (GameData.Instance.DialogDic[dialogIndex].Count == lineCount) 
         {
             DialogClosed?.Invoke();
-            UIManager.Instance.ClosePanel("DialogUI");
+            UIManager.Instance.HideUI("DialogUI");
             return;
         }
 

@@ -11,13 +11,14 @@ public class TitleUI : BaseUI
 
     public void LibraryButtonClick()
     {
-        UIManager.Instance.ShowPopUpUI("LibraryUI")
+        UIManager.Instance.ShowUI("LibraryUI")
             .GetComponent<LibraryUI>()
             .Init(true);
     }
 
     public void SettingButtonClick()
     {
+        UIManager.Instance.ShowUI("SettingUI");
     }
 
     public void ExitButtonClick()
