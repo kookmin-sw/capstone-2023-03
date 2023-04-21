@@ -11,11 +11,10 @@
 - 플레이어는 랜덤한 이벤트가 일어나는 방들을 탐색하며 카드와 아이템을 수집하고, <br>
 턴제 카드게임 방식의 전투를 통해 보스에게 승리하고 엔딩을 보는 것을 목표로 한다.
 
+## 소개 영상
+
 ## 게임 기획 노션 주소
 https://granite-whitefish-d3b.notion.site/6f70c88ae9934fe9bd99df6f5529645b
-
-## 소개 영상
-추가 예정 <br>
 
 ## 팀 소개
 
@@ -24,16 +23,13 @@ https://granite-whitefish-d3b.notion.site/6f70c88ae9934fe9bd99df6f5529645b
 |임준범(팀장)|****2010|UI, 맵 생성, 플레이어 조작, DB|
 |오현민|****0000|기획, 전투|
 
-
 ## 실행 방법
 
-리포지토리를 다운받아 Game.exe를 실행 <br>
+리포지토리를 다운받아 Game.exe를 실행
 
 ## 게임 로직
 
 ### 방 탐색
-![방 탐색](/Docs/logic1.png) <br>
+![방 탐색](/Docs/logic1.png)
 ### 전투
-![전투](/Docs/logic2.png) <br>
-
-
+![전투](/Docs/logic2.png)
