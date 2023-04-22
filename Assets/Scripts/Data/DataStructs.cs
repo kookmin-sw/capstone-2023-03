@@ -7,9 +7,10 @@ namespace DataStructs
     {
         public int index;
         public string name;
-        public string description;
+        public string description; //설명
         public int cost;
         public int rarity;
+        public string type; //공격, 스킬, 애청자 등
     }
 
     [System.Serializable]
