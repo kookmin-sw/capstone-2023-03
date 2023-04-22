@@ -9,6 +9,7 @@ namespace DataStructs
         public string name;
         public string description;
         public int cost;
+        public int rarity;
     }
 
     [System.Serializable]

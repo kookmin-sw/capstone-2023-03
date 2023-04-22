@@ -27,6 +27,15 @@ public class CardUI : BaseUI
         nameText.text = card.name;
         descriptionText.text = card.description;
         costText.text = card.cost.ToString();
+        if (card.cost == -1) costText.text = "X";
+
+        switch(card.rarity)
+        {
+            case 1:
+                nameText.color = Color.magenta; break;
+            case 2:
+                nameText.color = Color.yellow; break;
+        }
     }
 
     //이거로 고쳐야 할 듯.
