@@ -8,11 +8,6 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     private bool IsCleared { get; set; } = false;
-    
-    public Vector2 RoomPoint { get; set; }
-
-    public List<int> RoomEdges { get; set; } = new List<int>(4);   
-
 
     private Define.EventType Type;
     public RoomSymbol Symbol { get; set; } = null;
@@ -31,7 +26,7 @@ public class Room : MonoBehaviour
             ActivateDoors(false);
 
             //적이 없는 방이면 그냥 클리어 처리
-            if(Type != Define.EventType.Enemy && Type != Define.EventType.Boss)
+            if(Type != Define.EventType.Enemy && Type != Define.EventType.Boss && Type != Define.EventType.Event)
             {
                 IsCleared = true;
                 ActivateDoors(true);
@@ -64,12 +59,16 @@ public class Room : MonoBehaviour
                 Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/EnemySymbol", transform).AddComponent<EnemySymbol>();
                 Symbol.Index = Random.Range(1, 4);
                 break;
-            case Define.EventType.Item:
-                Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/ItemSymbol", transform).AddComponent<ItemSymbol>();
+            case Define.EventType.Rest:
+                Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/RestSymbol", transform).AddComponent<RestSymbol>();
                 Symbol.Index = 3001;
                 break;
             case Define.EventType.Shop:
                 Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/ShopSymbol", transform).AddComponent<ShopSymbol>();
+                Symbol.Index = 2001;
+                break;
+            case Define.EventType.Event:
+                Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/EventSymbol", transform).AddComponent<EventSymbol>();
                 Symbol.Index = 2001;
                 break;
             case Define.EventType.Boss:

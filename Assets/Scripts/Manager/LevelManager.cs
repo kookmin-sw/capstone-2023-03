@@ -13,6 +13,10 @@ public class LevelManager : Singleton<LevelManager>
 
     public event Action LevelCleared;
 
+    public List<Room> Rooms { get; set; }   
+    public List<Vector2> RoomPoints { get; set; }
+    public List<List<int>> RoomEdges { get; set; }
+
     public void OnRoomClear()
     {
         RoomCleared?.Invoke(CurrentRoom);
