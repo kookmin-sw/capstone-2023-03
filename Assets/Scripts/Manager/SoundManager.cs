@@ -35,6 +35,7 @@ public class SoundManager : Singleton<SoundManager>
                 GameObject go = new GameObject { name = soundNames[i] };
                 audioSources[i] = go.AddComponent<AudioSource>(); // 위에서 만든 audioSources에 넣어준다.
                 go.transform.parent = root.transform;
+                UpdateVolume((Sound)i); //초기화 시, 가져온 세팅값을 스피커의 볼륨으로 사용하도록 지정.
             }
             // soundName을 돌면서 새로운 GameObject를 만들어준다.
 
@@ -52,6 +53,24 @@ public class SoundManager : Singleton<SoundManager>
         }
         audioClips.Clear();
     }
+
+    public void UpdateVolume(Sound type, int delta = 0) //볼륨을 세팅 데이터에서 가져와 적용.
+    {
+        if (type == Sound.Bgm)
+        {
+            AudioSource audioSource = audioSources[(int)Sound.Bgm];
+            SettingData.Instance.SettingStruct.bgm += delta;
+            audioSource.volume = (SettingData.Instance.SettingStruct.bgm / 100f);
+        }
+
+        else // (type == Define.Sound.Effect)
+        {
+            AudioSource audioSource = audioSources[(int)Sound.Effect];
+            SettingData.Instance.SettingStruct.effect += delta;
+            audioSource.volume = (SettingData.Instance.SettingStruct.effect / 100f);
+        }
+    }
+
 
     //사운드 재생
     public void Play(string path, Sound type = Sound.Effect, float pitch = 1.0f) // path로 경로를 받아주고 pitch = 소리 속도 조절
@@ -74,6 +93,7 @@ public class SoundManager : Singleton<SoundManager>
             if (audioSource.isPlaying)
                 audioSource.Stop();
 
+            audioSource.volume = SettingData.Instance.SettingStruct.bgm / 100f;
             audioSource.pitch = pitch;
             audioSource.clip = audioClip;
             audioSource.Play(); //loop 설정에 따라 반복 플레이
@@ -82,6 +102,8 @@ public class SoundManager : Singleton<SoundManager>
         else // (type == Define.Sound.Effect)
         {
             AudioSource audioSource = audioSources[(int)Sound.Effect];
+
+            audioSource.volume = SettingData.Instance.SettingStruct.effect / 100f;
             audioSource.pitch = pitch;
             audioSource.clip = audioClip;
             if(!audioSource.isPlaying) audioSource.PlayOneShot(audioClip); //한번 플레이

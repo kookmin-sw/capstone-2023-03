@@ -14,6 +14,11 @@ public class SettingData : Singleton<SettingData>
         LoadSettingData();
     }
 
+    private void OnApplicationQuit()
+    {
+        SaveSettingData(); //끌 때 설정값 저장
+    }
+
     private void LoadSettingData() //저장된 설정 데이터들 가져오기
     {
         Debug.Log("Setting Data Load");
@@ -33,6 +38,8 @@ public class SettingData : Singleton<SettingData>
 
     private void SaveSettingData() //게임 종료 시, 설정 데이터 저장.
     {
-
+        string filePath = "Assets/Resources/Data/Setting.json";
+        string jsonData = JsonMapper.ToJson(SettingStruct);
+        File.WriteAllText(filePath, jsonData);
     }
 }

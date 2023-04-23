@@ -36,6 +36,19 @@ public class GameData : Singleton<GameData>
         isLoaded = true;
     }
 
+    //대화 목록에서 특정한 줄 불러오기
+    public LineStruct GetLine(int index, int lineIndex)
+    {
+        if (lineIndex >= DialogDic[index].Count)
+        {
+            return null;
+        }
+        else
+        {
+            return DialogDic[index][lineIndex];
+        }
+    }
+
 
     //스프라이트 전부 로드
     public void LoadSpriteDic()
@@ -84,19 +97,6 @@ public class GameData : Singleton<GameData>
                 }
                 DialogDic.Add(index, lines);   
             }
-        }
-    }
-
-    //대화 목록에서 한 줄 불러오기
-    public LineStruct GetLine(int index, int lineIndex)
-    {
-        if (lineIndex >= DialogDic[index].Count)
-        {
-            return null;
-        }
-        else
-        {
-            return DialogDic[index][lineIndex];
         }
     }
 }

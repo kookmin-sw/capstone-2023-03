@@ -1,5 +1,3 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,6 +20,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         playerCamera = Camera.main; 
+        animator = GetComponentInChildren<Animator>();    
     }
 
     //예시로 Performed는 입력이 진행중일 때, canceled는 입력이 끊기는 순간 발생하는 이벤트.
@@ -73,11 +72,13 @@ public class Player : MonoBehaviour
         Vector2 input = context.ReadValue<Vector2>();
         moveDirection = (input.x * playerCamera.transform.right) + (input.y * playerCamera.transform.forward);
         moveDirection.y = 0;
+        animator.CrossFade("RUN", 0.1f); //RUN 애니메이션으로 0.1f 간의 겹치는 시간을 가지고 부드럽게 전환.
     }
 
     public void OnMoveCanceled(InputAction.CallbackContext context)
     {
         isMoving = false;
+        animator.CrossFade("WAIT", 0.2f);
     }
 
     //엔터키 누르면 작동하는 심볼과 상호작용을 하는 함수. 

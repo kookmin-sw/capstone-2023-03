@@ -11,12 +11,13 @@ public class SceneLoader : Singleton<SceneLoader>
         DontDestroyOnLoad(this);
     }
 
-    //씬 청소하고, 로딩창 부르는 함수
+    //씬 데이터 청소하고, 로딩창 부르는 함수
     public void LoadScene(string sceneName)
     {
         UIManager.Instance.ShowUI("LoadingUI")
             .GetComponent<LoadingUI>()
             .Init(sceneName);
         UIManager.Instance.Clear();
+        SoundManager.Instance.Clear();
     }
 }

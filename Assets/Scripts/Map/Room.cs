@@ -37,7 +37,7 @@ public class Room : MonoBehaviour
 
     private void OnTriggerStay(Collider collider)
     {
-        //심볼이 없거나 파괴되었을 때, 혹은 적이나 보스가 아닐 때 방 클리어 처리
+        //심볼이 없거나 파괴되었을 때, 혹은 적이나 보스가 아닐 때 방 클리어 처리 (나중에 교체 가능)
         if (Symbol == null && IsCleared == false)
         {
             IsCleared = true;
@@ -55,24 +55,30 @@ public class Room : MonoBehaviour
         switch (type)
         {
             //심볼을 소환할 때, 각각 랜덤으로 인덱스를 배정하고, 인덱스에 따라 다른 대화 내용과 전투, 아이템 획득 등을 하게 할 예정
+            //이거 애드 컴포넌트를 걍 각자 프리팹에 붙여도 될듯...?
             case Define.EventType.Enemy:
-                Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/EnemySymbol", transform).AddComponent<EnemySymbol>();
+                Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/EnemySymbol", transform)
+                    .AddComponent<EnemySymbol>();
                 Symbol.Index = Random.Range(1, 4);
                 break;
             case Define.EventType.Rest:
-                Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/RestSymbol", transform).AddComponent<RestSymbol>();
+                Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/RestSymbol", transform)
+                    .AddComponent<RestSymbol>();
                 Symbol.Index = 3001;
                 break;
             case Define.EventType.Shop:
-                Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/ShopSymbol", transform).AddComponent<ShopSymbol>();
+                Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/ShopSymbol", transform)
+                    .AddComponent<ShopSymbol>();
                 Symbol.Index = 2001;
                 break;
             case Define.EventType.Event:
-                Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/EventSymbol", transform).AddComponent<EventSymbol>();
+                Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/EventSymbol", transform)
+                    .AddComponent<EventSymbol>();
                 Symbol.Index = 2001;
                 break;
             case Define.EventType.Boss:
-                Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/BossSymbol", transform).AddComponent<BossSymbol>();
+                Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/BossSymbol", transform)
+                    .AddComponent<BossSymbol>();
                 Symbol.Index = 1001;
                 break;
             default:

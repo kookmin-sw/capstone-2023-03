@@ -1021,7 +1021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 125720668382795775, guid: 4f9fd068190c811409f838924d696f56, type: 3}
       propertyPath: m_text
-      value: "\uC5B9\n"
+      value: "\u25B6\n"
       objectReference: {fileID: 0}
     - target: {fileID: 125720668382795775, guid: 4f9fd068190c811409f838924d696f56, type: 3}
       propertyPath: m_fontSize
@@ -1030,7 +1030,7 @@ PrefabInstance:
     - target: {fileID: 125720668382795775, guid: 4f9fd068190c811409f838924d696f56, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: ca7930fa17251a945b0c81d472650d47, type: 2}
+      objectReference: {fileID: 11400000, guid: d1e6a6b4ef42efc49ae0d1d75108519d, type: 2}
     - target: {fileID: 125720668382795775, guid: 4f9fd068190c811409f838924d696f56, type: 3}
       propertyPath: m_fontSizeBase
       value: 60
@@ -1038,7 +1038,7 @@ PrefabInstance:
     - target: {fileID: 125720668382795775, guid: 4f9fd068190c811409f838924d696f56, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 332112391057846802, guid: ca7930fa17251a945b0c81d472650d47, type: 2}
+      objectReference: {fileID: 9177205819438742821, guid: d1e6a6b4ef42efc49ae0d1d75108519d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f9fd068190c811409f838924d696f56, type: 3}
 --- !u!224 &3430898705683661054 stripped

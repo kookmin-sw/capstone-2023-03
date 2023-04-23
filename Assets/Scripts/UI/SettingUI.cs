@@ -63,11 +63,11 @@ public class SettingUI : MonoBehaviour
     {
         if (type == "BGM")
         {
-            SettingData.Instance.SettingStruct.bgm -= 10;
+            SoundManager.Instance.UpdateVolume(Sound.Bgm, -10);
         }
         else if (type == "Effect")
         {
-            SettingData.Instance.SettingStruct.effect -= 10;
+            SoundManager.Instance.UpdateVolume(Sound.Effect, -10);
         }
         UpdateButtons();
     }
@@ -77,11 +77,11 @@ public class SettingUI : MonoBehaviour
     {
         if (type == "BGM")
         {
-            SettingData.Instance.SettingStruct.bgm += 10;
+            SoundManager.Instance.UpdateVolume(Sound.Bgm, 10);
         }
         else if (type == "Effect")
         {
-            SettingData.Instance.SettingStruct.effect += 10;
+            SoundManager.Instance.UpdateVolume(Sound.Effect, 10);
         }
         UpdateButtons();
     }
