@@ -23,11 +23,9 @@ public class CardUI : BaseUI
     public void ShowCardData(CardStruct card)
     {
         cardIndex = card.index;
-
         nameText.text = card.name;
         descriptionText.text = card.description;
-        costText.text = card.cost.ToString();
-        if (card.cost == -1) costText.text = "X";
+        costText.text =  card.cost == -1 ? "X" : card.cost.ToString();
 
         switch(card.rarity)
         {
@@ -38,11 +36,6 @@ public class CardUI : BaseUI
         }
     }
 
-    //이거로 고쳐야 할 듯.
-    public void ShowCardData(int index)
-    {
-
-    }
-
-    //해당 UI가 표시하는 카드 획득... 은 아이템 UI에서 처리해야겠지
+    //해당 UI가 표시하는 카드 획득... 은 아이템 UI에서 처리해야겠지.
+    //대신 카드 UI를 클릭 시 획득할 수 있게, 클릭 이벤트는 이곳에서 처리하되, 델리게이트를 이용해 아이템 UI에서 클릭 이벤트를 추가해준다.
 }

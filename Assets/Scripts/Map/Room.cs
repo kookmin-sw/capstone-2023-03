@@ -18,7 +18,7 @@ public class Room : MonoBehaviour
     private void OnTriggerEnter(Collider collider)
     {
         //현재 방 위치 지정
-        LevelManager.Instance.CurrentRoom = this;
+        MapManager.Instance.CurrentRoom = this;
 
         if (IsCleared == false)
         { 
@@ -30,7 +30,7 @@ public class Room : MonoBehaviour
             {
                 IsCleared = true;
                 ActivateDoors(true);
-                LevelManager.Instance.OnRoomClear();
+                MapManager.Instance.OnRoomClear();
             }
         }
     }
@@ -42,7 +42,7 @@ public class Room : MonoBehaviour
         {
             IsCleared = true;
             ActivateDoors(true);
-            LevelManager.Instance.OnRoomClear();
+            MapManager.Instance.OnRoomClear();
         }
     }
 

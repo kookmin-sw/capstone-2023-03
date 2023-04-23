@@ -7,5 +7,6 @@ public class GameScene : MonoBehaviour
     private void Awake()
     {
         SoundManager.Instance.Play("Sounds/Stage1Bgm", Sound.Bgm);
+        MapManager.Instance.CreateMap();
     }
 }

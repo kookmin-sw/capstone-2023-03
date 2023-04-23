@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
         InputActions.keyActions.Player.Menu.started += OnMenuStarted;
 
         //레벨 클리어 시 발생하는 이벤트 등록
-        LevelManager.Instance.LevelCleared += Spawn;
+        MapManager.Instance.LevelClear += Spawn;
     }
 
     private void OnDisable()
@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
         InputActions.keyActions.Player.Check.started -= OnCheckStarted;
         InputActions.keyActions.Player.Menu.started -= OnMenuStarted;
 
-        LevelManager.Instance.LevelCleared -= Spawn;
+        MapManager.Instance.LevelClear -= Spawn;
     }
 
     //이동, 회전

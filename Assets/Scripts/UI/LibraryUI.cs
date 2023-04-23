@@ -62,7 +62,7 @@ public class LibraryUI : BaseUI
         }
         else
         {
-            showedCardList = PlayerData.Instance.playerDeck;
+            showedCardList = PlayerData.Instance.Deck;
         }
 
         ShowCards();

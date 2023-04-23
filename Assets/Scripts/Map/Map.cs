@@ -1,7 +1,8 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
+
+//구버전 맵 생성기 (일단 완벽히 고치기 전까지 놔둠)
 public class Map : MonoBehaviour
 {
     private int stage = 3;
@@ -22,12 +23,12 @@ public class Map : MonoBehaviour
 
     private void OnEnable()
     {
-        LevelManager.Instance.LevelCleared += CreateMap;
+        MapManager.Instance.LevelClear += CreateMap;
     }
 
     public void OnDisable()
     {
-        LevelManager.Instance.LevelCleared -= CreateMap;
+        MapManager.Instance.LevelClear -= CreateMap;
     }
 
     //레벨에 맞게 맵 생성
@@ -225,7 +226,7 @@ public class Map : MonoBehaviour
         }
     }
 
-    //2차원 mapRoomEdges 배열 초기화
+    //2차원 RoomEdges 배열 초기화
     List<List<int>> InitializeMapRoomEdges()
     {
         int dir = (int)Define.Direction.Count;

@@ -14,6 +14,6 @@ public class BossSymbol : RoomSymbol
     //보스 클리어 시, 레벨 클리어 이벤트 실행
     public override void End()
     {
-        LevelManager.Instance.OnLevelClear();
+        MapManager.Instance.OnLevelClear();
     }
 }

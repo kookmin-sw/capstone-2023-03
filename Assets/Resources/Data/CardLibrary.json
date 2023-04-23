@@ -1,6 +1,6 @@
 [
   {
-    "index": 1,
+    "index": 0,
     "name": "타격",
     "description": "적 1기에게 5의 데미지",
     "cost": 1,
@@ -8,7 +8,7 @@
     "type": "공격"
   },
   {
-    "index": 2,
+    "index": 1,
     "name": "방어",
     "description": "5의 방어막 획득",
     "cost": 1,
@@ -16,7 +16,7 @@
     "type": "공격"
   },
   {
-    "index": 3,
+    "index": 2,
     "name": "에너지 볼트",
     "description": "적 1기에게 5의 데미지",
     "cost": 1,
@@ -24,7 +24,7 @@
     "type": "공격"
   },
   {
-    "index": 4,
+    "index": 3,
     "name": "체인 볼트",
     "description": "적 전체에게 5의 데미지",
     "cost": 2,
@@ -32,7 +32,7 @@
     "type": "공격"
   },
   {
-    "index": 5,
+    "index": 4,
     "name": "화염구",
     "description": "적 1기에게 3의 데미지, 화상 1 부여",
     "cost": 0,
@@ -40,7 +40,7 @@
     "type": "공격"
   },
   {
-    "index": 6,
+    "index": 5,
     "name": "쌍염구",
     "description": "적 1기에게 2 x 2의 데미지, 화상 1 부여",
     "cost": 1,
@@ -48,7 +48,7 @@
     "type": "공격"
   },
   {
-    "index": 7,
+    "index": 6,
     "name": "불길",
     "description": "적 전체에게 3의 데미지, 화상 1 부여",
     "cost": 1,
@@ -56,7 +56,7 @@
     "type": "공격"
   },
   {
-    "index": 8,
+    "index": 7,
     "name": "대화재",
     "description": "적 1기에게 12의 데미지, 화상 3 부여",
     "cost": 2,
@@ -64,7 +64,7 @@
     "type": "공격"
   },
   {
-    "index": 9,
+    "index": 8,
     "name": "화염폭발",
     "description": "적 1기에게 현재 화상 수치만큼 데미지, 화상 1 부여",
     "cost": 0,
@@ -72,7 +72,7 @@
     "type": "공격"
   },
   {
-    "index": 10,
+    "index": 9,
     "name": "불주먹",
     "description": "적 1기에게 1 x 3의 데미지, 화상 1 부여",
     "cost": 1,
@@ -80,7 +80,7 @@
     "type": "공격"
   },
   {
-    "index": 11,
+    "index": 10,
     "name": "화형",
     "description": "적 전체에게 10의 데미지, 화상 2 부여",
     "cost": 2,
@@ -88,7 +88,7 @@
     "type": "공격"
   },
   {
-    "index": 12,
+    "index": 11,
     "name": "지옥열탕",
     "description": "적 전체에게 4 x X의 데미지, 화상 X / 2(버림) 부여",
     "cost": -1,
@@ -96,7 +96,7 @@
     "type": "공격"
   },
   {
-    "index": 13,
+    "index": 12,
     "name": "염옥",
     "description": "적 전체에게 20 + 부여된 화상 수치 x 2의 데미지",
     "cost": 3,
@@ -104,7 +104,7 @@
     "type": "공격"
   },
   {
-    "index": 14,
+    "index": 13,
     "name": "불을 먹는 자",
     "description": "적 1기에게 화상 x 2의 데미지, 화상 수치만큼 체력 회복, 화상 디버프 삭제",
     "cost": 3,
@@ -112,7 +112,7 @@
     "type": "공격"
   },
   {
-    "index": 15,
+    "index": 14,
     "name": "얼음뭉치",
     "description": "적 1기에게 2의 데미지, 동상 1 부여",
     "cost": 0,
@@ -120,7 +120,7 @@
     "type": "공격"
   },
   {
-    "index": 16,
+    "index": 15,
     "name": "고드름",
     "description": "적 1기에게 4의 데미지, 동상 1 부여",
     "cost": 1,
@@ -128,7 +128,7 @@
     "type": "공격"
   },
   {
-    "index": 17,
+    "index": 16,
     "name": "싸라기눈",
     "description": "적 전체에게 2의 데미지, 동상 1 부여",
     "cost": 1,
@@ -136,7 +136,7 @@
     "type": "공격"
   },
   {
-    "index": 18,
+    "index": 17,
     "name": "눈 속의 불꽃",
     "description": "적 1기에게 3의 데미지, 동상 1 부여, 화상 1 부여",
     "cost": 1,
@@ -144,7 +144,7 @@
     "type": "공격"
   },
   {
-    "index": 19,
+    "index": 18,
     "name": "눈사태",
     "description": "적 1기에게 동상 수치 x 2의 데미지, 현재 부여된 동상 수치만큼 동상 부여",
     "cost": 1,
@@ -152,7 +152,7 @@
     "type": "공격"
   },
   {
-    "index": 20,
+    "index": 19,
     "name": "눈보라",
     "description": "적 전체에게 3 x X의 데미지, 동상 X 부여",
     "cost": -1,
@@ -160,7 +160,7 @@
     "type": "공격"
   },
   {
-    "index": 21,
+    "index": 20,
     "name": "남극점",
     "description": "적 전체에게 이번 전투동안 부여한 동상 x 3의 데미지",
     "cost": 2,
@@ -168,7 +168,7 @@
     "type": "공격"
   },
   {
-    "index": 22,
+    "index": 21,
     "name": "절대영도",
     "description": "적 전체에게 20 + 부여된 동상 수치만큼 데미지, 현재 부여된 동상 수치만큼 동상 부여",
     "cost": 3,
