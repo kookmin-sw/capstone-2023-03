@@ -5,7 +5,8 @@
     "description": "적 1기에게 5의 데미지",
     "cost": 1,
     "rarity": 0,
-    "type": "공격"
+    "type": "공격",
+    "attribute": "normal"
   },
   {
     "index": 1,
@@ -13,7 +14,8 @@
     "description": "5의 방어막 획득",
     "cost": 1,
     "rarity": 0,
-    "type": "공격"
+    "type": "공격",
+    "attribute": "normal"
   },
   {
     "index": 2,
@@ -21,7 +23,8 @@
     "description": "적 1기에게 5의 데미지",
     "cost": 1,
     "rarity": 0,
-    "type": "공격"
+    "type": "공격",
+    "attribute": "normal"
   },
   {
     "index": 3,
@@ -29,7 +32,8 @@
     "description": "적 전체에게 5의 데미지",
     "cost": 2,
     "rarity": 0,
-    "type": "공격"
+    "type": "공격",
+    "attribute": "normal"
   },
   {
     "index": 4,
@@ -37,7 +41,8 @@
     "description": "적 1기에게 3의 데미지, 화상 1 부여",
     "cost": 0,
     "rarity": 0,
-    "type": "공격"
+    "type": "공격",
+    "attribute": "fire"
   },
   {
     "index": 5,
@@ -45,7 +50,8 @@
     "description": "적 1기에게 2 x 2의 데미지, 화상 1 부여",
     "cost": 1,
     "rarity": 0,
-    "type": "공격"
+    "type": "공격",
+    "attribute": "fire"
   },
   {
     "index": 6,
@@ -53,7 +59,8 @@
     "description": "적 전체에게 3의 데미지, 화상 1 부여",
     "cost": 1,
     "rarity": 0,
-    "type": "공격"
+    "type": "공격",
+    "attribute": "fire"
   },
   {
     "index": 7,
@@ -61,7 +68,8 @@
     "description": "적 1기에게 12의 데미지, 화상 3 부여",
     "cost": 2,
     "rarity": 0,
-    "type": "공격"
+    "type": "공격",
+    "attribute": "fire"
   },
   {
     "index": 8,
@@ -69,7 +77,8 @@
     "description": "적 1기에게 현재 화상 수치만큼 데미지, 화상 1 부여",
     "cost": 0,
     "rarity": 1,
-    "type": "공격"
+    "type": "공격",
+    "attribute": "fire"
   },
   {
     "index": 9,
@@ -77,7 +86,8 @@
     "description": "적 1기에게 1 x 3의 데미지, 화상 1 부여",
     "cost": 1,
     "rarity": 1,
-    "type": "공격"
+    "type": "공격",
+    "attribute": "fire"
   },
   {
     "index": 10,
@@ -85,7 +95,8 @@
     "description": "적 전체에게 10의 데미지, 화상 2 부여",
     "cost": 2,
     "rarity": 1,
-    "type": "공격"
+    "type": "공격",
+    "attribute": "fire"
   },
   {
     "index": 11,
@@ -93,7 +104,8 @@
     "description": "적 전체에게 4 x X의 데미지, 화상 X / 2(버림) 부여",
     "cost": -1,
     "rarity": 1,
-    "type": "공격"
+    "type": "공격",
+    "attribute": "fire"
   },
   {
     "index": 12,
@@ -101,7 +113,8 @@
     "description": "적 전체에게 20 + 부여된 화상 수치 x 2의 데미지",
     "cost": 3,
     "rarity": 2,
-    "type": "공격"
+    "type": "공격",
+    "attribute": "fire"
   },
   {
     "index": 13,
@@ -109,7 +122,8 @@
     "description": "적 1기에게 화상 x 2의 데미지, 화상 수치만큼 체력 회복, 화상 디버프 삭제",
     "cost": 3,
     "rarity": 2,
-    "type": "공격"
+    "type": "공격",
+    "attribute": "fire"
   },
   {
     "index": 14,
@@ -117,7 +131,8 @@
     "description": "적 1기에게 2의 데미지, 동상 1 부여",
     "cost": 0,
     "rarity": 0,
-    "type": "공격"
+    "type": "공격",
+    "attribute": "ice"
   },
   {
     "index": 15,
@@ -125,7 +140,8 @@
     "description": "적 1기에게 4의 데미지, 동상 1 부여",
     "cost": 1,
     "rarity": 0,
-    "type": "공격"
+    "type": "공격",
+    "attribute": "ice"
   },
   {
     "index": 16,
@@ -133,7 +149,8 @@
     "description": "적 전체에게 2의 데미지, 동상 1 부여",
     "cost": 1,
     "rarity": 0,
-    "type": "공격"
+    "type": "공격",
+    "attribute": "ice"
   },
   {
     "index": 17,
@@ -141,7 +158,8 @@
     "description": "적 1기에게 3의 데미지, 동상 1 부여, 화상 1 부여",
     "cost": 1,
     "rarity": 0,
-    "type": "공격"
+    "type": "공격",
+    "attribute": "ice"
   },
   {
     "index": 18,
@@ -149,7 +167,8 @@
     "description": "적 1기에게 동상 수치 x 2의 데미지, 현재 부여된 동상 수치만큼 동상 부여",
     "cost": 1,
     "rarity": 1,
-    "type": "공격"
+    "type": "공격",
+    "attribute": "ice"
   },
   {
     "index": 19,
@@ -157,7 +176,8 @@
     "description": "적 전체에게 3 x X의 데미지, 동상 X 부여",
     "cost": -1,
     "rarity": 1,
-    "type": "공격"
+    "type": "공격",
+    "attribute": "ice"
   },
   {
     "index": 20,
@@ -165,7 +185,8 @@
     "description": "적 전체에게 이번 전투동안 부여한 동상 x 3의 데미지",
     "cost": 2,
     "rarity": 1,
-    "type": "공격"
+    "type": "공격",
+    "attribute": "ice"
   },
   {
     "index": 21,
@@ -173,6 +194,7 @@
     "description": "적 전체에게 20 + 부여된 동상 수치만큼 데미지, 현재 부여된 동상 수치만큼 동상 부여",
     "cost": 3,
     "rarity": 2,
-    "type": "공격"
+    "type": "공격",
+    "attribute": "ice"
   }
 ]

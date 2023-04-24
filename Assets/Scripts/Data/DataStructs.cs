@@ -12,6 +12,7 @@ namespace DataStructs
         public int cost;
         public int rarity;
         public string type; //공격, 스킬, 애청자 등
+        public string attribute; //속성
     }
 
     [System.Serializable]

@@ -54,7 +54,7 @@ public class GameData : Singleton<GameData>
     public void LoadSpriteDic()
     {
         Debug.Log("스프라이트 로드");
-        Sprite[] sprites = AssetLoader.Instance.LoadAll<Sprite>("Images/Portrait");
+        Sprite[] sprites = AssetLoader.Instance.LoadAllInSubfolders<Sprite>("Images");
         foreach (Sprite sprite in sprites)
         {
             SpriteDic.Add(sprite.name, sprite);

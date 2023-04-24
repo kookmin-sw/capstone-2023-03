@@ -11,7 +11,7 @@ public class CardUI : BaseUI
 
     //카드 UI의 이미지, 텍스트 오브젝트들
     [SerializeField]
-    private Image portrait;
+    private Image image;
     [SerializeField]
     private TMP_Text nameText;
     [SerializeField]
@@ -29,11 +29,21 @@ public class CardUI : BaseUI
 
         switch(card.rarity)
         {
+            case 0:
+                nameText.color = Color.white; break;
             case 1:
                 nameText.color = Color.magenta; break;
             case 2:
                 nameText.color = Color.yellow; break;
         }
+
+        //카드에 속성에 연결된 이미지 가져오기
+        if (card.attribute != null) image.sprite = GameData.Instance.SpriteDic[card.attribute];
+        else
+        {  
+            //무속성인 경우는 다른 필드로 이미지 결정 
+        }
+
     }
 
     //해당 UI가 표시하는 카드 획득... 은 아이템 UI에서 처리해야겠지.
