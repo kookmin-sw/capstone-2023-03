@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using DataStructs;
 
 
 //C# LInq 사용: 데이터 쿼리를 C#에서 스크립트로 사용할 수 있도록 하는 기술.
@@ -25,7 +27,7 @@ public class LibraryUI : BaseUI
     [SerializeField]
     private Button sortByNameButton;
 
-    private List<CardData> showedCardList= new List<CardData>();
+    private List<CardStruct> showedCardList= new List<CardStruct>();
 
 
     //전체 카드 리스트 가져오기
@@ -56,11 +58,11 @@ public class LibraryUI : BaseUI
         //카드 전체를 보여줄지, 플레이어의 카드를 보여줄지 택 1
         if (showAllCards)
         {
-            showedCardList = GameDataCon.Instance.CardList;
+            showedCardList = GameData.Instance.CardList;
         }
         else
         {
-            showedCardList = PlayDataCon.Instance.PlayData.playerCardData;
+            showedCardList = PlayerData.Instance.Deck;
         }
 
         ShowCards();
@@ -70,12 +72,13 @@ public class LibraryUI : BaseUI
     public void ShowCards()
     {
         //Linq를 사용. 현재 페이지에 나올 분량만큼 카드 리스트에서 쿼리.
-        List<CardData> cardList = showedCardList.Skip(currentPage * cardsPerPage).Take(cardsPerPage).ToList();
+        List<CardStruct> cardList = showedCardList.Skip(currentPage * cardsPerPage).Take(cardsPerPage).ToList();
 
         for (int i = 0; i < cardList.Count; i++)
         {
-            CardUI cardUI = UIManager.Instance.ShowUIElement("CardUI", deckDisplayer.transform).GetComponent<CardUI>();
-            cardUI.ShowCardData(cardList[i]);
+            AssetLoader.Instance.Instantiate("Prefabs/UI/CardUI", deckDisplayer.transform)
+                .GetComponent<CardUI>()
+                .ShowCardData(cardList[i]);
         }
 
         UpdateButtons();
@@ -94,8 +97,8 @@ public class LibraryUI : BaseUI
     // 이전/다음 버튼 활성화
     private void UpdateButtons()
     {
-        prevButton.interactable = currentPage > 0;
-        nextButton.interactable = (currentPage + 1) * cardsPerPage < showedCardList.Count;
+        prevButton.gameObject.SetActive(currentPage > 0);
+        nextButton.gameObject.SetActive((currentPage + 1) * cardsPerPage < showedCardList.Count);
     }
 
     //다음 버튼 클릭시 발생할 이벤트
@@ -117,11 +120,15 @@ public class LibraryUI : BaseUI
         UpdateButtons();
     }
 
-
+    //코스트순 정렬 버튼. 
     public void SortByCostButtonClick()
     {
         sortByCostButton.interactable = false;
         sortByNameButton.interactable = true;
+
+        sortByCostButton.GetComponentInChildren<TMP_Text>().color = Color.grey;
+        sortByNameButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+
         showedCardList = showedCardList.OrderBy(card => card.cost).ToList();
         currentPage = 0;
         ClearCards();
@@ -129,10 +136,15 @@ public class LibraryUI : BaseUI
         UpdateButtons();
     }
 
+    //이름순 정렬 버튼. 
     public void SortByNameButtonClick()
     {
         sortByNameButton.interactable = false;
         sortByCostButton.interactable = true;
+
+        sortByNameButton.GetComponentInChildren<TMP_Text>().color = Color.grey;
+        sortByCostButton.GetComponentInChildren<TMP_Text>().color = Color.white;
+
         showedCardList = showedCardList.OrderBy(card => card.name).ToList();
         currentPage = 0;
         ClearCards();
@@ -140,8 +152,15 @@ public class LibraryUI : BaseUI
         UpdateButtons();
     }
 
+    //나가기 버튼, UI 닫기
+    public void BackButtonClick()
+    {
+        UIManager.Instance.HideUI("LibraryUI");
+    }
+
+    //이건 수정해야 한다... 타이틀 화면에서도 적용되면 안되는데. 컨트롤러를 만들어서, 인게임에서는 특정 키로 열 수 있게 하는 게?
     private void Close(InputAction.CallbackContext context)
     {
-        UIManager.Instance.ClosePanel("LibraryUI");
+        UIManager.Instance.HideUI("LibraryUI");
     }
 }

@@ -31,12 +31,12 @@ public class Define
     //¹æ Á¾·ù
     public enum EventType
     {
-        Enemy,
         Start,
-        Boss,
-        Item,
         Shop,
+        Rest,
         Event,
+        Enemy,
+        Boss,
         Count
     }
 

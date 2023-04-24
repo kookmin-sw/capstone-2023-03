@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 
@@ -5,18 +6,19 @@ public class TitleUI : BaseUI
 {
     public void StartButtonClick()
     {
-        UIManager.Instance.ShowUI("LoadUI");
+        SceneLoader.Instance.LoadScene("GameScene");
     }
 
     public void LibraryButtonClick()
     {
-        LibraryUI libraryUI = UIManager.Instance.ShowUI("LibraryUI").GetComponent<LibraryUI>();
-        libraryUI.Init(true);
+        UIManager.Instance.ShowUI("LibraryUI")
+            .GetComponent<LibraryUI>()
+            .Init(true);
     }
 
     public void SettingButtonClick()
     {
-
+        UIManager.Instance.ShowUI("SettingUI");
     }
 
     public void ExitButtonClick()

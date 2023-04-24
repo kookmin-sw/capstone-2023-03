@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//구버전 맵 생성기 (일단 완벽히 고치기 전까지 놔둠)
 public class Map : MonoBehaviour
 {
-    private int stage = 0;
+    private int stage = 3;
     private int roomCount; //맵의 방 숫자
     private int roomInterval = 2; //맵의 방 사이 간격
     
@@ -12,25 +14,25 @@ public class Map : MonoBehaviour
     private List<Room> mapRooms; //맵에 있는 방들의 배열
     private List<Vector2> mapRoomPoints; 
     private List<List<int>> mapRoomEdges;
-    private List<int> specialRoomIndexes; //특수 방이 될 배열 인덱스들 모음
+    private Dictionary<int, Define.EventType> specialRoomIndexes; //특수 방이 될 배열 인덱스들 모음
 
     private void Awake()
     {
-        CreateStage();
+        CreateMap();
     }
 
     private void OnEnable()
     {
-        LevelManager.Instance.LevelCleared += CreateStage;
+        MapManager.Instance.LevelClear += CreateMap;
     }
 
     public void OnDisable()
     {
-        LevelManager.Instance.LevelCleared -= CreateStage;
+        MapManager.Instance.LevelClear -= CreateMap;
     }
 
-    //레벨에 맞게 스테이지 생성
-    public void CreateStage()
+    //레벨에 맞게 맵 생성
+    public void CreateMap()
     {
         //이전 스테이지 파괴
         if (stage != 0)
@@ -42,70 +44,72 @@ public class Map : MonoBehaviour
             mapRooms = null;
             mapRoomPoints = null;
             mapRoomEdges = null;
+            specialRoomIndexes = null;
         }
 
-        if (stage < 3)
+        stage += 1;
+
+        //스테이지 생성
+        if (stage < 4)
         {
-            stage += 1;
-            roomCount = stage * 3 + 10;
-            specialRoomIndexes = Define.GenerateRandomNumbers(2, roomCount - 1, (int)Define.EventType.Count - 3);
-            CreateMapRooms();
-            CreateMapRoomPointsAndEdges();
-            PlaceMapRooms();
+            roomCount = stage + 11;
+            CreateSpecialRoomIndexes(); //특별한 방의 위치 지정
+            CreateMapRooms(); //방 생성 후 방 유형 지정
+            CreateMapRoomPointsAndEdges(); //방들의 위치와 연결상태를 나타낸 그래프 생성
+            PlaceMapRooms(); // 그래프대로 방 위치를 배치함
         }
-        else if (stage == 3)
+        else if (stage == 4)
         {
             //최종보스
+            roomCount = 1;
+            CreateMapRooms(); //방 생성 후 방 유형 지정
+            CreateMapRoomPointsAndEdges(); //방들의 위치와 연결상태를 나타낸 그래프 생성
+            PlaceMapRooms(); // 그래프대로 방 위치를 배치함
         }
         else
         {
-            //엔딩
+            //엔딩 씬 호출
+            Debug.Log("클리어!");
         }
     }
 
-    //수정하기
-    private Dictionary<Define.EventType, int> CreateSpecialRoomIndexes()
+    //특별 맵 인덱스들 생성
+    private void CreateSpecialRoomIndexes()
     {
+        int minRoomIndex = 1;
+        int maxRoomIndex = roomCount - 1;
 
-        return null;
+        specialRoomIndexes = new Dictionary<int, Define.EventType>();
+
+        List<int> uniqueIndexes = Define.GenerateRandomNumbers(minRoomIndex, maxRoomIndex, 5);
+
+        // 상점의 위치를 저장
+        specialRoomIndexes[uniqueIndexes[0]] = Define.EventType.Shop;
+
+        // 휴식의 위치를 저장
+        specialRoomIndexes[uniqueIndexes[1]] = Define.EventType.Rest;
+
+        // 이벤트의 위치를 저장
+        specialRoomIndexes[uniqueIndexes[2]] = Define.EventType.Event;
+        specialRoomIndexes[uniqueIndexes[3]] = Define.EventType.Event;
     }
 
     //특정 번호의 방이 무슨 방인지 타입을 리턴
     Define.EventType SelectRoomType(int node)
     {
+        if (node == roomCount - 1) return Define.EventType.Boss;
         if (node == 0) return Define.EventType.Start;
-        if (node == roomCount - 1) return Define.EventType.Boss; 
 
-        for (int i = 0; i < specialRoomIndexes.Count; i++)
+        //특별한 방이 있나 확인 후 가져오기
+        if (specialRoomIndexes.ContainsKey(node))
         {
-            if (specialRoomIndexes[i] == node)
-            {
-                return (Define.EventType)(i + 3);
-            }
+            return specialRoomIndexes[node];
         }
+
         return Define.EventType.Enemy;
     }
 
-    //2차원 mapRoomEdges 배열 초기화
-   List<List<int>> InitializeMapRoomEdges()
-    {
-        int dir = (int)Define.Direction.Count;
-
-        List<List<int>> roomEdges = new List<List<int>>(roomCount * dir);
-
-        for (int i = 0 ; i < roomCount; i++)
-        {
-            roomEdges.Add(new List<int>(dir));
-
-            for(int j = 0; j < dir; j++)
-            {
-                roomEdges[i].Add(-1);
-            }
-        }
-        return roomEdges;
-    }
-
-    //맵의 방을 저장하는 mapRooms 배열 생성
+    //맵의 방을 저장하는 Rooms 배열 생성
     private void CreateMapRooms()
     {
         mapRooms = new List<Room>(roomCount);
@@ -116,7 +120,7 @@ public class Map : MonoBehaviour
             Define.EventType roomType = SelectRoomType(node);
 
             //방 게임오브젝트 생성
-            Room currentRoom = AssetLoader.Instance.Instantiate($"Prefabs/Room/{roomType}Room", transform).AddComponent<Room>();
+            Room currentRoom = AssetLoader.Instance.Instantiate($"Prefabs/Room/Room{stage}", transform).AddComponent<Room>();
             currentRoom.name = $"Room{node}";
 
             //멤버 변수 초기화
@@ -125,9 +129,11 @@ public class Map : MonoBehaviour
             //배열에 추가
             mapRooms.Add(currentRoom);
         }
+
+        if (stage == 4) { mapRooms[0].Symbol.transform.position += new Vector3(-1.5f, 0, 1.5f); }
     }
 
-    //큐를 이용해서 방의 위치와 연결 관계를 저장할 리스트를 생성하는 bfs 변형
+    //큐를 이용해서 방의 위치와 연결 관계를 나타낸 그래프를 생성하는 bfs 변형 함수
     void CreateMapRoomPointsAndEdges()
     {
         int currentRoomCount = 1;
@@ -218,5 +224,24 @@ public class Map : MonoBehaviour
                 }
             }
         }
+    }
+
+    //2차원 RoomEdges 배열 초기화
+    List<List<int>> InitializeMapRoomEdges()
+    {
+        int dir = (int)Define.Direction.Count;
+
+        List<List<int>> roomEdges = new List<List<int>>(roomCount * dir);
+
+        for (int i = 0; i < roomCount; i++)
+        {
+            roomEdges.Add(new List<int>(dir));
+
+            for (int j = 0; j < dir; j++)
+            {
+                roomEdges[i].Add(-1);
+            }
+        }
+        return roomEdges;
     }
 }
