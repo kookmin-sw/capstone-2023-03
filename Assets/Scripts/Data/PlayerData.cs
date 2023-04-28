@@ -31,7 +31,7 @@ public class PlayerData : Singleton<PlayerData>
         //초기 데이터 설정
 
         ChannelLevel = 1;
-        Viewers = 0;
+        Viewers = 1;
         CurrentHp = MaxHp;
         Money = 0;
         Energy = 5;
