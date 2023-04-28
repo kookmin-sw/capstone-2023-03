@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
 
         if (raycastHit.collider.TryGetComponent(out RoomSymbol encountedSymbol))
         {
-            encountedSymbol.Encounter();
+            encountedSymbol.TalkStart();
         }
     }
 

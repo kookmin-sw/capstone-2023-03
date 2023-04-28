@@ -2,14 +2,14 @@
 public class EnemySymbol : RoomSymbol
 {
 
-    public override void Encounter()
+    public override void TalkStart()
     {
-        base.Encounter();
+        base.TalkStart();
 
     }
 
-    public override void End()
+    public override void TalkEnd()
     {
-        base.End();
+        base.TalkEnd();
     }
 }
