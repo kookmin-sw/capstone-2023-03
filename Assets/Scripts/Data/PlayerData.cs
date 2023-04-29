@@ -13,6 +13,7 @@ public class PlayerData : Singleton<PlayerData>
     public int MaxHp { //최대 체력
         get 
         {
+            if (Viewers == 0) return 80;
             int maxhp = 80 + (100 / Viewers);  
             return maxhp;
         }
@@ -31,7 +32,7 @@ public class PlayerData : Singleton<PlayerData>
         //초기 데이터 설정
 
         ChannelLevel = 1;
-        Viewers = 1;
+        Viewers = 0;
         CurrentHp = MaxHp;
         Money = 0;
         Energy = 5;

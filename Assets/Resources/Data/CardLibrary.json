@@ -102,7 +102,7 @@
     "index": 11,
     "name": "지옥열탕",
     "description": "적 전체에게 4 x X의 데미지, 화상 X / 2(버림) 부여",
-    "cost": -1,
+    "cost": 99,
     "rarity": 1,
     "type": "공격",
     "attribute": "fire"
@@ -174,7 +174,7 @@
     "index": 19,
     "name": "눈보라",
     "description": "적 전체에게 3 x X의 데미지, 동상 X 부여",
-    "cost": -1,
+    "cost": 99,
     "rarity": 1,
     "type": "공격",
     "attribute": "ice"

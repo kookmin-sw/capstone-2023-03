@@ -85,17 +85,21 @@ public class GameData : Singleton<GameData>
             for(int i = 0; i < dialogData.Count; i++)
             {
                 int index = (int)dialogData[i]["index"];
-                List<LineStruct> lines = new List<LineStruct>();
 
-                for(int j = 0; j < dialogData[i]["lines"].Count; j++)
+                List<LineStruct> lines;
+                if (!DialogDic.TryGetValue(index, out lines)) //index가 같으면 한 대사 묶음으로 판단하고 index를 키로 갖는 리스트 저장.
                 {
-                    LineStruct line = new LineStruct();
-                    line.portrait = dialogData[i]["lines"][j]["portrait"]?.ToString();
-                    line.name = dialogData[i]["lines"][j]["name"]?.ToString();
-                    line.line = dialogData[i]["lines"][j]["line"].ToString();
-                    lines.Add(line);
+                    lines = new List<LineStruct>(); 
+                    DialogDic.Add(index, lines);
                 }
-                DialogDic.Add(index, lines);   
+
+
+                LineStruct line = new LineStruct(); //딕셔너리의 리스트에 저장할 한 줄 단위의 대화
+                line.portrait = dialogData[i]["portrait"]?.ToString();
+                line.name = dialogData[i]["name"]?.ToString();
+                line.line = dialogData[i]["line"].ToString();
+
+                lines.Add(line);
             }
         }
     }

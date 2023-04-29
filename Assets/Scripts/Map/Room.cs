@@ -59,12 +59,12 @@ public class Room : MonoBehaviour
             case Define.EventType.Enemy:
                 Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/EnemySymbol", transform)
                     .AddComponent<EnemySymbol>();
-                Symbol.Index = Random.Range(1, 4);
+                Symbol.Index = 1;
                 break;
             case Define.EventType.Rest:
                 Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/RestSymbol", transform)
                     .AddComponent<RestSymbol>();
-                Symbol.Index = 3001;
+                Symbol.Index = 4001;
                 break;
             case Define.EventType.Shop:
                 Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/ShopSymbol", transform)
@@ -74,7 +74,7 @@ public class Room : MonoBehaviour
             case Define.EventType.Event:
                 Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/EventSymbol", transform)
                     .AddComponent<EventSymbol>();
-                Symbol.Index = 2001;
+                Symbol.Index = 3001;
                 break;
             case Define.EventType.Boss:
                 Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/BossSymbol", transform)

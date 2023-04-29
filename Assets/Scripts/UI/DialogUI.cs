@@ -23,7 +23,7 @@ public class DialogUI : BaseUI, IPointerDownHandler
     [SerializeField]
     private TMP_Text lineText;
 
-    private Action DialogClosed;
+    private Action CloseAction;
 
     private void OnEnable()
     {
@@ -58,7 +58,7 @@ public class DialogUI : BaseUI, IPointerDownHandler
     public void Init(int index, Action CloseCallback = null)
     {
         dialogIndex = index;
-        DialogClosed = CloseCallback;
+        CloseAction = CloseCallback;
         lineCount = 0;
         NextDialog();
     }
@@ -70,8 +70,8 @@ public class DialogUI : BaseUI, IPointerDownHandler
         //다음 대화가 없으면 창 닫고 종료
         if (GameData.Instance.DialogDic[dialogIndex].Count == lineCount) 
         {
-            DialogClosed?.Invoke();
             UIManager.Instance.HideUI("DialogUI");
+            CloseAction?.Invoke();
             return;
         }
 
@@ -79,7 +79,7 @@ public class DialogUI : BaseUI, IPointerDownHandler
         currentLine = GameData.Instance.DialogDic[dialogIndex][lineCount];
 
         //이름, 초상화 등이 없는 경우는 이름, 초상화 창을 제거
-        if (currentLine.portrait == null)
+        if (currentLine.portrait == null || currentLine.portrait == "")
         {
             portrait.gameObject.SetActive(false);   
         }
@@ -88,7 +88,7 @@ public class DialogUI : BaseUI, IPointerDownHandler
             portrait.sprite = GameData.Instance.SpriteDic[currentLine.portrait];
         }
 
-        if(currentLine.name == null)
+        if(currentLine.name == null || currentLine.portrait == "")
         {
             nameText.transform.parent.gameObject.SetActive(false);  
         }

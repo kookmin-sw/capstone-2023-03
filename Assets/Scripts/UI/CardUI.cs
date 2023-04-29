@@ -25,7 +25,7 @@ public class CardUI : BaseUI
         cardIndex = card.index;
         nameText.text = card.name;
         descriptionText.text = card.description;
-        costText.text =  card.cost == -1 ? "X" : card.cost.ToString();
+        costText.text =  card.cost == 99 ? "X" : card.cost.ToString();
 
         switch(card.rarity)
         {
@@ -38,7 +38,7 @@ public class CardUI : BaseUI
         }
 
         //카드에 속성에 연결된 이미지 가져오기
-        if (card.attribute != null) image.sprite = GameData.Instance.SpriteDic[card.attribute];
+        if (card.attribute != null && card.attribute != "") image.sprite = GameData.Instance.SpriteDic[card.attribute];
         else
         {  
             //무속성인 경우는 다른 필드로 이미지 결정 
