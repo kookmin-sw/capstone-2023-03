@@ -8,5 +8,6 @@ public class GameScene : MonoBehaviour
     {
         SoundManager.Instance.Play("Sounds/Stage1Bgm", Sound.Bgm);
         MapManager.Instance.CreateMap();
+        UIManager.Instance.ShowUI("StatUI");
     }
 }

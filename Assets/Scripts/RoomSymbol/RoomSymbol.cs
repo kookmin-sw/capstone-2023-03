@@ -18,6 +18,11 @@ public class RoomSymbol : MonoBehaviour
     //이벤트 심볼의 대화 이벤트가 끝났을 때 (보통 대화창을 닫았을 때) 호출됨
     public virtual void TalkEnd()
     {
+
+        PlayerData.Instance.Viewers += 100;
+        PlayerData.Instance.Money += 10;
+
+
         AssetLoader.Instance.Destroy(gameObject);
     }
 }

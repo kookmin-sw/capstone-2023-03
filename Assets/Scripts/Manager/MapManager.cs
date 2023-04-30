@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 //맵 배열과, 맵의 특정 시점에서 실행될 이벤트를 싱글톤으로 저장
 public class MapManager : Singleton<MapManager>
 {
-    private int stage = 0;
+    public int Stage { get; set; } = 0;
     private int roomCount; //맵의 방 숫자
     private int roomInterval = 2; //맵의 방 사이 간격
     private Vector2 roomSize = new Vector2(10, 10); //현재 맵의 방 크기
@@ -66,18 +66,18 @@ public class MapManager : Singleton<MapManager>
     //맵 생성
     public void CreateMap()
     {
-        stage += 1;
+        Stage += 1;
 
         //스테이지 생성
-        if (stage < 4)
+        if (Stage < 4)
         {
-            roomCount = stage + 11;
+            roomCount = Stage + 11;
             CreateSpecialRoomIndexes(); //특별한 방의 위치 지정
             CreateMapRooms(); //방 생성 후 방 유형 지정
             CreateMapRoomPointsAndEdges(); //방들의 위치와 연결상태를 나타낸 그래프 생성
             PlaceMapRooms(); // 그래프대로 방 위치를 배치함
         }
-        else if (stage == 4)
+        else if (Stage == 4)
         {
             //최종보스
             roomCount = 1;
@@ -139,7 +139,7 @@ public class MapManager : Singleton<MapManager>
             Define.EventType roomType = SelectRoomType(node);
 
             //방 게임오브젝트 생성
-            Room currentRoom = AssetLoader.Instance.Instantiate($"Prefabs/Room/Room{stage}", Map.transform).AddComponent<Room>();
+            Room currentRoom = AssetLoader.Instance.Instantiate($"Prefabs/Room/Room{Stage}", Map.transform).AddComponent<Room>();
             currentRoom.name = $"Room{node}";
 
             //멤버 변수 초기화
@@ -149,7 +149,7 @@ public class MapManager : Singleton<MapManager>
             Rooms.Add(currentRoom);
         }
 
-        if (stage == 4) { Rooms[0].Symbol.transform.position += new Vector3(-1.5f, 0, 1.5f); }
+        if (Stage == 4) { Rooms[0].Symbol.transform.position += new Vector3(-1.5f, 0, 1.5f); }
     }
 
     //큐를 이용해서 방의 위치와 연결 관계를 나타낸 그래프를 생성하는 bfs 변형 함수

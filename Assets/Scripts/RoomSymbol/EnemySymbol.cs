@@ -18,7 +18,7 @@ public class EnemySymbol : RoomSymbol
             .Init(
                 "협상하시겠습니까?", 
                 () => { UIManager.Instance.ShowUI("DialogUI").GetComponent<DialogUI>().Init(Index + 6000, TalkEnd); }, //협상 대화 후 카드, 보상 획득
-                () => { UIManager.Instance.ShowUI("DialogUI").GetComponent<DialogUI>().Init(Index + 7000, TalkEnd); } //비협상 대화 후 전투 UI 호출
+                () => { UIManager.Instance.ShowUI("DialogUI").GetComponent<DialogUI>().Init(Index + 7000, FightEnd); } //비협상 대화 후 전투 UI 호출
             );
     }
 
@@ -38,6 +38,9 @@ public class EnemySymbol : RoomSymbol
     {
         //전투 끝날 시 호출
         //아이템 UI 닫을 시, TalkEnd 호출
+        CardSelectUI cardSelectUI = UIManager.Instance.ShowUI("CardSelectUI").GetComponent<CardSelectUI>();
+        cardSelectUI.Init(TalkEnd);
+        cardSelectUI.BattleReward();
     }
 
     public void Negotiate()
