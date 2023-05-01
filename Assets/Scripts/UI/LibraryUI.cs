@@ -78,7 +78,7 @@ public class LibraryUI : BaseUI
         {
             AssetLoader.Instance.Instantiate("Prefabs/UI/CardUI", deckDisplayer.transform)
                 .GetComponent<CardUI>()
-                .ShowCardData(cardList[i]);
+                .ShowCardData(cardList[i], CardMode.Library);
         }
 
         UpdateButtons();

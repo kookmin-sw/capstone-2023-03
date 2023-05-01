@@ -78,7 +78,7 @@ public class PlayerData : Singleton<PlayerData>
 
     public List<CardStruct> Deck { get; set; }
 
-    //데이터 변경 시 발생
+    //데이터 변경 시 발생시킬 이벤트
     public event Action OnDataChange;
 
     protected override void Awake()

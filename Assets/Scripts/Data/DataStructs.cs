@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DataStructs
@@ -30,4 +31,12 @@ namespace DataStructs
         public int bgm;
         public int effect;
     }
+
+    [System.Serializable]
+    public class RewardStruct
+    {
+        public int viewers;
+        public int money;
+    }
+
 }

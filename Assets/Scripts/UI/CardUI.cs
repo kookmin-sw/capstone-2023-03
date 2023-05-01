@@ -5,6 +5,14 @@ using DataStructs;
 using UnityEngine.EventSystems;
 using System;
 
+
+public enum CardMode
+{
+    Library, //라이브러리에서 카드UI 모드. 클릭/포인터 시 반응 없음
+    Select, //카드 보상 UI에서 카드UI 모드. 클릭/포인터 시 반응 있음
+    Battle
+}
+
 public class CardUI : BaseUI, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
 
@@ -21,45 +29,67 @@ public class CardUI : BaseUI, IPointerDownHandler, IPointerEnterHandler, IPointe
     [SerializeField]
     private TMP_Text descriptionText;
 
-    public Action PointerDown;
-    public Action PointerEnter;
-    public Action PointerExit;
-
     private float scaleOnHover = 1.1f;
     private Vector3 originalScale = Vector3.one;
 
-    private void OnDisable()
-    {
-        PointerDown = null;
-        PointerEnter = null;
-        PointerExit = null;
-    }
+    private CardMode cardMode;
 
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        PointerDown?.Invoke();
+        switch (cardMode)
+        {
+            case CardMode.Library:
+                break;
+            case CardMode.Select:
+                PlayerData.Instance.Deck.Add(card);
+                UIManager.Instance.HideUI("CardSelectUI"); //획득 후에는 바로 이 UI 닫기.
+                break;
+            case CardMode.Battle:
+                break;
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        PointerEnter?.Invoke();
+        switch (cardMode)
+        {
+            case CardMode.Library:
+                break;
+            case CardMode.Select:
+                transform.localScale = originalScale * scaleOnHover;
+                break;
+            case CardMode.Battle:
+                break;
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        PointerExit?.Invoke();
+        switch (cardMode)
+        {
+            case CardMode.Library:
+                break;
+            case CardMode.Select:
+                transform.localScale = originalScale;
+                break;
+            case CardMode.Battle:
+                break;
+        }
     }
 
 
 
     //인자로 받은 카드의 데이터를 UI로 보여주는 함수
-    public void ShowCardData(CardStruct showCard)
+    public void ShowCardData(CardStruct showCard, CardMode mode)
     {
         card = showCard;
+        cardMode = mode;
         nameText.text = card.name;
         descriptionText.text = card.description;
         costText.text =  card.cost == 99 ? "X" : card.cost.ToString();
+
+
 
         switch(card.rarity)
         {
@@ -78,24 +108,6 @@ public class CardUI : BaseUI, IPointerDownHandler, IPointerEnterHandler, IPointe
             //무속성인 경우는 다른 필드로 이미지 결정 
         }
 
-    }
-
-    //카드 크기 확대
-    public void HoverEnter()
-    {
-        transform.localScale = originalScale * scaleOnHover;
-    }
-
-    //카드 크기 원래대로
-    public void HoverExit()
-    {
-        transform.localScale = originalScale;
-    }    
-    
-    //덱에 카드 추가
-    public void AddCardToDeck()
-    {
-        PlayerData.Instance.Deck.Add(card);
     }
 
     //해당 UI가 표시하는 카드 획득... 은 아이템 UI에서 처리해야겠지.

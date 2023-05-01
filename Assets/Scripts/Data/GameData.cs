@@ -20,6 +20,9 @@ public class GameData : Singleton<GameData>
     //대화 로그 전체가 저장된 리스트
     public Dictionary<int, List<LineStruct>> DialogDic { get; set; } = new Dictionary<int, List<LineStruct>>();
 
+    //스테이지별 보상 딕셔너리 (인덱스, 보상 구조체)
+    public Dictionary<int, RewardStruct> RewardDic { get; set; } = new Dictionary<int, RewardStruct>();
+
     protected override void Awake()
     {
         base.Awake();
@@ -33,6 +36,7 @@ public class GameData : Singleton<GameData>
         LoadSpriteDic();
         LoadCardList();
         LoadDialogDic();
+        LoadRewardDic();    
         isLoaded = true;
     }
 
@@ -71,6 +75,27 @@ public class GameData : Singleton<GameData>
             string jsonData = File.ReadAllText(filePath);
             CardList = JsonMapper.ToObject<List<CardStruct>>(jsonData);
         }
+    }
+
+    public void LoadRewardDic()
+    {
+        Debug.Log("보상 리스트 로드");
+        string filePath = "Assets/Resources/Data/Reward.json";
+        if (File.Exists(filePath)) {
+            string jsonString = File.ReadAllText(filePath);
+            JsonData rewardData = JsonMapper.ToObject(jsonString);
+
+            for (int i = 0; i < rewardData.Count; i++)
+            {
+                int index = (int)rewardData[i]["index"];
+
+                RewardStruct reward = new RewardStruct();
+                reward.money = (int)rewardData[i]["money"];
+                reward.viewers = (int)rewardData[i]["viewers"];
+                RewardDic.Add(index, reward);
+            }
+        }
+
     }
 
     //대화 로그 전체 로드

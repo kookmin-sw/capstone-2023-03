@@ -23,16 +23,19 @@ public class StatUI : MonoBehaviour
     {
         UpdateUI();
         PlayerData.Instance.OnDataChange += UpdateUI; //스탯값에 변화 시 UI 갱신
+        LevelManager.Instance.OnLevelEnter += UpdateUI; //스테이지 변화 시 UI 갱신
     }
 
     private void OnDisable()
     {
         PlayerData.Instance.OnDataChange -= UpdateUI;
+        LevelManager.Instance.OnLevelEnter -= UpdateUI; 
+
     }
 
     public void UpdateUI()
     {
-        StageText.text = $"스테이지 {MapManager.Instance.Stage}";
+        StageText.text = $"스테이지 {LevelManager.Instance.Level}";
         EnergyText.text = PlayerData.Instance.Energy.ToString();
         MoneyText.text = PlayerData.Instance.Money.ToString();
         ChannelLevelText.text = PlayerData.Instance.ChannelLevel.ToString();
