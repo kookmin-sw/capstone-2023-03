@@ -102,7 +102,7 @@
     "index": 11,
     "name": "지옥열탕",
     "description": "적 전체에게 4 x X의 데미지, 화상 X / 2(버림) 부여",
-    "cost": -1,
+    "cost": 99,
     "rarity": 1,
     "type": "공격",
     "attribute": "fire"
@@ -174,7 +174,7 @@
     "index": 19,
     "name": "눈보라",
     "description": "적 전체에게 3 x X의 데미지, 동상 X 부여",
-    "cost": -1,
+    "cost": 99,
     "rarity": 1,
     "type": "공격",
     "attribute": "ice"
@@ -196,5 +196,59 @@
     "rarity": 2,
     "type": "공격",
     "attribute": "ice"
+  },
+  {
+    "index": 22,
+    "name": "발화",
+    "description": "이번 턴 동안 에너지 2 획득",
+    "cost": 0,
+    "rarity": 0,
+    "type": "스킬",
+    "attribute": "fire"
+  },
+  {
+    "index": 23,
+    "name": "가속",
+    "description": "패의 카드 한 장을 이번 전투 동안 코스트 0으로 고정",
+    "cost": 0,
+    "rarity": 2,
+    "type": "애청자",
+    "attribute": "normal"
+  },
+  {
+    "index": 24,
+    "name": "해적 무도가",
+    "description": "체력 11, 적 전체 데미지 2 공격",
+    "cost": 0,
+    "rarity": 0,
+    "type": "잡몹",
+    "attribute": "normal"
+  },
+  {
+    "index": 25,
+    "name": "해적 검사",
+    "description": "대충 해적 검사",
+    "cost": 0,
+    "rarity": 0,
+    "type": "잡몹",
+    "attribute": "normal"
+  },
+  {
+    "index": 26,
+    "name": "해적 궁수",
+    "description": "대충 해적 궁수",
+    "cost": 0,
+    "rarity": 0,
+    "type": "잡몹",
+    "attribute": "normal"
+  },
+  {
+    "index": 27,
+    "name": "해적선장",
+    "description": "야호이",
+    "cost": 0,
+    "rarity": 2,
+    "type": "보스",
+    "attribute": "normal"
   }
 ]

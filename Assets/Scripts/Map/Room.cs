@@ -9,7 +9,7 @@ public class Room : MonoBehaviour
 {
     private bool IsCleared { get; set; } = false;
 
-    private Define.EventType Type;
+    private Define.EventType Type { get; set; }
     public RoomSymbol Symbol { get; set; } = null;
 
     //갖고있는 방향-문 딕셔너리
@@ -18,7 +18,7 @@ public class Room : MonoBehaviour
     private void OnTriggerEnter(Collider collider)
     {
         //현재 방 위치 지정
-        MapManager.Instance.CurrentRoom = this;
+        LevelManager.Instance.CurrentRoom = this;
 
         if (IsCleared == false)
         { 
@@ -30,7 +30,7 @@ public class Room : MonoBehaviour
             {
                 IsCleared = true;
                 ActivateDoors(true);
-                MapManager.Instance.OnRoomClear();
+                LevelManager.Instance.RoomClear();
             }
         }
     }
@@ -42,7 +42,7 @@ public class Room : MonoBehaviour
         {
             IsCleared = true;
             ActivateDoors(true);
-            MapManager.Instance.OnRoomClear();
+            LevelManager.Instance.RoomClear();
         }
     }
 
@@ -50,7 +50,7 @@ public class Room : MonoBehaviour
     public void Init(Define.EventType type)
     {
         //Type 지정
-        this.Type = type;
+        Type = type;
         //Symbol 소환
         switch (type)
         {
@@ -59,32 +59,32 @@ public class Room : MonoBehaviour
             case Define.EventType.Enemy:
                 Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/EnemySymbol", transform)
                     .AddComponent<EnemySymbol>();
-                Symbol.Index = Random.Range(1, 4);
+                int enemyIndex = Random.Range(0, 2);
+                Symbol.Init(enemyIndex, type);
                 break;
             case Define.EventType.Rest:
                 Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/RestSymbol", transform)
                     .AddComponent<RestSymbol>();
-                Symbol.Index = 3001;
+                Symbol.Init(Define.REST_INDEX, type);
                 break;
             case Define.EventType.Shop:
                 Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/ShopSymbol", transform)
                     .AddComponent<ShopSymbol>();
-                Symbol.Index = 2001;
+                Symbol.Init(Define.SHOP_INDEX, type);
                 break;
             case Define.EventType.Event:
                 Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/EventSymbol", transform)
                     .AddComponent<EventSymbol>();
-                Symbol.Index = 2001;
+                Symbol.Init(Define.EVENT_INDEX, type);
                 break;
             case Define.EventType.Boss:
                 Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/BossSymbol", transform)
                     .AddComponent<BossSymbol>();
-                Symbol.Index = 1001;
+                Symbol.Init(Define.BOSS_INDEX, type);
                 break;
             default:
                 return;
         }
-        Symbol.Type = type;
         Symbol.transform.position = new Vector3(0, 1, 0);
     }
 

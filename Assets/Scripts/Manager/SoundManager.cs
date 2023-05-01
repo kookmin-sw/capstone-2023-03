@@ -59,15 +59,15 @@ public class SoundManager : Singleton<SoundManager>
         if (type == Sound.Bgm)
         {
             AudioSource audioSource = audioSources[(int)Sound.Bgm];
-            SettingData.Instance.SettingStruct.bgm += delta;
-            audioSource.volume = (SettingData.Instance.SettingStruct.bgm / 100f);
+            SettingData.Instance.Setting.bgm += delta;
+            audioSource.volume = (SettingData.Instance.Setting.bgm / 100f);
         }
 
         else // (type == Define.Sound.Effect)
         {
             AudioSource audioSource = audioSources[(int)Sound.Effect];
-            SettingData.Instance.SettingStruct.effect += delta;
-            audioSource.volume = (SettingData.Instance.SettingStruct.effect / 100f);
+            SettingData.Instance.Setting.effect += delta;
+            audioSource.volume = (SettingData.Instance.Setting.effect / 100f);
         }
     }
 
@@ -93,7 +93,7 @@ public class SoundManager : Singleton<SoundManager>
             if (audioSource.isPlaying)
                 audioSource.Stop();
 
-            audioSource.volume = SettingData.Instance.SettingStruct.bgm / 100f;
+            audioSource.volume = SettingData.Instance.Setting.bgm / 100f;
             audioSource.pitch = pitch;
             audioSource.clip = audioClip;
             audioSource.Play(); //loop 설정에 따라 반복 플레이
@@ -103,7 +103,7 @@ public class SoundManager : Singleton<SoundManager>
         {
             AudioSource audioSource = audioSources[(int)Sound.Effect];
 
-            audioSource.volume = SettingData.Instance.SettingStruct.effect / 100f;
+            audioSource.volume = SettingData.Instance.Setting.effect / 100f;
             audioSource.pitch = pitch;
             audioSource.clip = audioClip;
             if(!audioSource.isPlaying) audioSource.PlayOneShot(audioClip); //한번 플레이

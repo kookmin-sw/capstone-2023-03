@@ -23,6 +23,12 @@ public class TitleUI : BaseUI
 
     public void ExitButtonClick()
     {
-        Application.Quit(); 
+        UIManager.Instance.ShowUI("SelectUI", false)
+            .GetComponent<SelectUI>()
+            .Init(
+                "정말로 종료하시겠습니까?",
+                () => { Application.Quit(); },
+                () => { UIManager.Instance.HideUI("SelectUI"); }
+            );
     }
 }
