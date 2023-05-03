@@ -32,7 +32,7 @@ public class EnemySymbol : RoomSymbol
         float random = Random.Range(0f, 1f);
 
         //협상 고르면 랜덤한 확률로 협상 대화, 실패하면 협상 실패 대화 호출 후 전투 호출
-        if(random < 0.3f && StageManager.Instance.NegoInLevel == false) //일단 30퍼 확률 + 이 스테이지에서 협상을 한 적 없으면 협상 성공
+        if(random < 22f && StageManager.Instance.NegoInLevel == false) //일단 30퍼 확률 + 이 스테이지에서 협상을 한 적 없으면 협상 성공
         {
             UIManager.Instance.ShowUI("DialogUI").GetComponent<DialogUI>().Init(index + Define.NEGO_INDEX, NegotiateEnd);
         }

@@ -52,7 +52,6 @@ public class BossSymbol : RoomSymbol
     {
 
         //스탯을 ... 만큼 증가
-        PlayerData.Instance.CurrentHp -= 10; //임시
         PlayerData.Instance.Money += GameData.Instance.RewardDic[StageManager.Instance.Stage + Define.BOSS_INDEX].money; 
         PlayerData.Instance.Viewers += GameData.Instance.RewardDic[StageManager.Instance.Stage + Define.BOSS_INDEX].viewers;
 
