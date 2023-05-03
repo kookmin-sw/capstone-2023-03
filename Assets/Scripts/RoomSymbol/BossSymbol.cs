@@ -21,9 +21,19 @@ public class BossSymbol : RoomSymbol
     //전투 후 대화
     public void AfterFight()
     {
-        UIManager.Instance.ShowUI("DialogUI")
-            .GetComponent<DialogUI>()
-            .Init(index + Define.BOSS_AFTER_INDEX, SelectOpen); //대화가 끝나면 영입 제의 팝업 오픈 
+        //최종 스테이지면 그냥 종료
+        if (StageManager.Instance.Theme == Define.ThemeType.Final)
+        {
+            UIManager.Instance.ShowUI("DialogUI")
+                .GetComponent<DialogUI>()
+                .Init(index + Define.BOSS_AFTER_INDEX, TalkEnd);
+        }
+        else
+        {
+            UIManager.Instance.ShowUI("DialogUI")
+              .GetComponent<DialogUI>()
+              .Init(index + Define.BOSS_AFTER_INDEX, SelectOpen); //대화가 끝나면 영입 제의 팝업 오픈 
+        }
     }
 
     //영입 제의 팝업 오픈
@@ -43,8 +53,8 @@ public class BossSymbol : RoomSymbol
 
         //스탯을 ... 만큼 증가
         PlayerData.Instance.CurrentHp -= 10; //임시
-        PlayerData.Instance.Money += GameData.Instance.RewardDic[LevelManager.Instance.Level + Define.BOSS_INDEX].money; 
-        PlayerData.Instance.Viewers += GameData.Instance.RewardDic[LevelManager.Instance.Level + Define.BOSS_INDEX].viewers;
+        PlayerData.Instance.Money += GameData.Instance.RewardDic[StageManager.Instance.Stage + Define.BOSS_INDEX].money; 
+        PlayerData.Instance.Viewers += GameData.Instance.RewardDic[StageManager.Instance.Stage + Define.BOSS_INDEX].viewers;
 
 
 
@@ -66,8 +76,8 @@ public class BossSymbol : RoomSymbol
     public void NegotiateEnd() //영입 후 호출
     {
         //스탯을 ... 만큼 증가
-        PlayerData.Instance.Money += GameData.Instance.RewardDic[LevelManager.Instance.Level + Define.BOSS_INDEX].money / 2;
-        PlayerData.Instance.Viewers += GameData.Instance.RewardDic[LevelManager.Instance.Level + Define.BOSS_INDEX].viewers / 2;
+        PlayerData.Instance.Money += GameData.Instance.RewardDic[StageManager.Instance.Stage + Define.BOSS_INDEX].money / 2;
+        PlayerData.Instance.Viewers += GameData.Instance.RewardDic[StageManager.Instance.Stage + Define.BOSS_INDEX].viewers / 2;
 
         //보상 카드 UI 닫을 시, TalkEnd 호출
         CardSelectUI cardSelectUI = UIManager.Instance.ShowUI("CardSelectUI").GetComponent<CardSelectUI>();
@@ -78,6 +88,12 @@ public class BossSymbol : RoomSymbol
     public override void TalkEnd()
     {
         base.TalkEnd();
-        LevelManager.Instance.LevelClear();
+        if(PlayerData.Instance.CheckLevelUp())
+        {
+            UIManager.Instance.ShowUI("CardSelectUI")
+                .GetComponent<CardSelectUI>()
+                .LevelUpReward();
+        }
+        StageManager.Instance.LevelClear();
     }
 }

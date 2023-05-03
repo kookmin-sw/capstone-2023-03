@@ -14,6 +14,8 @@ public class Define
     public const int BOSS_AFTER_INDEX = 4000;
     public const int BOSS_NEGO_INDEX = 5000;
 
+    public const int MOB_TYPES = 3;
+
     //방향을 나타내는 Enum
     public enum Direction
     {
@@ -43,6 +45,16 @@ public class Define
         Enemy,
         Boss,
         Count
+    }
+
+    public enum ThemeType
+    {
+        None,
+        Pirate,
+        Druids,
+        Saintess,
+        Mecha,
+        Final
     }
 
     //랜덤하게 min과 max 사이의 count개의 수를 고르는 함수 생성.

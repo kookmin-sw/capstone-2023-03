@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class RoomSymbol : MonoBehaviour
 {
-    protected int index;
+    protected int index; //기본적으로 띄울 대화문과, 심볼의 동작 등을 결정하는 인덱스
     protected Define.EventType type;
 
     public void Init(int index, Define.EventType type)

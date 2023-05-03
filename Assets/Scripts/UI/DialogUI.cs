@@ -27,18 +27,13 @@ public class DialogUI : BaseUI, IPointerDownHandler
 
     private void OnEnable()
     {
-        //플레이어 조작 비활성화, UI 조작 활성화
         //엔터로 대화창 진행하는 함수 실행하게 이벤트 등록
         //인풋시스템에 이벤트 함수 등록할 때, 람다로 등록하지 않는 게 좋을 듯. 왠지는 모르겠는데 중복 실행 오류난다
-        InputActions.keyActions.Player.Disable();
-        InputActions.keyActions.UI.Enable();
         InputActions.keyActions.UI.Check.started += NextDialogByCheck;
     }
 
     private void OnDisable()
     {
-        InputActions.keyActions.Player.Enable();
-        InputActions.keyActions.UI.Disable();
         InputActions.keyActions.UI.Check.started -= NextDialogByCheck;
     }
 

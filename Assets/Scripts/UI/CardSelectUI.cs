@@ -1,11 +1,11 @@
 using DataStructs;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
 using System;
-using Random = UnityEngine.Random;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class CardSelectUI : MonoBehaviour
 {
@@ -49,8 +49,8 @@ public class CardSelectUI : MonoBehaviour
 
         rewardText.text = "전투에서 승리하셨습니다!\r\n보상으로 카드를 한 장 가져가세요.";
 
-        //전투의 보상으로 얻을 카드들을 쿼리. 그리고 레어도 별로 또 나눈다.
-        List<CardStruct> rewardCardsPool = GameData.Instance.CardList.Where(card => card.type == "공격" || card.type == "스킬").ToList();
+        //전투의 보상으로 얻을 공격, 스킬 카드들을 쿼리. 그리고 레어도 별로 또 나눈다.
+        List<CardStruct> rewardCardsPool = GameData.Instance.CardList.Where(card => card.type == "Attack" || card.type == "Skill").ToList();
         List<CardStruct> rarity0Cards = rewardCardsPool.Where(card => card.rarity == 0).ToList();
         List<CardStruct> rarity1Cards = rewardCardsPool.Where(card => card.rarity == 1).ToList();
         List<CardStruct> rarity2Cards = rewardCardsPool.Where(card => card.rarity == 2).ToList();
@@ -87,7 +87,7 @@ public class CardSelectUI : MonoBehaviour
         rewardText.text = "보스와의 전투에서 승리하셨습니다!\r\n보상으로 희귀한 카드를 한 장 가져가세요.";
 
         //전투의 보상으로 얻을 카드들을 쿼리. 보스 보상으로는 레어 이상의 카드만 나옴
-        List<CardStruct> rewardCardsPool = GameData.Instance.CardList.Where(card => card.type == "공격" || card.type == "스킬").ToList();
+        List<CardStruct> rewardCardsPool = GameData.Instance.CardList.Where(card => card.type == "Attack" || card.type == "Skill").ToList();
         List<CardStruct> rarity1Cards = rewardCardsPool.Where(card => card.rarity == 1).ToList();
         List<CardStruct> rarity2Cards = rewardCardsPool.Where(card => card.rarity == 2).ToList();
 
@@ -112,16 +112,37 @@ public class CardSelectUI : MonoBehaviour
     }
 
     //협상 후 카드 보상
-    public void NegoReward(int enemyIndex)
+    public void NegoReward(int index)
     {
         rewardText.text = "협상에 성공했습니다!\r\n상대 시청자가 합류합니다.";
 
-        LevelManager.Instance.NegoInLevel = true; //현재 스테이지에서는 협상 다시 해도 안된다
-
         discardButton.gameObject.SetActive(false); //협상 시에는 반드시 카드 택하기
 
-        //타입이 잡몹인 카드 중, 에너미의 인덱스번째의 카드를 가져온다.
-        rewardCards.Add(GameData.Instance.CardList.Where(card => card.type == "잡몹").ElementAtOrDefault(enemyIndex));
+
+        List<CardStruct> rewardCardsPool;
+
+        //타입이 잡몹인 카드 중, 에너미 심볼의 인덱스에 따른 카드를 가져온다.
+        switch (index)
+        {
+            //일반 잡몹이면 카드의 타입이 잡몹 카드들인 카드들을 가져오되, '스테이지에 맞는' 잡몹 카드를 가져옴. 3스테이지면 mob3 타입의 카드들만 가져옴.
+            //예시로, 3스테이지면 mob3 타입의 카드들만 가져오게 된다.
+            case 0: 
+                rewardCardsPool = GameData.Instance.CardList
+                    .Where(card => card.type == $"Mob{StageManager.Instance.Stage}")
+                    .ToList();
+                break;
+            //그 외인 경우, index는 현재 Theme의 번호와 같다. Theme에 해당하는 Enum의 텍스트(예를 들어 index가 1이면 Define.ThemeType.Pirate와 대응)
+            //를 가져오고, 현재 스테이지의 번호를 더하면, 해적 테마의 1스테이지인 경우 Pirate1 이라는 문자열이 만들어 진다.
+            //card의 type이 Pirate1인 카드들을 가져와서 풀에 추가한다.
+            default:
+                rewardCardsPool = GameData.Instance.CardList
+                    .Where(card => card.type == $"{StageManager.Instance.Theme}{StageManager.Instance.Stage}")
+                    .ToList();
+                break;
+        }
+
+        rewardCards.Add(rewardCardsPool[Random.Range(0, rewardCardsPool.Count)]);
+
         ShowReward();
     }
 
@@ -133,14 +154,25 @@ public class CardSelectUI : MonoBehaviour
         discardButton.gameObject.SetActive(false); //협상 시에는 반드시 카드 택하기
 
         //타입이 보스인 카드 중, 에너미의 인덱스번째의 카드를 가져온다.
-        rewardCards.Add(GameData.Instance.CardList.Where(card => card.type == "보스").ElementAtOrDefault(enemyIndex - Define.BOSS_INDEX));
+        rewardCards.Add(GameData.Instance.CardList.Where(card => card.type == $"{StageManager.Instance.Theme}Boss").ElementAtOrDefault(0));
         ShowReward();
     }
 
     //레벨 업 후 카드 보상
     public void LevelUpReward()
     {
+
+        rewardText.text = "채널 레벨이 상승하였습니다!\r\n애청자들이 강력한 지원을 보내왔습니다.";
+
+        discardButton.gameObject.SetActive(false); //반드시 카드 택하기
+
         //type == "애청자" 인 경우
+        List<CardStruct> viewerCards = GameData.Instance.CardList.Where(card => card.type == "Viewer").ToList();
+
+        int index = Random.Range(0, viewerCards.Count);
+        rewardCards.Add(viewerCards[index]);
+
+        ShowReward();
     }
 
     //버리기 버튼 클릭

@@ -1,67 +1,63 @@
 [
   {
     "index": 0,
-    "portrait": "Protagonist0",
-    "name": "아이리",
-    "line": "안녕~ 너도 이 대회 참가자야?"
-  },
-  {
-    "index": 0,
     "portrait": "Enemy0",
-    "name": "해적 무도가",
-    "line": "그렇다! 나로 말하자면 호?쇼 해적단의 3등 항해사!"
-  },
-  {
-    "index": 0,
-    "portrait": "Protagonist0",
-    "name": "아이리",
-    "line": "롤 플레이 제대로네..."
-  },
-  {
-    "index": 1,
-    "portrait": "Protagonist0",
-    "name": "아이리",
-    "line": "하하하"
+    "name": "무명 시참자",
+    "line": "일반형 부하 잡몹 대화"
   },
   {
     "index": 1,
     "portrait": "Enemy1",
-    "name": "해적 검사",
-    "line": "난 사람이다"
-  },
-  {
-    "index": 1,
-    "portrait": "Protagonist0",
-    "name": "아이리",
-    "line": "하하하"
+    "name": "해적단 부하",
+    "line": "해적선장 부하 잡몹 대화"
   },
   {
     "index": 2,
-    "portrait": "Protagonist0",
-    "name": "아이리",
-    "line": "빛이여!"
-  },
-  { "index": 2, "portrait": "Enemy0", "name": "해적 궁수", "line": "아니?!" },
-  {
-    "index": 2,
-    "portrait": "Protagonist0",
-    "name": "아이리",
-    "line": "이겼다~"
-  },
-  { "index": 3, "portrait": "Protagonist0", "name": "아이리", "line": "A" },
-  { "index": 3, "portrait": "Enemy0", "name": "적A", "line": "B" },
-  { "index": 3, "portrait": "Protagonist1", "name": "아이리", "line": "C" },
-  {
-    "index": 100,
     "portrait": "Enemy1",
-    "name": "해적선장",
-    "line": "대충 1스테이지 보스다 전투 돌입합니다!"
+    "name": "드루이드 부하",
+    "line": "드루이드 부하 잡몹 대화"
+  },
+  {
+    "index": 3,
+    "portrait": "Enemy1",
+    "name": "성기사단 부하",
+    "line": "성녀 부하 잡몹 대화"
+  },
+  {
+    "index": 4,
+    "portrait": "Enemy1",
+    "name": "메카닉 기계",
+    "line": "메카닉 부하 잡몹 대화"
   },
   {
     "index": 100,
-    "portrait": "Protagonist0",
-    "name": "아이리",
-    "line": "오케이"
+    "portrait": "Boss0",
+    "name": "해적선장 마린",
+    "line": "대충 해적 보스다 전투 돌입합니다!"
+  },
+  {
+    "index": 101,
+    "portrait": "Boss0",
+    "name": "드루이드 세레스",
+    "line": "드루이드 보스"
+  },
+  {
+    "index": 102,
+    "portrait": "Boss0",
+    "name": "성녀 리샤",
+    "line": "성녀 보스"
+  },
+  {
+    "index": 103,
+    "portrait": "Boss0",
+    "name": "메카닉 체키",
+    "line": "메카닉 보스"
+  },
+  {
+    "index": 104,
+    "portrait": "Boss0",
+    "name": "아이돌 아이리",
+    "line": "최종 보스"
   },
   {
     "index": 200,
@@ -69,14 +65,7 @@
     "name": "상점 주인",
     "line": "저는 상점 주인입니다"
   },
-  {
-    "index": 200,
-    "portrait": "Enemy1",
-    "name": "상점 주인",
-    "line": "다음에 또 이용해주세요!"
-  },
   { "index": 300, "portrait": "", "name": "", "line": "이벤트가 발생했다!" },
-  { "index": 301, "portrait": "", "name": "", "line": "를 획득했다!" },
   {
     "index": 400,
     "portrait": "Enemy1",
@@ -91,110 +80,152 @@
   },
   {
     "index": 1000,
-    "portrait": "Protagonist0",
-    "name": "아이리",
-    "line": "그렇다면... 이런 건 어떨까? 여기 자그마한 '성의'가 있는데."
-  },
-  {
-    "index": 1000,
     "portrait": "Enemy0",
-    "name": "해적 무도가",
-    "line": "새로운 주인을 따르겠다."
-  },
-  {
-    "index": 1001,
-    "portrait": "Protagonist0",
-    "name": "아이리",
-    "line": "그렇다면... 이런 건 어떨까? 여기 자그마한 '성의'가 있는데."
+    "name": "무명 시참자",
+    "line": "일반 협상 시도 대화"
   },
   {
     "index": 1001,
     "portrait": "Enemy1",
-    "name": "해적 검사",
-    "line": "새로운 주인을 따르겠다."
+    "name": "해적단 부하",
+    "line": "해적단 협상 시도 대화"
   },
   {
     "index": 1002,
-    "portrait": "Protagonist0",
-    "name": "아이리",
-    "line": "그렇다면... 이런 건 어떨까? 여기 자그마한 '성의'가 있는데."
+    "portrait": "Enemy1",
+    "name": "드루이드 부하",
+    "line": "드루이드 협상 시도 대화"
   },
   {
-    "index": 1002,
-    "portrait": "Enemy0",
-    "name": "해적 궁수",
-    "line": "새로운 주인을 따르겠다."
+    "index": 1003,
+    "portrait": "Enemy1",
+    "name": "성기사단 부하",
+    "line": "성기사단 협상 시도 대화"
+  },
+  {
+    "index": 1004,
+    "portrait": "Enemy1",
+    "name": "메카닉 기계",
+    "line": "메카닉 협상 시도 대화"
   },
   {
     "index": 2000,
     "portrait": "Enemy0",
-    "name": "해적 무도가",
-    "line": "그럼 죽어라! 그리고 시청자를 내놔라!"
+    "name": "무명 시참자",
+    "line": "일반 전투 돌입 대화"
   },
   {
     "index": 2001,
     "portrait": "Enemy1",
-    "name": "해적 검사",
-    "line": "그럼 죽어라! 그리고 시청자를 내놔라!"
+    "name": "해적단 부하",
+    "line": "해적단 전투 돌입 대화"
   },
   {
     "index": 2002,
-    "portrait": "Enemy0",
-    "name": "해적 궁수",
-    "line": "그럼 죽어라! 그리고 시청자를 내놔라!"
+    "portrait": "Enemy1",
+    "name": "드루이드 부하",
+    "line": "드루이드 전투 돌입 대화"
+  },
+  {
+    "index": 2003,
+    "portrait": "Enemy1",
+    "name": "성기사단 부하",
+    "line": "성기사단 전투 돌입 대화"
+  },
+  {
+    "index": 2004,
+    "portrait": "Enemy1",
+    "name": "메카닉 기계",
+    "line": "메카닉 전투 돌입 대화"
   },
   {
     "index": 3000,
     "portrait": "Enemy0",
-    "name": "해적 무도가",
-    "line": "글쎄, 그렇게 구독자가 적어선 선장님을 절대 이길 수 없을 것 같은데."
-  },
-  {
-    "index": 3000,
-    "portrait": "Enemy0",
-    "name": "해적 무도가",
-    "line": "미안하지만 협상은 종료인 걸로."
+    "name": "무명 시참자",
+    "line": "일반 협상 실패 대화"
   },
   {
     "index": 3001,
     "portrait": "Enemy1",
-    "name": "해적 검사",
-    "line": "글쎄, 그렇게 시청자가 적어선 선장님을 절대 이길 수 없을 것 같은데."
+    "name": "해적단 부하",
+    "line": "해적단 협상 실패 대화"
   },
   {
-    "index": 3001,
+    "index": 3002,
     "portrait": "Enemy1",
-    "name": "해적 검사",
-    "line": "미안하지만 협상은 종료인 걸로."
+    "name": "드루이드 부하",
+    "line": "드루이드 협상 실패 대화"
   },
   {
-    "index": 3002,
-    "portrait": "Enemy0",
-    "name": "해적 궁수",
-    "line": "글쎄, 그렇게 시청자가 적어선 선장님을 절대 이길 수 없을 것 같은데."
+    "index": 3003,
+    "portrait": "Enemy1",
+    "name": "성기사단 부하",
+    "line": "성기사단 협상 실패 대화"
   },
   {
-    "index": 3002,
-    "portrait": "Enemy0",
-    "name": "해적 궁수",
-    "line": "미안하지만 협상은 종료인 걸로."
+    "index": 3004,
+    "portrait": "Enemy1",
+    "name": "메카닉 기계",
+    "line": "메카닉 협상 실패 대화"
   },
   {
     "index": 4100,
-    "portrait": "Enemy1",
+    "portrait": "Boss0",
     "name": "해적선장",
     "line": "크윽 개강해"
   },
   {
     "index": 4100,
-    "portrait": "Enemy1",
+    "portrait": "Boss0",
     "name": "해적선장",
     "line": "트수들아 미안해~"
   },
   {
+    "index": 4101,
+    "portrait": "Boss0",
+    "name": "드루이드 세레스",
+    "line": "드루이드 패배 대사"
+  },
+  {
+    "index": 4102,
+    "portrait": "Boss0",
+    "name": "성녀 리샤",
+    "line": "성녀 패배 대사"
+  },
+  {
+    "index": 4103,
+    "portrait": "Boss0",
+    "name": "메카닉 체키",
+    "line": "메카닉 패배 대사"
+  },
+  {
+    "index": 4104,
+    "portrait": "Boss0",
+    "name": "아이돌 아이",
+    "line": "아이돌 패배 대사"
+  },
+  {
     "index": 5100,
-    "portrait": "Enemy1",
+    "portrait": "Boss0",
     "name": "해적선장",
     "line": "영입이라고? 뭐 나야 나쁠 거 없지!"
+  },
+  {
+    "index": 5101,
+    "portrait": "Boss0",
+    "name": "드루이드 세레스",
+    "line": "드루이드 패배 대사"
+  },
+  {
+    "index": 5102,
+    "portrait": "Boss0",
+    "name": "성녀 리샤",
+    "line": "성녀 패배 대사"
+  },
+  {
+    "index": 5103,
+    "portrait": "Boss0",
+    "name": "메카닉 체키",
+    "line": "메카닉 패배 대사"
   }
 ]

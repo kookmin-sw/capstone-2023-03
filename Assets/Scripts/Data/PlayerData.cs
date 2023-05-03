@@ -17,10 +17,11 @@ public class PlayerData : Singleton<PlayerData>
         get { return channelLevel; }
         set 
         {
-            OnDataChange?.Invoke();
             channelLevel = value;
+
+            OnDataChange?.Invoke();
         }
-    
+
     }  //채널 레벨
 
     public int Viewers {
@@ -91,7 +92,7 @@ public class PlayerData : Singleton<PlayerData>
         Viewers = 0;
         CurrentHp = MaxHp;
         Money = 100;
-        Energy = 5;
+        Energy = 3;
 
         Deck = new List<CardStruct>(){
             GameData.Instance.CardList[0],
@@ -106,10 +107,46 @@ public class PlayerData : Singleton<PlayerData>
 
     }
 
-    //레벨업 시 데이터 변경들을 한번에...
-    public void ChannelLevelUp()
+    //전투나 이벤트 대화가 끝날 때 호출. viewer를 체크해서 레벨업했는지 확인하고, 레벨업했을 경우 동작들을 한번에 수행
+    public bool CheckLevelUp()
     {
+        int newChannelLevel;
 
+        if (viewers < 200) //Viewers 값에 따라 채널 레벨 설정
+        {
+            newChannelLevel = 1;
+        }
+        else if (viewers < 700)
+        {
+            newChannelLevel = 2;
+        }
+        else if (viewers < 1300)
+        {
+            newChannelLevel = 3;
+        }
+        else if (viewers < 2000)
+        {
+            newChannelLevel = 4;
+        }
+        else
+        {
+            newChannelLevel = 5;
+        }
+
+        // 채널 레벨이 변경되었는지 확인후 변경하고, 변경되었으면 레벨업 UI 소환
+        if (newChannelLevel != ChannelLevel)
+        {
+            ChannelLevel = newChannelLevel;
+
+            if (channelLevel != 1 && channelLevel != 4) //레벨업 시 (4 제외) 에너지 상승
+            {
+                Energy += 1;
+            }
+
+            return true; //레벨업 했다고 리턴
+        }
+
+        return false;
     }
 
 }
