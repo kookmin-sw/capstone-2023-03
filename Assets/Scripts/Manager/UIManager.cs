@@ -25,6 +25,9 @@ public class UIManager : Singleton<UIManager>
     //팝업 UI들을 스택으로 관리
     private Stack<GameObject> UIStack = new Stack<GameObject>();
 
+    //UI 변경 시 발생될 이벤트
+    public Action<GameObject> UIChange;
+
 
     protected override void Awake()
     {
@@ -44,6 +47,7 @@ public class UIManager : Singleton<UIManager>
             UIStack.Peek().SetActive(false);
         }
         UIStack.Push(ui);
+        UIChange?.Invoke(ui);
         return ui;
     }
 
@@ -60,6 +64,11 @@ public class UIManager : Singleton<UIManager>
             if(UIStack.Count > 0)
             {
                 UIStack.Peek().SetActive(true);
+                UIChange?.Invoke(UIStack.Peek());    
+            }
+            else
+            {
+                UIChange?.Invoke(null);
             }
         }
     }

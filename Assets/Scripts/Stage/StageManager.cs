@@ -4,18 +4,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-//맵 배열과, 맵의 특정 시점에서 실행될 이벤트를 싱글톤으로 저장
-public class MapManager : Singleton<MapManager>
+//맵 배열과, 스테이지의 특정 시점에서 실행될 이벤트를 싱글톤으로 저장
+public class StageManager : Singleton<StageManager>
 {
-    private int stage = 0;
-    private int roomCount; //맵의 방 숫자
-    private int roomInterval = 2; //맵의 방 사이 간격
-    private Vector2 roomSize = new Vector2(10, 10); //현재 맵의 방 크기
+
+    public List<int> themeIndexes;
+
+    public int Stage { get; set; } = 0; //현재 스테이지 레벨
+
+    public Define.ThemeType Theme { get; set; } //현재 스테이지의 테마
+    public bool NegoInLevel { get; set; } = false; //이 레벨에서 협상을 했는지  
+
+    private static readonly int roomInterval = 2; //방 사이 간격
+    private static Vector2 roomSize = new Vector2(10, 10); //방 크기
+
+    private int roomCount; //현재 맵의 방 숫자
     private Dictionary<int, Define.EventType> specialRoomIndexes; //특수 방이 될 배열 인덱스들 모음
 
+
     public Room CurrentRoom { get; set; }
-    public event Action<Room> RoomClear;
-    public event Action LevelClear;
+
+
+    public event Action<Room> OnRoomClear;
+    public event Action OnLevelEnter;
+    public event Action OnLevelClear;
+
 
     public List<Room> Rooms { get; set; }   
     public List<Vector2> RoomPoints { get; set; }
@@ -36,18 +49,19 @@ public class MapManager : Singleton<MapManager>
         }
     }
 
-    //델리게이트가 참조한 함수들에게 현재 방이 클리어되었음을 알리는 함수. 이거 인덱스로 바꾸자.
-    public void OnRoomClear()
+    //델리게이트가 참조한 함수들에게 현재 방이 클리어되었음을 알리는 함수.
+    public void RoomClear()
     {
-        RoomClear?.Invoke(CurrentRoom);
+        OnRoomClear?.Invoke(CurrentRoom);
     }
 
     //레벨이 클리어되었을 때 실행하는 함수. 델리게이트가 참조한 함수들에게 클리어되었음을 알림
-    public void OnLevelClear()
+    public void LevelClear()
     {
         DestroyMap();
         CreateMap();
-        LevelClear?.Invoke();
+        OnLevelClear?.Invoke();
+        NegoInLevel = false; 
     }
 
     //이전 맵 파괴
@@ -61,35 +75,45 @@ public class MapManager : Singleton<MapManager>
         RoomPoints = null;
         RoomEdges = null;
         specialRoomIndexes = null;
+
+        if(Stage > 4)
+        {
+            //엔딩 씬 호출
+        }
     }
 
     //맵 생성
     public void CreateMap()
     {
-        stage += 1;
+
+        if(Stage == 0)
+        {
+            themeIndexes = Define.GenerateRandomNumbers((int)Define.ThemeType.Pirate, (int)Define.ThemeType.Final, 3); // 1 ~ 4 중에서 나올 스테이지 3개 지정
+        }
+
+        Stage += 1;
 
         //스테이지 생성
-        if (stage < 4)
+        if (Stage < 4)
         {
-            roomCount = stage + 11;
+            roomCount = Stage + 11;
+            Theme = (Define.ThemeType)themeIndexes[Stage - 1]; //현재 스테이지의 테마
             CreateSpecialRoomIndexes(); //특별한 방의 위치 지정
             CreateMapRooms(); //방 생성 후 방 유형 지정
             CreateMapRoomPointsAndEdges(); //방들의 위치와 연결상태를 나타낸 그래프 생성
             PlaceMapRooms(); // 그래프대로 방 위치를 배치함
         }
-        else if (stage == 4)
+        else if (Stage == 4)
         {
             //최종보스
             roomCount = 1;
+            Theme = Define.ThemeType.Final;
             CreateMapRooms(); //방 생성 후 방 유형 지정
             CreateMapRoomPointsAndEdges(); //방들의 위치와 연결상태를 나타낸 그래프 생성
             PlaceMapRooms(); // 그래프대로 방 위치를 배치함
         }
-        else
-        {
-            //엔딩 씬 호출
-            Debug.Log("클리어!");
-        }
+
+        OnLevelEnter?.Invoke(); //레벨 돌입을 알림
     }
 
     //특별 방이 저장될 인덱스들 생성
@@ -139,7 +163,7 @@ public class MapManager : Singleton<MapManager>
             Define.EventType roomType = SelectRoomType(node);
 
             //방 게임오브젝트 생성
-            Room currentRoom = AssetLoader.Instance.Instantiate($"Prefabs/Room/Room{stage}", Map.transform).AddComponent<Room>();
+            Room currentRoom = AssetLoader.Instance.Instantiate($"Prefabs/Room/Room{(int)Theme}", Map.transform).AddComponent<Room>();
             currentRoom.name = $"Room{node}";
 
             //멤버 변수 초기화
@@ -149,7 +173,7 @@ public class MapManager : Singleton<MapManager>
             Rooms.Add(currentRoom);
         }
 
-        if (stage == 4) { Rooms[0].Symbol.transform.position += new Vector3(-1.5f, 0, 1.5f); }
+        if (Stage == 4) { Rooms[0].Symbol.transform.position += new Vector3(-1.5f, 0, 1.5f); }
     }
 
     //큐를 이용해서 방의 위치와 연결 관계를 나타낸 그래프를 생성하는 bfs 변형 함수

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SettingData : Singleton<SettingData>
 {
-    public SettingStruct SettingStruct { get; set; } = new SettingStruct();
+    public SettingStruct Setting { get; set; } = new SettingStruct();
 
     protected override void Awake()
     {
@@ -26,20 +26,20 @@ public class SettingData : Singleton<SettingData>
         if (File.Exists(filePath)) //두번째 실행 이후부터는 저장된 세팅 데이터를 가져온다.
         {
             string jsonData = File.ReadAllText(filePath);
-            SettingStruct = JsonMapper.ToObject<SettingStruct>(jsonData);
+            Setting = JsonMapper.ToObject<SettingStruct>(jsonData);
         }
         else //처음 게임을 실행할 때는 기본 설정으로.
         {
-            SettingStruct.tutorial = true;
-            SettingStruct.bgm = 50;
-            SettingStruct.effect = 50;  
+            Setting.tutorial = true;
+            Setting.bgm = 50;
+            Setting.effect = 50;  
         }
     }
 
     private void SaveSettingData() //게임 종료 시, 설정 데이터 저장.
     {
         string filePath = "Assets/Resources/Data/Setting.json";
-        string jsonData = JsonMapper.ToJson(SettingStruct);
+        string jsonData = JsonMapper.ToJson(Setting);
         File.WriteAllText(filePath, jsonData);
     }
 }

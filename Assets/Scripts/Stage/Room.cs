@@ -9,7 +9,7 @@ public class Room : MonoBehaviour
 {
     private bool IsCleared { get; set; } = false;
 
-    private Define.EventType Type;
+    private Define.EventType Type { get; set; }
     public RoomSymbol Symbol { get; set; } = null;
 
     //갖고있는 방향-문 딕셔너리
@@ -18,7 +18,7 @@ public class Room : MonoBehaviour
     private void OnTriggerEnter(Collider collider)
     {
         //현재 방 위치 지정
-        MapManager.Instance.CurrentRoom = this;
+        StageManager.Instance.CurrentRoom = this;
 
         if (IsCleared == false)
         { 
@@ -30,7 +30,7 @@ public class Room : MonoBehaviour
             {
                 IsCleared = true;
                 ActivateDoors(true);
-                MapManager.Instance.OnRoomClear();
+                StageManager.Instance.RoomClear();
             }
         }
     }
@@ -42,7 +42,7 @@ public class Room : MonoBehaviour
         {
             IsCleared = true;
             ActivateDoors(true);
-            MapManager.Instance.OnRoomClear();
+            StageManager.Instance.RoomClear();
         }
     }
 
@@ -50,41 +50,43 @@ public class Room : MonoBehaviour
     public void Init(Define.EventType type)
     {
         //Type 지정
-        this.Type = type;
+        Type = type;
         //Symbol 소환
         switch (type)
         {
             //심볼을 소환할 때, 각각 랜덤으로 인덱스를 배정하고, 인덱스에 따라 다른 대화 내용과 전투, 아이템 획득 등을 하게 할 예정
-            //이거 애드 컴포넌트를 걍 각자 프리팹에 붙여도 될듯...?
             case Define.EventType.Enemy:
                 Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/EnemySymbol", transform)
                     .AddComponent<EnemySymbol>();
-                Symbol.Index = Random.Range(1, 4);
+
+                int choice = Random.Range(0, 2); //일반 잡몹 대화문일지 보스 잡몹 대화문일지
+                int dialogIndex = choice == 0 ? 0 : (int)StageManager.Instance.Theme;
+                Symbol.Init(dialogIndex, type); 
+
                 break;
             case Define.EventType.Rest:
                 Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/RestSymbol", transform)
                     .AddComponent<RestSymbol>();
-                Symbol.Index = 3001;
+                Symbol.Init(Define.REST_INDEX, type);
                 break;
             case Define.EventType.Shop:
                 Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/ShopSymbol", transform)
                     .AddComponent<ShopSymbol>();
-                Symbol.Index = 2001;
+                Symbol.Init(Define.SHOP_INDEX, type);
                 break;
             case Define.EventType.Event:
                 Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/EventSymbol", transform)
                     .AddComponent<EventSymbol>();
-                Symbol.Index = 2001;
+                Symbol.Init(Define.EVENT_INDEX, type);
                 break;
             case Define.EventType.Boss:
                 Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/BossSymbol", transform)
                     .AddComponent<BossSymbol>();
-                Symbol.Index = 1001;
+                Symbol.Init(Define.BOSS_INDEX + (int)StageManager.Instance.Theme - 1, type);
                 break;
             default:
                 return;
         }
-        Symbol.Type = type;
         Symbol.transform.position = new Vector3(0, 1, 0);
     }
 

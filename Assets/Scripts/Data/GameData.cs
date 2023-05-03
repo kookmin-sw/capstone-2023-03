@@ -20,6 +20,9 @@ public class GameData : Singleton<GameData>
     //대화 로그 전체가 저장된 리스트
     public Dictionary<int, List<LineStruct>> DialogDic { get; set; } = new Dictionary<int, List<LineStruct>>();
 
+    //스테이지별 보상 딕셔너리 (인덱스, 보상 구조체)
+    public Dictionary<int, RewardStruct> RewardDic { get; set; } = new Dictionary<int, RewardStruct>();
+
     protected override void Awake()
     {
         base.Awake();
@@ -33,6 +36,7 @@ public class GameData : Singleton<GameData>
         LoadSpriteDic();
         LoadCardList();
         LoadDialogDic();
+        LoadRewardDic();    
         isLoaded = true;
     }
 
@@ -73,6 +77,27 @@ public class GameData : Singleton<GameData>
         }
     }
 
+    public void LoadRewardDic()
+    {
+        Debug.Log("보상 리스트 로드");
+        string filePath = "Assets/Resources/Data/Reward.json";
+        if (File.Exists(filePath)) {
+            string jsonString = File.ReadAllText(filePath);
+            JsonData rewardData = JsonMapper.ToObject(jsonString);
+
+            for (int i = 0; i < rewardData.Count; i++)
+            {
+                int index = (int)rewardData[i]["index"];
+
+                RewardStruct reward = new RewardStruct();
+                reward.money = (int)rewardData[i]["money"];
+                reward.viewers = (int)rewardData[i]["viewers"];
+                RewardDic.Add(index, reward);
+            }
+        }
+
+    }
+
     //대화 로그 전체 로드
     public void LoadDialogDic()
     {
@@ -85,17 +110,21 @@ public class GameData : Singleton<GameData>
             for(int i = 0; i < dialogData.Count; i++)
             {
                 int index = (int)dialogData[i]["index"];
-                List<LineStruct> lines = new List<LineStruct>();
 
-                for(int j = 0; j < dialogData[i]["lines"].Count; j++)
+                List<LineStruct> lines;
+                if (!DialogDic.TryGetValue(index, out lines)) //index가 같으면 한 대사 묶음으로 판단하고 index를 키로 갖는 리스트 저장.
                 {
-                    LineStruct line = new LineStruct();
-                    line.portrait = dialogData[i]["lines"][j]["portrait"]?.ToString();
-                    line.name = dialogData[i]["lines"][j]["name"]?.ToString();
-                    line.line = dialogData[i]["lines"][j]["line"].ToString();
-                    lines.Add(line);
+                    lines = new List<LineStruct>(); 
+                    DialogDic.Add(index, lines);
                 }
-                DialogDic.Add(index, lines);   
+
+
+                LineStruct line = new LineStruct(); //딕셔너리의 리스트에 저장할 한 줄 단위의 대화
+                line.portrait = dialogData[i]["portrait"]?.ToString();
+                line.name = dialogData[i]["name"]?.ToString();
+                line.line = dialogData[i]["line"].ToString();
+
+                lines.Add(line);
             }
         }
     }

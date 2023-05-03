@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class Define
 {
+    public const int BOSS_INDEX = 100;
+    public const int SHOP_INDEX = 200;
+    public const int EVENT_INDEX = 300;
+    public const int REST_INDEX = 400;
+    public const int NEGO_INDEX = 1000;
+    public const int FIGHT_INDEX = 2000;
+    public const int NEGOFAIL_INDEX = 3000;
+    public const int BOSS_AFTER_INDEX = 4000;
+    public const int BOSS_NEGO_INDEX = 5000;
+
+    public const int MOB_TYPES = 3;
+
     //방향을 나타내는 Enum
     public enum Direction
     {
@@ -12,11 +24,6 @@ public class Define
         Down,
         Left,
         Count
-    }
-
-    public static Direction GetDirectionByVector(Vector2 directionVector)
-    {
-        return Direction.Up;
     }
 
     //방향에 맞는 이동 벡터2 값을 담은 딕셔너리
@@ -38,6 +45,16 @@ public class Define
         Enemy,
         Boss,
         Count
+    }
+
+    public enum ThemeType
+    {
+        None,
+        Pirate,
+        Druids,
+        Saintess,
+        Mecha,
+        Final
     }
 
     //랜덤하게 min과 max 사이의 count개의 수를 고르는 함수 생성.

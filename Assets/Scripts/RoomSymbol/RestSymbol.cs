@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class RestSymbol : RoomSymbol
 {
-    public override void Encounter()
+    public override void TalkStart()
     {
-        base.Encounter();
+        base.TalkStart();
     }
 
-    public override void End()
+    public override void TalkEnd()
     {
-        base.End();
+        base.TalkEnd();
+        PlayerData.Instance.CurrentHp = (int)Mathf.Min(
+            PlayerData.Instance.CurrentHp + (PlayerData.Instance.MaxHp * 0.3f),
+            PlayerData.Instance.MaxHp
+        ); //HP 회복: 현재 HP에서 MaxHp의 3할 회복
     }
 }

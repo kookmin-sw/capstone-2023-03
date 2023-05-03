@@ -30,24 +30,13 @@ public class LibraryUI : BaseUI
     private List<CardStruct> showedCardList= new List<CardStruct>();
 
 
-    //전체 카드 리스트 가져오기
-    public void Awake()
-    {
-       
-    }
-
     private void OnEnable()
     {
-        //켜지면 플레이어 조작 비활성화, UI 조작 활성화
-        InputActions.keyActions.Player.Disable();
-        InputActions.keyActions.UI.Enable();
         InputActions.keyActions.UI.Menu.started += Close;
     }
 
     private void OnDisable()
     {
-        InputActions.keyActions.Player.Enable();
-        InputActions.keyActions.UI.Disable();
         InputActions.keyActions.UI.Menu.started -= Close;
     }
 
@@ -56,9 +45,11 @@ public class LibraryUI : BaseUI
         this.showAllCards = showAllCards;
 
         //카드 전체를 보여줄지, 플레이어의 카드를 보여줄지 택 1
-        if (showAllCards)
+        if (showAllCards) //공격, 스킬, 애청자 카드 전부 보여주기
         {
-            showedCardList = GameData.Instance.CardList;
+            showedCardList = GameData.Instance.CardList
+            .Where(card => card.type == "Attack" || card.type == "Skill" || card.type == "Viewer")
+            .ToList();
         }
         else
         {
@@ -71,14 +62,14 @@ public class LibraryUI : BaseUI
 
     public void ShowCards()
     {
-        //Linq를 사용. 현재 페이지에 나올 분량만큼 카드 리스트에서 쿼리.
+        //Linq를 사용. 현재 페이지에 나올 분량만큼 카드 리스트에서 쿼리해서 보여주기
         List<CardStruct> cardList = showedCardList.Skip(currentPage * cardsPerPage).Take(cardsPerPage).ToList();
 
         for (int i = 0; i < cardList.Count; i++)
         {
             AssetLoader.Instance.Instantiate("Prefabs/UI/CardUI", deckDisplayer.transform)
                 .GetComponent<CardUI>()
-                .ShowCardData(cardList[i]);
+                .ShowCardData(cardList[i], CardMode.Library);
         }
 
         UpdateButtons();

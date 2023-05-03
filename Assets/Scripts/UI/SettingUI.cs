@@ -43,13 +43,13 @@ public class SettingUI : MonoBehaviour
     //버튼 클릭시마다 호출. 볼륨 크기 숫자를 바꾸고, 버튼의 활성화 상태를 변경.
     public void UpdateButtons()
     {
-        bgmPercent.text = $"{SettingData.Instance.SettingStruct.bgm}%";
-        effectPercent.text = $"{SettingData.Instance.SettingStruct.effect}%";
+        bgmPercent.text = $"{SettingData.Instance.Setting.bgm}%";
+        effectPercent.text = $"{SettingData.Instance.Setting.effect}%";
 
-        UpdateButtonState(minusBgmButton, SettingData.Instance.SettingStruct.bgm > 0);
-        UpdateButtonState(plusBgmButton, SettingData.Instance.SettingStruct.bgm < 100);
-        UpdateButtonState(minusEffectButton, SettingData.Instance.SettingStruct.effect > 0);
-        UpdateButtonState(plusEffectButton, SettingData.Instance.SettingStruct.effect < 100);
+        UpdateButtonState(minusBgmButton, SettingData.Instance.Setting.bgm > 0);
+        UpdateButtonState(plusBgmButton, SettingData.Instance.Setting.bgm < 100);
+        UpdateButtonState(minusEffectButton, SettingData.Instance.Setting.effect > 0);
+        UpdateButtonState(plusEffectButton, SettingData.Instance.Setting.effect < 100);
     }
 
     //조건에 따라, 화살표 버튼을 비활성화/활성화

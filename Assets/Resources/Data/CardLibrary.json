@@ -5,8 +5,8 @@
     "description": "적 1기에게 5의 데미지",
     "cost": 1,
     "rarity": 0,
-    "type": "공격",
-    "attribute": "normal"
+    "type": "Attack",
+    "attribute": "Normal"
   },
   {
     "index": 1,
@@ -14,8 +14,8 @@
     "description": "5의 방어막 획득",
     "cost": 1,
     "rarity": 0,
-    "type": "공격",
-    "attribute": "normal"
+    "type": "Attack",
+    "attribute": "Normal"
   },
   {
     "index": 2,
@@ -23,8 +23,8 @@
     "description": "적 1기에게 5의 데미지",
     "cost": 1,
     "rarity": 0,
-    "type": "공격",
-    "attribute": "normal"
+    "type": "Attack",
+    "attribute": "Normal"
   },
   {
     "index": 3,
@@ -32,8 +32,8 @@
     "description": "적 전체에게 5의 데미지",
     "cost": 2,
     "rarity": 0,
-    "type": "공격",
-    "attribute": "normal"
+    "type": "Attack",
+    "attribute": "Normal"
   },
   {
     "index": 4,
@@ -41,8 +41,8 @@
     "description": "적 1기에게 3의 데미지, 화상 1 부여",
     "cost": 0,
     "rarity": 0,
-    "type": "공격",
-    "attribute": "fire"
+    "type": "Attack",
+    "attribute": "Fire"
   },
   {
     "index": 5,
@@ -50,8 +50,8 @@
     "description": "적 1기에게 2 x 2의 데미지, 화상 1 부여",
     "cost": 1,
     "rarity": 0,
-    "type": "공격",
-    "attribute": "fire"
+    "type": "Attack",
+    "attribute": "Fire"
   },
   {
     "index": 6,
@@ -59,8 +59,8 @@
     "description": "적 전체에게 3의 데미지, 화상 1 부여",
     "cost": 1,
     "rarity": 0,
-    "type": "공격",
-    "attribute": "fire"
+    "type": "Attack",
+    "attribute": "Fire"
   },
   {
     "index": 7,
@@ -68,8 +68,8 @@
     "description": "적 1기에게 12의 데미지, 화상 3 부여",
     "cost": 2,
     "rarity": 0,
-    "type": "공격",
-    "attribute": "fire"
+    "type": "Attack",
+    "attribute": "Fire"
   },
   {
     "index": 8,
@@ -77,8 +77,8 @@
     "description": "적 1기에게 현재 화상 수치만큼 데미지, 화상 1 부여",
     "cost": 0,
     "rarity": 1,
-    "type": "공격",
-    "attribute": "fire"
+    "type": "Attack",
+    "attribute": "Fire"
   },
   {
     "index": 9,
@@ -86,8 +86,8 @@
     "description": "적 1기에게 1 x 3의 데미지, 화상 1 부여",
     "cost": 1,
     "rarity": 1,
-    "type": "공격",
-    "attribute": "fire"
+    "type": "Attack",
+    "attribute": "Fire"
   },
   {
     "index": 10,
@@ -95,17 +95,17 @@
     "description": "적 전체에게 10의 데미지, 화상 2 부여",
     "cost": 2,
     "rarity": 1,
-    "type": "공격",
-    "attribute": "fire"
+    "type": "Attack",
+    "attribute": "Fire"
   },
   {
     "index": 11,
     "name": "지옥열탕",
     "description": "적 전체에게 4 x X의 데미지, 화상 X / 2(버림) 부여",
-    "cost": -1,
+    "cost": 99,
     "rarity": 1,
-    "type": "공격",
-    "attribute": "fire"
+    "type": "Attack",
+    "attribute": "Fire"
   },
   {
     "index": 12,
@@ -113,8 +113,8 @@
     "description": "적 전체에게 20 + 부여된 화상 수치 x 2의 데미지",
     "cost": 3,
     "rarity": 2,
-    "type": "공격",
-    "attribute": "fire"
+    "type": "Attack",
+    "attribute": "Fire"
   },
   {
     "index": 13,
@@ -122,8 +122,8 @@
     "description": "적 1기에게 화상 x 2의 데미지, 화상 수치만큼 체력 회복, 화상 디버프 삭제",
     "cost": 3,
     "rarity": 2,
-    "type": "공격",
-    "attribute": "fire"
+    "type": "Attack",
+    "attribute": "Fire"
   },
   {
     "index": 14,
@@ -131,8 +131,8 @@
     "description": "적 1기에게 2의 데미지, 동상 1 부여",
     "cost": 0,
     "rarity": 0,
-    "type": "공격",
-    "attribute": "ice"
+    "type": "Attack",
+    "attribute": "Ice"
   },
   {
     "index": 15,
@@ -140,8 +140,8 @@
     "description": "적 1기에게 4의 데미지, 동상 1 부여",
     "cost": 1,
     "rarity": 0,
-    "type": "공격",
-    "attribute": "ice"
+    "type": "Attack",
+    "attribute": "Ice"
   },
   {
     "index": 16,
@@ -149,8 +149,8 @@
     "description": "적 전체에게 2의 데미지, 동상 1 부여",
     "cost": 1,
     "rarity": 0,
-    "type": "공격",
-    "attribute": "ice"
+    "type": "Attack",
+    "attribute": "Ice"
   },
   {
     "index": 17,
@@ -158,8 +158,8 @@
     "description": "적 1기에게 3의 데미지, 동상 1 부여, 화상 1 부여",
     "cost": 1,
     "rarity": 0,
-    "type": "공격",
-    "attribute": "ice"
+    "type": "Attack",
+    "attribute": "Ice"
   },
   {
     "index": 18,
@@ -167,17 +167,17 @@
     "description": "적 1기에게 동상 수치 x 2의 데미지, 현재 부여된 동상 수치만큼 동상 부여",
     "cost": 1,
     "rarity": 1,
-    "type": "공격",
-    "attribute": "ice"
+    "type": "Attack",
+    "attribute": "Ice"
   },
   {
     "index": 19,
     "name": "눈보라",
     "description": "적 전체에게 3 x X의 데미지, 동상 X 부여",
-    "cost": -1,
+    "cost": 99,
     "rarity": 1,
-    "type": "공격",
-    "attribute": "ice"
+    "type": "Attack",
+    "attribute": "Ice"
   },
   {
     "index": 20,
@@ -185,8 +185,8 @@
     "description": "적 전체에게 이번 전투동안 부여한 동상 x 3의 데미지",
     "cost": 2,
     "rarity": 1,
-    "type": "공격",
-    "attribute": "ice"
+    "type": "Attack",
+    "attribute": "Ice"
   },
   {
     "index": 21,
@@ -194,7 +194,493 @@
     "description": "적 전체에게 20 + 부여된 동상 수치만큼 데미지, 현재 부여된 동상 수치만큼 동상 부여",
     "cost": 3,
     "rarity": 2,
-    "type": "공격",
-    "attribute": "ice"
+    "type": "Attack",
+    "attribute": "Ice"
+  },
+  {
+    "index": 22,
+    "name": "발화",
+    "description": "이번 턴 동안 에너지 2 획득",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Skill",
+    "attribute": "Fire"
+  },
+  {
+    "index": 23,
+    "name": "가속",
+    "description": "패의 카드 한 장을 이번 전투 동안 코스트 0으로 고정",
+    "cost": 0,
+    "rarity": 2,
+    "type": "Viewer",
+    "attribute": "Normal"
+  },
+  {
+    "index": 100,
+    "name": "기본 무도가",
+    "description": "체력 11\n 적 전체 데미지 2 공격",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Mob1",
+    "attribute": "Normal"
+  },
+  {
+    "index": 101,
+    "name": "기본 검사",
+    "description": "체력 10\n무작위 적 1기 1 데미지 및 플레이어 방어 3 획득",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Mob1",
+    "attribute": "Normal"
+  },
+  {
+    "index": 102,
+    "name": "기본 궁수",
+    "description": "체력 8\n 무작위 적 1기 4 데미지 공격",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Mob1",
+    "attribute": "Normal"
+  },
+  {
+    "index": 103,
+    "name": "개조 무도가",
+    "description": "체력 19\n적 전체 4 데미지 공격",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Mob2",
+    "attribute": "Normal"
+  },
+  {
+    "index": 104,
+    "name": "개조 검사 ",
+    "description": "체력 18\n무작위 적 1기 3 데미지 및 플레이어 방어 4 획득",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Mob2",
+    "attribute": "Normal"
+  },
+  {
+    "index": 105,
+    "name": "개조 궁수",
+    "description": "체력 13\n무작위 적 1기 3 X 2 데미지 공격",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Mob2",
+    "attribute": "Normal"
+  },
+  {
+    "index": 106,
+    "name": "개조 힐러",
+    "description": "체력 14\n무작위 적 1기 3 데미지 및 플레이어 체력 2 회복",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Mob2",
+    "attribute": "Normal"
+  },
+  {
+    "index": 107,
+    "name": "완성형 무도가",
+    "description": "체력 28\n적 전체 6 데미지 공격",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Mob3",
+    "attribute": "Normal"
+  },
+  {
+    "index": 108,
+    "name": "완성형 검사",
+    "description": "체력 27\n무작위 적 1기 5 데미지 및 플레이어 방어 5 획득",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Mob3",
+    "attribute": "Normal"
+  },
+  {
+    "index": 109,
+    "name": "완성형 궁수",
+    "description": "체력 17\n무작위 적 1기 2 X 4 데미지 공격",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Mob3",
+    "attribute": "Normal"
+  },
+  {
+    "index": 110,
+    "name": "완성형 힐러",
+    "description": "체력 22\n무작위 적 1기 5 데미지 및 플레이어 체력 3 회복",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Mob3",
+    "attribute": "Normal"
+  },
+  {
+    "index": 111,
+    "name": "완성형 도적",
+    "description": "체력 18\n무작위 적 1기 6 데미지 및 화상 1, 동상 1, 독 1 부여",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Mob3",
+    "attribute": "Normal"
+  },
+  {
+    "index": 112,
+    "name": "전투형 부하",
+    "description": "체력 10\n무작위 적 1기 2 데미지 및 화상 1 부여",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Pirate1",
+    "attribute": "Normal"
+  },
+  {
+    "index": 113,
+    "name": "돌격형 부하",
+    "description": "체력 11\n무작위 적 1기 3 데미지 공격",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Pirate1",
+    "attribute": "Normal"
+  },
+  {
+    "index": 114,
+    "name": "후방지원형 부하",
+    "description": "체력 8\n무작위 적 1기 2 데미지 및 플레이어 힘 1 획득",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Pirate1",
+    "attribute": "Normal"
+  },
+  {
+    "index": 115,
+    "name": "개 수인",
+    "description": "체력 10\n무작위 적 1기 3 데미지 공격",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Druids1",
+    "attribute": "Normal"
+  },
+  {
+    "index": 116,
+    "name": "곰 수인",
+    "description": "체력 12\n무작위 적 1기 2 데미지 및 플레이어 방어 2 획득",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Druids1",
+    "attribute": "Normal"
+  },
+  {
+    "index": 117,
+    "name": "새 수인",
+    "description": "체력 7\n무작위 적 1기 1 X 3 데미지 공격",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Druids1",
+    "attribute": "Normal"
+  },
+  {
+    "index": 118,
+    "name": "신실한 신도",
+    "description": "체력 10\n무작위 적 1기 2 데미지 및 플레이어 마력 1 획득",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Saintess1",
+    "attribute": "Normal"
+  },
+  {
+    "index": 119,
+    "name": "덩치 신도",
+    "description": "체력 11\n무작위 적 1기 1 데미지 및 플레이어 반사 3 획득",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Saintess1",
+    "attribute": "Normal"
+  },
+  {
+    "index": 120,
+    "name": "광신도",
+    "description": "체력 8\n무작위 적 1기 6 데미지 및 본인 체력 2 감소",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Saintess1",
+    "attribute": "Normal"
+  },
+  {
+    "index": 121,
+    "name": "자동공격 기계",
+    "description": "체력 11\n적 전체 1 X 2 데미지 공격",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Mecha1",
+    "attribute": "Normal"
+  },
+  {
+    "index": 122,
+    "name": "철갑방패 기계",
+    "description": "체력 12\n플레이어 방어 4 획득",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Mecha1",
+    "attribute": "Normal"
+  },
+  {
+    "index": 123,
+    "name": "자가수리 기계",
+    "description": "체력 9\n무작위 적 1기 2 데미지 및 동상 1 부여",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Mecha1",
+    "attribute": "Normal"
+  },
+  {
+    "index": 124,
+    "name": "전투형 부하",
+    "description": "체력 16\n무작위 적 1기 4 데미지 및 화상 2 부여",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Pirate2",
+    "attribute": "Normal"
+  },
+  {
+    "index": 125,
+    "name": "돌격형 부하",
+    "description": "체력 18\n무작위 적 1기 5 데미지",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Pirate2",
+    "attribute": "Normal"
+  },
+  {
+    "index": 126,
+    "name": "후방지원형 부하",
+    "description": "체력 14\n무작위 적 1기 4 데미지 및 플레이어 힘 1 획득",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Pirate2",
+    "attribute": "Normal"
+  },
+  {
+    "index": 127,
+    "name": "개 수인",
+    "description": "체력 16\n무작위 적 1기 5 데미지 공격",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Druids2",
+    "attribute": "Normal"
+  },
+  {
+    "index": 128,
+    "name": "곰 수인",
+    "description": "체력 20\n무작위 적 1기 4 데미지 및 플레이어 방어 3 획득",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Druids2",
+    "attribute": "Normal"
+  },
+  {
+    "index": 129,
+    "name": "새 수인",
+    "description": "체력 14\n무작위 적 1기 1 X 4 데미지 공격",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Druids2",
+    "attribute": "Normal"
+  },
+  {
+    "index": 130,
+    "name": "신실한 신도",
+    "description": "체력 15\n무작위 적 1기 4 데미지 및 플레이어 마력 1 획득",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Saintess2",
+    "attribute": "Normal"
+  },
+  {
+    "index": 131,
+    "name": "덩치 신도",
+    "description": "체력 16\n무작위 적 1기 3 데미지 및 플레이어 반사 3 획득",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Saintess2",
+    "attribute": "Normal"
+  },
+  {
+    "index": 132,
+    "name": "광신도",
+    "description": "체력 13\n무작위 적 1기 10 데미지 및 본인 체력 3 감소",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Saintess2",
+    "attribute": "Normal"
+  },
+  {
+    "index": 133,
+    "name": "자동공격 기계",
+    "description": "체력 16\n적 전체 1 X 3 데미지 공격",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Mecha2",
+    "attribute": "Normal"
+  },
+  {
+    "index": 134,
+    "name": "철갑방패 기계",
+    "description": "체력 19\n플레이어 방어 5 획득",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Mecha2",
+    "attribute": "Normal"
+  },
+  {
+    "index": 135,
+    "name": "자가수리 기계",
+    "description": "체력 15\n무작위 적 1기 4 데미지 및 동상 1 부여",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Mecha2",
+    "attribute": "Normal"
+  },
+  {
+    "index": 136,
+    "name": "전투형 부하",
+    "description": "체력 23\n 무작위 적 1기 6 데미지 및 화상 2 부여",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Pirate3",
+    "attribute": "Normal"
+  },
+  {
+    "index": 137,
+    "name": "돌격형 부하",
+    "description": "체력 26\n무작위 적 1기 7 데미지",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Pirate3",
+    "attribute": "Normal"
+  },
+  {
+    "index": 138,
+    "name": "후방지원형 부하",
+    "description": "체력 20\n무작위 적 1기 6 데미지 및 플레이어 힘 1 획득",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Pirate3",
+    "attribute": "Normal"
+  },
+  {
+    "index": 139,
+    "name": "개 수인",
+    "description": "체력 23\n무작위 적 1기 7 데미지 공격",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Druids3",
+    "attribute": "Normal"
+  },
+  {
+    "index": 140,
+    "name": "곰 수인",
+    "description": "체력 28\n무작위 적 1기 6 데미지 및 플레이어 방어 4 획득",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Druids3",
+    "attribute": "Normal"
+  },
+  {
+    "index": 141,
+    "name": "새 수인",
+    "description": "체력 22\n무작위 적 1기 1 X 5 데미지 공격",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Druids3",
+    "attribute": "Normal"
+  },
+  {
+    "index": 142,
+    "name": "신실한 신도",
+    "description": "체력 22\n무작위 적 1기 6 데미지 및 플레이어 마력 1 획득",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Saintess3",
+    "attribute": "Normal"
+  },
+  {
+    "index": 143,
+    "name": "덩치 신도",
+    "description": "체력 23\n무작위 적 1기 5 데미지 및 플레이어 반사 3 획득",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Saintess3",
+    "attribute": "Normal"
+  },
+  {
+    "index": 144,
+    "name": "광신도",
+    "description": "체력 20\n무작위 적 1기 14 데미지 및 본인 체력 4 감소",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Saintess3",
+    "attribute": "Normal"
+  },
+  {
+    "index": 145,
+    "name": "자동공격 기계",
+    "description": "체력 23\n적 전체 1 X 4 데미지 공격",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Mecha3",
+    "attribute": "Normal"
+  },
+  {
+    "index": 146,
+    "name": "철갑방패 기계",
+    "description": "체력 26\n플레이어 방어 6 획득",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Mecha3",
+    "attribute": "Normal"
+  },
+  {
+    "index": 147,
+    "name": "자가수리 기계",
+    "description": "체력 21\n무작위 적 1기 6 데미지 및 동상 1 부여",
+    "cost": 0,
+    "rarity": 0,
+    "type": "Mecha3",
+    "attribute": "Normal"
+  },
+  {
+    "index": 1000,
+    "name": "해적선장 마린",
+    "description": "몰라 뭔지",
+    "cost": 0,
+    "rarity": 2,
+    "type": "PirateBoss",
+    "attribute": "Normal"
+  },
+  {
+    "index": 1001,
+    "name": "드루이드 세레나",
+    "description": "몰라 뭔지",
+    "cost": 0,
+    "rarity": 2,
+    "type": "DruidsBoss",
+    "attribute": "Normal"
+  },
+  {
+    "index": 1002,
+    "name": "성녀 리샤",
+    "description": "몰라 뭔지",
+    "cost": 0,
+    "rarity": 2,
+    "type": "SaintessBoss",
+    "attribute": "Normal"
+  },
+  {
+    "index": 1003,
+    "name": "메카닉 체키",
+    "description": "몰라 뭔지",
+    "cost": 0,
+    "rarity": 2,
+    "type": "MechaBoss",
+    "attribute": "Normal"
   }
 ]

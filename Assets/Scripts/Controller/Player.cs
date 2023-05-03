@@ -29,14 +29,13 @@ public class Player : MonoBehaviour
         //플레이어 조작 중일 때는 UI 조작 모드를 비활성화
         InputActions.keyActions.UI.Disable();
 
-        //다양한 키입력에 따라 발생하는 이벤트 등록
+        //플레이어 키입력에 따라 발생하는 이벤트 등록
         InputActions.keyActions.Player.Move.performed += OnMovePerformed;
         InputActions.keyActions.Player.Move.canceled += OnMoveCanceled;
         InputActions.keyActions.Player.Check.started += OnCheckStarted;
-        InputActions.keyActions.Player.Menu.started += OnMenuStarted;
 
         //레벨 클리어 시 발생하는 이벤트 등록
-        MapManager.Instance.LevelClear += Spawn;
+        StageManager.Instance.OnLevelClear += Spawn;
     }
 
     private void OnDisable()
@@ -46,9 +45,8 @@ public class Player : MonoBehaviour
         InputActions.keyActions.Player.Move.performed -= OnMovePerformed;
         InputActions.keyActions.Player.Move.canceled -= OnMoveCanceled;
         InputActions.keyActions.Player.Check.started -= OnCheckStarted;
-        InputActions.keyActions.Player.Menu.started -= OnMenuStarted;
 
-        MapManager.Instance.LevelClear -= Spawn;
+        StageManager.Instance.OnLevelClear -= Spawn;
     }
 
     //이동, 회전
@@ -96,16 +94,8 @@ public class Player : MonoBehaviour
 
         if (raycastHit.collider.TryGetComponent(out RoomSymbol encountedSymbol))
         {
-            encountedSymbol.Encounter();
+            encountedSymbol.TalkStart();
         }
-    }
-
-    //I버튼으로 인벤토리 UI 열기
-    public void OnMenuStarted(InputAction.CallbackContext context)
-    {
-        LibraryUI libraryUI = UIManager.Instance.ShowUI("LibraryUI").GetComponent<LibraryUI>();
-        libraryUI.Init(false);
-
     }
 
     public void Spawn()

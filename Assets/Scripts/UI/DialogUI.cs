@@ -23,22 +23,17 @@ public class DialogUI : BaseUI, IPointerDownHandler
     [SerializeField]
     private TMP_Text lineText;
 
-    private Action DialogClosed;
+    private Action CloseAction;
 
     private void OnEnable()
     {
-        //플레이어 조작 비활성화, UI 조작 활성화
         //엔터로 대화창 진행하는 함수 실행하게 이벤트 등록
         //인풋시스템에 이벤트 함수 등록할 때, 람다로 등록하지 않는 게 좋을 듯. 왠지는 모르겠는데 중복 실행 오류난다
-        InputActions.keyActions.Player.Disable();
-        InputActions.keyActions.UI.Enable();
         InputActions.keyActions.UI.Check.started += NextDialogByCheck;
     }
 
     private void OnDisable()
     {
-        InputActions.keyActions.Player.Enable();
-        InputActions.keyActions.UI.Disable();
         InputActions.keyActions.UI.Check.started -= NextDialogByCheck;
     }
 
@@ -58,7 +53,7 @@ public class DialogUI : BaseUI, IPointerDownHandler
     public void Init(int index, Action CloseCallback = null)
     {
         dialogIndex = index;
-        DialogClosed = CloseCallback;
+        CloseAction = CloseCallback;
         lineCount = 0;
         NextDialog();
     }
@@ -70,8 +65,8 @@ public class DialogUI : BaseUI, IPointerDownHandler
         //다음 대화가 없으면 창 닫고 종료
         if (GameData.Instance.DialogDic[dialogIndex].Count == lineCount) 
         {
-            DialogClosed?.Invoke();
             UIManager.Instance.HideUI("DialogUI");
+            CloseAction?.Invoke();
             return;
         }
 
@@ -79,7 +74,7 @@ public class DialogUI : BaseUI, IPointerDownHandler
         currentLine = GameData.Instance.DialogDic[dialogIndex][lineCount];
 
         //이름, 초상화 등이 없는 경우는 이름, 초상화 창을 제거
-        if (currentLine.portrait == null)
+        if (currentLine.portrait == null || currentLine.portrait == "")
         {
             portrait.gameObject.SetActive(false);   
         }
@@ -88,7 +83,7 @@ public class DialogUI : BaseUI, IPointerDownHandler
             portrait.sprite = GameData.Instance.SpriteDic[currentLine.portrait];
         }
 
-        if(currentLine.name == null)
+        if(currentLine.name == null || currentLine.portrait == "")
         {
             nameText.transform.parent.gameObject.SetActive(false);  
         }
