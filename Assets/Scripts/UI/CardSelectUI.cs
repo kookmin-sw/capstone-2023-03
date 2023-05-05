@@ -50,7 +50,10 @@ public class CardSelectUI : MonoBehaviour
         rewardText.text = "전투에서 승리하셨습니다!\r\n보상으로 카드를 한 장 가져가세요.";
 
         //전투의 보상으로 얻을 공격, 스킬 카드들을 쿼리. 그리고 레어도 별로 또 나눈다.
-        List<CardStruct> rewardCardsPool = GameData.Instance.CardList.Where(card => card.type == "Attack" || card.type == "Skill").ToList();
+        List<CardStruct> rewardCardsPool = GameData.Instance.CardList
+             .Where(card => (card.type == "Attack" || card.type == "Skill")
+                 && card.attribute != "Normal" //기본 카드는 안나오게 수정
+             ).ToList();
         List<CardStruct> rarity0Cards = rewardCardsPool.Where(card => card.rarity == 0).ToList();
         List<CardStruct> rarity1Cards = rewardCardsPool.Where(card => card.rarity == 1).ToList();
         List<CardStruct> rarity2Cards = rewardCardsPool.Where(card => card.rarity == 2).ToList();
@@ -64,16 +67,19 @@ public class CardSelectUI : MonoBehaviour
             {
                 int index = Random.Range(0, rarity0Cards.Count);
                 rewardCards.Add(rarity0Cards[index]);
+                rarity0Cards.RemoveAt(index); //한번 나온 카드가 다시 나오지 않도록 제거
             }
             else if (random < 0.95f)
             {
                 int index = Random.Range(0, rarity1Cards.Count);
                 rewardCards.Add(rarity1Cards[index]);
+                rarity1Cards.RemoveAt(index);
             }
             else
             {
                 int index = Random.Range(0, rarity2Cards.Count);
                 rewardCards.Add(rarity2Cards[index]);
+                rarity2Cards.RemoveAt(index);
             }
         }
 
@@ -87,7 +93,10 @@ public class CardSelectUI : MonoBehaviour
         rewardText.text = "보스와의 전투에서 승리하셨습니다!\r\n보상으로 희귀한 카드를 한 장 가져가세요.";
 
         //전투의 보상으로 얻을 카드들을 쿼리. 보스 보상으로는 레어 이상의 카드만 나옴
-        List<CardStruct> rewardCardsPool = GameData.Instance.CardList.Where(card => card.type == "Attack" || card.type == "Skill").ToList();
+        List<CardStruct> rewardCardsPool = GameData.Instance.CardList
+             .Where(card => (card.type == "Attack" || card.type == "Skill")
+                 && card.attribute != "Normal" //기본 카드는 안나오게 수정
+            ).ToList();
         List<CardStruct> rarity1Cards = rewardCardsPool.Where(card => card.rarity == 1).ToList();
         List<CardStruct> rarity2Cards = rewardCardsPool.Where(card => card.rarity == 2).ToList();
 
@@ -100,11 +109,13 @@ public class CardSelectUI : MonoBehaviour
             {
                 int index = Random.Range(0, rarity1Cards.Count);
                 rewardCards.Add(rarity1Cards[index]);
+                rarity1Cards.RemoveAt(index); //한번 나온 카드가 다시 나오지 않도록 제거
             }
             else
             {
                 int index = Random.Range(0, rarity2Cards.Count);
                 rewardCards.Add(rarity2Cards[index]);
+                rarity2Cards.RemoveAt(index); //한번 나온 카드가 다시 나오지 않도록 제거
             }
         }
 
@@ -147,7 +158,7 @@ public class CardSelectUI : MonoBehaviour
     }
 
     //보스 영입 시 카드 보상
-    public void BossNegoReward(int enemyIndex)
+    public void BossNegoReward()
     {
         rewardText.text = "보스를 크루원으로 영입하였습니다!\r\n강력한 동료가 되어 줄 것입니다.";
 
@@ -169,8 +180,11 @@ public class CardSelectUI : MonoBehaviour
         //type == "애청자" 인 경우
         List<CardStruct> viewerCards = GameData.Instance.CardList.Where(card => card.type == "Viewer").ToList();
 
-        int index = Random.Range(0, viewerCards.Count);
-        rewardCards.Add(viewerCards[index]);
+        List<int> rewardCardsIndexes = Define.GenerateRandomNumbers(0, viewerCards.Count, 3); // viewercards 중에 랜덤으로 인덱스 3개 뽑기
+        for(int i = 0; i < rewardCardsIndexes.Count; i++) 
+        {
+            rewardCards.Add(viewerCards[rewardCardsIndexes[i]]); //3개의 인덱스에 해당하는 애청자 카드들을 보상 카드란에 추가
+        }
 
         ShowReward();
     }

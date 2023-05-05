@@ -46,8 +46,15 @@ public class PlayerData : Singleton<PlayerData>
     public int MaxHp { //최대 체력
         get 
         {
-            if (viewers == 0) return 80;
-            maxHp = 80 + (viewers / 100);
+            if (viewers == 0) maxHp = 80;
+            int newMaxHp = 80 + (viewers / 100); //애청자수 백단위마다 체력 1 증가
+
+            if(newMaxHp - maxHp > 0) //차이가 생긴 경우
+            {
+                currentHp += (newMaxHp - maxHp); //현재 체력 그만큼 증가
+                maxHp = newMaxHp; //새로운 최대체력 설정
+            }
+
             return maxHp;
         }
         set 

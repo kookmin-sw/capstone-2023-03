@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Menu",
+                    "name": "Deck",
                     "type": "Button",
                     "id": "9fd36056-26cd-4ca9-8bf7-ceef4bb549f7",
                     "expectedControlType": "Button",
@@ -36,6 +36,15 @@
                     "name": "MiniMap",
                     "type": "Button",
                     "id": "cd47f51b-1f32-47d0-b32f-9bc725acf793",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "51dbe530-6047-4ee6-ba3b-d6e366729fde",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -116,7 +125,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "PC",
-                    "action": "Menu",
+                    "action": "Deck",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -128,6 +137,17 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "MiniMap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "385ef65e-83d0-4dbc-acfb-6160d8accacd",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
