@@ -22,7 +22,7 @@ public class EnemySymbol : RoomSymbol
             .Init(
                 "협상하시겠습니까?", 
                 TryNegotiate, //예 선택 시 협상 시도 함수 호출
-                () => { UIManager.Instance.ShowUI("DialogUI").GetComponent<DialogUI>().Init(index + Define.FIGHT_INDEX, FightEnd); } //아니오 선택 시 전투 대화 후 전투 UI 호출
+                () => { UIManager.Instance.ShowUI("DialogUI").GetComponent<DialogUI>().Init(index + Define.FIGHT_INDEX, Fight); } //아니오 선택 시 전투 대화 후 전투 UI 호출
             );
     }
 
@@ -38,13 +38,14 @@ public class EnemySymbol : RoomSymbol
         }
         else
         {
-            UIManager.Instance.ShowUI("DialogUI").GetComponent<DialogUI>().Init(index + Define.NEGOFAIL_INDEX, FightEnd);
+            UIManager.Instance.ShowUI("DialogUI").GetComponent<DialogUI>().Init(index + Define.NEGOFAIL_INDEX, Fight);
         }
     }
 
     public void Fight()
     {
         //전투 UI 열기
+        SceneLoader.Instance.LoadScene("BattleScene");
         //전투 UI 닫을 시, FightEnd 호출
     }
 
