@@ -4,7 +4,6 @@ using UnityEngine;
 public class EnemySymbol : RoomSymbol
 {
     //EnemySymbol에서 Index는 현재 Theme의 번호와 같음.
-    private int enemyIndex; //이거는 
 
 
     public override void TalkStart()
@@ -22,7 +21,11 @@ public class EnemySymbol : RoomSymbol
             .Init(
                 "협상하시겠습니까?", 
                 TryNegotiate, //예 선택 시 협상 시도 함수 호출
-                () => { UIManager.Instance.ShowUI("DialogUI").GetComponent<DialogUI>().Init(index + Define.FIGHT_INDEX, FightEnd); } //아니오 선택 시 전투 대화 후 전투 UI 호출
+                () => { 
+                    UIManager.Instance.ShowUI("DialogUI")
+                    .GetComponent<DialogUI>()
+                    .Init(index + Define.FIGHT_INDEX, FightEnd); 
+                } //아니오 선택 시 전투 대화 후 전투 UI 호출. 나중에 이걸 Fight 함수로 수정.
             );
     }
 
@@ -50,6 +53,9 @@ public class EnemySymbol : RoomSymbol
 
     public void FightEnd() //전투 끝날 시 호출
     {
+
+        //임시로 전투 시 체력 하락
+        PlayerData.Instance.CurrentHp -= 5;
 
         //스탯을 현재 레벨에 맞는 보상 만큼 증가
         PlayerData.Instance.Money += GameData.Instance.RewardDic[StageManager.Instance.Stage].money; //현재 레벨에 해당하는 보상을 가져와서, 스탯에 추가
