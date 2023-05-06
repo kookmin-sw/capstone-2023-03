@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class EnemySymbol : RoomSymbol
 {
-    //EnemySymbol에서 Index는 현재 Theme의 번호와 같음.
-
+    //EnemySymbol에서 Index는 0이 아닐 경우 현재 Theme의 번호와 같음.
+    //0이면 Theme가 None인... 즉 일반 잡몹인 경우.
 
     public override void TalkStart()
     {
