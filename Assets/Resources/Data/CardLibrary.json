@@ -216,6 +216,51 @@
     "attribute": "Normal"
   },
   {
+    "index": 24,
+    "name": "고속 연산",
+    "description": "손패의 모든 카드의 코스트 -1",
+    "cost": 0,
+    "rarity": 2,
+    "type": "Viewer",
+    "attribute": "Normal"
+  },
+  {
+    "index": 25,
+    "name": "과부하",
+    "description": "손패의 모든 카드의 코스트 0 고정, 사용시 이번 전투에서 소멸 디버프 부여",
+    "cost": 0,
+    "rarity": 2,
+    "type": "Viewer",
+    "attribute": "Normal"
+  },
+  {
+    "index": 26,
+    "name": "일회용",
+    "description": "손패의 카드 한 장을 선택해 복사, 코스트 0 고정, 사용시 이번 전투에서 소멸 디버프 부여",
+    "cost": 0,
+    "rarity": 2,
+    "type": "Viewer",
+    "attribute": "Normal"
+  },
+  {
+    "index": 27,
+    "name": "과충전",
+    "description": "현재 에너지 2배로 증가",
+    "cost": 0,
+    "rarity": 2,
+    "type": "Viewer",
+    "attribute": "Normal"
+  },
+  {
+    "index": 28,
+    "name": "에너지 드링크",
+    "description": "에너지 2, 힘, 마력 각 1씩 획득",
+    "cost": 0,
+    "rarity": 2,
+    "type": "Viewer",
+    "attribute": "Normal"
+  },
+  {
     "index": 100,
     "name": "기본 무도가",
     "description": "체력 11\n 적 전체 데미지 2 공격",

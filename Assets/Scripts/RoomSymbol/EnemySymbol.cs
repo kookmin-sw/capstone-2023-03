@@ -3,36 +3,35 @@ using UnityEngine;
 
 public class EnemySymbol : RoomSymbol
 {
-    //EnemySymbol¿¡¼­ Index´Â ÇöÀç ThemeÀÇ ¹øÈ£¿Í °°À½.
-    private int enemyIndex; //ÀÌ°Å´Â 
+    //EnemySymbolï¿½ï¿½ï¿½ï¿½ Indexï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Themeï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 
 
     public override void TalkStart()
     {
         UIManager.Instance.ShowUI("DialogUI")
         .GetComponent<DialogUI>()
-        .Init(index, SelectOpen); //´ëÈ­°¡ ³¡³ª¸é Çù»ó ÆË¾÷ ¿ÀÇÂ
+        .Init(index, SelectOpen); //ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¾ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
-    //Çù»ó ÆË¾÷ ¿ÀÇÂ
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¾ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void SelectOpen()
     {
         UIManager.Instance.ShowUI("SelectUI")
             .GetComponent<SelectUI>()
             .Init(
-                "Çù»óÇÏ½Ã°Ú½À´Ï±î?", 
-                TryNegotiate, //¿¹ ¼±ÅÃ ½Ã Çù»ó ½Ãµµ ÇÔ¼ö È£Ãâ
-                () => { UIManager.Instance.ShowUI("DialogUI").GetComponent<DialogUI>().Init(index + Define.FIGHT_INDEX, Fight); } //¾Æ´Ï¿À ¼±ÅÃ ½Ã ÀüÅõ ´ëÈ­ ÈÄ ÀüÅõ UI È£Ãâ
+                "ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?", 
+                TryNegotiate, //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ãµï¿½ ï¿½Ô¼ï¿½ È£ï¿½ï¿½
+                () => { UIManager.Instance.ShowUI("DialogUI").GetComponent<DialogUI>().Init(index + Define.FIGHT_INDEX, FightEnd); } //ï¿½Æ´Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ UI È£ï¿½ï¿½
             );
     }
 
-    //Çù»ó ½Ãµµ
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½Ãµï¿½
     public void TryNegotiate()
     {
         float random = Random.Range(0f, 1f);
 
-        //Çù»ó °í¸£¸é ·£´ýÇÑ È®·ü·Î Çù»ó ´ëÈ­, ½ÇÆÐÇÏ¸é Çù»ó ½ÇÆÐ ´ëÈ­ È£Ãâ ÈÄ ÀüÅõ È£Ãâ
-        if(random < 0.5f && StageManager.Instance.NegoInLevel == false) //ÀÏ´Ü 30ÆÛ È®·ü + ÀÌ ½ºÅ×ÀÌÁö¿¡¼­ Çù»óÀ» ÇÑ Àû ¾øÀ¸¸é Çù»ó ¼º°ø
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­, ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ È£ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½
+        if(random < 0.5f && StageManager.Instance.NegoInLevel == false) //ï¿½Ï´ï¿½ 30ï¿½ï¿½ È®ï¿½ï¿½ + ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         {
             UIManager.Instance.ShowUI("DialogUI").GetComponent<DialogUI>().Init(index + Define.NEGO_INDEX, NegotiateEnd);
         }
@@ -44,40 +43,43 @@ public class EnemySymbol : RoomSymbol
 
     public void Fight()
     {
-        //ÀüÅõ UI ¿­±â
+        //ï¿½ï¿½ï¿½ï¿½ UI ï¿½ï¿½ï¿½ï¿½
         SceneLoader.Instance.LoadScene("BattleScene");
-        //ÀüÅõ UI ´ÝÀ» ½Ã, FightEnd È£Ãâ
+        //ï¿½ï¿½ï¿½ï¿½ UI ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, FightEnd È£ï¿½ï¿½
     }
 
-    public void FightEnd() //ÀüÅõ ³¡³¯ ½Ã È£Ãâ
+    public void FightEnd() //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½
     {
 
-        //½ºÅÈÀ» ÇöÀç ·¹º§¿¡ ¸Â´Â º¸»ó ¸¸Å­ Áõ°¡
-        PlayerData.Instance.Money += GameData.Instance.RewardDic[StageManager.Instance.Stage].money; //ÇöÀç ·¹º§¿¡ ÇØ´çÇÏ´Â º¸»óÀ» °¡Á®¿Í¼­, ½ºÅÈ¿¡ Ãß°¡
+        //ï¿½Ó½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã¼ï¿½ï¿½ ï¿½Ï¶ï¿½
+        PlayerData.Instance.CurrentHp -= 5;
+
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Â´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½
+        PlayerData.Instance.Money += GameData.Instance.RewardDic[StageManager.Instance.Stage].money; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½, ï¿½ï¿½ï¿½È¿ï¿½ ï¿½ß°ï¿½
         PlayerData.Instance.Viewers += GameData.Instance.RewardDic[StageManager.Instance.Stage].viewers;
 
-        //º¸»ó Ä«µå UI ´ÝÀ» ½Ã, TalkEnd È£Ãâ
+        //ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ UI ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, TalkEnd È£ï¿½ï¿½
         CardSelectUI cardSelectUI = UIManager.Instance.ShowUI("CardSelectUI").GetComponent<CardSelectUI>();
         cardSelectUI.Init(TalkEnd);
         cardSelectUI.BattleReward();
     }
 
-    public void NegotiateEnd() //Çù»ó ¼º°ø ÈÄ È£Ãâ
+    public void NegotiateEnd() //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½
     {
-        //½ºÅÈÀ» ÇöÀç ·¹º§¿¡ ¸Â´Â º¸»ó/2 ¸¸Å­ Áõ°¡
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Â´ï¿½ ï¿½ï¿½ï¿½ï¿½/2 ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½
         PlayerData.Instance.Money += GameData.Instance.RewardDic[StageManager.Instance.Stage].money/2;
         PlayerData.Instance.Viewers += GameData.Instance.RewardDic[StageManager.Instance.Stage].viewers/2;
 
-        //º¸»ó Ä«µå UI ´ÝÀ» ½Ã, TalkEnd È£Ãâ
+        //ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ UI ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, TalkEnd È£ï¿½ï¿½
         CardSelectUI cardSelectUI = UIManager.Instance.ShowUI("CardSelectUI").GetComponent<CardSelectUI>();
         cardSelectUI.Init(TalkEnd);
-        cardSelectUI.NegoReward(index); //ÇöÀç ÀÎµ¦½º¿¡ ¸Â´Â Àâ¸÷ µ¿·á Ä«µå È¹µæ
+        cardSelectUI.NegoReward(index); //ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Â´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ È¹ï¿½ï¿½
     }
 
     public override void TalkEnd()
     {
         base.TalkEnd();
-        if(PlayerData.Instance.CheckLevelUp()) //·¹º§¾÷ ÇßÀ» °æ¿ì¿¡
+        if(PlayerData.Instance.CheckLevelUp()) //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡
         {
             UIManager.Instance.ShowUI("CardSelectUI")
                 .GetComponent<CardSelectUI>()
