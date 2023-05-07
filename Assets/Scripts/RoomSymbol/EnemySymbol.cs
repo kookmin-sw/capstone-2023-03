@@ -10,10 +10,10 @@ public class EnemySymbol : RoomSymbol
     {
         UIManager.Instance.ShowUI("DialogUI")
         .GetComponent<DialogUI>()
-        .Init(index, SelectOpen); //媛 硫   ㅽ
+        .Init(index, SelectOpen); //媛 硫  ㅽ
     }
 
-    //  ㅽ
+    // ㅽ
     public void SelectOpen()
     {
         UIManager.Instance.ShowUI("SelectUI")
@@ -35,7 +35,7 @@ public class EnemySymbol : RoomSymbol
         float random = Random.Range(0f, 1f);
 
         // 怨瑜대㈃ ㅽ 瑜濡  , ㅽ⑦硫  ㅽ  몄  � 몄
-        if (random < 0.5f && StageManager.Instance.NegoInLevel == false) //쇰 30 瑜 +  ㅽ댁   � 쇰㈃  깃났
+        if (random < 0.5f && StageManager.Instance.NegoInLevel == false) //쇰 30 瑜 +  ㅽ댁   � 쇰㈃  깃났
         {
             UIManager.Instance.ShowUI("DialogUI").GetComponent<DialogUI>().Init(index + Define.NEGO_INDEX, NegotiateEnd);
         }
@@ -48,7 +48,7 @@ public class EnemySymbol : RoomSymbol
     public void Fight()
     {
         //� UI 닿린
-        SceneLoader.Instance.LoadScene("BattleScene");
+        UIManager.Instance.ShowUI("BattleUI").GetComponent<BattleUI>();
         //� UI レ , FightEnd 몄
     }
 
@@ -83,7 +83,7 @@ public class EnemySymbol : RoomSymbol
     public override void TalkEnd()
     {
         base.TalkEnd();
-        if (PlayerData.Instance.CheckLevelUp()) //�踰⑥  寃쎌곗
+        if (PlayerData.Instance.CheckLevelUp()) //�踰⑥ 寃쎌곗
         {
             UIManager.Instance.ShowUI("CardSelectUI")
                 .GetComponent<CardSelectUI>()
