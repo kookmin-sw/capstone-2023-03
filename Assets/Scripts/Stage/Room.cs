@@ -60,8 +60,8 @@ public class Room : MonoBehaviour
                     .AddComponent<EnemySymbol>();
 
                 int choice = Random.Range(0, 2); //일반 잡몹 대화문일지 보스 잡몹 대화문일지
-                int index = choice == 0 ? 0 : (int)StageManager.Instance.Theme;
-                Symbol.Init(index, type); 
+                int dialogIndex = choice == 0 ? 0 : (int)StageManager.Instance.Theme;
+                Symbol.Init(dialogIndex, type); 
 
                 break;
             case Define.EventType.Rest:
