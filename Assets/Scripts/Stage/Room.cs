@@ -26,7 +26,7 @@ public class Room : MonoBehaviour
             ActivateDoors(false);
 
             //적이 없는 방이면 그냥 클리어 처리
-            if(Type != Define.EventType.Enemy && Type != Define.EventType.Boss && Type != Define.EventType.Event)
+            if(Type != Define.EventType.Enemy && Type != Define.EventType.Event)
             {
                 IsCleared = true;
                 ActivateDoors(true);
