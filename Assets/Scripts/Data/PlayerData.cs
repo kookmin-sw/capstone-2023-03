@@ -14,6 +14,8 @@ public class PlayerData : Singleton<PlayerData>
     private int money;
     private int energy;
 
+    public bool[] HasPartner { get; set; } = new bool[3]; //해당 스테이지의 동료 카드 얻었는지
+
     public int ChannelLevel {
         get { return channelLevel; }
         set 
@@ -50,7 +52,7 @@ public class PlayerData : Singleton<PlayerData>
             if (viewers == 0) maxHp = 80;
             int newMaxHp = 80 + (viewers / 100); //애청자수 백단위마다 체력 1 증가
 
-            if(newMaxHp - maxHp > 0) //차이가 생긴 경우
+            if(newMaxHp - maxHp != 0) //차이가 생긴 경우
             {
                 currentHp += (newMaxHp - maxHp); //현재 체력 그만큼 증가
                 maxHp = newMaxHp; //새로운 최대체력 설정
@@ -94,8 +96,11 @@ public class PlayerData : Singleton<PlayerData>
     {
         base.Awake();
         DontDestroyOnLoad(this);
+    }
 
-        //초기 데이터 설정
+    public void LoadPlayerData()
+    {
+        //초기 데이터 설정 함수
 
         ChannelLevel = 1;
         Viewers = 0;
@@ -105,14 +110,14 @@ public class PlayerData : Singleton<PlayerData>
 
         Deck = new List<CardStruct>(){
             GameData.Instance.CardList[0],
-            GameData.Instance.CardList[0], 
+            GameData.Instance.CardList[0],
             GameData.Instance.CardList[0],
             GameData.Instance.CardList[1],
             GameData.Instance.CardList[1],
             GameData.Instance.CardList[1],
             GameData.Instance.CardList[2],
             GameData.Instance.CardList[3]
-        };  
+        };
 
     }
 

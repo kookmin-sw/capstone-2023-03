@@ -9,8 +9,9 @@ using System;
 public enum CardMode
 {
     Library, //라이브러리에서 카드UI 모드. 클릭/포인터 시 반응 없음
-    Select, //카드 보상 UI에서 카드UI 모드. 클릭/포인터 시 반응 있음
-    Battle
+    Select, //카드 보상 UI에서 카드UI 모드. 클릭/포인터 시 카드 획득
+    Battle,
+    Discard //카드 버리기 이벤트에서 카드UI 모드. 클릭/포인터 시 카드 버리기
 }
 
 public class CardUI : BaseUI, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
@@ -35,7 +36,7 @@ public class CardUI : BaseUI, IPointerDownHandler, IPointerEnterHandler, IPointe
     private CardMode cardMode;
 
 
-    public void OnPointerDown(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData) //카드 클릭 시
     {
         switch (cardMode)
         {
@@ -43,23 +44,30 @@ public class CardUI : BaseUI, IPointerDownHandler, IPointerEnterHandler, IPointe
                 break;
             case CardMode.Select:
                 PlayerData.Instance.Deck.Add(card);
-                UIManager.Instance.HideUI("CardSelectUI"); //획득 후에는 바로 이 UI 닫기.
+                UIManager.Instance.HideUI("CardSelectUI"); //획득 후에는 바로 카드 선택 UI 닫기.
                 break;
             case CardMode.Battle:
+                break;
+            case CardMode.Discard:
+                PlayerData.Instance.Deck.Remove(card);  
+                UIManager.Instance.HideUI("LibraryUI"); //버림 후에는 바로 라이브러리 UI 닫기.
                 break;
         }
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData) //카드 마우스 올릴 시
     {
         switch (cardMode)
         {
             case CardMode.Library:
                 break;
             case CardMode.Select:
-                transform.localScale = originalScale * scaleOnHover;
+                transform.localScale = originalScale * scaleOnHover; //확대
                 break;
             case CardMode.Battle:
+                break;
+            case CardMode.Discard:
+                transform.localScale = originalScale * scaleOnHover;
                 break;
         }
     }
@@ -71,9 +79,12 @@ public class CardUI : BaseUI, IPointerDownHandler, IPointerEnterHandler, IPointe
             case CardMode.Library:
                 break;
             case CardMode.Select:
-                transform.localScale = originalScale;
+                transform.localScale = originalScale; //확대 되돌리기
                 break;
             case CardMode.Battle:
+                break;
+            case CardMode.Discard:
+                transform.localScale = originalScale;
                 break;
         }
     }
@@ -109,7 +120,4 @@ public class CardUI : BaseUI, IPointerDownHandler, IPointerEnterHandler, IPointe
         }
 
     }
-
-    //해당 UI가 표시하는 카드 획득... 은 아이템 UI에서 처리해야겠지.
-    //대신 카드 UI를 클릭 시 획득할 수 있게, 클릭 이벤트는 이곳에서 처리하되, 델리게이트를 이용해 아이템 UI에서 클릭 이벤트를 추가해준다.
 }

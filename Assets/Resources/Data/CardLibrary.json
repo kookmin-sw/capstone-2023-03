@@ -261,6 +261,33 @@
     "attribute": "Normal"
   },
   {
+    "index": 99,
+    "name": "레블",
+    "description": "체력 15\n무작위 적 1기 2 데미지",
+    "cost": 0,
+    "rarity": 2,
+    "type": "Partner1",
+    "attribute": "Normal"
+  },
+  {
+    "index": 99,
+    "name": "메구",
+    "description": "체력 22\n적 2턴마다 전체 5 x 2 데미지 및 화상 2 부여",
+    "cost": 0,
+    "rarity": 2,
+    "type": "Partner2",
+    "attribute": "Normal"
+  },
+  {
+    "index": 99,
+    "name": "카모",
+    "description": "체력 30\n매 턴마다 에너지 1, 드로우 1 증가",
+    "cost": 0,
+    "rarity": 2,
+    "type": "Partner3",
+    "attribute": "Normal"
+  },
+  {
     "index": 100,
     "name": "기본 무도가",
     "description": "체력 11\n 적 전체 데미지 2 공격",

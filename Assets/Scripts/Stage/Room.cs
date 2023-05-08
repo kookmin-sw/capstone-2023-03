@@ -52,6 +52,9 @@ public class Room : MonoBehaviour
         //Type 지정
         Type = type;
         //Symbol 소환
+
+        int offset; 
+
         switch (type)
         {
             //심볼을 소환할 때, 각각 랜덤으로 인덱스를 배정하고, 인덱스에 따라 다른 대화 내용과 전투, 아이템 획득 등을 하게 할 예정
@@ -60,8 +63,8 @@ public class Room : MonoBehaviour
                     .AddComponent<EnemySymbol>();
 
                 int choice = Random.Range(0, 2); //일반 잡몹 대화문일지 보스 잡몹 대화문일지
-                int index = choice == 0 ? 0 : (int)StageManager.Instance.Theme;
-                Symbol.Init(index, type); 
+                offset = choice == 0 ? 0 : (int)StageManager.Instance.Theme;
+                Symbol.Init(offset, type); 
 
                 break;
             case Define.EventType.Rest:
@@ -77,7 +80,8 @@ public class Room : MonoBehaviour
             case Define.EventType.Event:
                 Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/EventSymbol", transform)
                     .AddComponent<EventSymbol>();
-                Symbol.Init(Define.EVENT_INDEX, type);
+                offset = Random.Range(1, 8);
+                Symbol.Init(Define.EVENT_INDEX + offset, type);
                 break;
             case Define.EventType.Boss:
                 Symbol = AssetLoader.Instance.Instantiate($"Prefabs/RoomSymbol/BossSymbol", transform)

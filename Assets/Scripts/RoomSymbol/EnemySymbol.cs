@@ -19,7 +19,7 @@ public class EnemySymbol : RoomSymbol
                 () => {
                     UIManager.Instance.ShowUI("DialogUI")
                     .GetComponent<DialogUI>()
-                    .Init(index + Define.FIGHT_INDEX, Fight);
+                    .Init(index + Define.FIGHT_INDEX, FightEnd);
                 } 
             );
     }
@@ -46,14 +46,12 @@ public class EnemySymbol : RoomSymbol
 
     public void FightEnd()
     {
-        PlayerData.Instance.CurrentHp -= 5;
-
         PlayerData.Instance.Money += GameData.Instance.RewardDic[StageManager.Instance.Stage].money; 
         PlayerData.Instance.Viewers += GameData.Instance.RewardDic[StageManager.Instance.Stage].viewers;
 
 
         CardSelectUI cardSelectUI = UIManager.Instance.ShowUI("CardSelectUI").GetComponent<CardSelectUI>();
-        cardSelectUI.Init(TalkEnd);
+        cardSelectUI.SetCloseCallback(TalkEnd);
         cardSelectUI.BattleReward();
     }
 
@@ -63,7 +61,7 @@ public class EnemySymbol : RoomSymbol
         PlayerData.Instance.Viewers += GameData.Instance.RewardDic[StageManager.Instance.Stage].viewers / 2;
 
         CardSelectUI cardSelectUI = UIManager.Instance.ShowUI("CardSelectUI").GetComponent<CardSelectUI>();
-        cardSelectUI.Init(TalkEnd);
+        cardSelectUI.SetCloseCallback(TalkEnd);
         cardSelectUI.NegoReward(index); 
     }
 

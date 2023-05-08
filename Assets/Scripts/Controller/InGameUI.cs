@@ -39,7 +39,7 @@ public class InGameUI : MonoBehaviour
     public void OnDeckStarted(InputAction.CallbackContext context)
     {
         LibraryUI libraryUI = UIManager.Instance.ShowUI("LibraryUI").GetComponent<LibraryUI>();
-        libraryUI.Init(false);
+        libraryUI.Init(LibraryMode.Deck);
     }
 
     //ESC버튼으로 일시정지 UI 열기
