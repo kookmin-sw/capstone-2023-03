@@ -5,14 +5,8 @@ using UnityEngine;
 public class TrashUI : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    public void TrashButtonClick()
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
