@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: e8997bfc7aa71a34daadd6a90fab85c7, type: 2}
     - target: {fileID: 7204788623501435427, guid: 4a7ecfb96ab047542969b5e117292d73, type: 3}
       propertyPath: m_Name
-      value: ShopRoom
+      value: Room2
       objectReference: {fileID: 0}
     - target: {fileID: 7204788623501435439, guid: 4a7ecfb96ab047542969b5e117292d73, type: 3}
       propertyPath: m_RootOrder
@@ -57,6 +57,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7204788623501435439, guid: 4a7ecfb96ab047542969b5e117292d73, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7650956042615791271, guid: 4a7ecfb96ab047542969b5e117292d73, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

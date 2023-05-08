@@ -23,13 +23,13 @@ public class SelectUI : MonoBehaviour
     public void YesClick()
     {
         UIManager.Instance.HideUI("SelectUI");
-        YesAction.Invoke();
+        YesAction?.Invoke();
     }
 
     public void NoClick()
     {
         UIManager.Instance.HideUI("SelectUI");
-        NoAction.Invoke();
+        NoAction?.Invoke();
     }
 
 }

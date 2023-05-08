@@ -59,7 +59,7 @@ public class BossSymbol : RoomSymbol
 
         //보상 카드 UI 닫을 시, TalkEnd 호출
         CardSelectUI cardSelectUI = UIManager.Instance.ShowUI("CardSelectUI").GetComponent<CardSelectUI>();
-        cardSelectUI.Init(TalkEnd);
+        cardSelectUI.SetCloseCallback(TalkEnd);
         cardSelectUI.BossBattleReward();
     }
 
@@ -80,7 +80,7 @@ public class BossSymbol : RoomSymbol
 
         //보상 카드 UI 닫을 시, TalkEnd 호출
         CardSelectUI cardSelectUI = UIManager.Instance.ShowUI("CardSelectUI").GetComponent<CardSelectUI>();
-        cardSelectUI.Init(TalkEnd);
+        cardSelectUI.SetCloseCallback(TalkEnd);
         cardSelectUI.BossNegoReward();
     }
 
