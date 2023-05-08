@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         //빛 발사 후, 벽 layerMask가 안 걸리고 + 키가 입력되는 상태일 때 이동
-        if (!Physics.Raycast(transform.position + Vector3.up, moveDirection, out RaycastHit raycastHit, 0.5f, wall))
+        if (!Physics.Raycast(transform.position + Vector3.up, moveDirection, 0.5f, wall))
         {
             if(isMoving)
             {
