@@ -37,7 +37,7 @@ public class CardUI : BaseUI, IPointerDownHandler, IPointerEnterHandler, IPointe
     private CardMode cardMode;
 
 
-    public void OnPointerDown(PointerEventData eventData) //카드 클릭 시
+    public void OnPointerDown(PointerEventData eventData) //카드 클릭 시 발생
     {
         switch (cardMode)
         {
@@ -49,13 +49,20 @@ public class CardUI : BaseUI, IPointerDownHandler, IPointerEnterHandler, IPointe
                 break;
             case CardMode.Battle:
                 break;
-            case CardMode.EventDiscard:
+            case CardMode.EventDiscard: //버림 (이벤트)
                 PlayerData.Instance.Deck.Remove(card);
                 UIManager.Instance.HideUI("LibraryUI"); //버림 후에는 바로 라이브러리 UI 닫기.
                 break;
-            case CardMode.ShopDiscard:
-                PlayerData.Instance.Deck.Remove(card); //버리고 라이브러리 UI 안닫음.
-                PlayerData.Instance.DataChanged(); //덱 변경 알려서 라이브러리를 새로고침하도록!
+            case CardMode.ShopDiscard: //버림 (상점)
+                int newMoney = PlayerData.Instance.Money - ShopData.Instance.DiscardCost;
+                if(newMoney > 0) //돈이 남은 경우만
+                {
+                    PlayerData.Instance.Deck.Remove(card); //버리고 라이브러리 UI 안닫음.
+                    PlayerData.Instance.Money = newMoney; //제거 비용만큼 플레이어 돈에서 차감하기
+                    PlayerData.Instance.DataChanged(); //덱 변경 알려서 라이브러리를 새로고침하도록!
+                    ShopData.Instance.DiscardCost += 25; //삭제 비용 25 추가
+                    ShopData.Instance.DataChanged(); //상점 데이터 변경 알려서 삭제비용 새로고침하도록!
+                }
                 break;
         }
     }
