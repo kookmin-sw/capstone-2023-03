@@ -96,7 +96,7 @@ public class LibraryUI : BaseUI
                 showedCardList = PlayerData.Instance.Deck;
                 BackButton.gameObject.SetActive(false);
                 break;
-            case LibraryMode.ShopDiscard: //현재 덱 보여주기 + 이벤트로 클릭하는 만큼 버리기
+            case LibraryMode.ShopDiscard: //현재 덱 보여주기 + 이벤트로 클릭하는 만큼 버리기 + 버리든 말든 자유
                 showedCardList = PlayerData.Instance.Deck;
                 break;
         }
@@ -132,10 +132,15 @@ public class LibraryUI : BaseUI
                         .GetComponent<CardUI>()
                         .ShowCardData(cardList[i], CardMode.Library); //카드를 라이브러리 용으로 소환(클릭 이벤트 X)
                     break;
-                case LibraryMode.EventDiscard: //현재 덱 보여주기 + 카드 버리기
+                case LibraryMode.EventDiscard: //현재 덱 보여주기 + 카드 버리기 1회
                     AssetLoader.Instance.Instantiate("Prefabs/UI/CardUI", deckDisplayer.transform)
                         .GetComponent<CardUI>()
                         .ShowCardData(cardList[i], CardMode.EventDiscard); //카드를 버리기 모드로 소환(클릭 시 버리기 이벤트)
+                    break;
+                case LibraryMode.ShopDiscard: //현재 덱 보여주기 + 카드 버리기 제한X
+                    AssetLoader.Instance.Instantiate("Prefabs/UI/CardUI", deckDisplayer.transform)
+                        .GetComponent<CardUI>()
+                        .ShowCardData(cardList[i], CardMode.ShopDiscard); //카드를 버리기 모드로 소환(클릭 시 상점 버리기 모드)
                     break;
             }
         }
@@ -199,7 +204,15 @@ public class LibraryUI : BaseUI
     //나가기 버튼, UI 닫기
     public void BackButtonClick()
     {
-        UIManager.Instance.HideUI("LibraryUI");
+        switch(libraryMode)
+        {
+            case LibraryMode.ShopDiscard:
+                UIManager.Instance.HideUI("ShopDiscardUI");
+                break;
+            default:
+                UIManager.Instance.HideUI("LibraryUI");
+                break;
+        }
     }
 
     private void Close(InputAction.CallbackContext context)

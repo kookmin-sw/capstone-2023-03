@@ -1,10 +1,13 @@
 using DataStructs;
+using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class ShopData : MonoBehaviour
+public class ShopData : Singleton<ShopData>
 {
 
 
@@ -12,23 +15,31 @@ public class ShopData : MonoBehaviour
     public List<CardStruct> ShopCardsList { get; set; } = new List<CardStruct>(5);
     
     //카드 리롤 시 드는 비용
-    public int RerollMoney { get; set; }
+    public int RerollCost { get; set; }
     
     //카드 제거 시 드는 비용
-    public int DiscardMoney { get; set; }
+    public int DiscardCost { get; set; }
 
-    public void Awake()
+    public event Action OnDataChange;
+
+    protected override void Awake()
     {
+        base.Awake();
         ClearShopData();
     }
 
-    public void OnEnable()
+    private void OnEnable()
     {
         StageManager.Instance.OnLevelClear += ClearShopData; //레벨 클리어 시 이거 실행해서 상점 데이터 초기화
     }
-    public void OnDisable()
+    private void OnDisable()
     {
         StageManager.Instance.OnLevelClear -= ClearShopData;
+    }
+
+    public void DataChanged()
+    {
+        OnDataChange?.Invoke(); 
     }
 
     //레벨 바뀔 때마다 상점 데이터 초기화
@@ -48,8 +59,8 @@ public class ShopData : MonoBehaviour
             ShopCardsList.Add(shopCardsPool[index]); 
         }
 
-        RerollMoney = 50;
-        DiscardMoney = 75;
+        RerollCost = 50;
+        DiscardCost = 75;
     }
 
 }
