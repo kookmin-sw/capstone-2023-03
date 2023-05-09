@@ -13,8 +13,8 @@ public class RestSymbol : RoomSymbol
     {
         base.TalkEnd();
         PlayerData.Instance.CurrentHp = (int)Mathf.Min(
-            PlayerData.Instance.CurrentHp + (PlayerData.Instance.MaxHp * 0.3f),
+            PlayerData.Instance.CurrentHp + (PlayerData.Instance.MaxHp * 0.25f),
             PlayerData.Instance.MaxHp
-        ); //HP 회복: 현재 HP에서 MaxHp의 3할 회복
+        ); //HP 회복: 현재 HP에서 MaxHp의 2.5할 회복
     }
 }
