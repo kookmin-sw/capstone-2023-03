@@ -74,7 +74,7 @@ public class EventSymbol : RoomSymbol
                 }
                 break;
             case 303: //카드 버림 이벤트 ㅇ
-                UIManager.Instance.ShowUI("LibraryUI").GetComponent<LibraryUI>().Init(LibraryMode.Discard);
+                UIManager.Instance.ShowUI("LibraryUI").GetComponent<LibraryUI>().Init(LibraryMode.EventDiscard);
                 break;
             case 304: //습격당함 ㅇ
                 

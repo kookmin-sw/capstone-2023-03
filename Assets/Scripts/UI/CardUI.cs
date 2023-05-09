@@ -11,7 +11,8 @@ public enum CardMode
     Library, //라이브러리에서 카드UI 모드. 클릭/포인터 시 반응 없음
     Select, //카드 보상 UI에서 카드UI 모드. 클릭/포인터 시 카드 획득
     Battle,
-    Discard //카드 버리기 이벤트에서 카드UI 모드. 클릭/포인터 시 카드 버리기
+    EventDiscard, //카드 버리기 이벤트에서 카드UI 모드. 클릭/포인터 시 카드 버리기
+    ShopDiscard //카드 버리기 상점에서 카드UI 모드. 클릭/포인터 시 카드 버리고, 여러 장 버릴 수 있다.
 }
 
 public class CardUI : BaseUI, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
@@ -48,9 +49,13 @@ public class CardUI : BaseUI, IPointerDownHandler, IPointerEnterHandler, IPointe
                 break;
             case CardMode.Battle:
                 break;
-            case CardMode.Discard:
-                PlayerData.Instance.Deck.Remove(card);  
+            case CardMode.EventDiscard:
+                PlayerData.Instance.Deck.Remove(card);
                 UIManager.Instance.HideUI("LibraryUI"); //버림 후에는 바로 라이브러리 UI 닫기.
+                break;
+            case CardMode.ShopDiscard:
+                PlayerData.Instance.Deck.Remove(card); //버리고 라이브러리 UI 안닫음.
+                PlayerData.Instance.DataChanged(); //덱 변경 알려서 라이브러리를 새로고침하도록!
                 break;
         }
     }
@@ -66,7 +71,8 @@ public class CardUI : BaseUI, IPointerDownHandler, IPointerEnterHandler, IPointe
                 break;
             case CardMode.Battle:
                 break;
-            case CardMode.Discard:
+            case CardMode.EventDiscard:
+            case CardMode.ShopDiscard:
                 transform.localScale = originalScale * scaleOnHover;
                 break;
         }
@@ -83,7 +89,8 @@ public class CardUI : BaseUI, IPointerDownHandler, IPointerEnterHandler, IPointe
                 break;
             case CardMode.Battle:
                 break;
-            case CardMode.Discard:
+            case CardMode.EventDiscard:
+            case CardMode.ShopDiscard:
                 transform.localScale = originalScale;
                 break;
         }

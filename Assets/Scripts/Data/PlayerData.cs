@@ -98,6 +98,12 @@ public class PlayerData : Singleton<PlayerData>
         DontDestroyOnLoad(this);
     }
 
+    public void DataChanged()
+    {
+        OnDataChange?.Invoke();
+    }
+
+
     public void LoadPlayerData()
     {
         //초기 데이터 설정 함수
