@@ -74,11 +74,11 @@ public class ShopPurchaseUI : MonoBehaviour
             switch (showedCardList[i].rarity)
             {
                 case 0:
-                    price = 40; break;
+                    price = Random.Range(8, 11) * 5; break; //40, 45, 50
                 case 1:
-                    price = 65; break;
+                    price = Random.Range(13, 16) * 5; break; //65, 70, 75
                 case 2:
-                    price = 120; break;
+                    price = Random.Range(24, 30) * 5; break; //120, 125... 145, 150
                 default:
                     price = 99999; break;
             }
