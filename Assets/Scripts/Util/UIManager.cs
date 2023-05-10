@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
+
+//대화면 UI 소환
+//UI 내부의 UI들은 이걸로 부르면 안딤
 public class UIManager : Singleton<UIManager>
 {
     //소환한 모든 UI의 루트인 게임오브젝트

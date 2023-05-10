@@ -6,15 +6,8 @@ using UnityEngine.EventSystems;
 using System;
 
 
-public enum CardMode
-{
-    Library, //라이브러리에서 카드UI 모드. 클릭/포인터 시 반응 없음
-    Select, //카드 보상 UI에서 카드UI 모드. 클릭/포인터 시 카드 획득
-    Battle,
-    EventDiscard, //카드 버리기 이벤트에서 카드UI 모드. 클릭/포인터 시 카드 버리기
-    ShopDiscard //카드 버리기 상점에서 카드UI 모드. 클릭/포인터 시 카드 버리고, 여러 장 버릴 수 있다.
-}
 
+//카드 UI는 캔버스가 없으므로(있는 캔버스 위에 띄우는 UI임) UIManager로 호출하면 안됨 주의
 public class CardUI : BaseUI, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
 
@@ -33,8 +26,6 @@ public class CardUI : BaseUI, IPointerDownHandler, IPointerEnterHandler, IPointe
 
     private float scaleOnHover = 1.1f;
     private Vector3 originalScale = Vector3.one;
-
-    private CardMode cardMode;
 
     public Action<CardUI> OnCardClicked; //카드 UI 클릭시 실행될 함수들. 다른 UI에서 여기에 등록할 수 있음
     public Action<CardUI> OnCardEntered; //카드 UI로 마우스가 들어올 시 실행될 함수들. 다른 UI에서 여기에 등록할 수 있음
