@@ -518,7 +518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 125720668382795775, guid: 4f9fd068190c811409f838924d696f56, type: 3}
       propertyPath: m_text
-      value: "\uBC84\uB9AC\uAE30\n"
+      value: "\uB098\uAC00\uAE30\n"
       objectReference: {fileID: 0}
     - target: {fileID: 125720668382795775, guid: 4f9fd068190c811409f838924d696f56, type: 3}
       propertyPath: m_sharedMaterial
