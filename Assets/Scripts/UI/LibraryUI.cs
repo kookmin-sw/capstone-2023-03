@@ -154,7 +154,7 @@ public class LibraryUI : BaseUI
                         {
                             PlayerData.Instance.Deck.Remove(cardUI.Card); //해당 카드를 버리고 라이브러리 UI 안닫음.
                             PlayerData.Instance.Money = newMoney; //제거 비용만큼 플레이어 돈에서 차감하기
-                            PlayerData.Instance.DataChanged(); //덱 변경 알려서 라이브러리를 새로고침하도록!
+                            PlayerData.Instance.DeckChanged(); //덱 변경 알려서 라이브러리를 새로고침하도록!
                             ShopData.Instance.DiscardCost += 25; //삭제 비용 25 추가
                             ShopData.Instance.DataChanged(); //상점 데이터 변경 알려서 삭제비용 새로고침하도록!
                         }

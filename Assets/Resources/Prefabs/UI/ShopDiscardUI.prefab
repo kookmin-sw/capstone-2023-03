@@ -926,7 +926,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1980, y: 1020}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1073,6 +1073,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: LibraryUI
       objectReference: {fileID: 0}
+    - target: {fileID: 124377110690097988, guid: 70febf457149e4f4c8121437a15f53c1, type: 3}
+      propertyPath: m_Spacing.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 124377110690097988, guid: 70febf457149e4f4c8121437a15f53c1, type: 3}
+      propertyPath: m_Spacing.y
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 124377110690097988, guid: 70febf457149e4f4c8121437a15f53c1, type: 3}
+      propertyPath: m_CellSize.x
+      value: 280
+      objectReference: {fileID: 0}
+    - target: {fileID: 124377110690097988, guid: 70febf457149e4f4c8121437a15f53c1, type: 3}
+      propertyPath: m_CellSize.y
+      value: 360
+      objectReference: {fileID: 0}
     - target: {fileID: 124377110690097989, guid: 70febf457149e4f4c8121437a15f53c1, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0.005126953
@@ -1084,6 +1100,14 @@ PrefabInstance:
     - target: {fileID: 6853037404283578933, guid: 70febf457149e4f4c8121437a15f53c1, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 2.999878
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098818749846954042, guid: 70febf457149e4f4c8121437a15f53c1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -73.085
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098818749846954042, guid: 70febf457149e4f4c8121437a15f53c1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 48
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70febf457149e4f4c8121437a15f53c1, type: 3}

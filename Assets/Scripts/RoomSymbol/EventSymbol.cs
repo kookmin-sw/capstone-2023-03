@@ -48,10 +48,17 @@ public class EventSymbol : RoomSymbol
                         () => {
                             PlayerData.Instance.Viewers += takeViewers;
                             PlayerData.Instance.Money -= giveMoney;
+                            if (PlayerData.Instance.CheckLevelUp()) //레벨업 체크
+                            {
+                                UIManager.Instance.ShowUI("CardSelectUI")
+                                    .GetComponent<CardSelectUI>()
+                                    .LevelUpReward();
+                            } 
                         }, //예 선택하면 돈 감소, 애청자 증가
                         null //아니오 선택하면 잉어킹 튀어오르기
                     );
                 }
+
                 break;
             case 302: //애청자 판매 이벤트 ㅇ
 
