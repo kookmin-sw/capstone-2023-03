@@ -19,7 +19,7 @@ public class CardUI : BaseUI, IPointerDownHandler, IPointerEnterHandler, IPointe
 {
 
     //UI와 연결된 카드 객체
-    private CardStruct card;
+    public CardStruct Card;
 
     //카드 UI의 이미지, 텍스트 오브젝트들
     [SerializeField]
@@ -36,87 +36,39 @@ public class CardUI : BaseUI, IPointerDownHandler, IPointerEnterHandler, IPointe
 
     private CardMode cardMode;
 
+    public Action<CardUI> OnCardClicked; //카드 UI 클릭시 실행될 함수들. 다른 UI에서 여기에 등록할 수 있음
+    public Action<CardUI> OnCardEntered; //카드 UI로 마우스가 들어올 시 실행될 함수들. 다른 UI에서 여기에 등록할 수 있음
+    public Action<CardUI> OnCardExited; //카드 UI에서 마우스가 나갈 시 함수들. 다른 UI에서 여기에 등록할 수 있음
 
-    public void OnPointerDown(PointerEventData eventData) //카드 클릭 시 발생
+
+    public void OnPointerDown(PointerEventData eventData) //카드 클릭 시 감지
     {
-        switch (cardMode)
-        {
-            case CardMode.Library:
-                break;
-            case CardMode.Select:
-                PlayerData.Instance.Deck.Add(card);
-                UIManager.Instance.HideUI("CardSelectUI"); //획득 후에는 바로 카드 선택 UI 닫기.
-                break;
-            case CardMode.Battle:
-                break;
-            case CardMode.EventDiscard: //버림 (이벤트)
-                PlayerData.Instance.Deck.Remove(card);
-                UIManager.Instance.HideUI("LibraryUI"); //버림 후에는 바로 라이브러리 UI 닫기.
-                break;
-            case CardMode.ShopDiscard: //버림 (상점)
-                int newMoney = PlayerData.Instance.Money - ShopData.Instance.DiscardCost;
-                if(newMoney > 0) //돈이 남은 경우만
-                {
-                    PlayerData.Instance.Deck.Remove(card); //버리고 라이브러리 UI 안닫음.
-                    PlayerData.Instance.Money = newMoney; //제거 비용만큼 플레이어 돈에서 차감하기
-                    PlayerData.Instance.DataChanged(); //덱 변경 알려서 라이브러리를 새로고침하도록!
-                    ShopData.Instance.DiscardCost += 25; //삭제 비용 25 추가
-                    ShopData.Instance.DataChanged(); //상점 데이터 변경 알려서 삭제비용 새로고침하도록!
-                }
-                break;
-        }
+        OnCardClicked?.Invoke(this);
     }
 
-    public void OnPointerEnter(PointerEventData eventData) //카드 마우스 올릴 시
+    public void OnPointerEnter(PointerEventData eventData) //카드 마우스 올릴 시 감지
     {
-        switch (cardMode)
-        {
-            case CardMode.Library:
-                break;
-            case CardMode.Select:
-                transform.localScale = originalScale * scaleOnHover; //확대
-                break;
-            case CardMode.Battle:
-                break;
-            case CardMode.EventDiscard:
-            case CardMode.ShopDiscard:
-                transform.localScale = originalScale * scaleOnHover;
-                break;
-        }
+        OnCardEntered?.Invoke(this);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public void OnPointerExit(PointerEventData eventData) //카드 마우스 탈출 시 감지
     {
-        switch (cardMode)
-        {
-            case CardMode.Library:
-                break;
-            case CardMode.Select:
-                transform.localScale = originalScale; //확대 되돌리기
-                break;
-            case CardMode.Battle:
-                break;
-            case CardMode.EventDiscard:
-            case CardMode.ShopDiscard:
-                transform.localScale = originalScale;
-                break;
-        }
+
+        OnCardExited?.Invoke(this); 
     }
 
 
 
     //인자로 받은 카드의 데이터를 UI로 보여주는 함수
-    public void ShowCardData(CardStruct showCard, CardMode mode)
+    public void ShowCardData(CardStruct showCard)
     {
-        card = showCard;
-        cardMode = mode;
-        nameText.text = card.name;
-        descriptionText.text = card.description;
-        costText.text =  card.cost == 99 ? "X" : card.cost.ToString();
+        Card = showCard;
+        nameText.text = Card.name;
+        descriptionText.text = Card.description;
+        costText.text =  Card.cost == 99 ? "X" : Card.cost.ToString();
 
 
-
-        switch(card.rarity)
+        switch(Card.rarity)
         {
             case 0:
                 nameText.color = Color.white; break;
@@ -127,11 +79,22 @@ public class CardUI : BaseUI, IPointerDownHandler, IPointerEnterHandler, IPointe
         }
 
         //카드에 속성에 연결된 이미지 가져오기
-        if (card.attribute != null && card.attribute != "") image.sprite = GameData.Instance.SpriteDic[card.attribute];
+        if (Card.attribute != null && Card.attribute != "") image.sprite = GameData.Instance.SpriteDic[Card.attribute];
         else
         {  
             //무속성인 경우는 다른 필드로 이미지 결정 
         }
 
     }
+
+    public void CardBig() //해당 카드 UI 확대
+    {
+        transform.localScale = Vector3.one * 1.1f; //확대
+    }
+
+    public void CardSmall() //해당 카드 UI 축소
+    {
+        transform.localScale = Vector3.one; //축소
+    }
+
 }
