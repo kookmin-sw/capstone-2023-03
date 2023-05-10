@@ -19,7 +19,7 @@ public class EnemySymbol : RoomSymbol
                 () => {
                     UIManager.Instance.ShowUI("DialogUI")
                     .GetComponent<DialogUI>()
-                    .Init(index + Define.FIGHT_INDEX, FightEnd);
+                    .Init(index + Define.FIGHT_INDEX, Fight);
                 } 
             );
     }
@@ -41,7 +41,8 @@ public class EnemySymbol : RoomSymbol
 
     public void Fight()
     {
-        SceneLoader.Instance.LoadScene("BattleScene");
+        SoundManager.Instance.Play("Sounds/BattleBgm", Sound.Bgm);
+        UIManager.Insatance.ShowUI("BattleUI").GetComponent<BattleUI>();
     }
 
     public void FightEnd()
