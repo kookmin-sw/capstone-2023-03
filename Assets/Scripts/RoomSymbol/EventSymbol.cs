@@ -26,7 +26,7 @@ public class EventSymbol : RoomSymbol
 
     public override void TalkEnd()
     {
-/*        base.TalkEnd();*/
+        base.TalkEnd();
 
         switch (index)
         {
