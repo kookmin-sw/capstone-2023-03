@@ -16,7 +16,7 @@ public class StageManager : Singleton<StageManager>
     public Define.ThemeType Theme { get; set; } //현재 스테이지의 테마
     public bool NegoInLevel { get; set; } = false; //이 레벨에서 협상을 했는지  
 
-    private static readonly int roomInterval = 2; //방 사이 간격
+    private static readonly int roomInterval = 20; //방 사이 간격
     private static Vector2 roomSize = new Vector2(10, 10); //방 크기
 
     private int roomCount; //현재 맵의 방 숫자

@@ -43,13 +43,13 @@ public class LibraryUI : BaseUI
 
     private void OnEnable()
     {
-        InputActions.keyActions.UI.Menu.started += Close;
+        InputActions.keyActions.UI.Deck.started += Close;
         PlayerData.Instance.OnDataChange += RefreshLibrary; //이거는 덱이 바뀔 때마다 그것을 감지하여 카드 UI를 새로고침하기 위함.
     }
 
     private void OnDisable()
     {
-        InputActions.keyActions.UI.Menu.started -= Close;
+        InputActions.keyActions.UI.Deck.started -= Close;
         PlayerData.Instance.OnDataChange -= RefreshLibrary;
     }
 
