@@ -7,12 +7,21 @@ using UnityEngine.UI;
 using DataStructs;
 
 
+
+public enum LibraryMode
+{
+    Library, //일반 라이브러리 모드
+    Deck, //플레이어 덱 보여주기 모드
+    EventDiscard, //플레이어 덱 보여주기 + 이벤트로 카드 버리기 모드
+    ShopDiscard //플레이어 덱 보여주기 + 상점에서 카드 버리기 모드
+}
+
 //C# LInq 사용: 데이터 쿼리를 C#에서 스크립트로 사용할 수 있도록 하는 기술.
 //배열 및 다른 컬렉션에서 쉽게 원하는 구역만 가져올 수 있음.
 
 public class LibraryUI : BaseUI
 {
-    private bool showAllCards = true;
+    private LibraryMode libraryMode;
     private int cardsPerPage = 8;
     private int currentPage = 0;
 
@@ -26,6 +35,8 @@ public class LibraryUI : BaseUI
     private Button sortByCostButton;
     [SerializeField]
     private Button sortByNameButton;
+    [SerializeField]
+    private Button BackButton;
 
     private List<CardStruct> showedCardList= new List<CardStruct>();
 
@@ -33,47 +44,63 @@ public class LibraryUI : BaseUI
     private void OnEnable()
     {
         InputActions.keyActions.UI.Menu.started += Close;
+        PlayerData.Instance.OnDataChange += RefreshLibrary; //이거는 덱이 바뀔 때마다 그것을 감지하여 카드 UI를 새로고침하기 위함.
     }
 
     private void OnDisable()
     {
         InputActions.keyActions.UI.Menu.started -= Close;
+        PlayerData.Instance.OnDataChange -= RefreshLibrary;
     }
 
-    public void Init(bool showAllCards)
+    public void Init(LibraryMode libraryMode = LibraryMode.Library)
     {
-        this.showAllCards = showAllCards;
+        this.libraryMode = libraryMode;
 
-        //카드 전체를 보여줄지, 플레이어의 카드를 보여줄지 택 1
-        if (showAllCards) //공격, 스킬, 애청자 카드 전부 보여주기
+        switch (libraryMode) //공격, 스킬, 애청자 카드 전부 보여주기
         {
-            showedCardList = GameData.Instance.CardList
-            .Where(card => card.type == "Attack" || card.type == "Skill" || card.type == "Viewer")
-            .ToList();
-        }
-        else
-        {
-            showedCardList = PlayerData.Instance.Deck;
-        }
+            case LibraryMode.Library:
+                showedCardList = GameData.Instance.CardList
+                .Where(card => card.type == "Attack" || card.type == "Skill" || card.type == "Viewer")
+                .ToList();
+                break;
+            case LibraryMode.Deck: //현재 덱 보여주기
+                showedCardList = PlayerData.Instance.Deck;
+                break;
+            case LibraryMode.EventDiscard: //현재 덱 보여주기 + 이벤트로 카드 한 장 버리기
+                showedCardList = PlayerData.Instance.Deck;
+                BackButton.gameObject.SetActive(false);
+                break;
+            case LibraryMode.ShopDiscard: //현재 덱 보여주기 + 이벤트로 클릭하는 만큼 버리기
+                showedCardList = PlayerData.Instance.Deck;
+                break;
 
+        }
         ShowCards();
         SortByCostButtonClick();
     }
 
-    public void ShowCards()
+    public void RefreshLibrary() //덱이 바뀌었을 때 호출되어, 카드 UI를 새로고침한다.
     {
-        //Linq를 사용. 현재 페이지에 나올 분량만큼 카드 리스트에서 쿼리해서 보여주기
-        List<CardStruct> cardList = showedCardList.Skip(currentPage * cardsPerPage).Take(cardsPerPage).ToList();
-
-        for (int i = 0; i < cardList.Count; i++)
+        switch (libraryMode) //공격, 스킬, 애청자 카드 전부 보여주기
         {
-            AssetLoader.Instance.Instantiate("Prefabs/UI/CardUI", deckDisplayer.transform)
-                .GetComponent<CardUI>()
-                .ShowCardData(cardList[i], CardMode.Library);
+            case LibraryMode.Library:
+                showedCardList = GameData.Instance.CardList
+                .Where(card => card.type == "Attack" || card.type == "Skill" || card.type == "Viewer")
+                .ToList();
+                break;
+            case LibraryMode.Deck: //현재 덱 보여주기
+                showedCardList = PlayerData.Instance.Deck;
+                break;
+            case LibraryMode.EventDiscard: //현재 덱 보여주기 + 이벤트로 카드 한 장 버리기
+                showedCardList = PlayerData.Instance.Deck;
+                break;
+            case LibraryMode.ShopDiscard: //현재 덱 보여주기 + 이벤트로 클릭하는 만큼 버리기 + 버리든 말든 자유
+                showedCardList = PlayerData.Instance.Deck;
+                break;
         }
-
-        UpdateButtons();
-
+        ShowCards();
+        SortByCostButtonClick();
     }
 
     //표시중인 카드 제거
@@ -83,6 +110,61 @@ public class LibraryUI : BaseUI
         {
             AssetLoader.Instance.Destroy(deckDisplayer.transform.GetChild(i).gameObject);
         }
+    }
+
+
+    public void ShowCards()
+    {
+
+        ClearCards(); //전에 표시되던 카드 제거
+
+        //Linq를 사용. 현재 페이지에 나올 분량만큼 카드 리스트에서 쿼리해서 보여주기
+        List<CardStruct> cardList = showedCardList.Skip(currentPage * cardsPerPage).Take(cardsPerPage).ToList();
+
+        for (int i = 0; i < cardList.Count; i++)
+        {
+
+            CardUI cardUI;
+
+            switch (libraryMode)
+            {
+                case LibraryMode.Library: //공격, 스킬, 애청자 카드 전부 보여주기
+                case LibraryMode.Deck: //현재 덱 보여주기
+                    cardUI = AssetLoader.Instance.Instantiate("Prefabs/UI/CardUI", deckDisplayer.transform).GetComponent<CardUI>();
+                    cardUI.ShowCardData(cardList[i]); //카드를 그냥 소환
+                    break;
+                case LibraryMode.EventDiscard: //현재 덱 보여주기 + 카드 버리기 1회
+                    cardUI = AssetLoader.Instance.Instantiate("Prefabs/UI/CardUI", deckDisplayer.transform).GetComponent<CardUI>();
+                    cardUI.ShowCardData(cardList[i]); //카드를 소환
+                    cardUI.OnCardClicked += (cardUI) => //카드 클릭 시 하단의 이벤트 발동하도록 등록
+                    {
+                        PlayerData.Instance.Deck.Remove(cardUI.Card); //해당 카드 UI의 카드를 덱에서 제거
+                        UIManager.Instance.HideUI("LibraryUI"); //버림 후에는 바로 라이브러리 UI 닫기.
+                    };
+                    cardUI.OnCardEntered += (cardUI) => { cardUI.CardBig(); }; //카드에 마우스 들어갈 시 해당 카드 확대 수행하도록 등록.
+                    cardUI.OnCardExited += (cardUI) => { cardUI.CardSmall(); }; //카드에서 마우스 나갈 시 해당 카드 축소 수행하도록 등록.
+                    break;
+                case LibraryMode.ShopDiscard: //현재 덱 보여주기 + 카드 버리기 제한X
+                    cardUI = AssetLoader.Instance.Instantiate("Prefabs/UI/CardUI", deckDisplayer.transform).GetComponent<CardUI>();
+                    cardUI.ShowCardData(cardList[i]); //카드를 버리기 모드로 소환(클릭 시 상점 버리기 모드)
+                    cardUI.OnCardClicked += (cardUI) => //카드 클릭 시 하단의 이벤트 발동하도록 등록
+                    {
+                        int newMoney = PlayerData.Instance.Money - ShopData.Instance.DiscardCost;
+                        if (newMoney > 0) //돈이 남은 경우만
+                        {
+                            PlayerData.Instance.Deck.Remove(cardUI.Card); //해당 카드를 버리고 라이브러리 UI 안닫음.
+                            PlayerData.Instance.Money = newMoney; //제거 비용만큼 플레이어 돈에서 차감하기
+                            PlayerData.Instance.DataChanged(); //덱 변경 알려서 라이브러리를 새로고침하도록!
+                            ShopData.Instance.DiscardCost += 25; //삭제 비용 25 추가
+                            ShopData.Instance.DataChanged(); //상점 데이터 변경 알려서 삭제비용 새로고침하도록!
+                        }
+                    };
+                    cardUI.OnCardEntered += (cardUI) => { cardUI.CardBig(); }; //카드에 마우스 들어갈 시 해당 카드 확대 수행하도록 등록.
+                    cardUI.OnCardExited += (cardUI) => { cardUI.CardSmall(); }; //카드에서 마우스 나갈 시 해당 카드 축소 수행하도록 등록.
+                    break;
+            }
+        }
+        UpdateButtons();
     }
     
     // 이전/다음 버튼 활성화
@@ -96,7 +178,6 @@ public class LibraryUI : BaseUI
     public void NextButtonClick()
     {
         currentPage++;
-        ClearCards();
         ShowCards();
         UpdateButtons();
 
@@ -106,7 +187,6 @@ public class LibraryUI : BaseUI
     public void PreviousButtonClick()
     {
         currentPage--;
-        ClearCards();
         ShowCards();
         UpdateButtons();
     }
@@ -122,7 +202,6 @@ public class LibraryUI : BaseUI
 
         showedCardList = showedCardList.OrderBy(card => card.cost).ToList();
         currentPage = 0;
-        ClearCards();
         ShowCards();
         UpdateButtons();
     }
@@ -138,7 +217,6 @@ public class LibraryUI : BaseUI
 
         showedCardList = showedCardList.OrderBy(card => card.name).ToList();
         currentPage = 0;
-        ClearCards();
         ShowCards();
         UpdateButtons();
     }
@@ -146,10 +224,17 @@ public class LibraryUI : BaseUI
     //나가기 버튼, UI 닫기
     public void BackButtonClick()
     {
-        UIManager.Instance.HideUI("LibraryUI");
+        switch(libraryMode)
+        {
+            case LibraryMode.ShopDiscard:
+                UIManager.Instance.HideUI("ShopDiscardUI");
+                break;
+            default:
+                UIManager.Instance.HideUI("LibraryUI");
+                break;
+        }
     }
 
-    //이건 수정해야 한다... 타이틀 화면에서도 적용되면 안되는데. 컨트롤러를 만들어서, 인게임에서는 특정 키로 열 수 있게 하는 게?
     private void Close(InputAction.CallbackContext context)
     {
         UIManager.Instance.HideUI("LibraryUI");

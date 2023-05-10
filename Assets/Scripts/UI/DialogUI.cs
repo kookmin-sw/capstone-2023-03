@@ -12,6 +12,7 @@ using DataStructs;
 
 public class DialogUI : BaseUI, IPointerDownHandler
 {
+    private bool isInited = false;
     private int dialogIndex;
     private int lineCount;
     private LineStruct currentLine;
@@ -46,7 +47,10 @@ public class DialogUI : BaseUI, IPointerDownHandler
     //엔터 키 누를 시 작동
     public void NextDialogByCheck(InputAction.CallbackContext context)
     {
-        NextDialog();
+        if(isInited == true)
+        {
+            NextDialog();
+        }
     }
 
     //처음 대화창이 열릴 때 초기화
@@ -55,7 +59,39 @@ public class DialogUI : BaseUI, IPointerDownHandler
         dialogIndex = index;
         CloseAction = CloseCallback;
         lineCount = 0;
+        isInited = true;
         NextDialog();
+    }
+
+    //대화창 초기화 - 문자열 인자를 받은 단문 대화 버전
+    public void Init(string line, string portrait = null, string name = null, Action CloseCallback = null)
+    {
+        dialogIndex = -1;
+
+        if (portrait == null || portrait == "")
+        {
+            this.portrait.gameObject.SetActive(false);
+        }
+        else
+        {
+            this.portrait.gameObject.SetActive(true);
+            this.portrait.sprite = GameData.Instance.SpriteDic[portrait];
+        }
+
+        if (name == null || name == "")
+        {
+            nameText.transform.parent.gameObject.SetActive(false);
+        }
+        else
+        {
+            nameText.transform.parent.gameObject.SetActive(true);
+            nameText.text = name;
+        }
+
+        lineText.text = line;
+        isInited = true;
+        CloseAction = CloseCallback; 
+
     }
 
     //대화창을 진행시키는 함수. 대화 데이터 딕셔너리에서 대화 내용을 가져오고, 가져올 내용이 더이상 없으면 대화창을 닫는다.
@@ -63,7 +99,7 @@ public class DialogUI : BaseUI, IPointerDownHandler
     public void NextDialog()
     {
         //다음 대화가 없으면 창 닫고 종료
-        if (GameData.Instance.DialogDic[dialogIndex].Count == lineCount) 
+        if (dialogIndex == -1 || GameData.Instance.DialogDic[dialogIndex].Count == lineCount) 
         {
             UIManager.Instance.HideUI("DialogUI");
             CloseAction?.Invoke();
@@ -80,15 +116,17 @@ public class DialogUI : BaseUI, IPointerDownHandler
         }
         else
         {
+            portrait.gameObject.SetActive(true);
             portrait.sprite = GameData.Instance.SpriteDic[currentLine.portrait];
         }
 
-        if(currentLine.name == null || currentLine.portrait == "")
+        if(currentLine.name == null || currentLine.name == "")
         {
             nameText.transform.parent.gameObject.SetActive(false);  
         }
         else
         {
+            nameText.transform.parent.gameObject.SetActive(true);
             nameText.text = currentLine.name;
         }
         lineText.text = currentLine.line;

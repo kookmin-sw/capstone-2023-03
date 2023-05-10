@@ -65,7 +65,92 @@
     "name": "상점 주인",
     "line": "저는 상점 주인입니다"
   },
-  { "index": 300, "portrait": "", "name": "", "line": "이벤트가 발생했다!" },
+  {
+    "index": 300,
+    "portrait": "",
+    "name": "",
+    "line": "열렬한 시청자들이 카드 도네를 보내왔다!"
+  },
+  {
+    "index": 300,
+    "portrait": "Protagonist",
+    "name": "아이리",
+    "line": "이런 귀한 걸 준다고? 고마워!"
+  },
+  {
+    "index": 301,
+    "portrait": "",
+    "name": "",
+    "line": "애청자를 줄 테니 돈을 내놓으라는 이상한 목소리가 들린다…"
+  },
+  {
+    "index": 302,
+    "portrait": "",
+    "name": "",
+    "line": "돈을 줄 테니 애청자를 내놓으라는 이상한 목소리가 들린다…"
+  },
+  {
+    "index": 303,
+    "portrait": "Protagonist",
+    "name": "아이리",
+    "line": "생각해보니, 카드가 너무 많은 것도 별로인 것 같네."
+  },
+  {
+    "index": 303,
+    "portrait": "Protagonist",
+    "name": "아이리",
+    "line": "전략을 위해서는 카드를 몇 개 버리는 것도 나쁘지 않겠어."
+  },
+  {
+    "index": 303,
+    "portrait": "Protagonist",
+    "name": "아이리",
+    "line": "덱에서 카드를 하나 클릭해서 버리도록 하자."
+  },
+  {
+    "index": 304,
+    "portrait": "",
+    "name": "",
+    "line": "다른 참가자의 시청자들이 카드를 들고 습격해왔다!"
+  },
+  {
+    "index": 304,
+    "portrait": "Protagonist",
+    "name": "아이리",
+    "line": "으아아~"
+  },
+  {
+    "index": 305,
+    "portrait": "",
+    "name": "",
+    "line": "방에 들어와 보니, 이미 시청자들이 방을 정리해놓고 쉼터를 만들어 놓은 상태다."
+  },
+  {
+    "index": 305,
+    "portrait": "Protagonist",
+    "name": "아이리",
+    "line": "다들 고마워!"
+  },
+  {
+    "index": 306,
+    "portrait": "",
+    "name": "",
+    "line": "방에 들어와 보니, 갑자기 내 시청자들이 카드 구매에 필요한 돈을 바치겠다고 한다."
+  },
+  {
+    "index": 306,
+    "portrait": "Protagonist",
+    "name": "아이리",
+    "line": "다들 고마워!"
+  },
+  {
+    "index": 307,
+    "portrait": "Enemy1",
+    "name": "레블",
+    "line": "혹시 이곳에서 같이 싸우게 해 주실 수 있나요?"
+  },
+  { "index": 308, "portrait": "Enemy1", "name": "메구", "line": "폭렬!!" },
+  { "index": 309, "portrait": "Enemy1", "name": "카모", "line": "뭐임?" },
   {
     "index": 400,
     "portrait": "Enemy1",

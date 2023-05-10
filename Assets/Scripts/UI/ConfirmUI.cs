@@ -11,7 +11,7 @@ public class ConfirmUI : BaseUI
     [SerializeField]
     Action CloseAction;
 
-    public void Init(string text, Action CloseCallback)
+    public void Init(string text, Action CloseCallback = null)
     {
         message.text = text;    
         CloseAction = CloseCallback;
@@ -20,6 +20,6 @@ public class ConfirmUI : BaseUI
     public void ConfirmClick()
     {
         UIManager.Instance.HideUI("ConfirmUI");
-        CloseAction.Invoke();
+        CloseAction?.Invoke();
     }
 }

@@ -17,10 +17,13 @@ public class Player : MonoBehaviour
     private float moveSpeed = 5;
     private Vector3 moveDirection = Vector3.zero;
 
+    private LayerMask wall;
+
     private void Awake()
     {
         playerCamera = Camera.main; 
-        animator = GetComponentInChildren<Animator>();    
+        animator = GetComponentInChildren<Animator>();
+        wall = LayerMask.GetMask("Wall");
     }
 
     //예시로 Performed는 입력이 진행중일 때, canceled는 입력이 끊기는 순간 발생하는 이벤트.
@@ -52,13 +55,14 @@ public class Player : MonoBehaviour
     //이동, 회전
     private void Update()
     {
-        //디버깅 용 빛 발사
-        Debug.DrawRay(transform.position + Vector3.up, moveDirection * 2.0f, Color.red);
-
-        if (isMoving)
+        //빛 발사 후, 벽 layerMask가 안 걸리고 + 키가 입력되는 상태일 때 이동
+        if (!Physics.Raycast(transform.position + Vector3.up, moveDirection, 0.5f, wall))
         {
-            gameObject.transform.position += moveDirection * Time.deltaTime * moveSpeed;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection, Vector3.up), 0.2f);
+            if(isMoving)
+            {
+                gameObject.transform.position += moveDirection * Time.deltaTime * moveSpeed;
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection, Vector3.up), 0.2f);
+            }
         }
     }
 

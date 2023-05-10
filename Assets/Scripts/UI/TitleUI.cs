@@ -13,7 +13,7 @@ public class TitleUI : BaseUI
     {
         UIManager.Instance.ShowUI("LibraryUI")
             .GetComponent<LibraryUI>()
-            .Init(true);
+            .Init(LibraryMode.Library);
     }
 
     public void SettingButtonClick()
