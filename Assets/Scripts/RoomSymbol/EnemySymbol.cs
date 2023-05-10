@@ -42,7 +42,8 @@ public class EnemySymbol : RoomSymbol
     public void Fight()
     {
         SoundManager.Instance.Play("Sounds/BattleBgm", Sound.Bgm);
-        UIManager.Insatance.ShowUI("BattleUI").GetComponent<BattleUI>();
+        UIManager.Instance.ShowUI("BackGroundUI");
+        UIManager.Instance.ShowUI("BattleUI",false).GetComponent<BattleUI>();
     }
 
     public void FightEnd()
