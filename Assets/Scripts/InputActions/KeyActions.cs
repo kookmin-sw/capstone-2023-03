@@ -132,7 +132,7 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""281de8c9-96f9-4eea-a7fc-ad8e7e613792"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PC"",
@@ -142,8 +142,19 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""08732ddf-e9d3-4103-a5f6-438cb66b9b4e"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Check"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""1d20158e-cea5-4eb0-ae34-a1bb688a1f53"",
-                    ""path"": ""<Keyboard>/i"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PC"",
@@ -198,15 +209,6 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ESC"",
-                    ""type"": ""Button"",
-                    ""id"": ""538c9980-3d8a-44b9-ab39-d5fd734cd79f"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Check"",
                     ""type"": ""Button"",
                     ""id"": ""7d9481c3-faf4-48cc-8397-0a20ca15e24f"",
@@ -216,9 +218,27 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Menu"",
+                    ""name"": ""Deck"",
                     ""type"": ""Button"",
                     ""id"": ""12006542-eeef-44ae-8c4d-514ad3519866"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MiniMap"",
+                    ""type"": ""Button"",
+                    ""id"": ""1d6080ba-7e2f-484d-ab13-6d5e48908de7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""538c9980-3d8a-44b9-ab39-d5fd734cd79f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -255,14 +275,14 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PC"",
-                    ""action"": ""ESC"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""ad1cf4fe-75f4-475c-a87a-67f30782651e"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PC"",
@@ -272,12 +292,34 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2db6b247-eebf-415d-95d4-eae881127e4d"",
-                    ""path"": ""<Keyboard>/i"",
+                    ""id"": ""f9cf5276-f4be-44cd-b042-233b9a9b1625"",
+                    ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Menu"",
+                    ""action"": ""Check"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2db6b247-eebf-415d-95d4-eae881127e4d"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Deck"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""66e75ff2-c45e-424b-b9a2-5a211f24b455"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MiniMap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -314,9 +356,10 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
         m_UI_Click = m_UI.FindAction("Click", throwIfNotFound: true);
-        m_UI_ESC = m_UI.FindAction("ESC", throwIfNotFound: true);
         m_UI_Check = m_UI.FindAction("Check", throwIfNotFound: true);
-        m_UI_Menu = m_UI.FindAction("Menu", throwIfNotFound: true);
+        m_UI_Deck = m_UI.FindAction("Deck", throwIfNotFound: true);
+        m_UI_MiniMap = m_UI.FindAction("MiniMap", throwIfNotFound: true);
+        m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -458,18 +501,20 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
     private readonly InputAction m_UI_Point;
     private readonly InputAction m_UI_Click;
-    private readonly InputAction m_UI_ESC;
     private readonly InputAction m_UI_Check;
-    private readonly InputAction m_UI_Menu;
+    private readonly InputAction m_UI_Deck;
+    private readonly InputAction m_UI_MiniMap;
+    private readonly InputAction m_UI_Pause;
     public struct UIActions
     {
         private @KeyActions m_Wrapper;
         public UIActions(@KeyActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Point => m_Wrapper.m_UI_Point;
         public InputAction @Click => m_Wrapper.m_UI_Click;
-        public InputAction @ESC => m_Wrapper.m_UI_ESC;
         public InputAction @Check => m_Wrapper.m_UI_Check;
-        public InputAction @Menu => m_Wrapper.m_UI_Menu;
+        public InputAction @Deck => m_Wrapper.m_UI_Deck;
+        public InputAction @MiniMap => m_Wrapper.m_UI_MiniMap;
+        public InputAction @Pause => m_Wrapper.m_UI_Pause;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -485,15 +530,18 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
             @Click.started += instance.OnClick;
             @Click.performed += instance.OnClick;
             @Click.canceled += instance.OnClick;
-            @ESC.started += instance.OnESC;
-            @ESC.performed += instance.OnESC;
-            @ESC.canceled += instance.OnESC;
             @Check.started += instance.OnCheck;
             @Check.performed += instance.OnCheck;
             @Check.canceled += instance.OnCheck;
-            @Menu.started += instance.OnMenu;
-            @Menu.performed += instance.OnMenu;
-            @Menu.canceled += instance.OnMenu;
+            @Deck.started += instance.OnDeck;
+            @Deck.performed += instance.OnDeck;
+            @Deck.canceled += instance.OnDeck;
+            @MiniMap.started += instance.OnMiniMap;
+            @MiniMap.performed += instance.OnMiniMap;
+            @MiniMap.canceled += instance.OnMiniMap;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -504,15 +552,18 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
             @Click.started -= instance.OnClick;
             @Click.performed -= instance.OnClick;
             @Click.canceled -= instance.OnClick;
-            @ESC.started -= instance.OnESC;
-            @ESC.performed -= instance.OnESC;
-            @ESC.canceled -= instance.OnESC;
             @Check.started -= instance.OnCheck;
             @Check.performed -= instance.OnCheck;
             @Check.canceled -= instance.OnCheck;
-            @Menu.started -= instance.OnMenu;
-            @Menu.performed -= instance.OnMenu;
-            @Menu.canceled -= instance.OnMenu;
+            @Deck.started -= instance.OnDeck;
+            @Deck.performed -= instance.OnDeck;
+            @Deck.canceled -= instance.OnDeck;
+            @MiniMap.started -= instance.OnMiniMap;
+            @MiniMap.performed -= instance.OnMiniMap;
+            @MiniMap.canceled -= instance.OnMiniMap;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -551,8 +602,9 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
     {
         void OnPoint(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
-        void OnESC(InputAction.CallbackContext context);
         void OnCheck(InputAction.CallbackContext context);
-        void OnMenu(InputAction.CallbackContext context);
+        void OnDeck(InputAction.CallbackContext context);
+        void OnMiniMap(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }
