@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 //맵 배열과, 스테이지의 특정 시점에서 실행될 이벤트를 싱글톤으로 저장
@@ -209,19 +210,22 @@ public class StageManager : Singleton<StageManager>
 
                 //방향에 대응하는 벡터값을 더해 새로 탐색할 방의 벡터값 리턴
                 Vector2 newRoomPoint = currentRoomPoint + Define.directionVectors[(Define.Direction)dir];
-
-                //방문하지 않은 곳일 경우 방문 처리
-                if (!visitedRoomPoints.Contains(newRoomPoint))
+                
+                if (newRoomPoint.x >= -5 && newRoomPoint.x <= 5 && newRoomPoint.y >= -5 && newRoomPoint.y <= 5) // 맵이 너무 길쭉해지는거 방지
                 {
-                    visitedRoomPoints.Add(newRoomPoint);
-                    roomQueue.Enqueue(newRoomPoint);
-                    currentRoomCount++;
+                    //방문하지 않은 곳일 경우 방문 처리
+                    if (!visitedRoomPoints.Contains(newRoomPoint))
+                    {
+                        visitedRoomPoints.Add(newRoomPoint);
+                        roomQueue.Enqueue(newRoomPoint);
+                        currentRoomCount++;
 
-                    //방 위치, 해당 방과 연결된 다른 방 추가
-                    //roomEdges는 [인덱스1: 방의 번호, 인덱스2: 방향] 에다가 그 방향에 [연결된 다른 방의 인덱스]를 저장
-                    RoomPoints.Add(newRoomPoint);
-                    RoomEdges[currentRoomIndex][dir] = currentRoomCount - 1;
-                    RoomEdges[currentRoomCount - 1][(dir + 2) % 4] = currentRoomIndex;
+                        //방 위치, 해당 방과 연결된 다른 방 추가
+                        //roomEdges는 [인덱스1: 방의 번호, 인덱스2: 방향] 에다가 그 방향에 [연결된 다른 방의 인덱스]를 저장
+                        RoomPoints.Add(newRoomPoint);
+                        RoomEdges[currentRoomIndex][dir] = currentRoomCount - 1;
+                        RoomEdges[currentRoomCount - 1][(dir + 2) % 4] = currentRoomIndex;
+                    }
                 }
             }
 

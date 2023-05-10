@@ -223,6 +223,15 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MiniMap"",
+                    ""type"": ""Button"",
+                    ""id"": ""1d6080ba-7e2f-484d-ab13-6d5e48908de7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -280,6 +289,17 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
                     ""action"": ""Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""66e75ff2-c45e-424b-b9a2-5a211f24b455"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MiniMap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -317,6 +337,7 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
         m_UI_ESC = m_UI.FindAction("ESC", throwIfNotFound: true);
         m_UI_Check = m_UI.FindAction("Check", throwIfNotFound: true);
         m_UI_Menu = m_UI.FindAction("Menu", throwIfNotFound: true);
+        m_UI_MiniMap = m_UI.FindAction("MiniMap", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -461,6 +482,7 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_ESC;
     private readonly InputAction m_UI_Check;
     private readonly InputAction m_UI_Menu;
+    private readonly InputAction m_UI_MiniMap;
     public struct UIActions
     {
         private @KeyActions m_Wrapper;
@@ -470,6 +492,7 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
         public InputAction @ESC => m_Wrapper.m_UI_ESC;
         public InputAction @Check => m_Wrapper.m_UI_Check;
         public InputAction @Menu => m_Wrapper.m_UI_Menu;
+        public InputAction @MiniMap => m_Wrapper.m_UI_MiniMap;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -494,6 +517,9 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
             @Menu.started += instance.OnMenu;
             @Menu.performed += instance.OnMenu;
             @Menu.canceled += instance.OnMenu;
+            @MiniMap.started += instance.OnMiniMap;
+            @MiniMap.performed += instance.OnMiniMap;
+            @MiniMap.canceled += instance.OnMiniMap;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -513,6 +539,9 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
             @Menu.started -= instance.OnMenu;
             @Menu.performed -= instance.OnMenu;
             @Menu.canceled -= instance.OnMenu;
+            @MiniMap.started -= instance.OnMiniMap;
+            @MiniMap.performed -= instance.OnMiniMap;
+            @MiniMap.canceled -= instance.OnMiniMap;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -554,5 +583,6 @@ public partial class @KeyActions: IInputActionCollection2, IDisposable
         void OnESC(InputAction.CallbackContext context);
         void OnCheck(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
+        void OnMiniMap(InputAction.CallbackContext context);
     }
 }
