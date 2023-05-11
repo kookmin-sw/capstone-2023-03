@@ -7,9 +7,13 @@ using UnityEngine;
 //1. 함수라서 디버깅에 걸린다.
 public class Room : MonoBehaviour
 {
-    private bool IsCleared { get; set; } = false;
 
-    private Define.EventType Type { get; set; }
+    public int Index { get; set; }
+    public bool IsCleared { get; set; } = false; //방 깼다
+
+    public bool IsEntered { get; set; } = false; //방 들어왔다
+
+    public Define.EventType Type { get; set; }
     public RoomSymbol Symbol { get; set; } = null;
 
     //갖고있는 방향-문 딕셔너리
@@ -17,8 +21,7 @@ public class Room : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        //현재 방 위치 지정
-        StageManager.Instance.CurrentRoom = this;
+        IsEntered = true;
 
         if (IsCleared == false)
         { 
@@ -44,6 +47,11 @@ public class Room : MonoBehaviour
             ActivateDoors(true);
             StageManager.Instance.RoomClear();
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        IsEntered = false;  
     }
 
     //멤버 변수 초기화

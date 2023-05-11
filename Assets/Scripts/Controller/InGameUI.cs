@@ -12,6 +12,7 @@ public class InGameUI : MonoBehaviour
         UIManager.Instance.UIChange += ChangeUIControll;
         InputActions.keyActions.Player.Deck.started += OnDeckStarted;
         InputActions.keyActions.Player.Pause.started += OnPauseStarted;
+        InputActions.keyActions.Player.MiniMap.started += OnMiniMapStarted;
     }
 
     private void OnDisable()
@@ -19,6 +20,7 @@ public class InGameUI : MonoBehaviour
         UIManager.Instance.UIChange -= ChangeUIControll;
         InputActions.keyActions.Player.Deck.started -= OnDeckStarted;
         InputActions.keyActions.Player.Pause.started -= OnPauseStarted;
+        InputActions.keyActions.Player.MiniMap.started -= OnMiniMapStarted;
     }
 
     private void ChangeUIControll(GameObject currentUI)
@@ -47,6 +49,12 @@ public class InGameUI : MonoBehaviour
     {
         UIManager.Instance.ShowUI("TitleBG");
         UIManager.Instance.ShowUI("PauseUI", false);
+    }
+
+    //Tab으로 미니맵 UI 열기
+    public void OnMiniMapStarted(InputAction.CallbackContext context)
+    {
+        UIManager.Instance.ShowUI("MiniMapUI");
     }
 
 }
