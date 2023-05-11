@@ -30,9 +30,13 @@ public class HealthBarPlayerUI : MonoBehaviour
     {
         TextUI = GetComponentInChildren<TextMeshProUGUI>();
         image = GetComponentInChildren<Image>();
-        HealthData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
-        CurrentHealth = HealthData.CurrentHp;
-        MaximumHealth = HealthData.MaxHp;
+        if (GameObject.Find("PlayerData") != null)
+        {
+            HealthData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
+            CurrentHealth = HealthData.CurrentHp;
+            MaximumHealth = HealthData.MaxHp;
+        }
+
     }
 
     // Update is called once per frame

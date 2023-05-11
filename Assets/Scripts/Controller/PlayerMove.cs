@@ -14,11 +14,11 @@ namespace ClearSky
         void Awake()
         {
             //메인 카메라가 캐릭터를 따라다니도록 설정
-            playerCamera = Camera.main;
+            /*playerCamera = Camera.main;
             playerCamera.transform.parent = transform;
             playerCamera.transform.localPosition = new Vector3(0, 1.5f, -2.5f);
             playerCamera.transform.localRotation = Quaternion.Euler(10, 0, 0);
-            
+            */
 
             anim = GetComponent<Animator>();
         }

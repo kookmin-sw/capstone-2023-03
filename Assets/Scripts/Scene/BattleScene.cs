@@ -9,7 +9,7 @@ public class BattleScene : MonoBehaviour
     private void Awake()
     {
         //SoundManager.Instance.Play("Sounds/BattleBgm", Sound.Bgm);
-        //UIManager.Instance.ShowUI("BackGroundUI");
+        UIManager.Instance.ShowUI("BackGroundUI");
         UIManager.Instance.ShowUI("BattleUI",false);
     }
 }
