@@ -9,13 +9,13 @@ public class BackGroundUI : MonoBehaviour
     {
         //Canvas의 카메라를 BattleCamera로 설정, 그런 카메라가 없다면 메인 카메라로 설정
         Canvas canvas = GetComponent<Canvas>();
-        Camera battleCamera = GameObject.Find("BattleCameraParent").transform.GetChild(0).GetComponent<Camera>();
+        GameObject battleCameraParent = GameObject.Find("BattleCameraParent");
         Camera mainCamera = Camera.main;
-        if (battleCamera != null)
+        if (battleCameraParent != null)
         {
-            canvas.worldCamera = battleCamera;
+            canvas.worldCamera = battleCameraParent.transform.GetChild(0).GetComponent<Camera>();
             mainCamera.gameObject.SetActive(false);
-            battleCamera.gameObject.SetActive(true);
+            battleCameraParent.transform.GetChild(0).GetComponent<Camera>().gameObject.SetActive(true);
         }
         else
         {

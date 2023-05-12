@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using DataStructs;
 using UnityEngine;
 
-public class BattleDeckData : Singleton<BattleDeckData>
+public class BattleData : Singleton<BattleData>
 {
-
+    public List<CardStruct> Origin_Deck = new List<CardStruct>();
     public List<CardStruct> Deck = new List<CardStruct>();
     public List<CardStruct> Hand = new List<CardStruct>();
     public List<CardStruct> Trash = new List<CardStruct>();
@@ -18,6 +18,7 @@ public class BattleDeckData : Singleton<BattleDeckData>
         {
             PlayerData playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
             Deck = playerData.Deck;
+            Origin_Deck = Deck;
         }
         else
         {
