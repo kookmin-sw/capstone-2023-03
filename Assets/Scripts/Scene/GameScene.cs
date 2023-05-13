@@ -10,5 +10,8 @@ public class GameScene : MonoBehaviour
         StageManager.Instance.CreateMap();
         PlayerData.Instance.LoadPlayerData(); //게임 입장시마다 플레이어 데이터 초기화
         UIManager.Instance.ShowUI("StatUI");
+        GameObject.Find("BattleCamera").GetComponent<Camera>().gameObject.SetActive(false);
+        Camera.main.gameObject.SetActive(true);
+        
     }
 }
