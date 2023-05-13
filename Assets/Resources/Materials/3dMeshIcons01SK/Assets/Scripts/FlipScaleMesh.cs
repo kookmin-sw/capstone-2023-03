@@ -47,8 +47,16 @@ public class FlipScaleMesh : MonoBehaviour {
 		activeCamera = Camera.main;
 
 		forward = transform.TransformDirection(Vector3.forward);
-		camPosToThis = activeCamera.transform.position - transform.position;
+		//Camera.main이 비활성화면 실행 안하게
+		if (activeCamera == null)
+		{
+			return 0.0f;
+        }
+		else
+		{
+            camPosToThis = activeCamera.transform.position - transform.position;
 
-		return Vector3.Dot(forward, camPosToThis);
+            return Vector3.Dot(forward, camPosToThis);
+        }
 	}
 }

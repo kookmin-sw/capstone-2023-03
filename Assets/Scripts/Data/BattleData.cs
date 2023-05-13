@@ -18,7 +18,11 @@ public class BattleData : Singleton<BattleData>
         {
             PlayerData playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
             Deck = playerData.Deck;
-            Origin_Deck = Deck;
+
+            foreach (CardStruct card in Deck)
+            {
+                Origin_Deck.Add(card);
+            }
         }
         else
         {
