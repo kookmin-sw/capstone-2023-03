@@ -63,7 +63,7 @@ public class DialogUI : BaseUI, IPointerDownHandler
         NextDialog();
     }
 
-    //대화창 초기화 - 문자열 인자를 받은 단문 대화 버전
+/*    //대화창 초기화 - 문자열 인자를 받은 단문 대화 버전
     public void Init(string line, string portrait = null, string name = null, Action CloseCallback = null)
     {
         dialogIndex = -1;
@@ -92,7 +92,7 @@ public class DialogUI : BaseUI, IPointerDownHandler
         isInited = true;
         CloseAction = CloseCallback; 
 
-    }
+    }*/
 
     //대화창을 진행시키는 함수. 대화 데이터 딕셔너리에서 대화 내용을 가져오고, 가져올 내용이 더이상 없으면 대화창을 닫는다.
     //대화 내용에 따라 UI 구조와 포트레이트를 변경.
