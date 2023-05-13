@@ -16,6 +16,8 @@ public class Define
 
     public const int MOB_TYPES = 3;
 
+
+
     //방향을 나타내는 Enum
     public enum Direction
     {

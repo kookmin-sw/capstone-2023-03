@@ -6,7 +6,7 @@ public class TitleUI : BaseUI
 {
     public void StartButtonClick()
     {
-        SceneLoader.Instance.LoadScene("GameScene");
+        SceneLoader.Instance.LoadScene("OpScene");
     }
 
     public void LibraryButtonClick()

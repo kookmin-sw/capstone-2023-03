@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using DataStructs;
+using System.Collections;
 
 //대화창 UI 클래스
 //1. 대화를 대화창 UI에 보여줌.
@@ -12,7 +13,7 @@ using DataStructs;
 
 public class DialogUI : BaseUI, IPointerDownHandler
 {
-    private bool isInited = false;
+    private bool isPrinting = false; // 추가된 변수
     private int dialogIndex;
     private int lineCount;
     private LineStruct currentLine;
@@ -41,16 +42,14 @@ public class DialogUI : BaseUI, IPointerDownHandler
     //마우스로 UI 클릭 시 작동
     public void OnPointerDown(PointerEventData eventData)
     {
-        NextDialog();
+        if (!isPrinting) // 출력 중이지 않을 때만 다음 대화로 넘어감
+            NextDialog();
     }
 
-    //엔터 키 누를 시 작동
     public void NextDialogByCheck(InputAction.CallbackContext context)
     {
-        if(isInited == true)
-        {
+        if (!isPrinting) // 출력 중이지 않을 때만 다음 대화로 넘어감
             NextDialog();
-        }
     }
 
     //처음 대화창이 열릴 때 초기화
@@ -59,11 +58,10 @@ public class DialogUI : BaseUI, IPointerDownHandler
         dialogIndex = index;
         CloseAction = CloseCallback;
         lineCount = 0;
-        isInited = true;
         NextDialog();
     }
 
-    //대화창 초기화 - 문자열 인자를 받은 단문 대화 버전
+/*    //대화창 초기화 - 문자열 인자를 받은 단문 대화 버전
     public void Init(string line, string portrait = null, string name = null, Action CloseCallback = null)
     {
         dialogIndex = -1;
@@ -92,7 +90,7 @@ public class DialogUI : BaseUI, IPointerDownHandler
         isInited = true;
         CloseAction = CloseCallback; 
 
-    }
+    }*/
 
     //대화창을 진행시키는 함수. 대화 데이터 딕셔너리에서 대화 내용을 가져오고, 가져올 내용이 더이상 없으면 대화창을 닫는다.
     //대화 내용에 따라 UI 구조와 포트레이트를 변경.
@@ -129,8 +127,19 @@ public class DialogUI : BaseUI, IPointerDownHandler
             nameText.transform.parent.gameObject.SetActive(true);
             nameText.text = currentLine.name;
         }
-        lineText.text = currentLine.line;
-
+        StartCoroutine(TypeSentence(currentLine.line));
         lineCount++;
+    }
+
+    IEnumerator TypeSentence(string sentence)
+    {
+        isPrinting = true;
+        lineText.text = "";
+        foreach (char letter in sentence.ToCharArray())
+        {
+            lineText.text += letter;
+            yield return new WaitForSeconds(0.02f); // wait for the next frame
+        }
+        isPrinting = false; // 출력 완료
     }
 }
