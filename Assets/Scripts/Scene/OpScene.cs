@@ -9,7 +9,7 @@ public class OpScene : MonoBehaviour
     {
         SoundManager.Instance.Play("OpBgm", Sound.Effect);
         UIManager.Instance.ShowUI("FullDialogUI").GetComponent<FullDialogUI>().Init(
-            2000,
+            6000,
             () =>
             {
                 SceneLoader.Instance.LoadScene("GameScene");

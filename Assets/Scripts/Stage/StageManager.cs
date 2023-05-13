@@ -77,9 +77,10 @@ public class StageManager : Singleton<StageManager>
         RoomEdges = null;
         specialRoomIndexes = null;
 
-        if(Stage > 4)
+        if(Stage == 4)
         {
             //엔딩 씬 호출
+            SceneLoader.Instance.LoadScene("EdScene");
         }
     }
 
