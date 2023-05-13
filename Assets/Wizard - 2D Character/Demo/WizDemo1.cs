@@ -34,7 +34,6 @@ namespace ClearSky
             {
                 Idle();
             }
-          
         }
 
         void ResetAnimation()
