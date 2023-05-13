@@ -13,7 +13,9 @@ public enum LibraryMode
     Library, //일반 라이브러리 모드
     Deck, //플레이어 덱 보여주기 모드
     EventDiscard, //플레이어 덱 보여주기 + 이벤트로 카드 버리기 모드
-    ShopDiscard //플레이어 덱 보여주기 + 상점에서 카드 버리기 모드
+    ShopDiscard, //플레이어 덱 보여주기 + 상점에서 카드 버리기 모드
+    Battle_Deck, //배틀 중에 남은 덱 보여주기
+    Battle_Trash //배틀 중에 버린 카드 보여주기
 }
 
 //C# LInq 사용: 데이터 쿼리를 C#에서 스크립트로 사용할 수 있도록 하는 기술.
@@ -74,6 +76,12 @@ public class LibraryUI : BaseUI
             case LibraryMode.ShopDiscard: //현재 덱 보여주기 + 이벤트로 클릭하는 만큼 버리기
                 showedCardList = PlayerData.Instance.Deck;
                 break;
+            case LibraryMode.Battle_Deck: //배틀 중에 남은 덱 보여주기
+                showedCardList = BattleDeckData.Instance.Deck;
+                break;
+            case LibraryMode.Battle_Trash: //배틀 중에 버린 카드 보여주기
+                showedCardList = BattleDeckData.Instance.Trash;
+                break;
 
         }
         ShowCards();
@@ -97,6 +105,12 @@ public class LibraryUI : BaseUI
                 break;
             case LibraryMode.ShopDiscard: //현재 덱 보여주기 + 이벤트로 클릭하는 만큼 버리기 + 버리든 말든 자유
                 showedCardList = PlayerData.Instance.Deck;
+                break;
+            case LibraryMode.Battle_Deck: //배틀 중에 남은 덱 보여주기
+                showedCardList = BattleDeckData.Instance.Deck;
+                break;
+            case LibraryMode.Battle_Trash: //배틀 중에 버린 카드 보여주기
+                showedCardList = BattleDeckData.Instance.Trash;
                 break;
         }
         ShowCards();
@@ -162,6 +176,15 @@ public class LibraryUI : BaseUI
                     cardUI.OnCardEntered += (cardUI) => { cardUI.CardBig(); }; //카드에 마우스 들어갈 시 해당 카드 확대 수행하도록 등록.
                     cardUI.OnCardExited += (cardUI) => { cardUI.CardSmall(); }; //카드에서 마우스 나갈 시 해당 카드 축소 수행하도록 등록.
                     break;
+                case LibraryMode.Battle_Deck: //배틀 중에 남은 덱 보여주기
+                    cardUI = AssetLoader.Instance.Instantiate("Prefabs/UI/CardUI", deckDisplayer.transform).GetComponent<CardUI>();
+                    cardUI.ShowCardData(cardList[i]); //카드를 그냥 소환
+                    break;
+                case LibraryMode.Battle_Trash: //배틀 중에 버린 카드 보여주기
+                    cardUI = AssetLoader.Instance.Instantiate("Prefabs/UI/CardUI", deckDisplayer.transform).GetComponent<CardUI>();
+                    cardUI.ShowCardData(cardList[i]); //카드를 그냥 소환
+                    break;
+
             }
         }
         UpdateButtons();
