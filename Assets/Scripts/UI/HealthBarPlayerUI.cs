@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,9 +14,6 @@ public class HealthBarPlayerUI : MonoBehaviour
     public bool HasAnimationWhenHealthChanges = true;
     public float AnimationDuration = 0.1f;
 
-    TextMeshProUGUI TextUI;
-    Image image;
-
     public float CurrentHealthPercentage
     {
         get
@@ -28,57 +24,30 @@ public class HealthBarPlayerUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TextUI = GetComponentInChildren<TextMeshProUGUI>();
-        image = GetComponentInChildren<Image>();
-        if (GameObject.Find("PlayerData") != null)
-        {
-            HealthData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
-            CurrentHealth = HealthData.CurrentHp;
-            MaximumHealth = HealthData.MaxHp;
-        }
-
+        HealthData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
+        CurrentHealth = HealthData.CurrentHp;
+        MaximumHealth = HealthData.MaxHp;
+        ChangeHP();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Alpha5))
-        {
-            ChangeCurrentHealth(-5);
-        }
-        else if(Input.GetKeyUp(KeyCode.Alpha6))
-        {
-            ChangeCurrentHealth(5);
-        }
-        ChangeHPText();
+        ChangeHP();
     }
 
-    void ChangeCurrentHealth(float value)
+    void DecreaseCurrentHealthBy(float value)
     {
-        CurrentHealth += value;
+        CurrentHealth -= value;
 
         if (CurrentHealth <= 0)
         {
             IsAlive = false;
         }
-        if(CurrentHealth > MaximumHealth)
-        {
-            CurrentHealth = MaximumHealth;
-        }
     }
 
-    void ChangeHPText() // Text의 텍스트 내용을 CurrentHealth / MaximumHealth로 바꿔주는 함수
+    void ChangeHP()
     {
-        if (IsAlive)
-        {
-            TextUI.text = CurrentHealth + " / " + MaximumHealth;
-        }
-        else
-        {
-            TextUI.text = "Dead";
-        }
-
-        image.fillAmount = CurrentHealth / MaximumHealth;
+        transform.GetChild(2).GetComponent<Text>().text = CurrentHealth.ToString() + " / " +MaximumHealth.ToString();
     }
-
 }
