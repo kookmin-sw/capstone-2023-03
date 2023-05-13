@@ -837,6 +837,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBarEnemyUI
       objectReference: {fileID: 0}
+    - target: {fileID: 6458357055985698856, guid: 7becfd060134c784cb82fc2fd1753d03, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7becfd060134c784cb82fc2fd1753d03, type: 3}
 --- !u!224 &4037581722052119661 stripped

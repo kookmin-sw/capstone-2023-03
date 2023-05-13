@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using DataStructs;
 using UnityEngine.EventSystems;
 using System;
+using System.Collections;
 
 
 
@@ -80,12 +81,23 @@ public class CardUI : BaseUI, IPointerDownHandler, IPointerEnterHandler, IPointe
 
     public void CardBig() //해당 카드 UI 확대
     {
-        transform.localScale = Vector3.one * 1.1f; //확대
+        StopAllCoroutines(); // 현재 실행 중인 모든 코루틴을 멈춥니다.
+        StartCoroutine(ChangeScale(Vector3.one * 1.1f)); // 새로운 크기로 천천히 변환하는 코루틴을 시작합니다.
     }
 
     public void CardSmall() //해당 카드 UI 축소
     {
-        transform.localScale = Vector3.one; //축소
+        StopAllCoroutines(); // 현재 실행 중인 모든 코루틴을 멈춥니다.
+        StartCoroutine(ChangeScale(Vector3.one)); // 새로운 크기로 천천히 변환하는 코루틴을 시작합니다.
+    }
+
+    private IEnumerator ChangeScale(Vector3 targetScale) // 주어진 크기로 천천히 변환
+    {
+        while (transform.localScale != targetScale) // 주어진 크기가 될 때까지
+        {
+            transform.localScale = Vector3.Lerp(transform.localScale, targetScale, 0.5f);
+            yield return null;
+        }
     }
 
 }

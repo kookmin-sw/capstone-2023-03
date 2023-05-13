@@ -45,6 +45,12 @@ public class UIManager : Singleton<UIManager>
     {
         GameObject ui = AssetLoader.Instance.Instantiate($"Prefabs/UI/{name}", UIRoot.transform);
 
+        Canvas canvas = ui.GetComponent<Canvas>();
+        if (canvas != null)
+        {
+            canvas.sortingOrder = UIStack.Count + 1; // 새로운 UI의 sortOrder를 스택의 크기에 1을 더한 값으로 설정합니다.
+        }
+
         if (UIStack.Count > 0 && hidePreviousPanel)
         {
             UIStack.Peek().SetActive(false);
