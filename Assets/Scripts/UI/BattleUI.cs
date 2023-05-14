@@ -1,3 +1,4 @@
+using DataStructs;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,13 +17,16 @@ public class BattleUI : BaseUI
 
     TextMeshProUGUI DeckNum;
     TextMeshProUGUI TrashNum;
-
+    TextMeshProUGUI EnergyText;
+    TextMeshProUGUI TurnText;
     // Start is called before the first frame update
     void Start()
     {
 
         DeckNum = GameObject.Find("Deck").GetComponentInChildren<TextMeshProUGUI>();
         TrashNum = GameObject.Find("Trash").GetComponentInChildren<TextMeshProUGUI>();
+        EnergyText = GameObject.Find("Energy").GetComponentInChildren<TextMeshProUGUI>();
+        TurnText = GameObject.Find("Turn").GetComponentInChildren<TextMeshProUGUI>();
 
         //Canvas의 카메라를 BattleCamera로 설정, 그런 카메라가 없다면 메인 카메라로 설정
         Canvas canvas = GetComponent<Canvas>();
@@ -42,10 +46,17 @@ public class BattleUI : BaseUI
     {
         HandSpacingChange();
         UpdateDeckTrashNum();
+        UpdateEnergy();
+        UpdateTurn();
 
         if (Input.GetKeyUp(KeyCode.Alpha0))
         {
             Draw();
+        }
+
+        if (Input.GetKeyUp(KeyCode.T))
+        {
+            Turn_Start();
         }
     }
 
@@ -115,12 +126,37 @@ public class BattleUI : BaseUI
 
         SoundManager.Instance.Play("Sounds/DrawBgm");
     }
+    // 입력받은 카드를 Hand UI에서 제거
+    public void Discard(CardStruct card)
+    {
+
+        Battle.Discard(card);
+        
+        for (int i = 0; i < HandUI.transform.childCount; i++)
+        {
+            if (HandUI.transform.GetChild(i).GetComponent<CardUI>().Card.name == card.name)
+            {
+                Destroy(HandUI.transform.GetChild(i).gameObject);
+                break;
+            }
+        }
+    }
 
     //DeckNum과 TrashNum을 갱신
     public void UpdateDeckTrashNum()
     {
         DeckNum.text = "남은 카드\n" + BattleData.Instance.Deck.Count.ToString();
         TrashNum.text = "버려진 카드\n" + BattleData.Instance.Trash.Count.ToString();
+    }
+
+    public void UpdateEnergy()
+    {
+        EnergyText.text = BattleData.Instance.CurrentEnergy.ToString() + "/" + BattleData.Instance.MaxEnergy.ToString();
+    }
+
+    public void UpdateTurn()
+    {
+        TurnText.text = "턴      " + BattleData.Instance.CurrentTurn.ToString();
     }
 
     //턴 종료 버튼을 누르면 실행
@@ -130,6 +166,16 @@ public class BattleUI : BaseUI
         for (int i = 0; i < HandUI.transform.childCount; i++)
         {
             Destroy(HandUI.transform.GetChild(i).gameObject);
+        }
+    }
+
+    public void Turn_Start()
+    {
+        Battle.Start_turn();
+        for (int i = 0; i < BattleData.Instance.StartHand; i++)
+        {
+
+            Draw();
         }
     }
 }
