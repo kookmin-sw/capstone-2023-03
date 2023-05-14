@@ -56,7 +56,7 @@ public class BattleUI : BaseUI
 
         if (Input.GetKeyUp(KeyCode.T))
         {
-            Turn_Start();
+            StartCoroutine(Turn_Start());
         }
     }
 
@@ -165,16 +165,18 @@ public class BattleUI : BaseUI
         Battle.End_turn();
         for (int i = 0; i < HandUI.transform.childCount; i++)
         {
+
             Destroy(HandUI.transform.GetChild(i).gameObject);
         }
     }
 
-    public void Turn_Start()
+    public IEnumerator Turn_Start()
     {
         Battle.Start_turn();
         for (int i = 0; i < BattleData.Instance.StartHand; i++)
         {
 
+            yield return new WaitForSecondsRealtime(0.5f);
             Draw();
         }
     }
