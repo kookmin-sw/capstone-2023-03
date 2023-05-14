@@ -9,6 +9,27 @@ public class BattleData : Singleton<BattleData>
     public List<CardStruct> Deck = new List<CardStruct>();
     public List<CardStruct> Hand = new List<CardStruct>();
     public List<CardStruct> Trash = new List<CardStruct>();
+
+    public PlayerData playerData;
+
+    public int CurrentEnergy = 3;
+    public int MaxEnergy = 3;
+    public int CurrentTurn = 1;
+    public int MaxHand = 10;
+    public int StartHand = 5;
+
+    public bool IsAlive = true;
+    public float CurrentHealth = 100;
+    public float MaximumHealth = 100;
+    public float CurrentHealthPercentage
+    {
+        get
+        {
+            return (CurrentHealth / MaximumHealth) * 100;
+        }
+    }
+    public float Shiled = 0;
+
     // Start is called before the first frame update
     protected override void Awake()
     {
@@ -16,13 +37,16 @@ public class BattleData : Singleton<BattleData>
 
         if (GameObject.Find("PlayerData") != null)
         {
-            PlayerData playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
+            playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
             Deck = playerData.Deck;
 
             foreach (CardStruct card in Deck)
             {
                 Origin_Deck.Add(card);
             }
+
+            CurrentHealth = playerData.CurrentHp;
+            MaximumHealth = playerData.MaxHp;
         }
         else
         {
@@ -38,9 +62,7 @@ public class BattleData : Singleton<BattleData>
             };
         }
 
-        Trash = new List<CardStruct>(){
-            GameData.Instance.CardList[0]
-        };
+        
     }
 
     // Update is called once per frame
@@ -48,4 +70,7 @@ public class BattleData : Singleton<BattleData>
     {
         
     }
+
+
+    
 }
