@@ -77,10 +77,10 @@ public class LibraryUI : BaseUI
                 showedCardList = PlayerData.Instance.Deck;
                 break;
             case LibraryMode.Battle_Deck: //배틀 중에 남은 덱 보여주기
-                showedCardList = BattleDeckData.Instance.Deck;
+                showedCardList = BattleData.Instance.Deck;
                 break;
             case LibraryMode.Battle_Trash: //배틀 중에 버린 카드 보여주기
-                showedCardList = BattleDeckData.Instance.Trash;
+                showedCardList = BattleData.Instance.Trash;
                 break;
 
         }
@@ -107,10 +107,10 @@ public class LibraryUI : BaseUI
                 showedCardList = PlayerData.Instance.Deck;
                 break;
             case LibraryMode.Battle_Deck: //배틀 중에 남은 덱 보여주기
-                showedCardList = BattleDeckData.Instance.Deck;
+                showedCardList = BattleData.Instance.Deck;
                 break;
             case LibraryMode.Battle_Trash: //배틀 중에 버린 카드 보여주기
-                showedCardList = BattleDeckData.Instance.Trash;
+                showedCardList = BattleData.Instance.Trash;
                 break;
         }
         ShowCards();
@@ -262,4 +262,5 @@ public class LibraryUI : BaseUI
     {
         UIManager.Instance.HideUI("LibraryUI");
     }
+    
 }
