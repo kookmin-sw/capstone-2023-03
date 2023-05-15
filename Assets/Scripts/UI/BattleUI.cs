@@ -165,7 +165,6 @@ public class BattleUI : BaseUI
         Battle.End_turn();
         for (int i = 0; i < HandUI.transform.childCount; i++)
         {
-
             Destroy(HandUI.transform.GetChild(i).gameObject);
         }
     }
