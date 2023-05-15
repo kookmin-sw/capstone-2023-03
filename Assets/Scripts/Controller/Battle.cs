@@ -19,6 +19,10 @@ public class Battle : MonoBehaviour
 
     public static void Draw()
     {
+        if (BattleData.Instance.Hand.Count >= BattleData.Instance.MaxHand)
+        {
+            UIManager.Instance.ShowUI("LibraryUI").GetComponent<LibraryUI>().Init(LibraryMode.Battle_Trash_Hand);
+        }
         if (BattleData.Instance.Deck.Count <= 0)
         {
             foreach (CardStruct card in BattleData.Instance.Origin_Deck)
@@ -45,5 +49,28 @@ public class Battle : MonoBehaviour
             BattleData.Instance.Trash.Add(card);
         }
         BattleData.Instance.Hand = new List<CardStruct>();
+        BattleData.Instance.CurrentEnergy = BattleData.Instance.MaxEnergy;
+
+    }
+
+    public static void Start_turn()
+    {
+        BattleData.Instance.CurrentEnergy = BattleData.Instance.MaxEnergy;
+        BattleData.Instance.CurrentTurn++;
+        
+    }
+
+    public static void ChangeCurrentHealth(float value)
+    {
+        BattleData.Instance.CurrentHealth += value;
+
+        if (BattleData.Instance.CurrentHealth <= 0)
+        {
+            BattleData.Instance.IsAlive = false;
+        }
+        if (BattleData.Instance.CurrentHealth > BattleData.Instance.MaximumHealth)
+        {
+            BattleData.Instance.CurrentHealth = BattleData.Instance.MaximumHealth;
+        }
     }
 }
