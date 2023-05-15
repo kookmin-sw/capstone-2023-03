@@ -14,11 +14,15 @@ public class BattleUI : BaseUI
     private Button TrashUI;
     [SerializeField]
     private Button DeckUI;
+    [SerializeField]
+    private Button EndUI;
 
     TextMeshProUGUI DeckNum;
     TextMeshProUGUI TrashNum;
     TextMeshProUGUI EnergyText;
     TextMeshProUGUI TurnText;
+
+    NoticeUI noticeUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +32,9 @@ public class BattleUI : BaseUI
         EnergyText = GameObject.Find("Energy").GetComponentInChildren<TextMeshProUGUI>();
         TurnText = GameObject.Find("Turn").GetComponentInChildren<TextMeshProUGUI>();
 
-        //CanvasÀÇ Ä«¸Þ¶ó¸¦ BattleCamera·Î ¼³Á¤, ±×·± Ä«¸Þ¶ó°¡ ¾ø´Ù¸é ¸ÞÀÎ Ä«¸Þ¶ó·Î ¼³Á¤
+        noticeUI = FindObjectOfType<NoticeUI>();
+
+        //Canvasï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ BattleCameraï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½×·ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Canvas canvas = GetComponent<Canvas>();
         GameObject battleCameraParent = GameObject.Find("BattleCameraParent");
         Camera mainCamera = Camera.main;
@@ -40,6 +46,8 @@ public class BattleUI : BaseUI
         {
             canvas.worldCamera = mainCamera;
         }
+
+        StartCoroutine(Turn_Start());
     }
 
     private void Update()
@@ -58,6 +66,11 @@ public class BattleUI : BaseUI
         {
             StartCoroutine(Turn_Start());
         }
+
+        if (Input.GetKeyUp(KeyCode.N))
+        {
+            noticeUI.ShowNotice("Good");
+        }
     }
 
     public void TrashClick()
@@ -74,7 +87,7 @@ public class BattleUI : BaseUI
             .Init(LibraryMode.Battle_Deck);
     }
 
-    //Hand UIÀÇ ÀÚ½ÄÀÇ ¼ýÀÚ¿¡ µû¶ó Hand UIÀÇ Horizontal Layout GroupÀÇ SpacingÀ» Á¶Á¤
+    //Hand UIï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½ Hand UIï¿½ï¿½ Horizontal Layout Groupï¿½ï¿½ Spacingï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void HandSpacingChange()
     {
 
@@ -107,26 +120,34 @@ public class BattleUI : BaseUI
         transform.GetChild(3).GetChild(2).GetComponent<UnityEngine.UI.HorizontalLayoutGroup>().spacing = spacing;
     }
 
-    //µ¦¿¡¼­ ·£´ýÇÑ Ä«µå¸¦ »Ì¾Æ¼­ ¼Õ¿¡ Ãß°¡
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½å¸¦ ï¿½Ì¾Æ¼ï¿½ ï¿½Õ¿ï¿½ ï¿½ß°ï¿½
     public void Draw()
     {
+        bool CanDraw;
         CardUI cardUI;
 
-        Battle.Draw();
+        CanDraw = Battle.Draw();
 
-        cardUI = AssetLoader.Instance.Instantiate("Prefabs/UI/CardUI", HandUI.transform).GetComponent<CardUI>();
-        cardUI.ShowCardData(BattleData.Instance.Hand[BattleData.Instance.Hand.Count-1]);
+        if (CanDraw)
+        {
+            cardUI = AssetLoader.Instance.Instantiate("Prefabs/UI/CardUI", HandUI.transform).GetComponent<CardUI>();
+            cardUI.ShowCardData(BattleData.Instance.Hand[BattleData.Instance.Hand.Count - 1]);
 
-        Vector3 pos = cardUI.transform.localPosition;
-        pos.z = 43.25f;
-        cardUI.transform.localPosition = pos;
-        cardUI.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+            Vector3 pos = cardUI.transform.localPosition;
+            pos.z = 43.25f;
+            cardUI.transform.localPosition = pos;
+            cardUI.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
 
-        cardUI.AddComponent<Draggable>();
+            cardUI.AddComponent<Draggable>();
 
-        SoundManager.Instance.Play("Sounds/DrawBgm");
+            SoundManager.Instance.Play("Sounds/DrawBgm");
+        }
+        else
+        {
+            noticeUI.ShowNotice("ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½å°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½!");
+        }
     }
-    // ÀÔ·Â¹ÞÀº Ä«µå¸¦ Hand UI¿¡¼­ Á¦°Å
+    // ï¿½Ô·Â¹ï¿½ï¿½ï¿½ Ä«ï¿½å¸¦ Hand UIï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void Discard(CardStruct card)
     {
 
@@ -142,11 +163,11 @@ public class BattleUI : BaseUI
         }
     }
 
-    //DeckNum°ú TrashNumÀ» °»½Å
+    //DeckNumï¿½ï¿½ TrashNumï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void UpdateDeckTrashNum()
     {
-        DeckNum.text = "³²Àº Ä«µå\n" + BattleData.Instance.Deck.Count.ToString();
-        TrashNum.text = "¹ö·ÁÁø Ä«µå\n" + BattleData.Instance.Trash.Count.ToString();
+        DeckNum.text = "ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½\n" + BattleData.Instance.Deck.Count.ToString();
+        TrashNum.text = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½\n" + BattleData.Instance.Trash.Count.ToString();
     }
 
     public void UpdateEnergy()
@@ -156,21 +177,24 @@ public class BattleUI : BaseUI
 
     public void UpdateTurn()
     {
-        TurnText.text = "ÅÏ      " + BattleData.Instance.CurrentTurn.ToString();
+        TurnText.text = "ï¿½ï¿½      " + BattleData.Instance.CurrentTurn.ToString();
     }
 
-    //ÅÏ Á¾·á ¹öÆ°À» ´©¸£¸é ½ÇÇà
+    //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void EndClick()
     {
         Battle.End_turn();
         for (int i = 0; i < HandUI.transform.childCount; i++)
         {
-            Destroy(HandUI.transform.GetChild(i).gameObject);
+            Destroy(HandUI.transform.GetChild(i).gameObject);          
         }
     }
 
     public IEnumerator Turn_Start()
     {
+        DeckUI.interactable = false;
+        TrashUI.interactable = false;
+        EndUI.interactable = false;
         Battle.Start_turn();
         for (int i = 0; i < BattleData.Instance.StartHand; i++)
         {
@@ -178,5 +202,8 @@ public class BattleUI : BaseUI
             yield return new WaitForSecondsRealtime(0.5f);
             Draw();
         }
+        DeckUI.interactable = true;
+        TrashUI.interactable = true;
+        EndUI.interactable = true;
     }
 }

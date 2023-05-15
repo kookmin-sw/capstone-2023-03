@@ -6,10 +6,14 @@ using UnityEngine.EventSystems;
 public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     Camera BattleCamera;
+    RectTransform rectTransform;
+
+    public float fixedZValue = 43.25f;
 
     public void Start()
     {
         BattleCamera = GameObject.Find("BattleCameraParent").transform.GetChild(0).GetComponent<Camera>();
+        rectTransform = GetComponent<RectTransform>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -22,9 +26,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void OnDrag(PointerEventData eventData)
     {
         Debug.Log("OnDrag");
-        Vector3 mousePos = BattleCamera.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = 0;
-        transform.position = mousePos;
+        Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, fixedZValue);
+        transform.position = BattleCamera.ScreenToWorldPoint(mousePos);
     }
 
     public void OnEndDrag(PointerEventData eventData) 
