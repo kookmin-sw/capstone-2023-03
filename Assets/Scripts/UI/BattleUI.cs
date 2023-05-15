@@ -66,11 +66,6 @@ public class BattleUI : BaseUI
         {
             StartCoroutine(Turn_Start());
         }
-
-        if (Input.GetKeyUp(KeyCode.N))
-        {
-            noticeUI.ShowNotice("Good");
-        }
     }
 
     public void TrashClick()
@@ -144,7 +139,7 @@ public class BattleUI : BaseUI
         }
         else
         {
-            noticeUI.ShowNotice("���� ī�尡 �����ϴ�!");
+            noticeUI.ShowNotice("뽑을 카드가 없습니다!");
         }
     }
     // �Է¹��� ī�带 Hand UI���� ����
@@ -166,8 +161,8 @@ public class BattleUI : BaseUI
     //DeckNum�� TrashNum�� ����
     public void UpdateDeckTrashNum()
     {
-        DeckNum.text = "���� ī��\n" + BattleData.Instance.Deck.Count.ToString();
-        TrashNum.text = "������ ī��\n" + BattleData.Instance.Trash.Count.ToString();
+        DeckNum.text = "남은 카드\n" + BattleData.Instance.Deck.Count.ToString();
+        TrashNum.text = "버려진 카드\n" + BattleData.Instance.Trash.Count.ToString();
     }
 
     public void UpdateEnergy()
@@ -177,7 +172,7 @@ public class BattleUI : BaseUI
 
     public void UpdateTurn()
     {
-        TurnText.text = "��      " + BattleData.Instance.CurrentTurn.ToString();
+        TurnText.text = "턴      " + BattleData.Instance.CurrentTurn.ToString();
     }
 
     //�� ���� ��ư�� ������ ����

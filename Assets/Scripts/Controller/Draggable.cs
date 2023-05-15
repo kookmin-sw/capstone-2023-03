@@ -7,6 +7,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 {
     Camera BattleCamera;
     RectTransform rectTransform;
+    public Vector3 DefaultPos;
 
     public float fixedZValue = 43.25f;
 
@@ -18,7 +19,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("OnBeginDrag");
+        DefaultPos = this.transform.position;
     }
 
     //드래그할 때 마우스를 따라 움직임
@@ -27,11 +28,13 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         Debug.Log("OnDrag");
         Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, fixedZValue);
-        transform.position = BattleCamera.ScreenToWorldPoint(mousePos);
+        this.transform.position = BattleCamera.ScreenToWorldPoint(mousePos);
+        this.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
     }
 
     public void OnEndDrag(PointerEventData eventData) 
     {
-
+        this.transform.position = DefaultPos;
+        this.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
     }
 }
