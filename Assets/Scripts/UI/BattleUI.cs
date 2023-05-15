@@ -14,11 +14,15 @@ public class BattleUI : BaseUI
     private Button TrashUI;
     [SerializeField]
     private Button DeckUI;
+    [SerializeField]
+    private Button EndUI;
 
     TextMeshProUGUI DeckNum;
     TextMeshProUGUI TrashNum;
     TextMeshProUGUI EnergyText;
     TextMeshProUGUI TurnText;
+
+    NoticeUI noticeUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +31,8 @@ public class BattleUI : BaseUI
         TrashNum = GameObject.Find("Trash").GetComponentInChildren<TextMeshProUGUI>();
         EnergyText = GameObject.Find("Energy").GetComponentInChildren<TextMeshProUGUI>();
         TurnText = GameObject.Find("Turn").GetComponentInChildren<TextMeshProUGUI>();
+
+        noticeUI = FindObjectOfType<NoticeUI>();
 
         //Canvas의 카메라를 BattleCamera로 설정, 그런 카메라가 없다면 메인 카메라로 설정
         Canvas canvas = GetComponent<Canvas>();
@@ -40,6 +46,8 @@ public class BattleUI : BaseUI
         {
             canvas.worldCamera = mainCamera;
         }
+
+        StartCoroutine(Turn_Start());
     }
 
     private void Update()
@@ -57,6 +65,11 @@ public class BattleUI : BaseUI
         if (Input.GetKeyUp(KeyCode.T))
         {
             StartCoroutine(Turn_Start());
+        }
+
+        if (Input.GetKeyUp(KeyCode.N))
+        {
+            noticeUI.ShowNotice("Good");
         }
     }
 
@@ -110,21 +123,29 @@ public class BattleUI : BaseUI
     //덱에서 랜덤한 카드를 뽑아서 손에 추가
     public void Draw()
     {
+        bool CanDraw;
         CardUI cardUI;
 
-        Battle.Draw();
+        CanDraw = Battle.Draw();
 
-        cardUI = AssetLoader.Instance.Instantiate("Prefabs/UI/CardUI", HandUI.transform).GetComponent<CardUI>();
-        cardUI.ShowCardData(BattleData.Instance.Hand[BattleData.Instance.Hand.Count-1]);
+        if (CanDraw)
+        {
+            cardUI = AssetLoader.Instance.Instantiate("Prefabs/UI/CardUI", HandUI.transform).GetComponent<CardUI>();
+            cardUI.ShowCardData(BattleData.Instance.Hand[BattleData.Instance.Hand.Count - 1]);
 
-        Vector3 pos = cardUI.transform.localPosition;
-        pos.z = 43.25f;
-        cardUI.transform.localPosition = pos;
-        cardUI.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+            Vector3 pos = cardUI.transform.localPosition;
+            pos.z = 43.25f;
+            cardUI.transform.localPosition = pos;
+            cardUI.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
 
-        cardUI.AddComponent<Draggable>();
+            cardUI.AddComponent<Draggable>();
 
-        SoundManager.Instance.Play("Sounds/DrawBgm");
+            SoundManager.Instance.Play("Sounds/DrawBgm");
+        }
+        else
+        {
+            noticeUI.ShowNotice("뽑을 카드가 없습니다!");
+        }
     }
     // 입력받은 카드를 Hand UI에서 제거
     public void Discard(CardStruct card)
@@ -165,13 +186,17 @@ public class BattleUI : BaseUI
         Battle.End_turn();
         for (int i = 0; i < HandUI.transform.childCount; i++)
         {
-
+            
             Destroy(HandUI.transform.GetChild(i).gameObject);
+            
         }
     }
 
     public IEnumerator Turn_Start()
     {
+        DeckUI.interactable = false;
+        TrashUI.interactable = false;
+        EndUI.interactable = false;
         Battle.Start_turn();
         for (int i = 0; i < BattleData.Instance.StartHand; i++)
         {
@@ -179,5 +204,8 @@ public class BattleUI : BaseUI
             yield return new WaitForSecondsRealtime(0.5f);
             Draw();
         }
+        DeckUI.interactable = true;
+        TrashUI.interactable = true;
+        EndUI.interactable = true;
     }
 }

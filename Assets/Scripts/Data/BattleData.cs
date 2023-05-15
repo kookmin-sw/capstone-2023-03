@@ -14,7 +14,7 @@ public class BattleData : Singleton<BattleData>
 
     public int CurrentEnergy = 3;
     public int MaxEnergy = 3;
-    public int CurrentTurn = 1;
+    public int CurrentTurn = 0;
     public int MaxHand = 10;
     public int StartHand = 5;
 
