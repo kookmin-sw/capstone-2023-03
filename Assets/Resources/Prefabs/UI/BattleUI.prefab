@@ -1156,6 +1156,7 @@ MonoBehaviour:
   TrashUI: {fileID: 7047862842703260952}
   DeckUI: {fileID: 7047862844395338529}
   EndUI: {fileID: 4925484690991032123}
+  Player: {fileID: 8186968699993541348}
 --- !u!1 &7047862843497597367
 GameObject:
   m_ObjectHideFlags: 0

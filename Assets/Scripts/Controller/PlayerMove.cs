@@ -20,24 +20,7 @@ namespace ClearSky
 
         public void Update()
         {
-            ResetAnimation();
-            if (Input.GetKeyUp(KeyCode.Alpha1))
-            {
-                Attack();
-            }
-            else if (Input.GetKeyUp(KeyCode.Alpha2))
-            {
-                Hurt();
-            }
-            else if (Input.GetKeyUp(KeyCode.Alpha3))
-            {
-                Die();
-            }
-            else if (Input.GetKeyUp(KeyCode.Alpha4))
-            {
-                Idle();
-            }
-          
+            ResetAnimation();        
         }
 
         void ResetAnimation()

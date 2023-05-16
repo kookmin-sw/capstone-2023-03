@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class BattleUI : BaseUI
@@ -16,11 +17,17 @@ public class BattleUI : BaseUI
     private Button DeckUI;
     [SerializeField]
     private Button EndUI;
+    [SerializeField]
+    private GameObject Player;
 
     TextMeshProUGUI DeckNum;
     TextMeshProUGUI TrashNum;
     TextMeshProUGUI EnergyText;
     TextMeshProUGUI TurnText;
+
+    bool IsCoroutineRun = false;
+
+    
 
     NoticeUI noticeUI;
     // Start is called before the first frame update
@@ -56,16 +63,38 @@ public class BattleUI : BaseUI
         UpdateDeckTrashNum();
         UpdateEnergy();
         UpdateTurn();
+        
 
-        if (Input.GetKeyUp(KeyCode.Alpha0))
+        if (!IsCoroutineRun)
         {
-            Draw();
+            if (Input.GetKeyUp(KeyCode.Alpha0))
+            {
+                Draw();
+            }
+
+            if (Input.GetKeyUp(KeyCode.T))
+            {
+                StartCoroutine(Turn_Start());
+            }
+
+            if (Input.GetKeyUp(KeyCode.Escape))
+            {
+                OnPauseStarted();
+            }
+
+            if (Input.GetKeyUp(KeyCode.L))
+            {
+                PlayerWin();
+            }
+
+            if (BattleData.Instance.CurrentHealth <= 0)
+            {
+                StartCoroutine(PlayerDie());
+
+            }
         }
 
-        if (Input.GetKeyUp(KeyCode.T))
-        {
-            StartCoroutine(Turn_Start());
-        }
+        
     }
 
     public void TrashClick()
@@ -187,6 +216,7 @@ public class BattleUI : BaseUI
 
     public IEnumerator Turn_Start()
     {
+        IsCoroutineRun = true;
         DeckUI.interactable = false;
         TrashUI.interactable = false;
         EndUI.interactable = false;
@@ -200,5 +230,37 @@ public class BattleUI : BaseUI
         DeckUI.interactable = true;
         TrashUI.interactable = true;
         EndUI.interactable = true;
+        IsCoroutineRun = false;
+    }
+
+    //ESC키로 PauseUI 띄우기
+    public void OnPauseStarted()
+    {
+        UIManager.Instance.ShowUI("TitleBG");
+        UIManager.Instance.ShowUI("PauseUI", false);
+    }
+
+    public IEnumerator PlayerDie()
+    {
+        IsCoroutineRun=true;
+        Player.GetComponent<Animator>().SetTrigger("die");
+        yield return new WaitForSecondsRealtime(1.5f);
+        IsCoroutineRun = false;
+        UIManager.Instance.ShowUI("GameOverUI").GetComponent<GameOverUI>();
+    }
+
+    public void PlayerHurt()
+    {
+        Player.GetComponent<Animator>().SetTrigger("hurt");
+    }
+
+    public void PlayerAttack()
+    {
+        Player.GetComponent<Animator>().SetTrigger("attack");
+    }
+
+    public void PlayerWin()
+    {
+        UIManager.Instance.ShowUI("BattleWinUI").GetComponent<BattleWinUI>();
     }
 }
