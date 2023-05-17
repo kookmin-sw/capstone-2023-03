@@ -17,23 +17,33 @@ public class Battle : MonoBehaviour
 
     }
 
-    public static void Draw()
+    public static bool Draw()
     {
+        
+        if (BattleData.Instance.Deck.Count <= 0)
+        {
+            if(BattleData.Instance.Trash.Count <= 0)
+            {
+                return false;
+            }
+            else
+            {
+                foreach (CardStruct card in BattleData.Instance.Trash)
+                {
+                    BattleData.Instance.Deck.Add(card);
+                }
+                BattleData.Instance.Trash = new List<CardStruct>();
+            }
+        }
+
         if (BattleData.Instance.Hand.Count >= BattleData.Instance.MaxHand)
         {
             UIManager.Instance.ShowUI("LibraryUI").GetComponent<LibraryUI>().Init(LibraryMode.Battle_Trash_Hand);
         }
-        if (BattleData.Instance.Deck.Count <= 0)
-        {
-            foreach (CardStruct card in BattleData.Instance.Origin_Deck)
-            {
-                BattleData.Instance.Deck.Add(card);
-            }
-            BattleData.Instance.Trash = new List<CardStruct>();
-        }
         int randomIndex = Random.Range(0, BattleData.Instance.Deck.Count);
         BattleData.Instance.Hand.Add(BattleData.Instance.Deck[randomIndex]);
         BattleData.Instance.Deck.RemoveAt(randomIndex);
+        return true;
     }
 
     public static void Discard(CardStruct card)
