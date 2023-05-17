@@ -27,6 +27,9 @@ public class BattleUI : BaseUI
 
     bool IsCoroutineRun = false;
 
+    int EnemyInfo;
+    string Room;
+
     
 
     NoticeUI noticeUI;
@@ -96,6 +99,14 @@ public class BattleUI : BaseUI
 
         
     }
+
+    public void Init(int EnemyInfo, string Room)
+    {
+        this.EnemyInfo = EnemyInfo;
+        this.Room = Room;
+    }
+
+
 
     public void TrashClick()
     {
@@ -261,6 +272,6 @@ public class BattleUI : BaseUI
 
     public void PlayerWin()
     {
-        UIManager.Instance.ShowUI("BattleWinUI").GetComponent<BattleWinUI>();
+        UIManager.Instance.ShowUI("BattleWinUI").GetComponent<BattleWinUI>().Init(Room);
     }
 }

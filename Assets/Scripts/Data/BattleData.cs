@@ -38,7 +38,10 @@ public class BattleData : Singleton<BattleData>
         if (GameObject.Find("PlayerData") != null)
         {
             playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
-            Deck = playerData.Deck;
+            foreach (CardStruct card in playerData.Deck)
+            {
+                Deck.Add(card);
+            }
 
             foreach (CardStruct card in Deck)
             {
@@ -47,6 +50,11 @@ public class BattleData : Singleton<BattleData>
 
             CurrentHealth = playerData.CurrentHp;
             MaximumHealth = playerData.MaxHp;
+            MaxEnergy = playerData.Energy;
+            CurrentEnergy = MaxEnergy;
+            CurrentTurn = 0;
+            IsAlive = true;
+
         }
         else
         {
@@ -71,6 +79,31 @@ public class BattleData : Singleton<BattleData>
         
     }
 
+    public void LoadData() {
+        Deck.Clear();
+        Origin_Deck.Clear();
+        Hand.Clear();
+        Trash.Clear();
+        playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
+        foreach (CardStruct card in playerData.Deck)
+        {
+            Deck.Add(card);
+        }
+
+        foreach (CardStruct card in Deck)
+        {
+            Origin_Deck.Add(card);
+        }
+
+        CurrentHealth = playerData.CurrentHp;
+        MaximumHealth = playerData.MaxHp;
+        MaxEnergy = playerData.Energy;
+        CurrentEnergy = MaxEnergy;
+        CurrentTurn = 0;
+        IsAlive = true;
+        Shiled = 0;
+
+    }
 
     
 }
