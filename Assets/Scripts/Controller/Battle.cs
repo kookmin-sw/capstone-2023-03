@@ -83,4 +83,11 @@ public class Battle : MonoBehaviour
             BattleData.Instance.CurrentHealth = BattleData.Instance.MaximumHealth;
         }
     }
+
+    public static void UseCard(CardStruct card)
+    {
+        BattleData.Instance.CurrentEnergy -= card.cost;
+        BattleData.Instance.Trash.Add(card);
+        BattleData.Instance.Hand.Remove(card);
+    }
 }
