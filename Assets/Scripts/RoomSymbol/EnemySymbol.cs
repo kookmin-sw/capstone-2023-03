@@ -35,7 +35,7 @@ public class EnemySymbol : RoomSymbol
         }
         else
         {
-            UIManager.Instance.ShowUI("DialogUI").GetComponent<DialogUI>().Init(index + Define.NEGOFAIL_INDEX, FightEnd);
+            UIManager.Instance.ShowUI("DialogUI").GetComponent<DialogUI>().Init(index + Define.NEGOFAIL_INDEX, Fight);
         }
     }
 
