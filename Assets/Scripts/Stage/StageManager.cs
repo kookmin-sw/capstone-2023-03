@@ -9,12 +9,11 @@ using Random = UnityEngine.Random;
 public class StageManager : Singleton<StageManager>
 {
 
-    public List<int> themeIndexes;
+    private List<int> ThemeIndexes { get; set; }
 
     public int Stage { get; set; } = 0; //현재 스테이지 레벨
 
     public Define.ThemeType Theme { get; set; } //현재 스테이지의 테마
-    public bool NegoInLevel { get; set; } = false; //이 레벨에서 협상을 했는지  
 
     private static readonly int roomInterval = 20; //방 사이 간격
     private static Vector2 roomSize = new Vector2(10, 10); //방 크기
@@ -50,6 +49,7 @@ public class StageManager : Singleton<StageManager>
         }
     }
 
+
     //델리게이트가 참조한 함수들에게 현재 방이 클리어되었음을 알리는 함수.
     public void RoomClear()
     {
@@ -62,7 +62,19 @@ public class StageManager : Singleton<StageManager>
         DestroyMap();
         CreateMap();
         OnLevelClear?.Invoke();
-        NegoInLevel = false; 
+    }
+
+
+    protected override void Awake()
+    {
+        base.Awake();
+        DontDestroyOnLoad(this);
+    }
+
+    public void CreateStage()
+    {
+        Stage = 0;
+        CreateMap();
     }
 
     //이전 맵 파괴
@@ -70,7 +82,7 @@ public class StageManager : Singleton<StageManager>
     {
         for (int i = 0; i < Rooms.Count; i++)
         {
-            AssetLoader.Instance.Destroy(Rooms[i].gameObject);
+            AssetLoader.Instance.Destroy(Rooms[i]?.gameObject);
         }
         Rooms = null;
         RoomPoints = null;
@@ -90,7 +102,7 @@ public class StageManager : Singleton<StageManager>
 
         if(Stage == 0)
         {
-            themeIndexes = Define.GenerateRandomNumbers((int)Define.ThemeType.Pirate, (int)Define.ThemeType.Final, 3); // 1 ~ 4 중에서 나올 스테이지 3개 지정
+            ThemeIndexes = Define.GenerateRandomNumbers((int)Define.ThemeType.Pirate, (int)Define.ThemeType.Final, 3); // 1 ~ 4 중에서 나올 스테이지 3개 지정
         }
 
         Stage += 1;
@@ -99,7 +111,7 @@ public class StageManager : Singleton<StageManager>
         if (Stage < 4)
         {
             roomCount = Stage + 11;
-            Theme = (Define.ThemeType)themeIndexes[Stage - 1]; //현재 스테이지의 테마
+            Theme = (Define.ThemeType)ThemeIndexes[Stage - 1]; //현재 스테이지의 테마
             CreateSpecialRoomIndexes(); //특별한 방의 위치 지정
             CreateMapRooms(); //방 생성 후 방 유형 지정
             CreateMapRoomPointsAndEdges(); //방들의 위치와 연결상태를 나타낸 그래프 생성
