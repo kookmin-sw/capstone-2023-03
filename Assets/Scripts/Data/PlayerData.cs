@@ -9,8 +9,8 @@ public class PlayerData : Singleton<PlayerData>
 
     private int channelLevel;
     private int viewers;
-    private int currentHp;
-    private int maxHp;
+    private float currentHp;
+    private float maxHp;
     private int money;
     private int energy;
 
@@ -36,7 +36,7 @@ public class PlayerData : Singleton<PlayerData>
         }
     }  //애청자 수
 
-    public int CurrentHp
+    public float CurrentHp
     {
         get { return currentHp; }
         set
@@ -46,7 +46,7 @@ public class PlayerData : Singleton<PlayerData>
         }
     }  //현재 체력
 
-    public int MaxHp { //최대 체력
+    public float MaxHp { //최대 체력
         get 
         {
             if (viewers == 0) maxHp = 80;
