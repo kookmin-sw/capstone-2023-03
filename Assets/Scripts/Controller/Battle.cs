@@ -60,6 +60,7 @@ public class Battle : MonoBehaviour
         }
         BattleData.Instance.Hand = new List<CardStruct>();
         BattleData.Instance.CurrentEnergy = BattleData.Instance.MaxEnergy;
+        BattleData.Instance.Shield = 0;
 
     }
 

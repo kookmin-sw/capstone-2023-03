@@ -9,16 +9,18 @@ public class DropZone : MonoBehaviour, IDropHandler
     GameObject CardUI;
     CardStruct Card;
     NoticeUI noticeUI;
+    BattleUI battleUI;
 
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log(eventData.pointerDrag.name + " was dropped on " + gameObject.name);
         CardUI = eventData.pointerDrag;
         Card = CardUI.GetComponent<CardUI>().Card;
-        if(Card != null && Card.cost <= BattleData.Instance.CurrentEnergy)
+        battleUI = FindObjectOfType<BattleUI>();
+        if(Card != null && (Card.cost <= BattleData.Instance.CurrentEnergy || Card.cost == 99))
         {
             Battle.UseCard(Card);
-
+            battleUI.PlayerAttack();
             Destroy(CardUI);
         }
         else

@@ -28,7 +28,7 @@ public class BattleData : Singleton<BattleData>
             return (CurrentHealth / MaximumHealth) * 100;
         }
     }
-    public float Shiled = 0;
+    public float Shield = 0;
 
     // Start is called before the first frame update
     protected override void Awake()
@@ -101,7 +101,7 @@ public class BattleData : Singleton<BattleData>
         CurrentEnergy = MaxEnergy;
         CurrentTurn = 0;
         IsAlive = true;
-        Shiled = 0;
+        Shield = 0;
 
     }
 
