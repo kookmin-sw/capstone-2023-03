@@ -19,6 +19,12 @@ public class BattleUI : BaseUI
     private Button EndUI;
     [SerializeField]
     private GameObject Player;
+    [SerializeField]
+    private GameObject Enemy1;
+    [SerializeField]
+    private GameObject Enemy2;
+    [SerializeField]
+    private GameObject Enemy3;
 
     TextMeshProUGUI DeckNum;
     TextMeshProUGUI TrashNum;
@@ -29,6 +35,7 @@ public class BattleUI : BaseUI
 
     int EnemyInfo;
     string Room;
+    int stage;
 
     
 
@@ -56,7 +63,7 @@ public class BattleUI : BaseUI
         {
             canvas.worldCamera = mainCamera;
         }
-
+        LoadEnemy();
         StartCoroutine(Turn_Start());
     }
 
@@ -95,15 +102,21 @@ public class BattleUI : BaseUI
                 StartCoroutine(PlayerDie());
 
             }
+
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                Debug.Log(EnemyInfo);
+            }
         }
 
         
     }
 
-    public void Init(int EnemyInfo, string Room)
+    public void Init(int EnemyInfo, string Room, int stage)
     {
         this.EnemyInfo = EnemyInfo;
         this.Room = Room;
+        this.stage = stage;
     }
 
 
@@ -272,6 +285,40 @@ public class BattleUI : BaseUI
 
     public void PlayerWin()
     {
-        UIManager.Instance.ShowUI("BattleWinUI").GetComponent<BattleWinUI>().Init(Room);
+        UIManager.Instance.ShowUI("BattleWinUI").GetComponent<BattleWinUI>().Init(Room, EnemyInfo);
+    }
+
+    //EnemyInfo가 0이라면 AllEnemyData의 NoneEnemyNames 리스트에서 랜덤으로 이름을 뽑아 Assets/Resources/Images/EnemyUI + 이름으로 된 UI를 불러온다.
+    public void LoadEnemy()
+    {
+        if (stage < 4)
+        {
+            for (int i = 1; i < stage + 1; i++)
+            {
+                GameObject EnemyUI;
+                if (EnemyInfo == 0)
+                {
+                    int random = Random.Range(0, 2 + stage);
+                    Transform EnemyNum = transform.Find("Enemy" + i.ToString());
+                    Debug.Log($"Images/EnemyUI/" + AllEnemyData.Instance.NoneEnemyNames[random]);
+                    EnemyUI = AssetLoader.Instance.Instantiate($"Images/EnemyUI/" + AllEnemyData.Instance.NoneEnemyNames[random], EnemyNum);
+                    EnemyNum.GetComponent<EnemyData>().init(i, AllEnemyData.Instance.NoneEnemyNames[random], stage);
+                }
+                else
+                {
+                    int random = Random.Range(0, 2 + stage);
+                    Transform EnemyNum = transform.Find("Enemy" + i.ToString());
+                    Debug.Log($"Images/EnemyUI/" + AllEnemyData.Instance.NoneEnemyNames[random]);
+                    EnemyUI = AssetLoader.Instance.Instantiate($"Images/EnemyUI/" + AllEnemyData.Instance.NoneEnemyNames[random], EnemyNum);
+                    EnemyNum.GetComponent<EnemyData>().init(i, AllEnemyData.Instance.NoneEnemyNames[random], stage);
+
+                }
+
+            }
+        }
+        else
+        {
+
+        }
     }
 }

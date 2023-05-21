@@ -1226,6 +1226,9 @@ MonoBehaviour:
   DeckUI: {fileID: 7047862844395338529}
   EndUI: {fileID: 4925484690991032123}
   Player: {fileID: 8186968699993541348}
+  Enemy1: {fileID: 7047862844192910927}
+  Enemy2: {fileID: 7047862843879609518}
+  Enemy3: {fileID: 7047862843497597367}
 --- !u!1 &7047862843497597367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1235,8 +1238,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7047862843497597366}
+  - component: {fileID: 3570871285036756}
   m_Layer: 5
-  m_Name: Enemy1
+  m_Name: Enemy3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1262,6 +1266,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3570871285036756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7047862843497597367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7245b45cc87c2041bfa944a70f99d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7047862843879609518
 GameObject:
   m_ObjectHideFlags: 0
@@ -1271,6 +1287,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7047862843879609513}
+  - component: {fileID: 2267652478035667331}
   m_Layer: 5
   m_Name: Enemy2
   m_TagString: Untagged
@@ -1295,9 +1312,21 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 300, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2267652478035667331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7047862843879609518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7245b45cc87c2041bfa944a70f99d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7047862844192910927
 GameObject:
   m_ObjectHideFlags: 0
@@ -1307,8 +1336,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7047862844192910926}
+  - component: {fileID: 7848846816558246968}
   m_Layer: 5
-  m_Name: Enemy3
+  m_Name: Enemy1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1331,9 +1361,21 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 600, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7848846816558246968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7047862844192910927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7245b45cc87c2041bfa944a70f99d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7047862844395338535
 GameObject:
   m_ObjectHideFlags: 0

@@ -44,4 +44,18 @@ namespace DataStructs
         public int money;
     }
 
+    [System.Serializable]
+    public class EnemyStruct
+    {
+        public int index;
+        public int stage;//등장 스테이지
+        public string type; //해당 보스
+        public int minHP;//최소 체력
+        public int maxHP;//최대 체력
+        public string pat1; // 1번 패턴
+        public string pat2; // 2번 패턴
+        public string pat3; //3번 패턴
+        public string special; //특수효과
+    }
+
 }

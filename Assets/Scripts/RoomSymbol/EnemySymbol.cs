@@ -44,7 +44,7 @@ public class EnemySymbol : RoomSymbol
         GameObject Room = transform.parent.gameObject;
         SoundManager.Instance.Play("Sounds/BattleBgm", Sound.Bgm);
         UIManager.Instance.ShowUI("BackGroundUI");
-        UIManager.Instance.ShowUI("BattleUI",false).GetComponent<BattleUI>().Init(index + Define.FIGHT_INDEX,Room.name);
+        UIManager.Instance.ShowUI("BattleUI",false).GetComponent<BattleUI>().Init(index, Room.name, StageManager.Instance.Stage);
         BattleData.Instance.LoadData();
     }
 

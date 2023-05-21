@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy1Data : MonoBehaviour
+public class EnemyData : Singleton<EnemyData>
 {
     // Start is called before the first frame update
     void Start()
@@ -14,5 +14,10 @@ public class Enemy1Data : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void init(int num, string name, int stage)
+    {
+
     }
 }

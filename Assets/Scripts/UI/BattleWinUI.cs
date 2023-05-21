@@ -10,6 +10,7 @@ public class BattleWinUI : MonoBehaviour
 
     string Room;
     GameObject NowRoom;
+    int Enemyinfo;
 
     // Start is called before the first frame update
     void Start()
@@ -17,9 +18,10 @@ public class BattleWinUI : MonoBehaviour
         
     }
 
-    public void Init(string Room)
+    public void Init(string Room, int Enemyinfo)
     {
         this.Room = Room;
+        this.Enemyinfo = Enemyinfo;
     }
 
     // Update is called once per frame
@@ -40,7 +42,14 @@ public class BattleWinUI : MonoBehaviour
         }
         SoundManager.Instance.Play("Sounds/StageBgm", Sound.Bgm);
         NowRoom = GameObject.Find(Room);
-        NowRoom.transform.Find("EnemySymbol").GetComponent<EnemySymbol>().FightEnd();
+        if(Enemyinfo < 100)
+        {
+            NowRoom.transform.Find("EnemySymbol").GetComponent<EnemySymbol>().FightEnd();
+        }
+        else
+        {
+            NowRoom.transform.Find("BossSymbol").GetComponent<BossSymbol>().AfterFight();
+        }
     }
 
     
