@@ -58,7 +58,7 @@ public class GameData : Singleton<GameData>
     public void LoadSpriteDic()
     {
         Debug.Log("스프라이트 로드");
-        Sprite[] sprites = AssetLoader.Instance.LoadAllInSubfolders<Sprite>("Images");
+        Sprite[] sprites = AssetLoader.Instance.LoadAll<Sprite>("Images");
         foreach (Sprite sprite in sprites)
         {
             SpriteDic.Add(sprite.name, sprite);
@@ -69,20 +69,25 @@ public class GameData : Singleton<GameData>
     public void LoadCardList()
     {
         Debug.Log("카드 리스트 로드");
-        string filePath = "Assets/Resources/Data/CardLibrary.json";
-        if (File.Exists(filePath))
+        string filePath = "Data/CardLibrary";
+        TextAsset jsonData = AssetLoader.Instance.Load<TextAsset>(filePath);
+        if (jsonData != null)
         {
-            string jsonData = File.ReadAllText(filePath);
-            CardList = JsonMapper.ToObject<List<CardStruct>>(jsonData);
+            CardList = JsonMapper.ToObject<List<CardStruct>>(jsonData.text);
+        }
+        else
+        {
+            Debug.LogError("Cannot find file at " + filePath);
         }
     }
 
     public void LoadRewardDic()
     {
         Debug.Log("보상 리스트 로드");
-        string filePath = "Assets/Resources/Data/Reward.json";
-        if (File.Exists(filePath)) {
-            string jsonString = File.ReadAllText(filePath);
+        string filePath = "Data/Reward";
+        TextAsset jsonData = AssetLoader.Instance.Load<TextAsset>(filePath);
+        if (jsonData != null) {
+            string jsonString = jsonData.text;
             JsonData rewardData = JsonMapper.ToObject(jsonString);
 
             for (int i = 0; i < rewardData.Count; i++)
@@ -102,10 +107,11 @@ public class GameData : Singleton<GameData>
     public void LoadDialogDic()
     {
         Debug.Log("다이얼로그 리스트 로드");
-        string filePath = "Assets/Resources/Data/Dialog.json";
-        if (File.Exists(filePath))
+        string filePath = "Data/Dialog";
+        TextAsset jsonData = AssetLoader.Instance.Load<TextAsset>(filePath);
+        if (jsonData != null)
         {
-            string jsonString = File.ReadAllText(filePath);
+            string jsonString = jsonData.text;
             JsonData dialogData = JsonMapper.ToObject(jsonString);
             for(int i = 0; i < dialogData.Count; i++)
             {
