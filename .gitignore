@@ -3,6 +3,9 @@
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
 /[Ll]ibrary/
+/game_Data/
+/MonoBleedingEdge/
+/game_BurstDebugInformation_DoNotShip/
 /[Tt]emp/
 /[Oo]bj/
 /[Bb]uild/
@@ -62,6 +65,7 @@ sysinfo.txt
 *.aab
 *.unitypackage
 *.app
+game.exe
 
 # Crashlytics generated file
 crashlytics-build.properties

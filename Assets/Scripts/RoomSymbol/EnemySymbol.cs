@@ -29,7 +29,7 @@ public class EnemySymbol : RoomSymbol
     {
         float random = Random.Range(0f, 1f);
 
-        if (random < 0.5f) 
+        if (random < (0.5f + PlayerData.Instance.Viewers / 10000.0f)) 
         {
             UIManager.Instance.ShowUI("DialogUI").GetComponent<DialogUI>().Init(index + Define.NEGO_INDEX, NegotiateEnd);
         }
