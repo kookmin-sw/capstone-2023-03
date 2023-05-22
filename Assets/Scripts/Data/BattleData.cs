@@ -74,10 +74,6 @@ public class BattleData : Singleton<BattleData>
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void LoadData() {
         Deck.Clear();

@@ -68,7 +68,13 @@ public class Battle : MonoBehaviour
     {
         BattleData.Instance.CurrentEnergy = BattleData.Instance.MaxEnergy;
         BattleData.Instance.CurrentTurn++;
-        
+        for(int i = 0; i < 3; i++)
+        {
+            if (EnemyData.Instance.Isalive[i])
+            {
+                EnemyData.Instance.SetPat(i);
+            }
+        }
     }
 
     public static void ChangeCurrentHealth(float value)
