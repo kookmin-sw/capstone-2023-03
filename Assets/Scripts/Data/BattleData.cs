@@ -14,6 +14,7 @@ public class BattleData : Singleton<BattleData>
 
     public int CurrentEnergy = 3;
     public int MaxEnergy = 3;
+    public int UseEnergy = 0;
     public int CurrentTurn = 0;
     public int MaxHand = 10;
     public int StartHand = 5;
@@ -28,8 +29,20 @@ public class BattleData : Singleton<BattleData>
             return (CurrentHealth / MaximumHealth) * 100;
         }
     }
-    public float Shiled = 0;
+    public float Shield = 0;
+    public int Str = 0; // Èû
+    public int Int = 0; // ¸¶·Â
+    public int weak = 0; // Ãë¾à
+    public int crack = 0; // ±Õ¿­
+    public int drained = 0; // Å»Áø
+    public bool stun = false; // ±âÀý
+    public bool restraint = false; // ¼Ó¹Ú
+    public bool blind = false; // ¾ÏÈæ
+    public bool confusion = false; // È¥¶õ
 
+    public int SelectedEnemy = 0;// ¼±ÅÃµÈ Àû
+
+    public CardStruct LastUse;
     // Start is called before the first frame update
     protected override void Awake()
     {
@@ -74,10 +87,6 @@ public class BattleData : Singleton<BattleData>
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void LoadData() {
         Deck.Clear();
@@ -99,11 +108,21 @@ public class BattleData : Singleton<BattleData>
         MaximumHealth = playerData.MaxHp;
         MaxEnergy = playerData.Energy;
         CurrentEnergy = MaxEnergy;
+        UseEnergy = 0;
         CurrentTurn = 0;
         IsAlive = true;
-        Shiled = 0;
-
-    }
+        Shield = 0;
+        Str = 0;
+        Int = 0;
+        weak = 0;
+        crack = 0;
+        drained = 0;
+        stun = false;
+        restraint = false;
+        blind = false;
+        confusion = false;
+        SelectedEnemy = 0;
+}
 
     
 }

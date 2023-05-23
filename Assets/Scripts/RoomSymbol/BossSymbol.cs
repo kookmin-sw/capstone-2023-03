@@ -8,14 +8,17 @@ public class BossSymbol : RoomSymbol
     {
         UIManager.Instance.ShowUI("DialogUI")
             .GetComponent<DialogUI>()
-            .Init(index, AfterFight); //대화가 끝나면 전투 UI 오픈
+            .Init(index, Fight); //대화가 끝나면 전투 UI 오픈
 
     }
 
     public void Fight()
     {
-        //전투 UI 열기
-        //전투 UI 종료 시 AfterFight 호출
+        GameObject Room = transform.parent.gameObject;
+        SoundManager.Instance.Play("Sounds/BattleBgm", Sound.Bgm);
+        UIManager.Instance.ShowUI("BackGroundUI");
+        UIManager.Instance.ShowUI("BattleUI", false).GetComponent<BattleUI>().Init(index, Room.name, StageManager.Instance.Stage);
+        BattleData.Instance.LoadData();
     }
 
     //전투 후 대화

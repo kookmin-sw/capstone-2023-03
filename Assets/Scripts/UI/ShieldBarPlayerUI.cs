@@ -30,8 +30,8 @@ public class ShieldBarPlayerUI : MonoBehaviour
 
     void ChangeShieldText() // Text의 텍스트 내용을 Shield로 바꿔주는 함수
     {
-        TextUI.text = ShieldData.Shiled.ToString();
-        if (ShieldData.Shiled == 0)
+        TextUI.text = ShieldData.Shield.ToString();
+        if (ShieldData.Shield == 0)
         {
             image.fillAmount = 0;
         }
