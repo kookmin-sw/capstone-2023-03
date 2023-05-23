@@ -1,4 +1,4 @@
-아이리스 -ROAD TO V-
+아이리스
 ==================
 
 https://kookmin-sw.github.io/capstone-2023-03/
