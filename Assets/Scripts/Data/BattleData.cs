@@ -29,7 +29,17 @@ public class BattleData : Singleton<BattleData>
         }
     }
     public float Shield = 0;
+    public int Str = 0; // Èû
+    public int Int = 0; // ¸¶·Â
+    public int weak = 0; // Ãë¾à
+    public int crack = 0; // ±Õ¿­
+    public int drained = 0; // Å»Áø
+    public bool stun = false; // ±âÀı
+    public bool restraint = false; // ¼Ó¹Ú
+    public bool blind = false; // ¾ÏÈæ
+    public bool confusion = false; // È¥¶õ
 
+    public CardStruct LastUse;
     // Start is called before the first frame update
     protected override void Awake()
     {
@@ -98,6 +108,15 @@ public class BattleData : Singleton<BattleData>
         CurrentTurn = 0;
         IsAlive = true;
         Shield = 0;
+        Str = 0;
+        Int = 0;
+        weak = 0;
+        crack = 0;
+        drained = 0;
+        stun = false;
+        restraint = false;
+        blind = false;
+        confusion = false;
 
     }
 

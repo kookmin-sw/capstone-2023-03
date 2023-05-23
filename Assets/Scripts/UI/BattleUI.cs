@@ -215,6 +215,18 @@ public class BattleUI : BaseUI
         }
     }
 
+    public void SelectCard(CardStruct card)
+    {
+        if(BattleData.Instance.LastUse.index == 23)
+        {
+
+        }
+        else if(BattleData.Instance.LastUse.index == 26)
+        {
+
+        }
+    }
+
     //DeckNum�� TrashNum�� ����
     public void UpdateDeckTrashNum()
     {
@@ -385,11 +397,7 @@ public class BattleUI : BaseUI
                     EnemyUI = AssetLoader.Instance.Instantiate($"Images/EnemyUI/" + AllEnemyData.Instance.NoneEnemyNames[random], EnemyNum);
                     EnemyData.Instance.init(i, "MechanicBoss", stage);
                 }
-                else if(EnemyInfo == 104)
-                {
-                    EnemyUI = AssetLoader.Instance.Instantiate($"Images/EnemyUI/" + AllEnemyData.Instance.NoneEnemyNames[random], EnemyNum);
-                    EnemyData.Instance.init(i, "LastBoss", stage);
-                }
+                
 
                 EnemyNum.GetChild(1).Find("HealthBar").GetChild(0).GetComponent<HealthBarEnemyUI>().init(i);
                 EnemyNum.GetChild(1).Find("HealthBar").GetChild(1).GetComponent<ShieldBarEnemyUI>().init(i);
@@ -398,7 +406,12 @@ public class BattleUI : BaseUI
         }
         else
         {
-
+            Transform EnemyNum = transform.Find("Enemy").Find("Enemy1");
+            GameObject EnemyUI;
+            EnemyUI = AssetLoader.Instance.Instantiate($"Images/EnemyUI/" + AllEnemyData.Instance.NoneEnemyNames[1], EnemyNum);
+            EnemyData.Instance.init(1, "LastBoss", stage);
+            EnemyNum.GetChild(1).Find("HealthBar").GetChild(0).GetComponent<HealthBarEnemyUI>().init(1);
+            EnemyNum.GetChild(1).Find("HealthBar").GetChild(1).GetComponent<ShieldBarEnemyUI>().init(1);
         }
     }
 }

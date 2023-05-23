@@ -26,11 +26,12 @@ public class AllEnemyData : Singleton<AllEnemyData>
     public void LoadEnemyData()
     {
         Debug.Log("적 리스트 로드");
-        string filePath = "Assets/Resources/Data/EnemyData.json";
-        if (File.Exists(filePath))
+        string filePath = "Data/EnemyData";
+        TextAsset jsonData = AssetLoader.Instance.Load<TextAsset>(filePath);
+        if (jsonData != null)
         {
-            string jsonData = File.ReadAllText(filePath);
-            enemyStructs = JsonMapper.ToObject<List<EnemyStruct>>(jsonData);
+            string jsonString = jsonData.text;
+            enemyStructs = JsonMapper.ToObject<List<EnemyStruct>>(jsonString);
         }
     }
 
