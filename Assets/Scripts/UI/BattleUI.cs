@@ -22,10 +22,14 @@ public class BattleUI : BaseUI
     [SerializeField]
     private GameObject Enemy;
 
+
     TextMeshProUGUI DeckNum;
     TextMeshProUGUI TrashNum;
     TextMeshProUGUI EnergyText;
     TextMeshProUGUI TurnText;
+    TextMeshProUGUI Enemy1Text;
+    TextMeshProUGUI Enemy2Text;
+    TextMeshProUGUI Enemy3Text;
 
     bool IsCoroutineRun = false;
 
@@ -44,6 +48,9 @@ public class BattleUI : BaseUI
         TrashNum = GameObject.Find("Trash").GetComponentInChildren<TextMeshProUGUI>();
         EnergyText = GameObject.Find("Energy").GetComponentInChildren<TextMeshProUGUI>();
         TurnText = GameObject.Find("Turn").GetComponentInChildren<TextMeshProUGUI>();
+        Enemy1Text = GameObject.Find("Enemy1").GetComponentInChildren<TextMeshProUGUI>();
+        Enemy2Text = GameObject.Find("Enemy2").GetComponentInChildren<TextMeshProUGUI>();
+        Enemy3Text = GameObject.Find("Enemy3").GetComponentInChildren<TextMeshProUGUI>();
 
         noticeUI = FindObjectOfType<NoticeUI>();
 
@@ -113,6 +120,7 @@ public class BattleUI : BaseUI
         this.EnemyInfo = EnemyInfo;
         this.Room = Room;
         this.stage = stage;
+        Debug.Log(EnemyInfo);
     }
 
 
@@ -241,6 +249,42 @@ public class BattleUI : BaseUI
         TrashUI.interactable = false;
         EndUI.interactable = false;
         Battle.Start_turn();
+        for (int i = 0; i < 3; i++)
+        {
+            if(i == 0)
+            {
+                if (EnemyData.Instance.Pat[i] != 0)
+                {
+                    Enemy1Text.text = EnemyData.Instance.PatText[i];
+                }
+                else
+                {
+                    Enemy1Text.text = "";
+                }
+            }
+            if(i == 1)
+            {
+                if (EnemyData.Instance.Pat[i] != 0)
+                {
+                    Enemy2Text.text = EnemyData.Instance.PatText[i];
+                }
+                else
+                {
+                    Enemy2Text.text = "";
+                }
+            }
+            if (i == 2)
+            {
+                if (EnemyData.Instance.Pat[i] != 0)
+                {
+                    Enemy3Text.text = EnemyData.Instance.PatText[i];
+                }
+                else
+                {
+                    Enemy3Text.text = "";
+                }
+            }
+        }
         for (int i = 0; i < BattleData.Instance.StartHand; i++)
         {
 
@@ -287,32 +331,68 @@ public class BattleUI : BaseUI
     //EnemyInfo가 0이라면 AllEnemyData의 NoneEnemyNames 리스트에서 랜덤으로 이름을 뽑아 $Images/EnemyUI + 이름으로 된 UI를 불러온다.
     public void LoadEnemy()
     {
+        EnemyData.Instance.Reset();
         if (stage < 4)
         {
             for (int i = 1; i < stage + 1; i++)
             {
+                int random = EnemyInfo == 0 ? Random.Range(0, 2 + stage) : Random.Range(0, 2);
+                Transform EnemyNum = transform.Find("Enemy").Find("Enemy" + i.ToString());
                 GameObject EnemyUI;
                 if (EnemyInfo == 0)
                 {
-                    int random = Random.Range(0, 2 + stage);
-                    Transform EnemyNum = transform.Find("Enemy").Find("Enemy" + i.ToString());
-                    Debug.Log($"Images/EnemyUI/" + AllEnemyData.Instance.NoneEnemyNames[random]);
-                    Debug.Log(EnemyNum);
                     EnemyUI = AssetLoader.Instance.Instantiate($"Images/EnemyUI/" + AllEnemyData.Instance.NoneEnemyNames[random], EnemyNum);
-                    Enemy.GetComponent<EnemyData>().init(i, AllEnemyData.Instance.NoneEnemyNames[random], stage);
-                    EnemyNum.GetChild(0).Find("HealthBar").GetChild(0).GetComponent<HealthBarEnemyUI>().init(i);
-                    EnemyNum.GetChild(0).Find("HealthBar").GetChild(1).GetComponent<ShieldBarEnemyUI>().init(i);
+                    EnemyData.Instance.init(i, AllEnemyData.Instance.NoneEnemyNames[random], stage);
                 }
-                else
+                else if (EnemyInfo == 1)
                 {
-                    int random = Random.Range(0, 2 + stage);
-                    Transform EnemyNum = transform.Find("Enemy").Find("Enemy" + i.ToString());
-                    Debug.Log($"Images/EnemyUI/" + AllEnemyData.Instance.NoneEnemyNames[random]);
                     EnemyUI = AssetLoader.Instance.Instantiate($"Images/EnemyUI/" + AllEnemyData.Instance.NoneEnemyNames[random], EnemyNum);
-                    Enemy.GetComponent<EnemyData>().init(i, AllEnemyData.Instance.NoneEnemyNames[random], stage);
-                    EnemyNum.GetChild(0).Find("HealthBar").GetChild(0).GetComponent<HealthBarEnemyUI>().init(i);
-                    EnemyNum.GetChild(0).Find("HealthBar").GetChild(1).GetComponent<ShieldBarEnemyUI>().init(i);
+                    EnemyData.Instance.init(i, AllEnemyData.Instance.PirateEnemyNames[random], stage);
                 }
+                else if (EnemyInfo == 2)
+                {
+                    EnemyUI = AssetLoader.Instance.Instantiate($"Images/EnemyUI/" + AllEnemyData.Instance.NoneEnemyNames[random], EnemyNum);
+                    EnemyData.Instance.init(i, AllEnemyData.Instance.DruidEnemyNames[random], stage);
+                }
+                else if (EnemyInfo == 3)
+                {
+                    EnemyUI = AssetLoader.Instance.Instantiate($"Images/EnemyUI/" + AllEnemyData.Instance.NoneEnemyNames[random], EnemyNum);
+                    EnemyData.Instance.init(i, AllEnemyData.Instance.PriestEnemyNames[random], stage);
+                }
+                else if (EnemyInfo == 4)
+                {
+                    EnemyUI = AssetLoader.Instance.Instantiate($"Images/EnemyUI/" + AllEnemyData.Instance.NoneEnemyNames[random], EnemyNum);
+                    EnemyData.Instance.init(i, AllEnemyData.Instance.MechanicEnemyNames[random], stage);
+                }
+
+                else if (EnemyInfo == 100)
+                {
+                    EnemyUI = AssetLoader.Instance.Instantiate($"Images/EnemyUI/PirateBoss", EnemyNum);
+                    EnemyData.Instance.init(i, "PirateBoss", stage);
+                }
+                else if (EnemyInfo == 101)
+                {
+                    EnemyUI = AssetLoader.Instance.Instantiate($"Images/EnemyUI/" + AllEnemyData.Instance.NoneEnemyNames[random], EnemyNum);
+                    EnemyData.Instance.init(i, "DruidBoss", stage);
+                }
+                else if (EnemyInfo == 102)
+                {
+                    EnemyUI = AssetLoader.Instance.Instantiate($"Images/EnemyUI/" + AllEnemyData.Instance.NoneEnemyNames[random], EnemyNum);
+                    EnemyData.Instance.init(i, "PriestBoss", stage);
+                }
+                else if (EnemyInfo == 103)
+                {
+                    EnemyUI = AssetLoader.Instance.Instantiate($"Images/EnemyUI/" + AllEnemyData.Instance.NoneEnemyNames[random], EnemyNum);
+                    EnemyData.Instance.init(i, "MechanicBoss", stage);
+                }
+                else if(EnemyInfo == 104)
+                {
+                    EnemyUI = AssetLoader.Instance.Instantiate($"Images/EnemyUI/" + AllEnemyData.Instance.NoneEnemyNames[random], EnemyNum);
+                    EnemyData.Instance.init(i, "LastBoss", stage);
+                }
+
+                EnemyNum.GetChild(1).Find("HealthBar").GetChild(0).GetComponent<HealthBarEnemyUI>().init(i);
+                EnemyNum.GetChild(1).Find("HealthBar").GetChild(1).GetComponent<ShieldBarEnemyUI>().init(i);
 
             }
         }

@@ -21,14 +21,14 @@ public class HealthBarEnemyUI : MonoBehaviour
     {
         TextUI = GetComponentInChildren<TextMeshProUGUI>();
         image = GetComponentInChildren<Image>();
-        HealthData = GameObject.Find("Enemy").GetComponent<EnemyData>();
+        HealthData = GameObject.Find("EnemyData").GetComponent<EnemyData>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        HealthData = GameObject.Find("Enemy").GetComponent<EnemyData>();
+        HealthData = GameObject.Find("EnemyData").GetComponent<EnemyData>();
         ChangeHPText();
     }
 
@@ -42,7 +42,7 @@ public class HealthBarEnemyUI : MonoBehaviour
 
         if (HealthData.Isalive[EnemyNum-1])
         {
-            TextUI.text = HealthData.HP[EnemyNum-1].ToString();
+            TextUI.text = HealthData.CurrentHP[EnemyNum-1] + " / " + HealthData.MaxHP[EnemyNum-1];
         }
         else
         {

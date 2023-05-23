@@ -18,13 +18,13 @@ public class ShieldBarEnemyUI : MonoBehaviour
     {
         TextUI = GetComponentInChildren<TextMeshProUGUI>();
         image = GetComponentInChildren<Image>();
-        ShieldData = GameObject.Find("Enemy").GetComponent<EnemyData>();
+        ShieldData = GameObject.Find("EnemyData").GetComponent<EnemyData>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        ShieldData = GameObject.Find("Enemy").GetComponent<EnemyData>();
+        ShieldData = GameObject.Find("EnemyData").GetComponent<EnemyData>();
         ChangeShieldText();
     }
 

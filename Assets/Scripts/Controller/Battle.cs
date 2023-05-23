@@ -70,10 +70,16 @@ public class Battle : MonoBehaviour
         BattleData.Instance.CurrentTurn++;
         for(int i = 0; i < 3; i++)
         {
+            Debug.Log(EnemyData.Instance.Isalive[i]+"/"+i.ToString());
             if (EnemyData.Instance.Isalive[i])
             {
                 EnemyData.Instance.SetPat(i);
             }
+            else
+            {
+                EnemyData.Instance.Pat[i] = 0;
+            }
+            EnemyData.Instance.SetPat(i);
         }
     }
 
@@ -96,5 +102,19 @@ public class Battle : MonoBehaviour
         BattleData.Instance.CurrentEnergy -= card.cost;
         BattleData.Instance.Trash.Add(card);
         BattleData.Instance.Hand.Remove(card);
+        
+    }
+
+    public static void ChangeEnemyHealth(int num, float value)
+    {
+        EnemyData.Instance.CurrentHP[num] += value;
+        if (EnemyData.Instance.CurrentHP[num] <= 0)
+        {
+            EnemyData.Instance.Isalive[num] = false;
+        }
+        if (EnemyData.Instance.CurrentHP[num] > EnemyData.Instance.MaxHP[num])
+        {
+            EnemyData.Instance.CurrentHP[num] = EnemyData.Instance.MaxHP[num];
+        }
     }
 }

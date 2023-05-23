@@ -8,19 +8,25 @@ using Unity.VisualScripting;
 
 public class EnemyData : Singleton<EnemyData>
 {
-    public List<bool> Isalive { get; set; } = new List<bool> { false,false,false };
-    public List<float> HP { get; set; } = new List<float> { 30, 20, 10 };
+    public List<bool> Isalive { get; set; } = new List<bool> { false, false, false };
+    public List<float> CurrentHP { get; set; } = new List<float> { 30, 20, 10 };
+    public List<float> MaxHP { get; set; } = new List<float>{30, 20, 10};
     public List<float> Shield { get; set; } = new List<float> { 0, 0, 0 };
+    public List<int> Pat { get; set; } = new List<int> {0,0,0};
+    public List<string> PatText { get; set; } = new List<string> { "", "", "" };
     public EnemyStruct Enemy1;
     public EnemyStruct Enemy2;
     public EnemyStruct Enemy3;
-    public List<EnemtStruct> EnemyList = new List<EnemtStruct> { Enemy1, Enemy2, Enemy3 };
+    public List<EnemyStruct> EnemyList;
+
+    public int stage;
 
 
     // Start is called before the first frame update
     protected override void Awake()
     {
-        
+        base.Awake();
+        EnemyList = new List<EnemyStruct> { Enemy1, Enemy2, Enemy3 };
     }
 
     // Update is called once per frame
@@ -31,6 +37,7 @@ public class EnemyData : Singleton<EnemyData>
 
     public void init(int num, string name, int stage)
     {
+        this.stage = stage;
         Isalive[num - 1] = true;
         int random;
         switch (num)
@@ -38,17 +45,23 @@ public class EnemyData : Singleton<EnemyData>
             case 1:
                 Enemy1 = AllEnemyData.Instance.GetEnemyData(name, stage);
                 random = UnityEngine.Random.Range(Enemy1.minHP, Enemy1.maxHP+1);
-                HP[0] = random;
+                MaxHP[0] = random;
+                CurrentHP[0] = MaxHP[0];
+                EnemyList[0] = Enemy1;
                 break;
             case 2:
                 Enemy2 = AllEnemyData.Instance.GetEnemyData(name, stage);
                 random = UnityEngine.Random.Range(Enemy2.minHP, Enemy2.maxHP + 1);
-                HP[1] = random;
+                MaxHP[1] = random;
+                CurrentHP[1] = MaxHP[1];
+                EnemyList[1] = Enemy2;
                 break;
             case 3:
                 Enemy3 = AllEnemyData.Instance.GetEnemyData(name, stage);
                 random = UnityEngine.Random.Range(Enemy3.minHP, Enemy3.maxHP + 1);
-                HP[2] = random;
+                MaxHP[2] = random;
+                CurrentHP[2] = MaxHP[2];
+                EnemyList[2] = Enemy3;
                 break;
         }
     }
@@ -56,17 +69,81 @@ public class EnemyData : Singleton<EnemyData>
     public void Reset()
     {
         Isalive = new List<bool> { false, false, false };
-        HP = new List<float> { 0, 0, 0 };
+        MaxHP = new List<float> { 30, 20, 10 };
+        CurrentHP = new List<float> { 30, 20, 10 };
         Shield = new List<float> { 0, 0, 0 };
         Enemy1 = new EnemyStruct();
         Enemy2 = new EnemyStruct();
         Enemy3 = new EnemyStruct();
+        EnemyList = new List<EnemyStruct> { Enemy1, Enemy2, Enemy3 };
+        Pat = new List<int> { 0, 0, 0 };
+        PatText = new List<string> { "", "", "" };
     }
 
     public void SetPat(int num)
     {
         int random;
-        EnemtStruct enemy = EnemyList[num];
-        random = UnityEngine.Random.Range(0,4);
+        EnemyStruct enemy = EnemyList[num];
+        random = UnityEngine.Random.Range(1,5);
+        bool set = false;
+        while (!set)
+        {
+            switch (random)
+            {
+                case 1:
+                    if (enemy.pat1 != "None")
+                    {
+                        Pat[num] = 1;
+                        PatText[num] = enemy.pat1;
+                        set = true; 
+                        break;
+                    }
+                    else
+                    {
+                        random = UnityEngine.Random.Range(1,5);
+                        break;
+                    }
+                case 2:
+                    if (enemy.pat2 != "None")
+                    {
+                        Pat[num] = 2;
+                        PatText[num] = enemy.pat2;
+                        set = true;
+                        break;
+                    }
+                    else
+                    {
+                        random = UnityEngine.Random.Range(1, 5);
+                        break;
+                    }
+                case 3:
+                    if (enemy.pat3 != "None")
+                    {
+                        Pat[num] = 3;
+                        PatText[num] = enemy.pat3;
+                        set = true;
+                        break;
+                    }
+                    else
+                    {
+                        random = UnityEngine.Random.Range(1, 5);
+                        break;
+                    }
+                case 4:
+                    if (enemy.pat4 != "None")
+                    {
+                        Pat[num] = 4;
+                        PatText[num] = enemy.pat4;
+                        set = true;
+                        break;
+                    }
+                    else
+                    {
+                        random = UnityEngine.Random.Range(1, 5);
+                        break;
+                    }
+            }
+
+        }
     }
 }
