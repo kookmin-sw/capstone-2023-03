@@ -61,6 +61,15 @@ public class Battle : MonoBehaviour
         BattleData.Instance.Hand = new List<CardStruct>();
         BattleData.Instance.CurrentEnergy = BattleData.Instance.MaxEnergy;
         DebuffMinus();
+        for(int i = 0; i < 3; i++)
+        {
+            if (EnemyData.Instance.Isalive[i])
+            {
+                EnemyPattern.EnemyPatternStart(EnemyData.Instance.EnemyList[i], EnemyData.Instance.Pat[i]);
+                BattleUI battleUI = FindObjectOfType<BattleUI>();
+                battleUI.EnemyAttack(i);
+            }
+        }
     }
 
     public static void Start_turn()
@@ -78,7 +87,6 @@ public class Battle : MonoBehaviour
             {
                 EnemyData.Instance.Pat[i] = 0;
             }
-            EnemyData.Instance.SetPat(i);
         }
     }
 
@@ -98,6 +106,14 @@ public class Battle : MonoBehaviour
 
     public static void ChangeCurrentShield(float value)
     {
+        if(BattleData.Instance.crack > 0 && value > 0)
+        {
+            value = (float)(int)(value * 0.75f);
+        }
+        else if(value < 0 && BattleData.Instance.weak > 0)
+        {
+            value = (float)(int)(value * 0.5f);
+        }
         BattleData.Instance.Shield += value;
         if (BattleData.Instance.Shield < 0)
         {
@@ -112,7 +128,7 @@ public class Battle : MonoBehaviour
         EnemyData.Instance.CurrentHP[num] += value;
         if (EnemyData.Instance.CurrentHP[num] <= 0)
         {
-            EnemyData.Instance.Isalive[num] = false;
+            EnemyData.Instance.Isalive[num] = false;            
         }
         if (EnemyData.Instance.CurrentHP[num] > EnemyData.Instance.MaxHP[num])
         {
@@ -133,10 +149,21 @@ public class Battle : MonoBehaviour
 
     public static void UseCard(CardStruct card)
     {
-        BattleData.Instance.CurrentEnergy -= card.cost;
+        if(card.cost != 99)
+        {
+            BattleData.Instance.CurrentEnergy -= card.cost;
+            BattleData.Instance.UseEnergy = card.cost;
+        }
+        else
+        {
+            BattleData.Instance.UseEnergy = BattleData.Instance.CurrentEnergy;
+            BattleData.Instance.CurrentEnergy = 0;
+            
+        }
         BattleData.Instance.Trash.Add(card);
         BattleData.Instance.Hand.Remove(card);
         BattleData.Instance.LastUse = card;
+        CardEffect.UseCardEffect(card);
     }
 
     public static void DebuffMinus()

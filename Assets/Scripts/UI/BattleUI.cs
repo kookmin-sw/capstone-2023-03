@@ -103,12 +103,26 @@ public class BattleUI : BaseUI
             if (BattleData.Instance.CurrentHealth <= 0)
             {
                 StartCoroutine(PlayerDie());
-
             }
 
-            if (Input.GetKeyUp(KeyCode.E))
+            for(int i = 0; i < 3; i++)
             {
-                Debug.Log(EnemyInfo);
+                if (!EnemyData.Instance.Isalive[i] && Enemy.transform.Find("Enemy"+(i+1).ToString()).childCount > 1)
+                {
+                    Debug.Log(Enemy.transform.Find("Enemy" + (i+1).ToString()).childCount);
+                    Debug.Log(i);
+                    StartCoroutine(EnemyDie(i));
+                }
+            }
+
+            if (!EnemyData.Instance.Isalive[0] && !EnemyData.Instance.Isalive[1] && !EnemyData.Instance.Isalive[2])
+            {
+                PlayerWin();
+            }
+
+            if (Input.GetKeyUp(KeyCode.P))
+            {
+                UIManager.Instance.ShowUI("SelectEnemyUI",false).GetComponent<SelectEnemyUI>();
             }
         }
 
@@ -316,6 +330,11 @@ public class BattleUI : BaseUI
         UIManager.Instance.ShowUI("PauseUI", false);
     }
 
+    public void SelectEnemy()
+    {
+        //UIManager.Instance.ShowUI("SelectEnemyUI").GetComponent<SelectEnemyUI>().Init(EnemyData.Instance.AllEnemyData);
+    }
+
     public IEnumerator PlayerDie()
     {
         IsCoroutineRun=true;
@@ -323,6 +342,16 @@ public class BattleUI : BaseUI
         yield return new WaitForSecondsRealtime(1.5f);
         IsCoroutineRun = false;
         UIManager.Instance.ShowUI("GameOverUI").GetComponent<GameOverUI>();
+    }
+
+    public IEnumerator EnemyDie(int num)
+    {
+        IsCoroutineRun = true;
+        Enemy.transform.Find("Enemy" + (num + 1).ToString()).GetChild(1).GetComponent<Animator>().SetTrigger("die");
+        yield return new WaitForSecondsRealtime(0.7f);
+        Destroy(Enemy.transform.Find("Enemy" + (num + 1).ToString()).GetChild(1).gameObject);
+        GameObject.Find("Enemy" + (num + 1).ToString()).GetComponentInChildren<TextMeshProUGUI>().text = "";
+        IsCoroutineRun = false;
     }
 
     public void PlayerHurt()
@@ -333,6 +362,15 @@ public class BattleUI : BaseUI
     public void PlayerAttack()
     {
         Player.GetComponent<Animator>().SetTrigger("attack");
+    }
+
+    public void EnemyHurt(int num)
+    {
+        Enemy.transform.Find("Enemy" + (num + 1).ToString()).GetChild(1).GetComponent<Animator>().SetTrigger("hurt");
+    }
+    public void EnemyAttack(int num)
+    {
+        Enemy.transform.Find("Enemy" + (num + 1).ToString()).GetChild(1).GetComponent<Animator>().SetTrigger("attack");
     }
 
     public void PlayerWin()

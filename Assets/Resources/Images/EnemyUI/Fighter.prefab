@@ -895,6 +895,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health Bar Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7167831712745594068, guid: 586e9a1889ed7924988d99a48fa4f789, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 586e9a1889ed7924988d99a48fa4f789, type: 3}
 --- !u!224 &7967928826261947485 stripped

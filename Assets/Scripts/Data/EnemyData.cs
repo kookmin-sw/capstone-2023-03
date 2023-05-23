@@ -9,8 +9,8 @@ using Unity.VisualScripting;
 public class EnemyData : Singleton<EnemyData>
 {
     public List<bool> Isalive { get; set; } = new List<bool> { false, false, false };
-    public List<float> CurrentHP { get; set; } = new List<float> { 30, 20, 10 };
-    public List<float> MaxHP { get; set; } = new List<float>{30, 20, 10};
+    public List<float> CurrentHP { get; set; } = new List<float> { 5, 5, 5 };
+    public List<float> MaxHP { get; set; } = new List<float>{5, 5, 5};
     public List<float> Shield { get; set; } = new List<float> { 0, 0, 0 };
     public List<int> Pat { get; set; } = new List<int> {0,0,0};
     public List<string> PatText { get; set; } = new List<string> { "", "", "" };
@@ -72,8 +72,8 @@ public class EnemyData : Singleton<EnemyData>
     public void Reset()
     {
         Isalive = new List<bool> { false, false, false };
-        MaxHP = new List<float> { 30, 20, 10 };
-        CurrentHP = new List<float> { 30, 20, 10 };
+        MaxHP = new List<float> { 5,5,5 };
+        CurrentHP = new List<float> { 5, 5, 5 };
         Shield = new List<float> { 0, 0, 0 };
         Enemy1 = new EnemyStruct();
         Enemy2 = new EnemyStruct();

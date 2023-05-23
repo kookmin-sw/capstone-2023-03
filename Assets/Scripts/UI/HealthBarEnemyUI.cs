@@ -49,7 +49,7 @@ public class HealthBarEnemyUI : MonoBehaviour
             TextUI.text = "Dead";
         }
 
-        image.fillAmount = 1;
+        image.fillAmount = HealthData.CurrentHP[EnemyNum-1]/HealthData.MaxHP[EnemyNum-1];
     }
 
 }

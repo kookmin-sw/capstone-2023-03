@@ -20,7 +20,7 @@ namespace ClearSky
 
         public void Update()
         {
-            ResetAnimation();        
+            ResetAnimation(); 
         }
 
         void ResetAnimation()

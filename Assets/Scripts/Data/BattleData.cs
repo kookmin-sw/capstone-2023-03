@@ -14,6 +14,7 @@ public class BattleData : Singleton<BattleData>
 
     public int CurrentEnergy = 3;
     public int MaxEnergy = 3;
+    public int UseEnergy = 0;
     public int CurrentTurn = 0;
     public int MaxHand = 10;
     public int StartHand = 5;
@@ -38,6 +39,8 @@ public class BattleData : Singleton<BattleData>
     public bool restraint = false; // 加冠
     public bool blind = false; // 鞠孺
     public bool confusion = false; // 去鄂
+
+    public int SelectedEnemy = 0;// 急琶等 利
 
     public CardStruct LastUse;
     // Start is called before the first frame update
@@ -105,6 +108,7 @@ public class BattleData : Singleton<BattleData>
         MaximumHealth = playerData.MaxHp;
         MaxEnergy = playerData.Energy;
         CurrentEnergy = MaxEnergy;
+        UseEnergy = 0;
         CurrentTurn = 0;
         IsAlive = true;
         Shield = 0;
@@ -117,8 +121,8 @@ public class BattleData : Singleton<BattleData>
         restraint = false;
         blind = false;
         confusion = false;
-
-    }
+        SelectedEnemy = 0;
+}
 
     
 }
