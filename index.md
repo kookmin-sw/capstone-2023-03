@@ -1,6 +1,6 @@
 아이리스 -ROAD TO V-
 ==================
-<a href = "https://github.com/kookmin-sw/capstone-2022-46" target="_blank" >https://github.com/kookmin-sw/capstone-2023-03 </a>
+<a href = "https://github.com/kookmin-sw/capstone-2023-03" target="_blank" >https://github.com/kookmin-sw/capstone-2023-03 </a>
   
 ### 프로젝트 소개
 --------------
