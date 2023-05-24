@@ -1,7 +1,7 @@
 아이리스
 ==================
-
-<a href = "https://github.com/kookmin-sw/capstone-2023-03" target="_blank" >https://github.com/kookmin-sw/capstone-2023-03 </a>
+> ### 깃허브 주소
+> <a href = "https://github.com/kookmin-sw/capstone-2023-03" target="_blank" >https://github.com/kookmin-sw/capstone-2023-03 </a>
 
 프로젝트 소개
 --------------
@@ -52,17 +52,11 @@
 > 
 > ### 조작
 > 이동: WASD  
-> 
 > 상호작용: Space Bar  
-> 
 > 덱: E  
-> 
 > 미니맵: Tab  
-> 
 > 일시정지: ESC  
-> 
 > 카드 사용: Mouse Drag & Drop  
->
 
 게임 로직
 --------
