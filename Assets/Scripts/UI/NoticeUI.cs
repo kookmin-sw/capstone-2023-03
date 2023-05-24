@@ -11,8 +11,8 @@ public class NoticeUI : BaseUI
     public TextMeshProUGUI NoticeText;
     public Animator SubAni;
 
-    private WaitForSeconds Delay1 = new WaitForSeconds(1.0f);
-    private WaitForSeconds Delay2 = new WaitForSeconds(0.3f);
+    private WaitForSeconds Delay1 = new WaitForSeconds(2.0f);
+    private WaitForSeconds Delay2 = new WaitForSeconds(1.0f);
 
     // Start is called before the first frame update
     void Start()
