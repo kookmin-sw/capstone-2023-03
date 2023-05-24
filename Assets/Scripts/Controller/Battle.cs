@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DataStructs;
-
+using System.Threading.Tasks;
 public class Battle : MonoBehaviour
 {
 
@@ -52,8 +52,9 @@ public class Battle : MonoBehaviour
         BattleData.Instance.Hand.Remove(card);
     }
 
-    public static void End_turn()
+    public static IEnumerator End_turn(TaskCompletionSource<bool> task)
     {
+        
         foreach (CardStruct card in BattleData.Instance.Hand)
         {
             BattleData.Instance.Trash.Add(card);
@@ -68,8 +69,14 @@ public class Battle : MonoBehaviour
                 EnemyPattern.EnemyPatternStart(EnemyData.Instance.EnemyList[i], EnemyData.Instance.Pat[i]);
                 BattleUI battleUI = FindObjectOfType<BattleUI>();
                 battleUI.EnemyAttack(i);
+                yield return new WaitForSecondsRealtime(1.0f);
             }
+            
         }
+        Debug.Log("End Turn");
+        yield return new WaitForSecondsRealtime(0.1f);
+
+        task.SetResult(true);
     }
 
     public static void Start_turn()
@@ -120,6 +127,8 @@ public class Battle : MonoBehaviour
             float temp = BattleData.Instance.Shield;
             BattleData.Instance.Shield = 0;
             ChangeCurrentHealth(temp);
+            BattleUI battleUI = FindObjectOfType<BattleUI>();
+            battleUI.PlayerHurt();
         }
     }
 
@@ -144,6 +153,8 @@ public class Battle : MonoBehaviour
             float temp = EnemyData.Instance.Shield[num];
             EnemyData.Instance.Shield[num] = 0;
             ChangeEnemyHealth(num, temp);
+            BattleUI battleUI = FindObjectOfType<BattleUI>();
+            battleUI.EnemyHurt(num);
         }
     }
 
