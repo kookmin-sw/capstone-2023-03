@@ -1,6 +1,7 @@
 using DataStructs;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -259,17 +260,23 @@ public class BattleUI : BaseUI
     }
 
     //�� ���� ��ư�� ������ ����
-    public void EndClick()
+    public async void EndClick()
     {
-        Battle.End_turn();
         for (int i = 0; i < HandUI.transform.childCount; i++)
         {
-            Destroy(HandUI.transform.GetChild(i).gameObject);          
+
+            Destroy(HandUI.transform.GetChild(i).gameObject);
         }
+        TaskCompletionSource<bool> taskCompletionSource = new TaskCompletionSource<bool>();
+        StartCoroutine(Battle.End_turn(taskCompletionSource));
+        await taskCompletionSource.Task;
+        Debug.Log("End");
+        StartCoroutine(Turn_Start());
     }
 
     public IEnumerator Turn_Start()
     {
+        Debug.Log("Start");
         IsCoroutineRun = true;
         DeckUI.interactable = false;
         TrashUI.interactable = false;
