@@ -72,7 +72,41 @@ public class CardEffect : MonoBehaviour
         {
             if(type == "Attack")
             {
+                for(int i = 0; i < 3; i++)
+                {
+                    if (EnemyData.Instance.Isalive[i])
+                    {
+                        if (times > 0)
+                        {
+                            for (int j = 0; j < times; j++)
+                            {
 
+                                if (attack_type == "Physical")
+                                {
+                                    Battle.ChangeEnemyShield(i, -(damage + BattleData.Instance.Str));
+                                }
+                                else if (attack_type == "Magic")
+                                {
+                                    Battle.ChangeEnemyShield(i, -(damage + BattleData.Instance.Int));
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int j = 0; j < BattleData.Instance.UseEnergy; j++)
+                            {
+                                if (attack_type == "Physical")
+                                {
+                                    Battle.ChangeEnemyShield(i, -(damage + BattleData.Instance.Str));
+                                }
+                                else if (attack_type == "Magic")
+                                {
+                                    Battle.ChangeEnemyShield(i, -(damage + BattleData.Instance.Int));
+                                }
+                            }
+                        }
+                    }
+                }
             }
             else if(type == "Skill")
             {
@@ -82,7 +116,8 @@ public class CardEffect : MonoBehaviour
                         Battle.ChangeCurrentShield(5);
                         break;
                     case 22:
-
+                        BattleData.Instance.Int += 2;
+                        BattleData.Instance.burn = true;
                         break;
                 }
             }
