@@ -40,6 +40,8 @@ public class BattleData : Singleton<BattleData>
     public bool blind = false; // 암흑
     public bool confusion = false; // 혼란
 
+    public bool burn = false; // 발화 사용 여부
+
     public int SelectedEnemy = 0;// 선택된 적
 
     public CardStruct LastUse;

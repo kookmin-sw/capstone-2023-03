@@ -84,6 +84,7 @@ public class Battle : MonoBehaviour
         BattleData.Instance.CurrentEnergy = BattleData.Instance.MaxEnergy;
         BattleData.Instance.CurrentTurn++;
         BattleData.Instance.Shield = 0;
+        EnemyDebuffMinus();
         for (int i = 0; i < 3; i++)
         {
             if (EnemyData.Instance.Isalive[i])
@@ -94,6 +95,7 @@ public class Battle : MonoBehaviour
             {
                 EnemyData.Instance.Pat[i] = 0;
             }
+            
         }
     }
 
@@ -148,6 +150,10 @@ public class Battle : MonoBehaviour
     public static void ChangeEnemyShield(int num, float value)
     {
         EnemyData.Instance.Shield[num] += value;
+        if(value < 0)
+        {
+            EnemyData.Instance.Shield[num] -= EnemyData.Instance.Fire[num];
+        }
         if (EnemyData.Instance.Shield[num] < 0)
         {
             float temp = EnemyData.Instance.Shield[num];
@@ -206,6 +212,28 @@ public class Battle : MonoBehaviour
         if(BattleData.Instance.confusion)
         {
             BattleData.Instance.confusion = false;
+        }
+        if (BattleData.Instance.burn)
+        {
+            BattleData.Instance.burn = false;
+            BattleData.Instance.Int -= 2;
+        }
+    }
+
+    public static void EnemyDebuffMinus()
+    {
+        for(int i = 0; i < 3; i++)
+        {
+
+            if (EnemyData.Instance.Fire[i] > 0)
+            {
+                EnemyData.Instance.Fire[i]--;
+            }
+
+            if (EnemyData.Instance.Ice[i] > 0)
+            {
+                EnemyData.Instance.Ice[i]--;
+            }
         }
     }
 }
