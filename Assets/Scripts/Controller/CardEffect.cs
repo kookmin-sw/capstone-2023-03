@@ -19,6 +19,8 @@ public class CardEffect : MonoBehaviour
 
     public static async void UseCardEffect(CardStruct card)
     {
+        BattleUI battleUI = FindObjectOfType<BattleUI>();
+
         int index = card.index;
         string name = card.name;
         string type = card.type;
@@ -27,17 +29,16 @@ public class CardEffect : MonoBehaviour
         int damage = card.damage;
         int times = card.times;
         string special = card.special;
-
-        if (target == "One")
+        if (type == "Attack")
         {
-            TaskCompletionSource<bool> taskCompletionSource = new TaskCompletionSource<bool>();
-            UIManager.Instance.ShowUI("SelectEnemyUI", false).GetComponent<SelectEnemyUI>().init(taskCompletionSource);
-            
-
-            await taskCompletionSource.Task;
-            if (type == "Attack")
+            if (target == "One")
             {
-                if(times > 0)
+                TaskCompletionSource<bool> taskCompletionSource = new TaskCompletionSource<bool>();
+                UIManager.Instance.ShowUI("SelectEnemyUI", false).GetComponent<SelectEnemyUI>().init(taskCompletionSource);
+
+
+                await taskCompletionSource.Task;
+                if (times > 0)
                 {
                     for (int i = 0; i < times; i++)
                     {
@@ -54,7 +55,7 @@ public class CardEffect : MonoBehaviour
                 }
                 else
                 {
-                    for(int i = 0; i < BattleData.Instance.UseEnergy; i++)
+                    for (int i = 0; i < BattleData.Instance.UseEnergy; i++)
                     {
                         if (attack_type == "Physical")
                         {
@@ -67,12 +68,9 @@ public class CardEffect : MonoBehaviour
                     }
                 }
             }
-        }
-        else
-        {
-            if(type == "Attack")
+            else
             {
-                for(int i = 0; i < 3; i++)
+                for (int i = 0; i < 3; i++)
                 {
                     if (EnemyData.Instance.Isalive[i])
                     {
@@ -108,27 +106,28 @@ public class CardEffect : MonoBehaviour
                     }
                 }
             }
-            else if(type == "Skill")
+        }
+        else if (type == "Skill")
+        {
+            switch (index)
             {
-                switch (index)
-                {
-                    case 1:
-                        Battle.ChangeCurrentShield(5);
-                        break;
-                    case 22:
-                        BattleData.Instance.Int += 2;
-                        BattleData.Instance.burn = true;
-                        break;
-                }
-            }
-            else if(type == "Viewer")
-            {
-
-            }
-            else
-            {
-
+                case 1:
+                    Battle.ChangeCurrentShield(5);
+                    break;
+                case 22:
+                    BattleData.Instance.Int += 2;
+                    BattleData.Instance.burn = true;
+                    break;
             }
         }
+        else if (type == "Viewer")
+        {
+
+        }
+        else
+        {
+            battleUI.Draw();
+        }
+        
     }
 }
