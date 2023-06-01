@@ -88,6 +88,17 @@ public class EnemyData : Singleton<EnemyData>
         EnemyList = new List<EnemyStruct> { Enemy1, Enemy2, Enemy3 };
         Pat = new List<int> { 0, 0, 0 };
         PatText = new List<string> { "", "", "" };
+        Str = new List<int> { 0, 0, 0 };
+        Fire = new List<int> { 0, 0, 0 };
+        Ice = new List<int> { 0, 0, 0 };
+        Ready = new List<int> { 0, 0, 0 };
+        Boom = new List<int> { 0, 0, 0 };
+        Load = new List<int> { 0, 0, 0 };
+        IsLoad = new List<bool> { false, false, false };
+        Regen = new List<int> { 0, 0, 0 };
+        Guard = new List<int> { 0, 0, 0 };
+        Sal = new List<int> { 0, 0, 0 };
+
     }
 
     public void SetPat(int num)

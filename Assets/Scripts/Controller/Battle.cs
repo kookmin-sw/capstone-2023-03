@@ -119,11 +119,11 @@ public class Battle : MonoBehaviour
         {
             value = (float)(int)(value * 0.75f);
         }
-        else if(value < 0)
+        if(value < 0)
         {
-            if (num > 0 && EnemyData.Instance.Ice[num] > 0)
+            if (num >= 0 && EnemyData.Instance.Ice[num] > 0)
             {
-                value -= EnemyData.Instance.Ice[num];
+                value += EnemyData.Instance.Ice[num];
             }
             if(BattleData.Instance.weak > 0)
             {
@@ -277,6 +277,16 @@ public class Battle : MonoBehaviour
                 break;
             case "Ice":
                 EnemyData.Instance.Ice[num] += value;
+                break;
+            case "IceFire":
+                EnemyData.Instance.Fire[num] += value;
+                EnemyData.Instance.Ice[num] += value;
+                break;
+            case "Shield":
+                ChangeCurrentShield(value, -1);
+                break;
+            case "Heal":
+                ChangeCurrentHealth(value);
                 break;
         }
     }

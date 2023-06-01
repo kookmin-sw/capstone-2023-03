@@ -30,14 +30,6 @@ public class HealthBarPlayerUI : MonoBehaviour
     void Update()
     {
         HealthData = GameObject.Find("BattleData").GetComponent<BattleData>();
-        if (Input.GetKeyUp(KeyCode.Alpha5))
-        {
-            Battle.ChangeCurrentHealth(-5);
-        }
-        else if(Input.GetKeyUp(KeyCode.Alpha6))
-        {
-            Battle.ChangeCurrentHealth(5);
-        }
         ChangeHPText();
     }
 
