@@ -19,6 +19,7 @@ namespace DataStructs
         public int damage; //공격력
         public int times; //횟수
         public string special; //특수효과
+        public int special_stat; //특수효과 수치
     }
 
     [System.Serializable]

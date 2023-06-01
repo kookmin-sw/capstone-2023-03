@@ -19,6 +19,8 @@ public class CardEffect : MonoBehaviour
 
     public static async void UseCardEffect(CardStruct card)
     {
+        BattleUI battleUI = FindObjectOfType<BattleUI>();
+
         int index = card.index;
         string name = card.name;
         string type = card.type;
@@ -27,17 +29,17 @@ public class CardEffect : MonoBehaviour
         int damage = card.damage;
         int times = card.times;
         string special = card.special;
-
-        if (target == "One")
+        int special_stat = card.special_stat;
+        if (type == "Attack")
         {
-            TaskCompletionSource<bool> taskCompletionSource = new TaskCompletionSource<bool>();
-            UIManager.Instance.ShowUI("SelectEnemyUI", false).GetComponent<SelectEnemyUI>().init(taskCompletionSource);
-            
-
-            await taskCompletionSource.Task;
-            if (type == "Attack")
+            if (target == "One")
             {
-                if(times > 0)
+                TaskCompletionSource<bool> taskCompletionSource = new TaskCompletionSource<bool>();
+                UIManager.Instance.ShowUI("SelectEnemyUI", false).GetComponent<SelectEnemyUI>().init(taskCompletionSource);
+
+
+                await taskCompletionSource.Task;
+                if (times > 0)
                 {
                     for (int i = 0; i < times; i++)
                     {
@@ -54,7 +56,7 @@ public class CardEffect : MonoBehaviour
                 }
                 else
                 {
-                    for(int i = 0; i < BattleData.Instance.UseEnergy; i++)
+                    for (int i = 0; i < BattleData.Instance.UseEnergy; i++)
                     {
                         if (attack_type == "Physical")
                         {
@@ -66,13 +68,14 @@ public class CardEffect : MonoBehaviour
                         }
                     }
                 }
+                if(special != "None")
+                {
+                    Battle.EnemyDebuff(BattleData.Instance.SelectedEnemy, special, special_stat);
+                }
             }
-        }
-        else
-        {
-            if(type == "Attack")
+            else
             {
-                for(int i = 0; i < 3; i++)
+                for (int i = 0; i < 3; i++)
                 {
                     if (EnemyData.Instance.Isalive[i])
                     {
@@ -105,30 +108,67 @@ public class CardEffect : MonoBehaviour
                                 }
                             }
                         }
+                        if(special != "None")
+                        {
+                            Battle.EnemyDebuff(i, special, special_stat);
+                        }
                     }
                 }
             }
-            else if(type == "Skill")
+        }
+        else if (type == "Skill")
+        {
+            switch (index)
             {
-                switch (index)
+                case 1:
+                    Battle.ChangeCurrentShield(5, -1);
+                    break;
+                case 22:
+                    BattleData.Instance.Int += 2;
+                    BattleData.Instance.burn = true;
+                    break;
+            }
+        }
+        else if (type == "Viewer")
+        {
+
+        }
+        else
+        {
+            if(target == "Ran")
+            {
+                int num = Battle.RandomEnemy();
+                if (times > 0)
                 {
-                    case 1:
-                        Battle.ChangeCurrentShield(5);
-                        break;
-                    case 22:
-                        BattleData.Instance.Int += 2;
-                        BattleData.Instance.burn = true;
-                        break;
+                    for (int i = 0; i < times; i++)
+                    {
+                        Battle.ChangeEnemyShield(num, -damage);
+                    }
                 }
             }
-            else if(type == "Viewer")
+            else if(target == "All")
             {
+                for (int i = 0; i < 3; i++)
+                {
+                    if (EnemyData.Instance.Isalive[i])
+                    {
+                        if (times > 0)
+                        {
+                            for (int j = 0; j < times; j++)
+                            {
 
+                                Battle.ChangeEnemyShield(i, -damage);
+                            }
+                        }
+                    }
+                }
             }
             else
             {
 
             }
+            battleUI.Draw();
         }
+        
     }
 }

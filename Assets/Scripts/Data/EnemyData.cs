@@ -17,6 +17,13 @@ public class EnemyData : Singleton<EnemyData>
     public List<int> Str { get; set; } = new List<int> { 0, 0, 0 };
     public List<int> Fire { get; set; } = new List<int> { 0, 0, 0 };
     public List<int> Ice { get; set; } = new List<int> { 0, 0, 0 };
+    public List<int> Ready { get; set; } = new List<int> { 0, 0, 0 };
+    public List<int> Boom { get; set; } = new List<int> { 0, 0, 0 };
+    public List<int> Load { get; set; } = new List<int> { 0, 0, 0 };
+    public List<bool> IsLoad { get; set; } = new List<bool> { false, false, false };
+    public List<int> Regen { get; set; } = new List<int> { 0, 0, 0 };
+    public List<int> Guard { get; set; } = new List<int> { 0, 0, 0 };
+    public List<int> Sal { get; set; } = new List<int> { 0, 0, 0 };
     public EnemyStruct Enemy1;
     public EnemyStruct Enemy2;
     public EnemyStruct Enemy3;
