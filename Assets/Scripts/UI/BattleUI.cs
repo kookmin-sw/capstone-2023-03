@@ -81,15 +81,6 @@ public class BattleUI : BaseUI
 
         if (!IsCoroutineRun)
         {
-            if (Input.GetKeyUp(KeyCode.Alpha0))
-            {
-                Draw();
-            }
-
-            if (Input.GetKeyUp(KeyCode.T))
-            {
-                StartCoroutine(Turn_Start());
-            }
 
             if (Input.GetKeyUp(KeyCode.Escape))
             {
@@ -119,11 +110,6 @@ public class BattleUI : BaseUI
             if (!EnemyData.Instance.Isalive[0] && !EnemyData.Instance.Isalive[1] && !EnemyData.Instance.Isalive[2])
             {
                 PlayerWin();
-            }
-
-            if (Input.GetKeyUp(KeyCode.P))
-            {
-                UIManager.Instance.ShowUI("SelectEnemyUI",false).GetComponent<SelectEnemyUI>();
             }
         }
 
@@ -288,7 +274,8 @@ public class BattleUI : BaseUI
             {
                 if (EnemyData.Instance.Pat[i] != 0)
                 {
-                    Enemy1Text.text = EnemyData.Instance.PatText[i];
+                    //Enemy1Text.text = EnemyData.Instance.PatText[i];
+                    Enemy1Text.text = "공격 " + (4 + (stage * 2)).ToString();
                 }
                 else
                 {
@@ -299,7 +286,8 @@ public class BattleUI : BaseUI
             {
                 if (EnemyData.Instance.Pat[i] != 0)
                 {
-                    Enemy2Text.text = EnemyData.Instance.PatText[i];
+                    //Enemy2Text.text = EnemyData.Instance.PatText[i];
+                    Enemy1Text.text = "공격 " + (4 + (stage * 2)).ToString();
                 }
                 else
                 {
@@ -310,7 +298,8 @@ public class BattleUI : BaseUI
             {
                 if (EnemyData.Instance.Pat[i] != 0)
                 {
-                    Enemy3Text.text = EnemyData.Instance.PatText[i];
+                    //Enemy3Text.text = EnemyData.Instance.PatText[i];
+                    Enemy1Text.text = "공격 " + (4 + (stage * 2)).ToString();
                 }
                 else
                 {
@@ -446,6 +435,7 @@ public class BattleUI : BaseUI
 
                 EnemyNum.GetChild(1).Find("HealthBar").GetChild(0).GetComponent<HealthBarEnemyUI>().init(i);
                 EnemyNum.GetChild(1).Find("HealthBar").GetChild(1).GetComponent<ShieldBarEnemyUI>().init(i);
+                EnemyNum.GetChild(1).Find("EnemyStat").GetComponent<EnemyStatUI>().init(i);
 
             }
         }
@@ -457,6 +447,7 @@ public class BattleUI : BaseUI
             EnemyData.Instance.init(1, "LastBoss", stage);
             EnemyNum.GetChild(1).Find("HealthBar").GetChild(0).GetComponent<HealthBarEnemyUI>().init(1);
             EnemyNum.GetChild(1).Find("HealthBar").GetChild(1).GetComponent<ShieldBarEnemyUI>().init(1);
+            EnemyNum.GetChild(1).Find("EnemyStat").GetComponent<EnemyStatUI>().init(1);
         }
     }
 }

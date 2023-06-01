@@ -121,21 +121,6 @@
  },
  {
   "index": 8,
-  "name": "화염폭발",
-  "description": "적 1기에게 현재 화상 수치만큼 데미지, 화상 1 부여",
-  "cost": 0,
-  "rarity": 1,
-  "type": "Attack",
-  "attack_type": "Magic",
-  "attribute": "Fire",
-  "target": "One",
-  "damage": 0,
-  "times": 1,
-  "special": "Fire",
-  "special_stat": 1
- },
- {
-  "index": 9,
   "name": "불주먹",
   "description": "적 1기에게 1 x 3의 데미지, 화상 1 부여",
   "cost": 1,
@@ -150,7 +135,7 @@
   "special_stat": 1
  },
  {
-  "index": 10,
+  "index": 9,
   "name": "화형",
   "description": "적 전체에게 10의 데미지, 화상 2 부여",
   "cost": 2,
@@ -165,9 +150,9 @@
   "special_stat": 2
  },
  {
-  "index": 11,
+  "index": 10,
   "name": "지옥열탕",
-  "description": "적 전체에게 4 x X의 데미지, 화상 X \/ 2(버림) 부여",
+  "description": "적 전체에게 4 x X의 데미지, 화상 2 부여",
   "cost": 99,
   "rarity": 1,
   "type": "Attack",
@@ -177,12 +162,12 @@
   "damage": 4,
   "times": 0,
   "special": "Fire",
-  "special_stat": 0
+  "special_stat": 2
  },
  {
-  "index": 12,
+  "index": 11,
   "name": "염옥",
-  "description": "적 전체에게 20 + 부여된 화상 수치 x 2의 데미지",
+  "description": "적 전체에게 20의 데미지",
   "cost": 3,
   "rarity": 2,
   "type": "Attack",
@@ -195,22 +180,7 @@
   "special_stat": 0
  },
  {
-  "index": 13,
-  "name": "불을 먹는 자",
-  "description": "적 1기에게 화상 x 2의 데미지, 화상 수치만큼 체력 회복, 화상 디버프 삭제",
-  "cost": 3,
-  "rarity": 2,
-  "type": "Attack",
-  "attack_type": "Magic",
-  "attribute": "Fire",
-  "target": "One",
-  "damage": 0,
-  "times": 1,
-  "special": "Fire_eat",
-  "special_stat": 0
- },
- {
-  "index": 14,
+  "index": 12,
   "name": "얼음뭉치",
   "description": "적 1기에게 2의 데미지, 동상 1 부여",
   "cost": 0,
@@ -225,7 +195,7 @@
   "special_stat": 1
  },
  {
-  "index": 15,
+  "index": 13,
   "name": "고드름",
   "description": "적 1기에게 4의 데미지, 동상 1 부여",
   "cost": 1,
@@ -240,7 +210,7 @@
   "special_stat": 1
  },
  {
-  "index": 16,
+  "index": 14,
   "name": "싸라기눈",
   "description": "적 전체에게 2의 데미지, 동상 1 부여",
   "cost": 1,
@@ -255,7 +225,7 @@
   "special_stat": 1
  },
  {
-  "index": 17,
+  "index": 15,
   "name": "눈 속의 불꽃",
   "description": "적 1기에게 3의 데미지, 동상 1 부여, 화상 1 부여",
   "cost": 1,
@@ -270,24 +240,9 @@
   "special_stat": 1
  },
  {
-  "index": 18,
-  "name": "눈사태",
-  "description": "적 1기에게 동상 수치 x 2의 데미지, 현재 부여된 동상 수치만큼 동상 부여",
-  "cost": 1,
-  "rarity": 1,
-  "type": "Attack",
-  "attack_type": "Magic",
-  "attribute": "Ice",
-  "target": "One",
-  "damage": 0,
-  "times": 1,
-  "special": "Ice",
-  "special_stat": 0
- },
- {
-  "index": 19,
+  "index": 16,
   "name": "눈보라",
-  "description": "적 전체에게 3 x X의 데미지, 동상 X 부여",
+  "description": "적 전체에게 3 x X의 데미지, 동상 2 부여",
   "cost": 99,
   "rarity": 1,
   "type": "Attack",
@@ -300,24 +255,9 @@
   "special_stat": 0
  },
  {
-  "index": 20,
-  "name": "남극점",
-  "description": "적 전체에게 이번 전투동안 부여한 동상 x 3의 데미지",
-  "cost": 2,
-  "rarity": 1,
-  "type": "Attack",
-  "attack_type": "Magic",
-  "attribute": "Ice",
-  "target": "All",
-  "damage": 0,
-  "times": 1,
-  "special": "Ice_bat",
-  "special_stat": 0
- },
- {
-  "index": 21,
+  "index": 17,
   "name": "절대영도",
-  "description": "적 전체에게 20 + 부여된 동상 수치만큼 데미지, 현재 부여된 동상 수치만큼 동상 부여",
+  "description": "적 전체에게 20데미지, 동상 3 부여",
   "cost": 3,
   "rarity": 2,
   "type": "Attack",
@@ -327,10 +267,10 @@
   "damage": 20,
   "times": 1,
   "special": "Ice",
-  "special_stat": 0
+  "special_stat": 3
  },
  {
-  "index": 22,
+  "index": 18,
   "name": "발화",
   "description": "이번 턴 동안 마력 2 획득",
   "cost": 0,
@@ -345,24 +285,9 @@
   "special_stat": 0
  },
  {
-  "index": 23,
-  "name": "핵융합",
-  "description": "적 전체 화상 디버프 제거, 마력 1 획득, 드로우 2",
-  "cost": 1,
-  "rarity": 0,
-  "type": "Skill",
-  "attack_type": "None",
-  "attribute": "Fire",
-  "target": "All",
-  "damage": -1,
-  "times": -1,
-  "special": "None",
-  "special_stat": 0
- },
- {
-  "index": 24,
+  "index": 19,
   "name": "재점화",
-  "description": "방어 5 획득, 다음턴 시작 시 방어 5 획득",
+  "description": "방어 9 획득",
   "cost": 1,
   "rarity": 0,
   "type": "Skill",
@@ -371,11 +296,11 @@
   "target": "Self",
   "damage": -1,
   "times": -1,
-  "special": "None",
-  "special_stat": 0
+  "special": "Shield",
+  "special_stat": 9
  },
  {
-  "index": 25,
+  "index": 20,
   "name": "복사열",
   "description": "적 전체 화상 1 부여, 방어 5 획득",
   "cost": 1,
@@ -386,28 +311,13 @@
   "target": "All",
   "damage": -1,
   "times": -1,
-  "special": "None",
-  "special_stat": 0
+  "special": "Fire",
+  "special_stat": 1
  },
  {
-  "index": 26,
-  "name": "용광로",
-  "description": "적 1기 방어막 제거, 현재 화상 수치만큼 화상 부여",
-  "cost": 1,
-  "rarity": 1,
-  "type": "Skill",
-  "attack_type": "None",
-  "attribute": "Fire",
-  "target": "One",
-  "damage": -1,
-  "times": -1,
-  "special": "None",
-  "special_stat": 0
- },
- {
-  "index": 27,
+  "index": 21,
   "name": "화염 방패",
-  "description": "방어 12 획득, 이번 턴동안 본인 공격한 대상에게 4 데미지 부여",
+  "description": "방어 12 획득",
   "cost": 2,
   "rarity": 1,
   "type": "Skill",
@@ -420,37 +330,7 @@
   "special_stat": 0
  },
  {
-  "index": 28,
-  "name": "열 흡수",
-  "description": "적 1기의 화상 수치만큼 체력, 마력 획득, 화상 디버프 제거",
-  "cost": 1,
-  "rarity": 2,
-  "type": "Skill",
-  "attack_type": "None",
-  "attribute": "Fire",
-  "target": "One",
-  "damage": -1,
-  "times": -1,
-  "special": "None",
-  "special_stat": 0
- },
- {
-  "index": 29,
-  "name": "악마화",
-  "description": "이번 전투 동안 부여하는 화상 X 2",
-  "cost": 3,
-  "rarity": 2,
-  "type": "Skill",
-  "attack_type": "None",
-  "attribute": "Fire",
-  "target": "Self",
-  "damage": -1,
-  "times": -1,
-  "special": "None",
-  "special_stat": 0
- },
- {
-  "index": 30,
+  "index": 22,
   "name": "오한",
   "description": "적 전체 동상 2 부여",
   "cost": 0,
@@ -461,11 +341,11 @@
   "target": "All",
   "damage": -1,
   "times": -1,
-  "special": "None",
-  "special_stat": 0
+  "special": "Ice",
+  "special_stat": 2
  },
  {
-  "index": 31,
+  "index": 23,
   "name": "빙벽",
   "description": "방어 4 획득",
   "cost": 0,
@@ -480,9 +360,9 @@
   "special_stat": 4
  },
  {
-  "index": 32,
+  "index": 24,
   "name": "얼음 방패",
-  "description": "방어 6 획득, 선택한 적이 이번 턴 공격한다면 방어 5 추가 획득",
+  "description": "방어 10 획득",
   "cost": 1,
   "rarity": 0,
   "type": "Skill",
@@ -495,7 +375,7 @@
   "special_stat": 0
  },
  {
-  "index": 33,
+  "index": 25,
   "name": "꽃샘추위",
   "description": "방어 8 획득, 드로우 1",
   "cost": 1,
@@ -510,37 +390,7 @@
   "special_stat": 0
  },
  {
-  "index": 34,
-  "name": "서리 갑옷",
-  "description": "적 전체의 동상 수치만큼 방어 획득",
-  "cost": 1,
-  "rarity": 1,
-  "type": "Skill",
-  "attack_type": "None",
-  "attribute": "Ice",
-  "target": "Self",
-  "damage": -1,
-  "times": -1,
-  "special": "None",
-  "special_stat": 0
- },
- {
-  "index": 35,
-  "name": "이글루",
-  "description": "방어 5 획득, 이번 턴 끝나도 방어 사라지지 않음",
-  "cost": 1,
-  "rarity": 1,
-  "type": "Skill",
-  "attack_type": "None",
-  "attribute": "Ice",
-  "target": "Self",
-  "damage": -1,
-  "times": -1,
-  "special": "None",
-  "special_stat": 0
- },
- {
-  "index": 36,
+  "index": 26,
   "name": "빙하 감옥",
   "description": "방어 15 획득, 적 전체 동상 2 부여",
   "cost": 2,
@@ -551,41 +401,11 @@
   "target": "All",
   "damage": -1,
   "times": -1,
-  "special": "None",
-  "special_stat": 0
+  "special": "Ice",
+  "special_stat": 2
  },
  {
-  "index": 37,
-  "name": "빙결 강화",
-  "description": "이번 턴 적에게 가하는 동상 X 2, 드로우 2",
-  "cost": 1,
-  "rarity": 2,
-  "type": "Skill",
-  "attack_type": "None",
-  "attribute": "Ice",
-  "target": "Self",
-  "damage": -1,
-  "times": -1,
-  "special": "None",
-  "special_stat": 0
- },
- {
-  "index": 38,
-  "name": "빙하기",
-  "description": "다음 X 번 공격에서 1의 피해만 받음",
-  "cost": 99,
-  "rarity": 2,
-  "type": "Skill",
-  "attack_type": "None",
-  "attribute": "Ice",
-  "target": "Self",
-  "damage": -1,
-  "times": -1,
-  "special": "None",
-  "special_stat": 0
- },
- {
-  "index": 39,
+  "index": 27,
   "name": "급속냉각",
   "description": "방어 30 획득",
   "cost": 2,
@@ -600,67 +420,7 @@
   "special_stat": 30
  },
  {
-  "index": 40,
-  "name": "가속",
-  "description": "패의 카드 한 장을 이번 전투 동안 코스트 0으로 고정",
-  "cost": 0,
-  "rarity": 2,
-  "type": "Viewer",
-  "attack_type": "None",
-  "attribute": "Normal",
-  "target": "Hand",
-  "damage": -1,
-  "times": -1,
-  "special": "None",
-  "special_stat": 0
- },
- {
-  "index": 41,
-  "name": "고속 연산",
-  "description": "손패의 모든 카드의 코스트 -1",
-  "cost": 0,
-  "rarity": 2,
-  "type": "Viewer",
-  "attack_type": "None",
-  "attribute": "Normal",
-  "target": "Self",
-  "damage": -1,
-  "times": -1,
-  "special": "None",
-  "special_stat": 0
- },
- {
-  "index": 42,
-  "name": "과부하",
-  "description": "손패의 모든 카드의 코스트 0 고정, 사용시 이번 전투에서 소멸 디버프 부여",
-  "cost": 0,
-  "rarity": 2,
-  "type": "Viewer",
-  "attack_type": "None",
-  "attribute": "Normal",
-  "target": "Self",
-  "damage": -1,
-  "times": -1,
-  "special": "None",
-  "special_stat": 0
- },
- {
-  "index": 43,
-  "name": "일회용",
-  "description": "손패의 카드 한 장을 선택해 복사, 코스트 0 고정, 사용시 이번 전투에서 소멸 디버프 부여",
-  "cost": 0,
-  "rarity": 2,
-  "type": "Viewer",
-  "attack_type": "None",
-  "attribute": "Normal",
-  "target": "Hand",
-  "damage": -1,
-  "times": -1,
-  "special": "None",
-  "special_stat": 0
- },
- {
-  "index": 44,
+  "index": 28,
   "name": "과충전",
   "description": "현재 에너지 2배로 증가",
   "cost": 0,
@@ -675,7 +435,7 @@
   "special_stat": 0
  },
  {
-  "index": 45,
+  "index": 29,
   "name": "에너지 드링크",
   "description": "에너지 2, 힘, 마력 각 1씩 획득",
   "cost": 0,
@@ -690,7 +450,7 @@
   "special_stat": 0
  },
  {
-  "index": 46,
+  "index": 30,
   "name": "생일 선물",
   "description": "드로우 3장",
   "cost": 0,
@@ -705,7 +465,7 @@
   "special_stat": 0
  },
  {
-  "index": 47,
+  "index": 31,
   "name": "떡상",
   "description": "드로우 2장, 에너지 2 획득",
   "cost": 0,
@@ -714,36 +474,6 @@
   "attack_type": "None",
   "attribute": "Normal",
   "target": "Self",
-  "damage": -1,
-  "times": -1,
-  "special": "None",
-  "special_stat": 0
- },
- {
-  "index": 48,
-  "name": "금융 치료",
-  "description": "드로우 2장, 플레이어 디버프 삭제",
-  "cost": 0,
-  "rarity": 2,
-  "type": "Viewer",
-  "attack_type": "None",
-  "attribute": "Normal",
-  "target": "Self",
-  "damage": -1,
-  "times": -1,
-  "special": "None",
-  "special_stat": 0
- },
- {
-  "index": 49,
-  "name": "탐색",
-  "description": "덱에서 원하는 카드 1장 선택해 드로우",
-  "cost": 0,
-  "rarity": 2,
-  "type": "Viewer",
-  "attack_type": "None",
-  "attribute": "Normal",
-  "target": "Deck",
   "damage": -1,
   "times": -1,
   "special": "None",
@@ -776,8 +506,8 @@
   "target": "All",
   "damage": 5,
   "times": 2,
-  "special": "None",
-  "special_stat": 0
+  "special": "Fire",
+  "special_stat": 2
  },
  {
   "index": 99,
@@ -962,7 +692,7 @@
  {
   "index": 111,
   "name": "완성형 도적",
-  "description": "무작위 적 1기 6 데미지 및 화상 1, 동상 1, 독 1 부여",
+  "description": "무작위 적 1기 6 데미지",
   "cost": 0,
   "rarity": 0,
   "type": "Mob3",
@@ -1136,8 +866,8 @@
   "target": "Self",
   "damage": -1,
   "times": -1,
-  "special": "None",
-  "special_stat": 0
+  "special": "Shield",
+  "special_stat": 4
  },
  {
   "index": 123,
@@ -1316,8 +1046,8 @@
   "target": "Self",
   "damage": -1,
   "times": -1,
-  "special": "None",
-  "special_stat": 0
+  "special": "Shield",
+  "special_stat": 5
  },
  {
   "index": 135,
@@ -1496,8 +1226,8 @@
   "target": "Self",
   "damage": -1,
   "times": -1,
-  "special": "None",
-  "special_stat": 0
+  "special": "Shield",
+  "special_stat": 6
  },
  {
   "index": 147,
@@ -1517,60 +1247,60 @@
  {
   "index": 1000,
   "name": "해적선장 마린",
-  "description": "몰라 뭔지",
+  "description": "적 전체 10 데미지 공격",
   "cost": 0,
   "rarity": 2,
   "type": "PirateBoss",
   "attack_type": "None",
   "attribute": "Normal",
-  "target": "Ran",
-  "damage": 0,
-  "times": -1,
+  "target": "All",
+  "damage": 10,
+  "times": 1,
   "special": "None",
   "special_stat": 0
  },
  {
   "index": 1001,
   "name": "드루이드 세레나",
-  "description": "몰라 뭔지",
+  "description": "적 전체 10 데미지 공격",
   "cost": 0,
   "rarity": 2,
   "type": "DruidsBoss",
   "attack_type": "None",
   "attribute": "Normal",
-  "target": "Ran",
-  "damage": 0,
-  "times": -1,
+  "target": "All",
+  "damage": 10,
+  "times": 1,
   "special": "None",
   "special_stat": 0
  },
  {
   "index": 1002,
   "name": "성녀 리샤",
-  "description": "몰라 뭔지",
+  "description": "적 전체 10 데미지 공격",
   "cost": 0,
   "rarity": 2,
   "type": "SaintessBoss",
   "attack_type": "None",
   "attribute": "Normal",
-  "target": "Ran",
-  "damage": 0,
-  "times": -1,
+  "target": "All",
+  "damage": 10,
+  "times": 1,
   "special": "None",
   "special_stat": 0
  },
  {
   "index": 1003,
   "name": "메카닉 체키",
-  "description": "몰라 뭔지",
+  "description": "적 전체 10 데미지 공격",
   "cost": 0,
   "rarity": 2,
   "type": "MechaBoss",
   "attack_type": "None",
   "attribute": "Normal",
-  "target": "Ran",
-  "damage": 0,
-  "times": -1,
+  "target": "All",
+  "damage": 10,
+  "times": 1,
   "special": "None",
   "special_stat": 0
  }
