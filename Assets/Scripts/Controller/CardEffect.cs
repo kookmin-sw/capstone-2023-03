@@ -29,6 +29,7 @@ public class CardEffect : MonoBehaviour
         int damage = card.damage;
         int times = card.times;
         string special = card.special;
+        int special_stat = card.special_stat;
         if (type == "Attack")
         {
             if (target == "One")
@@ -67,6 +68,10 @@ public class CardEffect : MonoBehaviour
                         }
                     }
                 }
+                if(special != "None")
+                {
+                    Battle.EnemyDebuff(BattleData.Instance.SelectedEnemy, special, special_stat);
+                }
             }
             else
             {
@@ -103,6 +108,10 @@ public class CardEffect : MonoBehaviour
                                 }
                             }
                         }
+                        if(special != "None")
+                        {
+                            Battle.EnemyDebuff(i, special, special_stat);
+                        }
                     }
                 }
             }
@@ -112,7 +121,7 @@ public class CardEffect : MonoBehaviour
             switch (index)
             {
                 case 1:
-                    Battle.ChangeCurrentShield(5);
+                    Battle.ChangeCurrentShield(5, -1);
                     break;
                 case 22:
                     BattleData.Instance.Int += 2;
@@ -126,6 +135,38 @@ public class CardEffect : MonoBehaviour
         }
         else
         {
+            if(target == "Ran")
+            {
+                int num = Battle.RandomEnemy();
+                if (times > 0)
+                {
+                    for (int i = 0; i < times; i++)
+                    {
+                        Battle.ChangeEnemyShield(num, -damage);
+                    }
+                }
+            }
+            else if(target == "All")
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    if (EnemyData.Instance.Isalive[i])
+                    {
+                        if (times > 0)
+                        {
+                            for (int j = 0; j < times; j++)
+                            {
+
+                                Battle.ChangeEnemyShield(i, -damage);
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+
+            }
             battleUI.Draw();
         }
         

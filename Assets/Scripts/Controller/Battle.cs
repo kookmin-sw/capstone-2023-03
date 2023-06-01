@@ -66,7 +66,7 @@ public class Battle : MonoBehaviour
         {
             if (EnemyData.Instance.Isalive[i])
             {
-                EnemyPattern.EnemyPatternStart(EnemyData.Instance.EnemyList[i], EnemyData.Instance.Pat[i]);
+                EnemyPattern.EnemyPatternStart(EnemyData.Instance.EnemyList[i], EnemyData.Instance.Pat[i], i);
                 BattleUI battleUI = FindObjectOfType<BattleUI>();
                 battleUI.EnemyAttack(i);
                 yield return new WaitForSecondsRealtime(1.0f);
@@ -113,15 +113,22 @@ public class Battle : MonoBehaviour
         }
     }
 
-    public static void ChangeCurrentShield(float value)
+    public static void ChangeCurrentShield(float value, int num)
     {
         if(BattleData.Instance.crack > 0 && value > 0)
         {
             value = (float)(int)(value * 0.75f);
         }
-        else if(value < 0 && BattleData.Instance.weak > 0)
+        else if(value < 0)
         {
-            value = (float)(int)(value * 0.5f);
+            if (num > 0 && EnemyData.Instance.Ice[num] > 0)
+            {
+                value -= EnemyData.Instance.Ice[num];
+            }
+            if(BattleData.Instance.weak > 0)
+            {
+                value = (float)(int)(value * 1.5f);
+            }
         }
         BattleData.Instance.Shield += value;
         if (BattleData.Instance.Shield < 0)
@@ -234,6 +241,43 @@ public class Battle : MonoBehaviour
             {
                 EnemyData.Instance.Ice[i]--;
             }
+        }
+    }
+    
+    public static int RandomEnemy()
+    {
+        int num = 0;
+        for(int i = 0; i < 3; i++)
+        {
+            if (EnemyData.Instance.Isalive[i])
+            {
+                num++;
+            }
+        }
+        int[] enemy = new int[num];
+        int j = 0;
+        for(int i = 0; i < 3; i++)
+        {
+            if (EnemyData.Instance.Isalive[i])
+            {
+                enemy[j] = i;
+                j++;
+            }
+        }
+        int random = Random.Range(0, num);
+        return enemy[random];
+    }
+
+    public static void EnemyDebuff(int num, string debuff, int value)
+    {
+        switch (debuff)
+        {
+            case "Fire":
+                EnemyData.Instance.Fire[num] += value;
+                break;
+            case "Ice":
+                EnemyData.Instance.Ice[num] += value;
+                break;
         }
     }
 }

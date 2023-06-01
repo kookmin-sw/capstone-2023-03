@@ -72,7 +72,7 @@
   "damage": 3,
   "times": 1,
   "special": "Fire",
-  "special_stat": 0
+  "special_stat": 1
  },
  {
   "index": 5,
@@ -87,7 +87,7 @@
   "damage": 2,
   "times": 2,
   "special": "Fire",
-  "special_stat": 0
+  "special_stat": 1
  },
  {
   "index": 6,
@@ -102,7 +102,7 @@
   "damage": 3,
   "times": 1,
   "special": "Fire",
-  "special_stat": 0
+  "special_stat": 1
  },
  {
   "index": 7,
@@ -117,7 +117,7 @@
   "damage": 12,
   "times": 1,
   "special": "Fire",
-  "special_stat": 0
+  "special_stat": 3
  },
  {
   "index": 8,
@@ -132,7 +132,7 @@
   "damage": 0,
   "times": 1,
   "special": "Fire",
-  "special_stat": 0
+  "special_stat": 1
  },
  {
   "index": 9,
@@ -147,7 +147,7 @@
   "damage": 1,
   "times": 3,
   "special": "Fire",
-  "special_stat": 0
+  "special_stat": 1
  },
  {
   "index": 10,
@@ -162,7 +162,7 @@
   "damage": 10,
   "times": 1,
   "special": "Fire",
-  "special_stat": 0
+  "special_stat": 2
  },
  {
   "index": 11,
@@ -222,7 +222,7 @@
   "damage": 2,
   "times": 1,
   "special": "Ice",
-  "special_stat": 0
+  "special_stat": 1
  },
  {
   "index": 15,
@@ -237,7 +237,7 @@
   "damage": 4,
   "times": 1,
   "special": "Ice",
-  "special_stat": 0
+  "special_stat": 1
  },
  {
   "index": 16,
@@ -252,7 +252,7 @@
   "damage": 2,
   "times": 1,
   "special": "Ice",
-  "special_stat": 0
+  "special_stat": 1
  },
  {
   "index": 17,
@@ -266,8 +266,8 @@
   "target": "One",
   "damage": 3,
   "times": 1,
-  "special": "Ice",
-  "special_stat": 0
+  "special": "IceFire",
+  "special_stat": 1
  },
  {
   "index": 18,
@@ -346,6 +346,261 @@
  },
  {
   "index": 23,
+  "name": "핵융합",
+  "description": "적 전체 화상 디버프 제거, 마력 1 획득, 드로우 2",
+  "cost": 1,
+  "rarity": 0,
+  "type": "Skill",
+  "attack_type": "None",
+  "attribute": "Fire",
+  "target": "All",
+  "damage": -1,
+  "times": -1,
+  "special": "None",
+  "special_stat": 0
+ },
+ {
+  "index": 24,
+  "name": "재점화",
+  "description": "방어 5 획득, 다음턴 시작 시 방어 5 획득",
+  "cost": 1,
+  "rarity": 0,
+  "type": "Skill",
+  "attack_type": "None",
+  "attribute": "Fire",
+  "target": "Self",
+  "damage": -1,
+  "times": -1,
+  "special": "None",
+  "special_stat": 0
+ },
+ {
+  "index": 25,
+  "name": "복사열",
+  "description": "적 전체 화상 1 부여, 방어 5 획득",
+  "cost": 1,
+  "rarity": 0,
+  "type": "Skill",
+  "attack_type": "None",
+  "attribute": "Fire",
+  "target": "All",
+  "damage": -1,
+  "times": -1,
+  "special": "None",
+  "special_stat": 0
+ },
+ {
+  "index": 26,
+  "name": "용광로",
+  "description": "적 1기 방어막 제거, 현재 화상 수치만큼 화상 부여",
+  "cost": 1,
+  "rarity": 1,
+  "type": "Skill",
+  "attack_type": "None",
+  "attribute": "Fire",
+  "target": "One",
+  "damage": -1,
+  "times": -1,
+  "special": "None",
+  "special_stat": 0
+ },
+ {
+  "index": 27,
+  "name": "화염 방패",
+  "description": "방어 12 획득, 이번 턴동안 본인 공격한 대상에게 4 데미지 부여",
+  "cost": 2,
+  "rarity": 1,
+  "type": "Skill",
+  "attack_type": "None",
+  "attribute": "Fire",
+  "target": "Self",
+  "damage": -1,
+  "times": -1,
+  "special": "None",
+  "special_stat": 0
+ },
+ {
+  "index": 28,
+  "name": "열 흡수",
+  "description": "적 1기의 화상 수치만큼 체력, 마력 획득, 화상 디버프 제거",
+  "cost": 1,
+  "rarity": 2,
+  "type": "Skill",
+  "attack_type": "None",
+  "attribute": "Fire",
+  "target": "One",
+  "damage": -1,
+  "times": -1,
+  "special": "None",
+  "special_stat": 0
+ },
+ {
+  "index": 29,
+  "name": "악마화",
+  "description": "이번 전투 동안 부여하는 화상 X 2",
+  "cost": 3,
+  "rarity": 2,
+  "type": "Skill",
+  "attack_type": "None",
+  "attribute": "Fire",
+  "target": "Self",
+  "damage": -1,
+  "times": -1,
+  "special": "None",
+  "special_stat": 0
+ },
+ {
+  "index": 30,
+  "name": "오한",
+  "description": "적 전체 동상 2 부여",
+  "cost": 0,
+  "rarity": 0,
+  "type": "Skill",
+  "attack_type": "None",
+  "attribute": "Ice",
+  "target": "All",
+  "damage": -1,
+  "times": -1,
+  "special": "None",
+  "special_stat": 0
+ },
+ {
+  "index": 31,
+  "name": "빙벽",
+  "description": "방어 4 획득",
+  "cost": 0,
+  "rarity": 0,
+  "type": "Skill",
+  "attack_type": "None",
+  "attribute": "Ice",
+  "target": "Self",
+  "damage": -1,
+  "times": -1,
+  "special": "Shield",
+  "special_stat": 4
+ },
+ {
+  "index": 32,
+  "name": "얼음 방패",
+  "description": "방어 6 획득, 선택한 적이 이번 턴 공격한다면 방어 5 추가 획득",
+  "cost": 1,
+  "rarity": 0,
+  "type": "Skill",
+  "attack_type": "None",
+  "attribute": "Ice",
+  "target": "One",
+  "damage": -1,
+  "times": -1,
+  "special": "None",
+  "special_stat": 0
+ },
+ {
+  "index": 33,
+  "name": "꽃샘추위",
+  "description": "방어 8 획득, 드로우 1",
+  "cost": 1,
+  "rarity": 0,
+  "type": "Skill",
+  "attack_type": "None",
+  "attribute": "Ice",
+  "target": "Self",
+  "damage": -1,
+  "times": -1,
+  "special": "None",
+  "special_stat": 0
+ },
+ {
+  "index": 34,
+  "name": "서리 갑옷",
+  "description": "적 전체의 동상 수치만큼 방어 획득",
+  "cost": 1,
+  "rarity": 1,
+  "type": "Skill",
+  "attack_type": "None",
+  "attribute": "Ice",
+  "target": "Self",
+  "damage": -1,
+  "times": -1,
+  "special": "None",
+  "special_stat": 0
+ },
+ {
+  "index": 35,
+  "name": "이글루",
+  "description": "방어 5 획득, 이번 턴 끝나도 방어 사라지지 않음",
+  "cost": 1,
+  "rarity": 1,
+  "type": "Skill",
+  "attack_type": "None",
+  "attribute": "Ice",
+  "target": "Self",
+  "damage": -1,
+  "times": -1,
+  "special": "None",
+  "special_stat": 0
+ },
+ {
+  "index": 36,
+  "name": "빙하 감옥",
+  "description": "방어 15 획득, 적 전체 동상 2 부여",
+  "cost": 2,
+  "rarity": 1,
+  "type": "Skill",
+  "attack_type": "None",
+  "attribute": "Ice",
+  "target": "All",
+  "damage": -1,
+  "times": -1,
+  "special": "None",
+  "special_stat": 0
+ },
+ {
+  "index": 37,
+  "name": "빙결 강화",
+  "description": "이번 턴 적에게 가하는 동상 X 2, 드로우 2",
+  "cost": 1,
+  "rarity": 2,
+  "type": "Skill",
+  "attack_type": "None",
+  "attribute": "Ice",
+  "target": "Self",
+  "damage": -1,
+  "times": -1,
+  "special": "None",
+  "special_stat": 0
+ },
+ {
+  "index": 38,
+  "name": "빙하기",
+  "description": "다음 X 번 공격에서 1의 피해만 받음",
+  "cost": 99,
+  "rarity": 2,
+  "type": "Skill",
+  "attack_type": "None",
+  "attribute": "Ice",
+  "target": "Self",
+  "damage": -1,
+  "times": -1,
+  "special": "None",
+  "special_stat": 0
+ },
+ {
+  "index": 39,
+  "name": "급속냉각",
+  "description": "방어 30 획득",
+  "cost": 2,
+  "rarity": 2,
+  "type": "Skill",
+  "attack_type": "None",
+  "attribute": "Ice",
+  "target": "Self",
+  "damage": -1,
+  "times": -1,
+  "special": "Shield",
+  "special_stat": 30
+ },
+ {
+  "index": 40,
   "name": "가속",
   "description": "패의 카드 한 장을 이번 전투 동안 코스트 0으로 고정",
   "cost": 0,
@@ -360,7 +615,7 @@
   "special_stat": 0
  },
  {
-  "index": 24,
+  "index": 41,
   "name": "고속 연산",
   "description": "손패의 모든 카드의 코스트 -1",
   "cost": 0,
@@ -375,7 +630,7 @@
   "special_stat": 0
  },
  {
-  "index": 25,
+  "index": 42,
   "name": "과부하",
   "description": "손패의 모든 카드의 코스트 0 고정, 사용시 이번 전투에서 소멸 디버프 부여",
   "cost": 0,
@@ -390,7 +645,7 @@
   "special_stat": 0
  },
  {
-  "index": 26,
+  "index": 43,
   "name": "일회용",
   "description": "손패의 카드 한 장을 선택해 복사, 코스트 0 고정, 사용시 이번 전투에서 소멸 디버프 부여",
   "cost": 0,
@@ -405,7 +660,7 @@
   "special_stat": 0
  },
  {
-  "index": 27,
+  "index": 44,
   "name": "과충전",
   "description": "현재 에너지 2배로 증가",
   "cost": 0,
@@ -420,7 +675,7 @@
   "special_stat": 0
  },
  {
-  "index": 28,
+  "index": 45,
   "name": "에너지 드링크",
   "description": "에너지 2, 힘, 마력 각 1씩 획득",
   "cost": 0,
@@ -429,6 +684,66 @@
   "attack_type": "None",
   "attribute": "Normal",
   "target": "Self",
+  "damage": -1,
+  "times": -1,
+  "special": "None",
+  "special_stat": 0
+ },
+ {
+  "index": 46,
+  "name": "생일 선물",
+  "description": "드로우 3장",
+  "cost": 0,
+  "rarity": 2,
+  "type": "Viewer",
+  "attack_type": "None",
+  "attribute": "Normal",
+  "target": "Self",
+  "damage": -1,
+  "times": -1,
+  "special": "None",
+  "special_stat": 0
+ },
+ {
+  "index": 47,
+  "name": "떡상",
+  "description": "드로우 2장, 에너지 2 획득",
+  "cost": 0,
+  "rarity": 2,
+  "type": "Viewer",
+  "attack_type": "None",
+  "attribute": "Normal",
+  "target": "Self",
+  "damage": -1,
+  "times": -1,
+  "special": "None",
+  "special_stat": 0
+ },
+ {
+  "index": 48,
+  "name": "금융 치료",
+  "description": "드로우 2장, 플레이어 디버프 삭제",
+  "cost": 0,
+  "rarity": 2,
+  "type": "Viewer",
+  "attack_type": "None",
+  "attribute": "Normal",
+  "target": "Self",
+  "damage": -1,
+  "times": -1,
+  "special": "None",
+  "special_stat": 0
+ },
+ {
+  "index": 49,
+  "name": "탐색",
+  "description": "덱에서 원하는 카드 1장 선택해 드로우",
+  "cost": 0,
+  "rarity": 2,
+  "type": "Viewer",
+  "attack_type": "None",
+  "attribute": "Normal",
+  "target": "Deck",
   "damage": -1,
   "times": -1,
   "special": "None",
@@ -473,7 +788,7 @@
   "type": "Partner3",
   "attack_type": "None",
   "attribute": "Normal",
-  "target": "Ran",
+  "target": "Self",
   "damage": -1,
   "times": -1,
   "special": "None",
