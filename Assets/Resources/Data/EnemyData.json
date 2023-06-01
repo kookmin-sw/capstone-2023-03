@@ -205,7 +205,7 @@
   "pat2": "공격 5 X 2",
   "pat3": "??",
   "pat4": "None",
-  "special": "None"
+  "special": "Ready"
  },
  {
   "index": 112,
@@ -218,7 +218,7 @@
   "pat2": "공격 10 \/ 방어 10",
   "pat3": "None",
   "pat4": "None",
-  "special": "None"
+  "special": "Boom"
  },
  {
   "index": 113,
@@ -244,7 +244,7 @@
   "pat2": "공격 6 X 2",
   "pat3": "공격 4 X 3",
   "pat4": "??",
-  "special": "None"
+  "special": "Ready"
  },
  {
   "index": 122,
@@ -257,7 +257,7 @@
   "pat2": "공격 13 \/ 방어 13",
   "pat3": "방어 18 \/ ??",
   "pat4": "None",
-  "special": "None"
+  "special": "Boom"
  },
  {
   "index": 123,
@@ -270,7 +270,7 @@
   "pat2": "공격 10 \/ ??",
   "pat3": "공격 12 \/ ??",
   "pat4": "공격 ??",
-  "special": "None"
+  "special": "Load"
  },
  {
   "index": 201,
@@ -322,7 +322,7 @@
   "pat2": "공격 5 X 2 \/ ??",
   "pat3": "공격 3 X 3 \/ ??",
   "pat4": "None",
-  "special": "None"
+  "special": "Regen"
  },
  {
   "index": 212,
@@ -335,7 +335,7 @@
   "pat2": "방어 14",
   "pat3": "공격 8 \/ ??",
   "pat4": "None",
-  "special": "None"
+  "special": "Guard"
  },
  {
   "index": 213,
@@ -361,7 +361,7 @@
   "pat2": "공격 6 X 2 \/ ??",
   "pat3": "공격 3 X 4 \/ ??",
   "pat4": "회복 12",
-  "special": "None"
+  "special": "Regen"
  },
  {
   "index": 222,
@@ -374,7 +374,7 @@
   "pat2": "방어 17 \/ ??",
   "pat3": "공격 11 \/ ??",
   "pat4": "공격 10 \/ ??",
-  "special": "None"
+  "special": "Guard"
  },
  {
   "index": 223,
@@ -465,7 +465,7 @@
   "pat2": "공격 12 \/ ??",
   "pat3": "None",
   "pat4": "None",
-  "special": "None"
+  "special": "Sal"
  },
  {
   "index": 321,
@@ -504,7 +504,7 @@
   "pat2": "공격 14 \/ ??",
   "pat3": "공격 30 \/ ??",
   "pat4": "None",
-  "special": "None"
+  "special": "Sal"
  },
  {
   "index": 401,

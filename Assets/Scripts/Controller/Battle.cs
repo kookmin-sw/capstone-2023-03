@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DataStructs;
-
+using System.Threading.Tasks;
 public class Battle : MonoBehaviour
 {
 
@@ -52,8 +52,9 @@ public class Battle : MonoBehaviour
         BattleData.Instance.Hand.Remove(card);
     }
 
-    public static void End_turn()
+    public static IEnumerator End_turn(TaskCompletionSource<bool> task)
     {
+        
         foreach (CardStruct card in BattleData.Instance.Hand)
         {
             BattleData.Instance.Trash.Add(card);
@@ -65,11 +66,17 @@ public class Battle : MonoBehaviour
         {
             if (EnemyData.Instance.Isalive[i])
             {
-                EnemyPattern.EnemyPatternStart(EnemyData.Instance.EnemyList[i], EnemyData.Instance.Pat[i]);
+                EnemyPattern.EnemyPatternStart(EnemyData.Instance.EnemyList[i], EnemyData.Instance.Pat[i], i);
                 BattleUI battleUI = FindObjectOfType<BattleUI>();
                 battleUI.EnemyAttack(i);
+                yield return new WaitForSecondsRealtime(1.0f);
             }
+            
         }
+        Debug.Log("End Turn");
+        yield return new WaitForSecondsRealtime(0.1f);
+
+        task.SetResult(true);
     }
 
     public static void Start_turn()
@@ -77,6 +84,7 @@ public class Battle : MonoBehaviour
         BattleData.Instance.CurrentEnergy = BattleData.Instance.MaxEnergy;
         BattleData.Instance.CurrentTurn++;
         BattleData.Instance.Shield = 0;
+        EnemyDebuffMinus();
         for (int i = 0; i < 3; i++)
         {
             if (EnemyData.Instance.Isalive[i])
@@ -87,6 +95,7 @@ public class Battle : MonoBehaviour
             {
                 EnemyData.Instance.Pat[i] = 0;
             }
+            
         }
     }
 
@@ -104,15 +113,22 @@ public class Battle : MonoBehaviour
         }
     }
 
-    public static void ChangeCurrentShield(float value)
+    public static void ChangeCurrentShield(float value, int num)
     {
         if(BattleData.Instance.crack > 0 && value > 0)
         {
             value = (float)(int)(value * 0.75f);
         }
-        else if(value < 0 && BattleData.Instance.weak > 0)
+        else if(value < 0)
         {
-            value = (float)(int)(value * 0.5f);
+            if (num > 0 && EnemyData.Instance.Ice[num] > 0)
+            {
+                value -= EnemyData.Instance.Ice[num];
+            }
+            if(BattleData.Instance.weak > 0)
+            {
+                value = (float)(int)(value * 1.5f);
+            }
         }
         BattleData.Instance.Shield += value;
         if (BattleData.Instance.Shield < 0)
@@ -120,6 +136,8 @@ public class Battle : MonoBehaviour
             float temp = BattleData.Instance.Shield;
             BattleData.Instance.Shield = 0;
             ChangeCurrentHealth(temp);
+            BattleUI battleUI = FindObjectOfType<BattleUI>();
+            battleUI.PlayerHurt();
         }
     }
 
@@ -139,11 +157,17 @@ public class Battle : MonoBehaviour
     public static void ChangeEnemyShield(int num, float value)
     {
         EnemyData.Instance.Shield[num] += value;
+        if(value < 0)
+        {
+            EnemyData.Instance.Shield[num] -= EnemyData.Instance.Fire[num];
+        }
         if (EnemyData.Instance.Shield[num] < 0)
         {
             float temp = EnemyData.Instance.Shield[num];
             EnemyData.Instance.Shield[num] = 0;
             ChangeEnemyHealth(num, temp);
+            BattleUI battleUI = FindObjectOfType<BattleUI>();
+            battleUI.EnemyHurt(num);
         }
     }
 
@@ -195,6 +219,65 @@ public class Battle : MonoBehaviour
         if(BattleData.Instance.confusion)
         {
             BattleData.Instance.confusion = false;
+        }
+        if (BattleData.Instance.burn)
+        {
+            BattleData.Instance.burn = false;
+            BattleData.Instance.Int -= 2;
+        }
+    }
+
+    public static void EnemyDebuffMinus()
+    {
+        for(int i = 0; i < 3; i++)
+        {
+
+            if (EnemyData.Instance.Fire[i] > 0)
+            {
+                EnemyData.Instance.Fire[i]--;
+            }
+
+            if (EnemyData.Instance.Ice[i] > 0)
+            {
+                EnemyData.Instance.Ice[i]--;
+            }
+        }
+    }
+    
+    public static int RandomEnemy()
+    {
+        int num = 0;
+        for(int i = 0; i < 3; i++)
+        {
+            if (EnemyData.Instance.Isalive[i])
+            {
+                num++;
+            }
+        }
+        int[] enemy = new int[num];
+        int j = 0;
+        for(int i = 0; i < 3; i++)
+        {
+            if (EnemyData.Instance.Isalive[i])
+            {
+                enemy[j] = i;
+                j++;
+            }
+        }
+        int random = Random.Range(0, num);
+        return enemy[random];
+    }
+
+    public static void EnemyDebuff(int num, string debuff, int value)
+    {
+        switch (debuff)
+        {
+            case "Fire":
+                EnemyData.Instance.Fire[num] += value;
+                break;
+            case "Ice":
+                EnemyData.Instance.Ice[num] += value;
+                break;
         }
     }
 }
