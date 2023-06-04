@@ -30,7 +30,7 @@
 
 ## 3. 소개 영상
   
-추가 예정
+[![Alternate Text](https://img.youtube.com/vi/NoJn_X90eIE/0.jpg)](https://www.youtube.com/watch?v=NoJn_X90eIE)
 
 ## 4. 팀 소개
   
